@@ -137,7 +137,8 @@ export default {
           this.isLoading = true
           var obj = {
               time: this.$route.query.startTime +","+this.$route.query.endTime,
-              group: this.$route.query.departmentId
+              group: this.$route.query.departmentId,
+              planId: this.$route.query.planId
           }
           this.queryParam = Object.assign({},obj)
           getAction(url,this.queryParam,'get').then((res) => {

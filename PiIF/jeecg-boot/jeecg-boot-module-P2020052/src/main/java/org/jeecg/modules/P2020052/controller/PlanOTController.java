@@ -34,18 +34,18 @@ public class PlanOTController {
     public Result OTTable(
             @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-            String[] time,String[] group){
+            String[] time,String[] group,String planId){
         Result<IPage<PlanOTVo>> result = new Result<IPage<PlanOTVo>>();
         Page page = new Page(pageNo, pageSize);
-        IPage<PlanOTVo> list = planOTService.OTTable(page,time,group);
+        IPage<PlanOTVo> list = planOTService.OTTable(page,time,group,planId);
         return result.ok(list);
     }
 
 
     @GetMapping(value = "exportOTExcel")
     @ApiOperation(value = "计划OT交付情况报表导出")
-    public void exportOTExcel(HttpServletResponse response,  String[] time,String[] group) throws IOException {
-        planOTService.exportOTExcel(response, time,group);
+    public void exportOTExcel(HttpServletResponse response,  String[] time,String[] group,String planId) throws IOException {
+        planOTService.exportOTExcel(response, time,group,planId);
     }
     @GetMapping(value = "/selectGroup")
     @ApiOperation(value = "查询部门")
@@ -60,16 +60,16 @@ public class PlanOTController {
     public Result selectINTable(
     @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
     @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-    String[] time,String[] group) {
+    String[] time,String[] group,String planId) {
         Result<IPage<PlanINVo>> result = new Result<IPage<PlanINVo>>();
         Page page = new Page(pageNo, pageSize);
-        IPage<PlanINVo> list = planOTService.selectINTable(page, time, group);
+        IPage<PlanINVo> list = planOTService.selectINTable(page, time, group,planId);
         return result.ok(list);
     }
     @GetMapping(value = "exportINExcel")
     @ApiOperation(value = "计划in报表导出")
-    public void exportINExcel(HttpServletResponse response,  String[] time,String[] group) throws IOException {
-        planOTService.exportINExcel(response, time,group);
+    public void exportINExcel(HttpServletResponse response,  String[] time,String[] group,String planId) throws IOException {
+        planOTService.exportINExcel(response, time,group,planId);
     }
 
     @GetMapping(value = "/selectRiskTable")

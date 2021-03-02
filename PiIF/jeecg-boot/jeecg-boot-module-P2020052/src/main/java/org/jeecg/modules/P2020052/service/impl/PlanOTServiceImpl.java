@@ -27,7 +27,7 @@ public class PlanOTServiceImpl implements PlanOTService {
     PlanOTMapper planOTMapper;
 
     @Override
-    public IPage<PlanOTVo> OTTable(Page page, String[] time, String[] group) {
+    public IPage<PlanOTVo> OTTable(Page page, String[] time, String[] group, String planId) {
         String startTime = null;
         String endTime = null;
         if (time != null) {
@@ -35,7 +35,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             endTime = time[1];
         }
 
-        return  planOTMapper.OTTable(page, startTime, endTime, group);
+        return  planOTMapper.OTTable(page, startTime, endTime, group,planId);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public IPage<PlanINVo> selectINTable(Page page, String[] time, String[] group) {
+    public IPage<PlanINVo> selectINTable(Page page, String[] time, String[] group, String planId) {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
@@ -53,7 +53,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             endTime = time[1];
         }
 
-        return planOTMapper.selectINTable(page, startTime, endTime, group);
+        return planOTMapper.selectINTable(page, startTime, endTime, group,planId);
     }
 
 
@@ -211,14 +211,14 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public void exportOTExcel(HttpServletResponse response, String[] time, String[] group) throws IOException {
+    public void exportOTExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException {
         String startTime = null;
         String endTime = null;
         if (time != null) {
             startTime = time[0];
             endTime = time[1];
         }
-        List<PlanOTVo> list = planOTMapper.exportOTExcel(startTime, endTime, group);
+        List<PlanOTVo> list = planOTMapper.exportOTExcel(startTime, endTime, group,planId);
         //创建HSSFWorkbook对象
         HSSFWorkbook wb = new HSSFWorkbook();
         //创建HSSFSheet对象
@@ -288,7 +288,7 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public void exportINExcel(HttpServletResponse response, String[] time, String[] group) throws IOException {
+    public void exportINExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
@@ -296,7 +296,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             endTime = time[1];
         }
 
-        List<PlanINVo> list = planOTMapper.exportINExcel( startTime, endTime, group);
+        List<PlanINVo> list = planOTMapper.exportINExcel( startTime, endTime, group,planId);
         //创建HSSFWorkbook对象
         HSSFWorkbook wb = new HSSFWorkbook();
         //创建HSSFSheet对象

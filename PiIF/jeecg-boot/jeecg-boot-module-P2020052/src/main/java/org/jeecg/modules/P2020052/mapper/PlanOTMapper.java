@@ -10,11 +10,11 @@ import java.util.List;
 
 @Repository
 public interface PlanOTMapper {
-    IPage<PlanOTVo> OTTable(Page page, @Param("startTime") String startTime, @Param("endTime")String endTime, @Param("group")String[] group);
+    IPage<PlanOTVo> OTTable(Page page, @Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group,@Param("planId") String planId);
 
     List<GroupVo>  selectGroup();
 
-    IPage<PlanINVo> selectINTable(Page page, @Param("startTime") String startTime, @Param("endTime")String endTime, @Param("group")String[] group);
+    IPage<PlanINVo> selectINTable(Page page, @Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId") String planId);
 
     List<RiskVo>  selectRiskProject(String[] time, String[] group);
 
@@ -22,9 +22,9 @@ public interface PlanOTMapper {
 
     List<PiplanActivityVo> WorkDelayTable(@Param("startTime")String startTime, @Param("endTime")String endTime, @Param("projectId")String projectId, @Param("flag")String flag);
 
-    List<PlanOTVo> exportOTExcel(@Param("startTime") String startTime, @Param("endTime")String endTime, @Param("group")String[] group);
+    List<PlanOTVo> exportOTExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
-    List<PlanINVo> exportINExcel(@Param("startTime") String startTime, @Param("endTime")String endTime, @Param("group")String[] group);
+    List<PlanINVo> exportINExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
     List<ProblemRickChainVo> problemRickChain(String riskId);
 }

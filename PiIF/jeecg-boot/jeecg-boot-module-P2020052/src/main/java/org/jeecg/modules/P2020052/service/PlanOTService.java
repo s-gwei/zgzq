@@ -12,19 +12,19 @@ import java.util.List;
 
 @Repository
 public interface PlanOTService {
-    IPage<PlanOTVo> OTTable(Page page, String[] time, String[] group);
+    IPage<PlanOTVo> OTTable(Page page, String[] time, String[] group, String planId);
 
     List<GroupVo> selectGroup();
 
-    IPage<PlanINVo> selectINTable(Page page, String[] time, String[] group);
+    IPage<PlanINVo> selectINTable(Page page, String[] time, String[] group, String planId);
 
     List<RiskVo>  selectRiskTable( String[] time, String[] group, String planId);
 
     List<PiplanActivityVo> WorkDelayTable(String[] time, String projectId, String flag) throws ParseException;
 
-    void exportOTExcel(HttpServletResponse response, String[] time, String[] group) throws IOException;
+    void exportOTExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 
-    void exportINExcel(HttpServletResponse response, String[] time, String[] group) throws IOException;
+    void exportINExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 
     void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 

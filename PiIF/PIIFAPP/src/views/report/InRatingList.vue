@@ -144,7 +144,7 @@ export default {
   methods:{
       getData(pageNo, pageSize){
           const  url = this.url.tableDate,_this=this,params={};
-          params.group = this.$route.query.departmentId,params.time = this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null
+          params.group = this.$route.query.departmentId,params.time = this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null,params.planId=this.$route.query.planId
           this.isLoading = true
           var obj = {
               pageNo: pageNo ? pageNo : this.ispagination.pageNo,
