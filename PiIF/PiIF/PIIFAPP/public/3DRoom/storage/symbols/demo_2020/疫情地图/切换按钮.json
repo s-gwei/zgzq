@@ -1,0 +1,134 @@
+{
+  "modified": "Sun Apr 26 2020 15:23:23 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "t1",
+      "valueType": "String"
+    },
+    {
+      "attr": "t2",
+      "valueType": "String"
+    },
+    {
+      "attr": "t3",
+      "valueType": "String"
+    }
+  ],
+  "stateEnum": [
+    {
+      "value": "点击"
+    },
+    {
+      "value": "未点击"
+    },
+    {
+      "value": "悬停"
+    }
+  ],
+  "state": "点击",
+  "width": 157,
+  "height": 32,
+  "boundExtend": 40,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(74,116,232)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "state": "点击",
+      "shadow": true,
+      "shadowColor": "rgba(142,171,250,0.94)",
+      "shadowBlur": 25,
+      "shadowOffsetX": 5,
+      "shadowOffsetY": 10,
+      "rect": [
+        0,
+        0,
+        157,
+        32
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@t1",
+        "value": "切换按钮示例1"
+      },
+      "align": "center",
+      "color": "rgb(255,255,255)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "state": "点击",
+      "rect": [
+        14.88749,
+        3.41478,
+        129.44583,
+        25.17044
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(250,251,255)",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(204,214,252)",
+      "pixelPerfect": true,
+      "state": "未点击",
+      "rect": [
+        0,
+        0,
+        157,
+        32
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@t2",
+        "value": "切换按钮未点击"
+      },
+      "align": "center",
+      "color": "rgb(140,140,194)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "state": "未点击",
+      "rect": [
+        14.88749,
+        3.41478,
+        129.44583,
+        25.17044
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(204,214,252)",
+      "pixelPerfect": true,
+      "state": "悬停",
+      "rect": [
+        0,
+        0,
+        157,
+        32
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@t3",
+        "value": "切换按钮未点击"
+      },
+      "align": "center",
+      "color": "rgb(126,147,252)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "state": "悬停",
+      "rect": [
+        14.88749,
+        3.41478,
+        129.44583,
+        25.17044
+      ]
+    }
+  ]
+}

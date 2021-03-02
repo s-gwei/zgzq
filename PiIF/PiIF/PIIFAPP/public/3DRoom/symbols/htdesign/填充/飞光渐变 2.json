@@ -1,0 +1,184 @@
+{
+  "modified": "Sun Apr 28 2019 11:32:49 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "opacity",
+      "valueType": "Opacity"
+    }
+  ],
+  "width": 128,
+  "height": 32,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "roundRect",
+      "background": "rgb(31,145,194)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(67,175,222,0.00)",
+      "cornerRadius": 2,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        30.62076,
+        6.66614,
+        94.93282,
+        4
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(31,145,194)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(67,175,222,0.00)",
+      "cornerRadius": 2,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        0.00007,
+        21.33386,
+        89.77024,
+        4
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(54,195,255)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(67,175,222,0.00)",
+      "cornerRadius": 1,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        30.62069,
+        7.66614,
+        94.93282,
+        2
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(54,195,255)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(67,175,222,0.00)",
+      "cornerRadius": 1,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        0,
+        22.33386,
+        89.77024,
+        2
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(117,214,255)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(77,172,250,0.00)",
+      "cornerRadius": 0.5,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        30.62069,
+        8.16614,
+        94.93282,
+        1
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(117,214,255)",
+      "borderColor": "#979797",
+      "gradient": "linear.northeast",
+      "gradientColor": "rgba(77,172,250,0.00)",
+      "cornerRadius": 0.5,
+      "opacity": 0.3,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowBlur": 4,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆角矩形",
+      "rotation": -3.14159,
+      "rect": [
+        0,
+        22.83386,
+        89.77024,
+        1
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(26,157,184,0.00)",
+      "borderColor": "#979797",
+      "gradient": "radial.center",
+      "gradientColor": "rgba(105,210,255,0.94)",
+      "opacity": 0.13,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rotation": -3.14159,
+      "rect": [
+        20.87777,
+        3.52322,
+        104.8879,
+        10.28589
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(26,157,184,0.00)",
+      "borderColor": "#979797",
+      "gradient": "radial.center",
+      "gradientColor": "rgba(105,210,255,0.94)",
+      "opacity": 0.13,
+      "shadow": true,
+      "shadowColor": "rgb(76,205,252)",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rotation": -3.14159,
+      "rect": [
+        0.00007,
+        18.19089,
+        99.81395,
+        10.28589
+      ]
+    }
+  ]
+}

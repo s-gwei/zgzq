@@ -1,0 +1,185 @@
+{
+  "modified": "Tue Dec 03 2019 16:26:17 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "text",
+      "valueType": "String",
+      "name": "内容"
+    },
+    {
+      "attr": "font",
+      "valueType": "String",
+      "name": "字体"
+    },
+    {
+      "attr": "textColor",
+      "valueType": "String",
+      "name": "字体颜色"
+    }
+  ],
+  "width": 120,
+  "height": 60,
+  "boundExtend": 12,
+  "fitSize": true,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(41,155,217,0.85)",
+      "borderColor": "#979797",
+      "selectable": false,
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        12.26119,
+        35.95256,
+        107.73881,
+        2.40863
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(16,16,41,0.80)",
+      "borderColor": "rgba(76,205,252,0.50)",
+      "points": [
+        9.78357,
+        37.31442,
+        0.00001,
+        31.06976,
+        0.00001,
+        0.84194,
+        111.4389,
+        0.84194,
+        120,
+        7.67352,
+        120,
+        37.31442
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgba(41,153,214,0.50)",
+      "borderCap": "round",
+      "shadow": true,
+      "shadowColor": "#32D3EB",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "points": [
+        23.01589,
+        37.27478,
+        28.40452,
+        42.23465,
+        49.50999,
+        42.36183,
+        66.68653,
+        58.0706
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        21.72425,
+        36.35742,
+        2.83721,
+        2.00377
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(41,155,217,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        20.30564,
+        35.35553,
+        5.67443,
+        4.00754
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(41,155,217,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        63.78472,
+        55.99246,
+        5.67443,
+        4.00754
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        65.20333,
+        56.99434,
+        2.83721,
+        2.00377
+      ]
+    },
+    {
+      "type": "arc",
+      "background": "rgba(77,127,176,0.05)",
+      "borderColor": "#979797",
+      "arcOval": true,
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        17.17986,
+        26.22013,
+        98.88414,
+        22.1093
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@text",
+        "value": "文本"
+      },
+      "align": "center",
+      "color": {
+        "func": "attr@textColor",
+        "value": "#000"
+      },
+      "font": {
+        "func": "attr@font",
+        "value": "12px arial, sans-serif"
+      },
+      "rect": [
+        0.28572,
+        6.71291,
+        120,
+        22.57143
+      ]
+    }
+  ]
+}

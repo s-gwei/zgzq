@@ -1,0 +1,21 @@
+{
+  "modified": "Sun Apr 26 2020 15:16:46 GMT+0800 (中国标准时间)",
+  "width": 5.5,
+  "height": 10,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(82,109,209)",
+      "pixelPerfect": true,
+      "points": [
+        0.50343,
+        0.62292,
+        4.99657,
+        5,
+        0.50343,
+        9.37708
+      ]
+    }
+  ]
+}

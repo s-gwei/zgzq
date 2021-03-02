@@ -1,0 +1,159 @@
+{
+  "modified": "Sun Apr 26 2020 15:53:49 GMT+0800 (中国标准时间)",
+  "background": "rgb(61,61,61)",
+  "dataBindings": [
+    {
+      "attr": "name",
+      "valueType": "String",
+      "defaultValue": "文本"
+    },
+    {
+      "attr": "t1",
+      "valueType": "String"
+    },
+    {
+      "attr": "t2",
+      "valueType": "String"
+    },
+    {
+      "attr": "unit",
+      "valueType": "String"
+    },
+    {
+      "attr": "ct",
+      "valueType": "Color"
+    }
+  ],
+  "width": 563,
+  "height": 81,
+  "pixelPerfect": false,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "shape",
+      "background": {
+        "func": "attr@ht.color",
+        "value": null
+      },
+      "borderWidth": 2,
+      "borderColor": "rgb(124,145,155)",
+      "borderJoin": "bevel",
+      "opacity": 0.5,
+      "displayName": "不规则图形",
+      "points": [
+        43.33656,
+        4.60845,
+        281.5,
+        4.60845,
+        281.5,
+        76.2692,
+        43.33656,
+        76.2692,
+        43.33656,
+        4.60845
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(124,145,155)",
+      "borderJoin": "bevel",
+      "opacity": 0.3,
+      "rotation": 5.49779,
+      "points": [
+        3.99812,
+        34.5,
+        3.99812,
+        46.5,
+        15.99812,
+        46.5
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@name",
+        "value": "46.3"
+      },
+      "align": "center",
+      "color": {
+        "func": "attr@ct",
+        "value": "rgb(61,61,61)"
+      },
+      "font": "bold 52px sans-serif, Arial",
+      "rect": [
+        43.33656,
+        4.60845,
+        238.16344,
+        71.66075
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@t1",
+        "value": "0.01%"
+      },
+      "color": {
+        "func": "attr@ct",
+        "value": "rgb(188,201,207)"
+      },
+      "font": "32px PingFangSC-Thin",
+      "rect": [
+        293.01453,
+        9.3488,
+        130.83162,
+        32.65584
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@t2",
+        "value": "输入层"
+      },
+      "color": {
+        "func": "attr@ct",
+        "value": "rgb(188,201,207)"
+      },
+      "font": "24px PingFangSC-Thin",
+      "rect": [
+        293.01453,
+        42.00464,
+        130.83162,
+        32.65584
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(124,145,155)",
+      "borderJoin": "bevel",
+      "opacity": 0.6,
+      "rotation": 5.49779,
+      "points": [
+        3.99812,
+        47.59221,
+        3.99812,
+        59.59221,
+        15.99812,
+        59.59221
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(124,145,155)",
+      "borderJoin": "bevel",
+      "rotation": 5.49779,
+      "points": [
+        3.99812,
+        60.1752,
+        3.99812,
+        72.1752,
+        15.99812,
+        72.1752
+      ]
+    }
+  ]
+}

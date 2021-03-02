@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.valuestream.mapper.ValueStreamModelMapper">
+
+    <!--查询表是否已经存在-->
+    <select id="findByTableName" resultType="org.jeecg.modules.valuestream.entity.IotValuestreamModel">
+        select *
+        from iot_valuestream_model
+        where name = #{tableName}
+          and json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+        order by lastModifiedDate desc
+        limit 1
+    </select>
+    <!--更新ValueStream-->
+    <update id="updateValueStreamModel">
+        update iot_valuestream_model
+        set configurationChanges = #{valuestreamModel.configurationchanges},
+            fieldDefinitions     = #{valuestreamModel.fielddefinitions}
+        where name = #{valuestreamModel.name}
+    </update>
+    <!--查询全部IotValuestreamModel-->
+    <select id="findTableAndColumn" resultType="org.jeecg.modules.valuestream.entity.IotValuestreamModel">
+        select *
+        from iot_valuestream_model
+        where json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+        order by lastModifiedDate desc
+    </select>
+    <!--根据表名查询IotValuestreamModel-->
+    <select id="findTableAndColumnByTableName"
+            resultType="org.jeecg.modules.valuestream.entity.IotValuestreamModel">
+        select *
+        from iot_valuestream_model
+        where name = #{tableName}
+        order by lastModifiedDate
+        limit 1
+    </select>
+    <!--根据id查询ValuestreamModel-->
+    <select id="findById" resultType="org.jeecg.modules.valuestream.entity.IotValuestreamModel">
+        select * from iot_valuestream_model where entity_id=#{id}
+    </select>
+    <!--更新ValuestreamModel-->
+    <update id="updateTable">
+        update iot_valuestream_model
+        set avatar = #{valuestreamModel.avatar},
+        name = #{valuestreamModel.name},
+        description = #{valuestreamModel.description},
+        documentationContent = #{valuestreamModel.documentationcontent},
+        homeMashup = #{valuestreamModel.homemashup},
+        projectName = #{valuestreamModel.projectname},
+        tags = #{valuestreamModel.tags},
+        configurationChanges = #{valuestreamModel.configurationchanges},
+        implementedShapes=#{valuestreamModel.implementedshapes} ,
+        enabled=#{valuestreamModel.enabled} ,
+        published=#{valuestreamModel.published} ,
+        identifier=#{valuestreamModel.identifier} ,
+        valueStream=#{valuestreamModel.valuestream}
+
+        where entity_id = #{valuestreamModel.entityId}
+    </update>
+    <!--删除valuestreamModel-->
+    <delete id="deleteTable">
+        delete from iot_valuestream_model where entity_id=#{valuestreamModel.entityId}
+    </delete>
+
+    <!--查询valuestream_model-->
+    <!--<select id="findExistColumnByTableNameAndColumn"-->
+    <!--resultType="org.jeecg.modules.datashape.entity.IotValuestreamModel1">-->
+    <!--select *-->
+    <!--from iot_valuestream_model-->
+    <!--where name = #{tableName}-->
+    <!--and fieldDefinitions = #{column}-->
+
+    <!--</select>-->
+    <!--&lt;!&ndash;更新修改信息&ndash;&gt;-->
+    <!--<update id="updateConfigurationChanges">-->
+    <!--update iot_valuestream_model-->
+    <!--set configurationChanges = #{existValueStreamModelIot.configurationchanges}-->
+    <!--where entity_id = #{existValueStreamModelIot.entityId}-->
+    <!--</update>-->
+</mapper>

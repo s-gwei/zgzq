@@ -1,0 +1,263 @@
+{
+  "modified": "Mon Mar 30 2020 15:41:04 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "ht.series",
+      "valueType": "Object",
+      "name": "ChartSeries",
+      "defaultValue": [
+        {
+          "type": "line",
+          "name": "上周降水量",
+          "itemStyle": {
+            "size": 3,
+            "background": "#fff"
+          },
+          "data": [
+            4000,
+            5000,
+            6000,
+            7000,
+            8000,
+            9000,
+            10000,
+            20000,
+            25000
+          ]
+        },
+        {
+          "type": "line",
+          "name": "上周降水量",
+          "itemStyle": {
+            "size": 3,
+            "background": "#fff"
+          },
+          "data": [
+            820,
+            932,
+            901,
+            934,
+            1290,
+            1330,
+            24888
+          ]
+        }
+      ]
+    },
+    {
+      "attr": "ht.xAxis",
+      "valueType": "Object",
+      "name": "ChartXAxis"
+    },
+    {
+      "attr": "ht.yAxis",
+      "valueType": "Object",
+      "name": "ChartYAxis"
+    },
+    {
+      "attr": "ht.colors",
+      "valueType": "ColorArray",
+      "name": "ChartColors"
+    },
+    {
+      "attr": "ht.background",
+      "valueType": "Color",
+      "name": "UIBackground",
+      "defaultValue": null
+    },
+    {
+      "attr": "ht.boundaryGap",
+      "valueType": "Boolean"
+    },
+    {
+      "attr": "axisData",
+      "valueType": "StringArray"
+    },
+    {
+      "attr": "seriesData1",
+      "valueType": "NumberArray"
+    },
+    {
+      "attr": "seriesData2",
+      "valueType": "NumberArray"
+    },
+    {
+      "attr": "ht.onRectSelected",
+      "valueType": "Function"
+    }
+  ],
+  "stateEnum": [
+    {
+      "value": "确诊疑似",
+      "label": "确诊疑似"
+    },
+    {
+      "value": "治愈死亡",
+      "label": "治愈死亡"
+    },
+    {
+      "value": "新增疑似",
+      "label": "新增疑似"
+    },
+    {
+      "value": "鄂外治愈",
+      "label": "鄂外治愈"
+    },
+    {
+      "value": "鄂外新增确诊",
+      "label": "鄂外新增确诊"
+    },
+    {
+      "value": "鄂外死亡",
+      "label": "鄂外死亡"
+    }
+  ],
+  "state": "确诊疑似",
+  "width": 446,
+  "height": 200,
+  "fitSize": true,
+  "interactive": true,
+  "disableSelectedBorder": true,
+  "pixelPerfect": false,
+  "comps": [
+    {
+      "type": "components/ht/chart/chart.json",
+      "displayName": "chart",
+      "rect": [
+        0,
+        27.48191,
+        446,
+        172.79305
+      ],
+      "onClick": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onClick.apply(this, arguments);\n}",
+      "onDown": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onDown.apply(this, arguments);\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onUp.apply(this, arguments);\n}",
+      "onMove": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onMove.apply(this, arguments);\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onEnter.apply(this, arguments);\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onLeave.apply(this, arguments);\n}",
+      "onBeginDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onBeginDrag.apply(this, arguments);\n}",
+      "onDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onDrag.apply(this, arguments);\n}",
+      "onEndDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onEndDrag.apply(this, arguments);\n}",
+      "series": {
+        "func": "attr@ht.series",
+        "value": [
+          {
+            "data": {
+              "func": "attr@seriesData1"
+            }
+          },
+          {
+            "data": {
+              "func": "attr@seriesData2"
+            }
+          }
+        ]
+      },
+      "xAxis": {
+        "func": "attr@ht.xAxis",
+        "value": [
+          {
+            "data": {
+              "func": "attr@axisData"
+            }
+          }
+        ]
+      },
+      "yAxis": {
+        "func": "attr@ht.yAxis"
+      },
+      "colors": {
+        "func": "attr@ht.colors",
+        "value": [
+          "rgb(51,153,255)",
+          "rgb(93,217,174)",
+          "#FEB64D",
+          "rgb(241,125,164)",
+          "rgb(135,144,204)",
+          "rgb(124,145,155)",
+          "rgb(48,242,120)",
+          "rgb(212,0,0)",
+          "#32D3EB",
+          "#c4ccd3"
+        ]
+      },
+      "background": {
+        "func": "attr@ht.background",
+        "value": null
+      },
+      "boundaryGap": {
+        "func": "attr@ht.boundaryGap",
+        "value": true
+      }
+    },
+    {
+      "type": "rect",
+      "background": "rgb(245,248,252)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "state": "确诊疑似",
+      "rect": [
+        336.04652,
+        4,
+        92.65313,
+        20.72504
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 2,
+      "borderColor": "rgb(232,58,58)",
+      "pixelPerfect": true,
+      "state": "确诊疑似",
+      "rect": [
+        347.83476,
+        12.13117,
+        3.80302,
+        3.9478
+      ]
+    },
+    {
+      "type": "text",
+      "text": "确诊",
+      "align": "center",
+      "color": "rgb(150,150,168)",
+      "pixelPerfect": true,
+      "state": "确诊疑似",
+      "rect": [
+        356.11379,
+        5.3489,
+        22.08937,
+        18.86126
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(255,255,255)",
+      "borderWidth": 2,
+      "borderColor": "rgb(106,116,230)",
+      "pixelPerfect": true,
+      "state": "确诊疑似",
+      "rect": [
+        388.73547,
+        12.1354,
+        3.80302,
+        3.9478
+      ]
+    },
+    {
+      "type": "text",
+      "text": "疑似",
+      "align": "center",
+      "color": "rgb(150,150,168)",
+      "pixelPerfect": true,
+      "state": "确诊疑似",
+      "rect": [
+        396.70994,
+        5.3489,
+        22.08937,
+        18.86126
+      ]
+    }
+  ]
+}

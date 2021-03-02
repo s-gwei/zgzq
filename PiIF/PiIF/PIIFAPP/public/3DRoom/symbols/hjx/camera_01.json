@@ -1,0 +1,104 @@
+{
+  "modified": "Fri Dec 06 2019 15:33:24 GMT+0800 (中国标准时间)",
+  "width": 35,
+  "height": 50,
+  "boundExtend": 12,
+  "comps": [
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgba(0,255,255,0.50)",
+      "borderCap": "round",
+      "shadow": true,
+      "shadowColor": "#32D3EB",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "points": [
+        9.71401,
+        25.59714,
+        12.04082,
+        33.26531,
+        21.42857,
+        33.26531,
+        27.55102,
+        43.87755
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(0,255,255,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        6.5334,
+        21.44076,
+        4.81895,
+        4.81895
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(0,255,255,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        4.91994,
+        19.82731,
+        8.04586,
+        8.04586
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(0,255,255,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "displayName": "圆形",
+      "rect": [
+        24.95414,
+        41.23985,
+        8.04586,
+        8.04586
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgba(0,255,255,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        26.5676,
+        42.8533,
+        4.81895,
+        4.81895
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/hjx/camera.json",
+      "displayName": "shexiangji_qiang",
+      "rect": [
+        -17.58001,
+        -18.71013,
+        60,
+        60
+      ]
+    }
+  ]
+}

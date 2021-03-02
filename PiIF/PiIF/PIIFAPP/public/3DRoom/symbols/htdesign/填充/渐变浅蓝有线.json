@@ -1,0 +1,49 @@
+{
+  "modified": "Thu Apr 25 2019 16:17:30 GMT+0800 (中国标准时间)",
+  "width": 1,
+  "height": 64,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgba(49,108,235,0.50)",
+      "borderColor": "#979797",
+      "gradient": "linear.northwest",
+      "gradientColor": "rgba(20,99,105,0.20)",
+      "opacity": 0.3,
+      "rect": [
+        0,
+        0,
+        1,
+        64
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(35,9,143,0.48)",
+      "borderColor": "#979797",
+      "gradient": "linear.northwest",
+      "gradientColor": "rgba(0,125,179,0.13)",
+      "rect": [
+        0,
+        62,
+        1,
+        2
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgba(35,9,143,0.48)",
+      "borderColor": "#979797",
+      "gradient": "linear.northwest",
+      "gradientColor": "rgba(0,125,179,0.13)",
+      "rotation": 3.14159,
+      "rect": [
+        0,
+        0,
+        1,
+        2
+      ]
+    }
+  ]
+}

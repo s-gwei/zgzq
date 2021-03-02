@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="addSerializeUid" value="true" />
+        <option name="javaMapperPackage" value="org.jeecg.modules.stream.dao" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+        <option name="javaModelPackage" value="org.jeecg.modules.stream.dao" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="jeecg-boot-module-iot" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="jeecg-boot-module-iot">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="org.jeecg.modules.stream.dao" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+                  <option name="javaModelPacakge" value="org.jeecg.modules.stream.dao" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+                  <option name="xmlPackage" value="org.jeecg.modules.stream.dao" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="jeecg-boot:datashape_model">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="DatashapeModel" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jeecg-boot:stream_model">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="StreamModel" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jeecg-boot:table_operate">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="TableOperate" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jeecg-boot:test_machine_data_store">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="TestMachineDataStore" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jeecg-boot:valuestream_model">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="entity_id" />
+                  <option name="javaModelName" value="ValuestreamModel" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="piif:iot_stream_model">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="IotStreamModel" />
+                  <option name="moduleName" value="jeecg-boot-module-iot" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="useLomBokOnModel" value="true" />
+        <option name="xmlMapperPackage" value="org.jeecg.modules.stream.dao" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/jeecg-boot/jeecg-boot-module-iot/src/main/java" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

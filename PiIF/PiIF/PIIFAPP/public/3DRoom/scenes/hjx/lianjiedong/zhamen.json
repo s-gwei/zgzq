@@ -1,0 +1,226 @@
+{
+  "v": "7.0.6",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true,
+    "postProcessingData": {
+      "bloom": {
+        "strength": 0.36,
+        "threshold": 0.18
+      },
+      "dof": {
+        "image": "assets/Depth.png"
+      }
+    }
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 7792,
+      "p": {
+        "tag": "zhashi",
+        "position": {
+          "x": 9.0749,
+          "y": -0.78782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 100
+        },
+        "scaleTall": 100,
+        "elevation": 7.89767
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/zhashi.json",
+        "interactive": true,
+        "onHover": "__ht__function(event, data, view) {// view.dm().getDataByTag('device_info').s('3d.visible',true);}",
+        "onLeave": "__ht__function(event, data, view) {// view.dm().getDataByTag('device_info').s('3d.visible',false);\r\nview.getView().style.cursor = 'default';}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7793,
+      "p": {
+        "tag": "show_zhamen",
+        "position": {
+          "x": 59.57058,
+          "y": -87
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 100
+        },
+        "scaleTall": 100,
+        "elevation": -144.93484
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/zhamen.json",
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7794,
+      "p": {
+        "tag": "show_shengzi1",
+        "position": {
+          "x": -0.61989,
+          "y": -87
+        },
+        "anchorElevation": 1,
+        "scale": {
+          "x": 100,
+          "y": 135
+        },
+        "scaleTall": 96,
+        "elevation": 488.49232
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/shengzi.json",
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7795,
+      "p": {
+        "tag": "shuicao",
+        "position": {
+          "x": 59.97321,
+          "y": -5.79104
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 100
+        },
+        "scaleTall": 100,
+        "elevation": -152.19231
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/suidao.json",
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7796,
+      "p": {
+        "tag": "show_shui1",
+        "position": {
+          "x": 59,
+          "y": 106.2388
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 180
+        },
+        "scaleTall": 10,
+        "tall": 0,
+        "elevation": -144
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/shui.json",
+        "wf.visible": "selected",
+        "2d.visible": false,
+        "3d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7797,
+      "p": {
+        "displayName": "shui",
+        "position": {
+          "x": 59,
+          "y": -197.58523
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 100
+        },
+        "scaleTall": 80,
+        "elevation": -144.38726
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/shui.json",
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7798,
+      "p": {
+        "tag": "show_shengzi2",
+        "position": {
+          "x": 125.63312,
+          "y": -87.06851
+        },
+        "anchorElevation": 1,
+        "scale": {
+          "x": 100,
+          "y": 135
+        },
+        "scaleTall": 96,
+        "elevation": 488.49232
+      },
+      "s": {
+        "shape3d": "models/hjx/lianjiedong/zhashi/shengzi.json",
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 7799,
+      "p": {
+        "tag": "device_info",
+        "image": "symbols/hjx/tanchuang.json",
+        "rotationX": -0.05241,
+        "position": {
+          "x": 25.2555,
+          "y": 385.79869
+        },
+        "anchorElevation": 0,
+        "elevation": -39.3409
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/tanchuang.json",
+        "shape3d.fixSizeOnScreen": false,
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "3d.visible": false,
+        "2d.visible": false,
+        "shape3d.reverse.flip": true
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      809.81687,
+      937.32333,
+      938.92113
+    ],
+    "center": [
+      6.04874,
+      181.57634,
+      -139.1033
+    ],
+    "near": 10,
+    "far": 100300,
+    "gridVisible": true,
+    "gridSize": 50,
+    "gridGap": 75,
+    "gridColor": [
+      0.4,
+      0.75,
+      0.85,
+      1
+    ],
+    "editHelperDisabled": false
+  }
+}

@@ -1,0 +1,1519 @@
+{
+  "modified": "Sun Apr 26 2020 15:16:45 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "ht.name",
+      "valueType": "String",
+      "name": "UIFormItemName"
+    },
+    {
+      "attr": "ht.value",
+      "valueType": "Number",
+      "defaultValue": 0,
+      "name": "UIFormItemValue"
+    },
+    {
+      "attr": "ht.min",
+      "valueType": "Number",
+      "defaultValue": 0,
+      "name": "ChartMinValue"
+    },
+    {
+      "attr": "ht.max",
+      "valueType": "Number",
+      "defaultValue": 100,
+      "name": "ChartMaxValue"
+    },
+    {
+      "attr": "ht.disabled",
+      "valueType": "Boolean",
+      "defaultValue": false,
+      "name": "UIDisabled"
+    },
+    {
+      "attr": "ht.barBakcground",
+      "valueType": "Color",
+      "name": "UIBackground"
+    },
+    {
+      "attr": "ht.barValueBackground",
+      "valueType": "Color",
+      "name": "SliderValueBackground"
+    },
+    {
+      "attr": "ht.barGradient",
+      "valueType": "Gradient",
+      "name": "editor.gradient"
+    },
+    {
+      "attr": "ht.barGradientColor",
+      "valueType": "Color",
+      "name": "editor.gradientcolor"
+    },
+    {
+      "attr": "ht.barWidth",
+      "valueType": "PositiveNumber",
+      "name": "SliderBarWidth"
+    },
+    {
+      "attr": "ht.barBorderRadius",
+      "valueType": "PositiveNumber",
+      "name": "SliderBarBorderRadius"
+    },
+    {
+      "attr": "ht.sliderImage",
+      "valueType": "Image",
+      "name": "SliderImage"
+    },
+    {
+      "attr": "ht.sliderBorderWidth",
+      "valueType": "PositiveNumber",
+      "name": "SliderBorderWidth"
+    },
+    {
+      "attr": "ht.sliderBorderRadios",
+      "valueType": "PositiveNumber",
+      "name": "SliderBorderRadius"
+    },
+    {
+      "attr": "ht.sliderBorderColor",
+      "valueType": "Color",
+      "name": "SliderBorderColor"
+    },
+    {
+      "attr": "ht.sliderBackground",
+      "valueType": "Color",
+      "name": "SliderBackground"
+    },
+    {
+      "attr": "ht.sliderWidth",
+      "valueType": "PositiveNumber",
+      "name": "SliderWidth"
+    },
+    {
+      "attr": "ht.sliderHeight",
+      "valueType": "PositiveNumber",
+      "name": "SliderHeight"
+    },
+    {
+      "attr": "ht.sliderOffsetX",
+      "valueType": "Int",
+      "defaultValue": 0,
+      "name": "SliderOffsetX"
+    },
+    {
+      "attr": "ht.sliderOffsetY",
+      "valueType": "Int",
+      "defaultValue": 0,
+      "name": "SliderOffsetY"
+    },
+    {
+      "attr": "ht.step",
+      "valueType": "PositiveNumber",
+      "defaultValue": 1,
+      "name": "SliderStep"
+    },
+    {
+      "attr": "ht.showToolTip",
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "UIShowToolTip"
+    },
+    {
+      "attr": "ht.toolTipFormat",
+      "valueType": "Function",
+      "name": "UIToolTipFormat"
+    },
+    {
+      "attr": "ht.onChange",
+      "valueType": "Function",
+      "name": "UIOnChange",
+      "extraInfo": {
+        "arguments": [
+          "oldValue",
+          "newValue",
+          "data",
+          "view"
+        ]
+      }
+    },
+    {
+      "attr": "date.1",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.2",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.3",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.4",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.5",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.6",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.7",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.8",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.9",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.10",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.11",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.12",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.13",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.14",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.15",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.16",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.17",
+      "valueType": "String"
+    },
+    {
+      "attr": "date.18",
+      "valueType": "String"
+    },
+    {
+      "attr": "text",
+      "valueType": "String"
+    },
+    {
+      "attr": "dateArea",
+      "valueType": "NumberArray"
+    }
+  ],
+  "width": 460,
+  "height": 90,
+  "fitSize": true,
+  "interactive": true,
+  "disableSelectedBorder": true,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(100,126,222)",
+      "pixelPerfect": true,
+      "points": [
+        12.03334,
+        65.14962,
+        13.88534,
+        65.14962,
+        14.39362,
+        65.14766,
+        14.81056,
+        64.71242,
+        14.80961,
+        64.18479,
+        14.81052,
+        63.92946,
+        14.71359,
+        63.68396,
+        14.54033,
+        63.50275,
+        14.36706,
+        63.32155,
+        14.13129,
+        63.2191,
+        13.88534,
+        63.21816,
+        12.03334,
+        63.21816,
+        11.78739,
+        63.2191,
+        11.55162,
+        63.32155,
+        11.37835,
+        63.50275,
+        11.20508,
+        63.68396,
+        11.10816,
+        63.92946,
+        11.10907,
+        64.18479,
+        11.10907,
+        64.71741,
+        11.5237,
+        65.14962,
+        12.03334,
+        65.14962,
+        12.03334,
+        69.01254,
+        13.88534,
+        69.01254,
+        14.39362,
+        69.01058,
+        14.81056,
+        68.57534,
+        14.80961,
+        68.04771,
+        14.81052,
+        67.7924,
+        14.71359,
+        67.54689,
+        14.54033,
+        67.36568,
+        14.36706,
+        67.18447,
+        14.13129,
+        67.08203,
+        13.88534,
+        67.08108,
+        12.03334,
+        67.08108,
+        11.78739,
+        67.08203,
+        11.55162,
+        67.18447,
+        11.37835,
+        67.36568,
+        11.20508,
+        67.54689,
+        11.10816,
+        67.7924,
+        11.10907,
+        68.04771,
+        11.10907,
+        68.58034,
+        11.5237,
+        69.01254,
+        12.03334,
+        69.01254,
+        22.21413,
+        51.63116,
+        18.51187,
+        51.63116,
+        18.51187,
+        50.66453,
+        18.51282,
+        50.13757,
+        18.09695,
+        49.70263,
+        17.58932,
+        49.6997,
+        17.34337,
+        49.70017,
+        17.10742,
+        49.80216,
+        16.93383,
+        49.98304,
+        16.76024,
+        50.1639,
+        16.66287,
+        50.40922,
+        16.66333,
+        50.66453,
+        16.66333,
+        51.63116,
+        9.25708,
+        51.63116,
+        9.25708,
+        50.66453,
+        9.25754,
+        50.40922,
+        9.16017,
+        50.1639,
+        8.98658,
+        49.98304,
+        8.81299,
+        49.80216,
+        8.57704,
+        49.70017,
+        8.33108,
+        49.6997,
+        7.8228,
+        49.70166,
+        7.40586,
+        50.1369,
+        7.40681,
+        50.66453,
+        7.40681,
+        51.63116,
+        3.70455,
+        51.63116,
+        2.72074,
+        51.63354,
+        1.77712,
+        52.04194,
+        1.08308,
+        52.76577,
+        0.38904,
+        53.4896,
+        0,
+        54.47102,
+        0.00229,
+        55.4923,
+        0.00229,
+        70.94222,
+        0.00229,
+        73.07812,
+        1.66079,
+        74.80694,
+        3.70455,
+        74.80694,
+        22.21413,
+        74.80694,
+        23.19824,
+        74.80456,
+        24.14212,
+        74.39591,
+        24.83621,
+        73.67169,
+        25.5303,
+        72.94748,
+        25.91914,
+        71.96559,
+        25.91639,
+        70.94401,
+        25.91639,
+        55.49409,
+        25.91639,
+        53.35997,
+        24.25788,
+        51.63116,
+        22.21413,
+        51.63116,
+        24.06612,
+        70.9458,
+        24.06612,
+        72.01107,
+        23.23687,
+        72.87547,
+        22.21413,
+        72.87547,
+        3.70455,
+        72.87547,
+        3.21235,
+        72.87452,
+        2.74018,
+        72.6703,
+        2.39295,
+        72.30816,
+        2.04572,
+        71.94603,
+        1.85118,
+        71.45495,
+        1.85256,
+        70.94401,
+        1.85256,
+        59.35702,
+        24.06785,
+        59.35702,
+        24.06785,
+        70.94401,
+        1.85083,
+        57.42196,
+        1.85083,
+        55.49588,
+        1.85083,
+        54.42883,
+        2.68008,
+        53.56442,
+        3.70283,
+        53.56442,
+        7.40509,
+        53.56442,
+        7.40509,
+        54.52925,
+        7.40509,
+        55.06368,
+        7.81971,
+        55.49588,
+        8.32935,
+        55.49588,
+        8.57561,
+        55.49541,
+        8.81182,
+        55.39317,
+        8.98546,
+        55.21192,
+        9.1591,
+        55.03065,
+        9.25627,
+        54.78488,
+        9.25535,
+        54.52925,
+        9.25535,
+        53.56442,
+        16.65987,
+        53.56442,
+        16.65987,
+        54.52925,
+        16.69594,
+        55.02907,
+        17.10217,
+        55.42037,
+        17.585,
+        55.42037,
+        18.06784,
+        55.42037,
+        18.47407,
+        55.02907,
+        18.51014,
+        54.52925,
+        18.51014,
+        53.56442,
+        22.2124,
+        53.56442,
+        23.23514,
+        53.56442,
+        24.06439,
+        54.42883,
+        24.06439,
+        55.49588,
+        24.06439,
+        57.42735,
+        1.85083,
+        57.42735,
+        6.48082,
+        69.01434,
+        8.33108,
+        69.01434,
+        8.57704,
+        69.01386,
+        8.81299,
+        68.91187,
+        8.98658,
+        68.731,
+        9.16017,
+        68.55013,
+        9.25754,
+        68.30482,
+        9.25708,
+        68.04951,
+        9.258,
+        67.79387,
+        9.16083,
+        67.54811,
+        8.98719,
+        67.36684,
+        8.81355,
+        67.18558,
+        8.57734,
+        67.08334,
+        8.33108,
+        67.08288,
+        6.48082,
+        67.08288,
+        6.23456,
+        67.08334,
+        5.99835,
+        67.18558,
+        5.82471,
+        67.36684,
+        5.65107,
+        67.54811,
+        5.5539,
+        67.79387,
+        5.55482,
+        68.04951,
+        5.55482,
+        68.58214,
+        5.96944,
+        69.01434,
+        6.48082,
+        69.01434,
+        17.5876,
+        65.15141,
+        19.43786,
+        65.15141,
+        19.68382,
+        65.15094,
+        19.91977,
+        65.04895,
+        20.09336,
+        64.86807,
+        20.26695,
+        64.6872,
+        20.36432,
+        64.44189,
+        20.36386,
+        64.18657,
+        20.36478,
+        63.93095,
+        20.26761,
+        63.68517,
+        20.09397,
+        63.50392,
+        19.92033,
+        63.32266,
+        19.68412,
+        63.22042,
+        19.43786,
+        63.21994,
+        17.5876,
+        63.21994,
+        17.34134,
+        63.22042,
+        17.10513,
+        63.32266,
+        16.93149,
+        63.50392,
+        16.75785,
+        63.68517,
+        16.66068,
+        63.93095,
+        16.6616,
+        64.18657,
+        16.6616,
+        64.7192,
+        17.07622,
+        65.15141,
+        17.5876,
+        65.15141,
+        6.48082,
+        65.15141,
+        8.33108,
+        65.15141,
+        8.57704,
+        65.15094,
+        8.81299,
+        65.04895,
+        8.98658,
+        64.86807,
+        9.16017,
+        64.6872,
+        9.25754,
+        64.44189,
+        9.25708,
+        64.18657,
+        9.258,
+        63.93095,
+        9.16083,
+        63.68517,
+        8.98719,
+        63.50392,
+        8.81355,
+        63.32266,
+        8.57734,
+        63.22042,
+        8.33108,
+        63.21994,
+        6.48082,
+        63.21994,
+        6.23456,
+        63.22042,
+        5.99835,
+        63.32266,
+        5.82471,
+        63.50392,
+        5.65107,
+        63.68517,
+        5.5539,
+        63.93095,
+        5.55482,
+        64.18657,
+        5.55482,
+        64.7192,
+        5.96944,
+        65.15141,
+        6.48082,
+        65.15141,
+        17.5876,
+        69.01434,
+        19.43786,
+        69.01434,
+        19.68382,
+        69.01386,
+        19.91977,
+        68.91187,
+        20.09336,
+        68.731,
+        20.26695,
+        68.55013,
+        20.36432,
+        68.30482,
+        20.36386,
+        68.04951,
+        20.36478,
+        67.79387,
+        20.26761,
+        67.54811,
+        20.09397,
+        67.36684,
+        19.92033,
+        67.18558,
+        19.68412,
+        67.08334,
+        19.43786,
+        67.08288,
+        17.5876,
+        67.08288,
+        17.34134,
+        67.08334,
+        17.10513,
+        67.18558,
+        16.93149,
+        67.36684,
+        16.75785,
+        67.54811,
+        16.66068,
+        67.79387,
+        16.6616,
+        68.04951,
+        16.6616,
+        68.58214,
+        17.07622,
+        69.01434,
+        17.5876,
+        69.01434
+      ],
+      "segments": [
+        1,
+        2,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5,
+        1,
+        2,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5,
+        1,
+        2,
+        2,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        4,
+        4,
+        2,
+        2,
+        4,
+        4,
+        2,
+        4,
+        2,
+        4,
+        4,
+        2,
+        4,
+        5,
+        1,
+        4,
+        2,
+        4,
+        4,
+        2,
+        2,
+        2,
+        5,
+        1,
+        2,
+        4,
+        2,
+        2,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        4,
+        2,
+        2,
+        5,
+        1,
+        2,
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5,
+        1,
+        2,
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5,
+        1,
+        2,
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5,
+        1,
+        2,
+        4,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        5
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(158,174,255)",
+      "visible": false,
+      "pixelPerfect": true,
+      "points": [
+        30.0321,
+        114.14374,
+        402.2458,
+        114.14374
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        63.44069,
+        65.31375,
+        63.44069,
+        56.87318
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        85.4193,
+        73.75432,
+        85.4193,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        107.39791,
+        64.52484,
+        107.39791,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        129.37652,
+        73.75432,
+        129.37652,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        151.35513,
+        64.52484,
+        151.35513,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        173.33374,
+        73.75432,
+        173.33374,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        195.31235,
+        64.52484,
+        195.31235,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        217.29096,
+        73.75432,
+        217.29096,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        239.26957,
+        64.52484,
+        239.26957,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        261.24818,
+        73.75432,
+        261.24818,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        283.2268,
+        64.52484,
+        283.2268,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        305.20541,
+        73.75432,
+        305.20541,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        327.18402,
+        64.52484,
+        327.18402,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        349.16263,
+        73.75432,
+        349.16263,
+        65.31375
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        371.14124,
+        64.52484,
+        371.14124,
+        56.08427
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 0.8,
+      "borderColor": "rgb(158,174,255)",
+      "pixelPerfect": true,
+      "points": [
+        393.11985,
+        73.75432,
+        393.11985,
+        65.31375
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@1",
+        "value": "1.18"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        27.03209,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@2",
+        "value": "1.19"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        51.12334,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@3",
+        "value": "1.20"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        71.60527,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@4",
+        "value": "1.21"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        95.08056,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@5",
+        "value": "1.22"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        115.56249,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@6",
+        "value": "1.23"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        139.03778,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@7",
+        "value": "1.24"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        159.51971,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@8",
+        "value": "1.25"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        182.995,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@9",
+        "value": "1.26"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        203.47694,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@10",
+        "value": "1.27"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        226.95222,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@11",
+        "value": "1.28"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        247.43415,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@12",
+        "value": "1.29"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        270.90945,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@13",
+        "value": "1.30"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        291.39138,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@14",
+        "value": "1.31"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        314.86667,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@15",
+        "value": "2.1"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        335.3486,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@16",
+        "value": "2.2"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        358.82389,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@17",
+        "value": "2.3"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        379.30582,
+        74.80694,
+        27.62805,
+        15.19306
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@18",
+        "value": "2.4"
+      },
+      "align": "center",
+      "color": "rgb(195,195,212)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "prefix": "date",
+      "rect": [
+        402.78111,
+        40.7831,
+        24.6347,
+        16.09007
+      ]
+    },
+    {
+      "type": "roundRect",
+      "background": "rgb(255,255,255)",
+      "borderColor": "rgb(224,224,224)",
+      "cornerRadius": 16,
+      "visible": false,
+      "pixelPerfect": true,
+      "shadow": true,
+      "shadowColor": "rgb(216,220,232)",
+      "shadowBlur": 12,
+      "shadowOffsetX": 4,
+      "shadowOffsetY": 5,
+      "rect": [
+        0,
+        0,
+        100.94127,
+        32
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@text",
+        "value": "01.18"
+      },
+      "align": "center",
+      "color": "rgb(54,70,255)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "rect": {
+        "func": "attr@dateArea",
+        "value": [
+          19.5,
+          8.5,
+          61,
+          15
+        ]
+      }
+    },
+    {
+      "type": "components/ht/ui/slider.json",
+      "visible": false,
+      "displayName": "slider",
+      "rect": [
+        34.51095,
+        50.31376,
+        386.5875,
+        30
+      ],
+      "onDown": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onDown.apply(this, arguments);\n}",
+      "onUp": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onUp.apply(this, arguments);\n}",
+      "onMove": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onMove.apply(this, arguments);\n}",
+      "onEnter": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onEnter.apply(this, arguments);\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onLeave.apply(this, arguments);\n}",
+      "onBeginDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onBeginDrag.apply(this, arguments);\n}",
+      "onDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onDrag.apply(this, arguments);\n}",
+      "onEndDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.sliderInteractor.onEndDrag.apply(this, arguments);\n}",
+      "min": {
+        "func": "attr@ht.min",
+        "value": 0
+      },
+      "max": {
+        "func": "attr@ht.max",
+        "value": 17
+      },
+      "value": {
+        "func": "attr@ht.value",
+        "value": 0
+      },
+      "disabled": {
+        "func": "attr@ht.disabled",
+        "value": false
+      },
+      "barBackground": {
+        "func": "attr@ht.barBakcground",
+        "value": "rgb(158,174,255)"
+      },
+      "barValueBackground": {
+        "func": "attr@ht.barValueBackground",
+        "value": "rgb(158,174,255)"
+      },
+      "barGradient": {
+        "func": "attr@ht.barGradient",
+        "value": null
+      },
+      "barGradientColor": {
+        "func": "attr@ht.barGradientColor",
+        "value": "rgb(247,247,247)"
+      },
+      "barWidth": {
+        "func": "attr@ht.barWidth",
+        "value": 1
+      },
+      "barBorderRadius": {
+        "func": "attr@ht.barBorderRadius",
+        "value": 0.5
+      },
+      "sliderImage": {
+        "func": "attr@ht.sliderImage"
+      },
+      "sliderBorderWidth": {
+        "func": "attr@ht.sliderBorderWidth",
+        "value": 0
+      },
+      "sliderBorderRadius": {
+        "func": "attr@ht.sliderBorderRadios",
+        "value": 0.5
+      },
+      "sliderBorderColor": {
+        "func": "attr@ht.sliderBorderColor",
+        "value": "rgb(51,153,255)"
+      },
+      "sliderBackground": {
+        "func": "attr@ht.sliderBackground",
+        "value": "rgb(86,97,219)"
+      },
+      "sliderWidth": {
+        "func": "attr@ht.sliderWidth",
+        "value": 6
+      },
+      "sliderHeight": {
+        "func": "attr@ht.sliderHeight",
+        "value": 6
+      },
+      "sliderOffsetX": {
+        "func": "attr@ht.sliderOffsetX",
+        "value": 0
+      },
+      "sliderOffsetY": {
+        "func": "attr@ht.sliderOffsetY",
+        "value": 0
+      },
+      "padding": 6,
+      "showToolTip": {
+        "func": "attr@ht.showToolTip",
+        "value": true
+      },
+      "toolTipFormat": {
+        "func": "attr@ht.toolTipFormat"
+      },
+      "step": {
+        "func": "attr@ht.step",
+        "value": 0
+      },
+      "onChange": {
+        "func": "attr@ht.onChange"
+      }
+    },
+    {
+      "type": "oval",
+      "background": "rgb(86,97,219)",
+      "borderColor": "#979797",
+      "visible": false,
+      "pixelPerfect": true,
+      "rect": [
+        37.48204,
+        62.19955,
+        6,
+        6.22841
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgb(86,97,219)",
+      "borderColor": "#979797",
+      "visible": false,
+      "pixelPerfect": true,
+      "rect": [
+        412.09846,
+        62.19955,
+        6,
+        6.22841
+      ]
+    }
+  ]
+}

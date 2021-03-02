@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.PlanOTMapper">
+    <!-- 任务执行查询映射结果 -->
+    <resultMap id="TaseResultMap" type="org.jeecg.modules.P2020052.pojo.PlanOTVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="plan_activity_ref_id" property="plan_activity_ref_id"/>
+        <result column="code" property="code"/>
+        <result column="description" property="description"/>
+        <result column="deviation_report" property="deviation_report"/>
+        <result column="difficulty_report" property="difficulty_report"/>
+        <result column="breadth" property="breadth"/>
+        <result column="criticiailty" property="criticiailty"/>
+        <result column="standard_deviation_value" property="standard_deviation_value"/>
+        <result column="standard_difficulty_value" property="standard_difficulty_value"/>
+    </resultMap>
+
+
+
+    <resultMap id="InResultMap" type="org.jeecg.modules.P2020052.pojo.PlanINVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="plan_activity_ref_id" property="plan_activity_ref_id"/>
+        <result column="code" property="code"/>
+        <result column="weights" property="weights"/>
+        <result column="is_deleted" property="is_deleted"/>
+        <result column="is_persisted" property="is_persisted"/>
+        <result column="update_count" property="update_count"/>
+
+
+    </resultMap>
+
+    <resultMap id="GroupResultMap" type="org.jeecg.modules.P2020052.pojo.GroupVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="plan_activity_ref_id" property="plan_activity_ref_id"/>
+        <result column="name" property="name"/>
+
+    </resultMap>
+
+
+    <resultMap id="RiskResultMap" type="org.jeecg.modules.P2020052.pojo.RiskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="risk_name" property="risk_name"/>
+        <result column="name" property="name"/>
+        <result column="id" property="id"/>
+        <result column="create_stamp" property="create_time"/>
+        <result column="is_deleted" property="is_deleted"/>
+        <result column="is_persisted" property="is_persisted"/>
+        <result column="update_count" property="update_count"/>
+
+    </resultMap>
+
+
+       <!-- 工作任务延期报表-->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.P2020052.pojo.PiplanActivityVo">
+        <result column="activityId" property="activityId"/>
+        <result column="activityName" property="activityName"/>
+        <result column="targetStartTime" property="targetStartTime"/>
+        <result column="byTime" property="byTime"/>
+        <result column="expectedFinishTime" property="expectedFinishTime"/>
+        <result column="actualStartTime" property="actualStartTime"/>
+        <result column="actualEndTime" property="actualEndTime"/>
+    </resultMap>
+
+
+
+    <!-- 问题风险链报表-->
+    <resultMap id="CaseResultMap" type="org.jeecg.modules.P2020052.pojo.ProblemRickChainVo">
+        <result column="id" property="id"/>
+        <result column="risk_name" property="risk_name"/>
+        <result column="confirm_status" property="confirm_status"/>
+        <result column="risk_to_type" property="risk_to_type"/>
+        <result column="risk_code" property="risk_code"/>
+        <result column="risk_description" property="risk_description"/>
+    </resultMap>
+    <select id="OTTable" resultMap="TaseResultMap">
+          SELECT
+                 *
+            FROM
+                stproject_instanceotindicator ot,
+                piplan_activity  pa
+            WHERE
+                pa.id = ot.plan_activity_ref_id
+           <if test="startTime!= null and startTime !=''" >
+              and  pa.actual_start_date between  #{startTime}  and #{endTime}
+           </if>
+               and ot.plan_activity_ref_id IN (
+            SELECT DISTINCT
+                ( pa.plannable_ref_id )
+            FROM
+                piresource_assignment pa
+            WHERE
+                pa.rsrc_ref_id IN (
+            SELECT
+                piresource.id
+            FROM
+                piresource
+            WHERE
+                piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !=''" >
+            and pigroup.id  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+                )
+                )
+                )
+    </select>
+
+
+    <select id="exportOTExcel" resultMap="TaseResultMap">
+        SELECT
+        *
+        FROM
+        stproject_instanceotindicator ot,
+        piplan_activity  pa
+        WHERE
+        pa.id = ot.plan_activity_ref_id
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
+        and ot.plan_activity_ref_id IN (
+        SELECT DISTINCT
+        ( pa.plannable_ref_id )
+        FROM
+        piresource_assignment pa
+        WHERE
+        pa.rsrc_ref_id IN (
+        SELECT
+        piresource.id
+        FROM
+        piresource
+        WHERE
+        piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !=''" >
+            and pigroup.id  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        )
+        )
+        )
+    </select>
+
+
+    <select id="selectGroup" resultMap="GroupResultMap">
+            select id,name from pigroup
+    </select>
+
+
+
+    <select id="selectINTable" resultMap="InResultMap">
+        SELECT
+        sin.*
+        FROM
+        stproject_instanceinindicator sin,
+        piplan_activity  pa
+        WHERE
+        pa.id = sin.plan_activity_ref_id
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
+        and sin.plan_activity_ref_id IN (
+        SELECT DISTINCT
+        ( pa.plannable_ref_id )
+        FROM
+        piresource_assignment pa
+        WHERE
+        pa.rsrc_ref_id IN (
+        SELECT
+        piresource.id
+        FROM
+        piresource
+        WHERE
+        piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !=''" >
+            and pigroup  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        )
+        )
+        )
+    </select>
+
+
+
+
+    <select id="exportINExcel" resultMap="InResultMap">
+        SELECT
+        sin.*
+        FROM
+        stproject_instanceinindicator sin,
+        piplan_activity  pa
+        WHERE
+        pa.id = sin.plan_activity_ref_id
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
+        and sin.plan_activity_ref_id IN (
+        SELECT DISTINCT
+        ( pa.plannable_ref_id )
+        FROM
+        piresource_assignment pa
+        WHERE
+        pa.rsrc_ref_id IN (
+        SELECT
+        piresource.id
+        FROM
+        piresource
+        WHERE
+        piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !=''" >
+            and pigroup  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        )
+        )
+        )
+    </select>
+
+
+
+    <select id="selectRiskProject" resultMap="RiskResultMap">
+            SELECT
+                b.risk_name,
+                a.*
+            FROM
+                (
+            SELECT
+                sr.id AS id,
+                sr.risk_name AS risk_name
+            FROM
+                stproject_risk sr,
+                piproject pp
+            WHERE
+                sr.project_ref_id = pp.id
+                ) b
+                LEFT JOIN (
+            SELECT
+                sm.*
+            FROM
+                stproject_measures sm
+            WHERE
+                sm.project_risk_ref_id IN ( SELECT sr.id FROM stproject_risk sr, piproject pp WHERE sr.project_ref_id = pp.id )
+                ) a ON b.id = a.project_risk_ref_id
+
+    </select>
+
+
+    <select id="selectRiskByPlan" resultMap="RiskResultMap">
+           SELECT
+                b.*,
+                a.risk_name
+            FROM
+                (
+            SELECT
+                sr.id,
+                sr.risk_name
+            FROM
+                stproject_risk sr
+            WHERE
+                sr.id IN ( SELECT sarl.rolebobject_id FROM stpiplan_activity_risk_link sarl, piplan WHERE piplan.id = sarl.root_ref_id
+                    <if test="planId!= null and planId !=''" >
+                        and piplan.id  = #{planId}
+                    </if>
+                )
+                ) a
+                LEFT JOIN (
+            SELECT
+                *
+            FROM
+                stproject_measures sm
+            WHERE
+                project_risk_ref_id IN ( SELECT sarl.rolebobject_id FROM stpiplan_activity_risk_link sarl, piplan WHERE piplan.id = sarl.root_ref_id
+                        <if test="planId!= null and planId !=''" >
+                            and piplan.id  = #{planId}
+                        </if>
+                )
+                ) b ON a.id = b.project_risk_ref_id
+
+    </select>
+
+    <select id="WorkDelayTable" resultMap="BaseResultMap">
+                SELECT
+                    pa.id AS activityId,
+                    pa.NAME AS activityName,
+                    pa.target_start_date AS targetStartTime,
+                    pa.target_end_date AS byTime,
+                    a.expected_finish_time AS expectedFinishTime,
+                    pa.actual_end_date AS actualEndTime,
+                    pa.actual_start_date AS actualStartTime
+                FROM
+                    piplan_activity pa
+                    LEFT JOIN (
+                SELECT
+                    t.t1id AS plan_activity_ref_id,
+                    t.expected_finish_time
+                FROM
+                    (
+                SELECT
+                    t2.*,
+                    t1.plan_activity_ref_id AS t1id
+                FROM
+                    stexpected_finish_time t1
+                    LEFT JOIN stexpected_finish_time t2 ON t1.plan_activity_ref_id = t2.plan_activity_ref_id
+                HAVING
+                    1
+                ORDER BY
+                    t2.expected_finish_time DESC
+                    ) t
+                GROUP BY
+                    t.t1id
+                    ) a ON pa.id = a.plan_activity_ref_id
+                WHERE
+                     pa.actual_start_date is not null
+    </select>
+
+    <select id="problemRickChain" resultMap="CaseResultMap">
+            SELECT
+                id,
+                risk_name,
+                risk_code,
+                risk_to_type,
+                confirm_status,
+                risk_description
+            from stproject_risk spr
+    </select>
+
+</mapper>

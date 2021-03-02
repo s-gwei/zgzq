@@ -1,0 +1,69 @@
+{
+  "groups": [
+    {
+      "name": "spring.influx",
+      "type": "com.pisx.config.InfluxDbProperties",
+      "sourceType": "com.pisx.config.InfluxDBAutoConfiguration",
+      "sourceMethod": "influxDbProperties()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.influx.actions",
+      "type": "java.lang.Integer",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": 2000
+    },
+    {
+      "name": "spring.influx.buffer-limit",
+      "type": "java.lang.Integer",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": 10000
+    },
+    {
+      "name": "spring.influx.database",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties"
+    },
+    {
+      "name": "spring.influx.flush-duration",
+      "type": "java.lang.Integer",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": 1000
+    },
+    {
+      "name": "spring.influx.jitter-duration",
+      "type": "java.lang.Integer",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.influx.password",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties"
+    },
+    {
+      "name": "spring.influx.retention-policy",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": "autogen"
+    },
+    {
+      "name": "spring.influx.retention-policy-time",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties",
+      "defaultValue": "30d"
+    },
+    {
+      "name": "spring.influx.url",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties"
+    },
+    {
+      "name": "spring.influx.user-name",
+      "type": "java.lang.String",
+      "sourceType": "com.pisx.config.InfluxDbProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,8 @@
+/target/
+/.idea/
+*.iml
+/jeecg-boot-module-iot/target/
+/jeecg-boot-module-influxdb/target/
+/jeecg-boot-module-influxdb/target/
+/jeecg-boot-moudle-elastic/target/
+*.class

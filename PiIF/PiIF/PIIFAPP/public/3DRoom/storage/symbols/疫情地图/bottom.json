@@ -1,0 +1,361 @@
+{
+  "modified": "Sun Apr 26 2020 15:16:49 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "confirm",
+      "valueType": "String"
+    },
+    {
+      "attr": "confirmAdd",
+      "valueType": "String"
+    },
+    {
+      "attr": "suspect",
+      "valueType": "String"
+    },
+    {
+      "attr": "suspectAdd",
+      "valueType": "String"
+    },
+    {
+      "attr": "heal",
+      "valueType": "String"
+    },
+    {
+      "attr": "healAdd",
+      "valueType": "String"
+    },
+    {
+      "attr": "dead",
+      "valueType": "String"
+    },
+    {
+      "attr": "deadAdd",
+      "valueType": "String"
+    }
+  ],
+  "width": 946,
+  "height": 127,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(247,249,252)",
+      "borderColor": "rgb(225,227,232)",
+      "pixelPerfect": true,
+      "rect": [
+        0,
+        0.13402,
+        946,
+        31.97741
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@confirm",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(232,58,58)",
+      "font": "bold 32px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "确诊",
+      "rect": [
+        70.80816,
+        49.47192,
+        137.373,
+        52.43749
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@suspect",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(106,116,230)",
+      "font": "bold 32px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "疑似",
+      "rect": [
+        296.56065,
+        49.47192,
+        137.373,
+        52.43749
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@heal",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(0,186,164)",
+      "font": "bold 32px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "治愈",
+      "rect": [
+        518.89754,
+        49.47192,
+        137.373,
+        52.43749
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@dead",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(3,0,0)",
+      "font": "bold 32px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "死亡",
+      "rect": [
+        741.23444,
+        49.47192,
+        137.373,
+        52.43749
+      ]
+    },
+    {
+      "type": "text",
+      "text": "确诊病例",
+      "align": "center",
+      "color": "rgb(12,24,69)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        108.34876,
+        3.24823,
+        86.46748,
+        26.12865
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/新demo/hiv病毒/病毒icon.json",
+      "pixelPerfect": true,
+      "displayName": "病毒icon",
+      "rect": [
+        88.17308,
+        7.05827,
+        16.89782,
+        17.5411
+      ]
+    },
+    {
+      "type": "text",
+      "text": "疑似病例",
+      "align": "center",
+      "color": "rgb(12,24,69)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        334.10125,
+        3.24823,
+        86.46748,
+        26.12865
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/新demo/hiv病毒/病毒icon.json",
+      "pixelPerfect": true,
+      "displayName": "病毒icon",
+      "rect": [
+        314.92557,
+        7.05827,
+        16.89782,
+        17.5411
+      ]
+    },
+    {
+      "type": "text",
+      "text": "治愈病例",
+      "align": "center",
+      "color": "rgb(12,24,69)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        556.43814,
+        3.24823,
+        86.46748,
+        26.12865
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/新demo/hiv病毒/病毒icon.json",
+      "pixelPerfect": true,
+      "displayName": "病毒icon",
+      "rect": [
+        537.26246,
+        7.05827,
+        16.89782,
+        17.5411
+      ]
+    },
+    {
+      "type": "text",
+      "text": "死亡病例",
+      "align": "center",
+      "color": "rgb(12,24,69)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        778.77503,
+        3.24823,
+        86.46748,
+        26.12865
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/新demo/hiv病毒/病毒icon.json",
+      "pixelPerfect": true,
+      "displayName": "病毒icon",
+      "rect": [
+        759.59935,
+        7.05827,
+        16.89782,
+        17.5411
+      ]
+    },
+    {
+      "type": "text",
+      "text": "同比昨日",
+      "align": "center",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        67.39256,
+        100.87126,
+        82.16906,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@confirmAdd",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(232,58,58)",
+      "font": "18px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "确诊增加",
+      "rect": [
+        142.99117,
+        100.87135,
+        67.60558,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": "同比昨日",
+      "align": "center",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        296.77077,
+        100.87126,
+        82.16906,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@suspectAdd",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(106,116,230)",
+      "font": "18px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "疑似增加",
+      "rect": [
+        373.36937,
+        100.87135,
+        59.35415,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": "同比昨日",
+      "align": "center",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        524.88416,
+        100.87126,
+        82.16906,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@healAdd",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(0,186,164)",
+      "font": "18px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "治愈增加",
+      "rect": [
+        601.48276,
+        100.87135,
+        47.80116,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": "同比昨日",
+      "align": "center",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        751.96328,
+        100.87126,
+        82.16906,
+        26.12865
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@deadAdd",
+        "value": "0"
+      },
+      "align": "center",
+      "color": "rgb(0,0,0)",
+      "font": "18px Tahoma",
+      "pixelPerfect": true,
+      "displayName": "死亡增加",
+      "rect": [
+        828.56189,
+        100.87135,
+        38.3167,
+        26.12865
+      ]
+    }
+  ]
+}

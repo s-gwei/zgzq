@@ -1,0 +1,79 @@
+{
+  "modified": "Sun Apr 26 2020 15:53:53 GMT+0800 (中国标准时间)",
+  "width": 128,
+  "height": 128,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(96,172,252,0.2)",
+      "borderColor": "#979797",
+      "rect": [
+        12.82308,
+        12.82313,
+        101.912,
+        101.91194
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 18,
+      "borderColor": "rgb(255,255,255)",
+      "arcFrom": 0.17453,
+      "arcTo": 1.39626,
+      "arcClose": false,
+      "rotation": 0.7854,
+      "rect": [
+        5.19259,
+        12.39353,
+        117.61483,
+        103.21295
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 18,
+      "borderColor": "rgb(255,255,255)",
+      "arcFrom": 0.17453,
+      "arcTo": 1.39626,
+      "arcClose": false,
+      "rotation": -2.35619,
+      "rect": [
+        5.19259,
+        12.39353,
+        117.61483,
+        103.21295
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 10,
+      "borderColor": "rgba(255,255,255,0.60)",
+      "arcFrom": 0.17453,
+      "arcTo": 1.39626,
+      "arcClose": false,
+      "rotation": -0.7854,
+      "rect": [
+        5.19259,
+        12.39353,
+        117.61483,
+        103.21295
+      ]
+    },
+    {
+      "type": "arc",
+      "borderWidth": 10,
+      "borderColor": "rgba(255,255,255,0.60)",
+      "arcFrom": 0.17453,
+      "arcTo": 1.39626,
+      "arcClose": false,
+      "rotation": 2.35619,
+      "rect": [
+        5.19259,
+        12.39353,
+        117.61483,
+        103.21295
+      ]
+    }
+  ]
+}

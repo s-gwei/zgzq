@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.iot.mapper.ThingDepartMapper">
+
+    <resultMap id="departMap" type="org.jeecg.modules.iot.vo.ThingDepartPermissionVO">
+        <id property="id" column="id"/>
+        <result property="departName" column="depart_name"/>
+        <result property="isExtend" column="is_extend"/>
+    </resultMap>
+    <!-- 根据物模板id查询关联的部门 -->
+    <select id="getDepartsBythingId" resultMap="departMap">
+		select s.id,s.depart_name,t.is_extend from sys_depart s left join iot_thing_depart t on  t.depart_id=s.id where thing_id=#{thingId}
+	</select>
+
+
+</mapper>

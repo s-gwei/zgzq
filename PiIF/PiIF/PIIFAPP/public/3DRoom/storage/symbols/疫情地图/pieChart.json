@@ -1,0 +1,465 @@
+{
+  "modified": "Sun Apr 26 2020 15:15:35 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "chart.label.visible",
+      "valueType": "Boolean"
+    },
+    {
+      "attr": "chart.label.color",
+      "valueType": "Color"
+    },
+    {
+      "attr": "chart.label.font",
+      "valueType": "String"
+    },
+    {
+      "attr": "chart.hollow",
+      "valueType": "Boolean"
+    },
+    {
+      "attr": "chart.start.angle",
+      "valueType": "Angle"
+    },
+    {
+      "attr": "chart.values",
+      "valueType": "NumberArray"
+    },
+    {
+      "attr": "chart.colors",
+      "valueType": "ColorArray"
+    },
+    {
+      "attr": "confirm",
+      "valueType": "Number",
+      "name": "确诊"
+    },
+    {
+      "attr": "severe",
+      "valueType": "String",
+      "name": "重症"
+    },
+    {
+      "attr": "severe100",
+      "valueType": "String",
+      "name": "重症百分比"
+    },
+    {
+      "attr": "cured",
+      "valueType": "String",
+      "name": "治愈"
+    },
+    {
+      "attr": "cured100",
+      "valueType": "String",
+      "name": "治愈百分比"
+    },
+    {
+      "attr": "death",
+      "valueType": "String",
+      "name": "死亡"
+    },
+    {
+      "attr": "death100",
+      "valueType": "String",
+      "name": "死亡百分比"
+    },
+    {
+      "attr": "rest",
+      "valueType": "String",
+      "name": "观察中"
+    },
+    {
+      "attr": "ht.dataSource",
+      "valueType": "ObjectArray",
+      "name": "数据"
+    }
+  ],
+  "width": 446,
+  "height": 200,
+  "fitSize": true,
+  "interactive": true,
+  "disableSelectedBorder": true,
+  "pixelPerfect": false,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgb(0,186,164)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "rect": [
+        259.74377,
+        93.04499,
+        26.69349,
+        11.42706
+      ]
+    },
+    {
+      "type": "text",
+      "text": "治愈",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        292.58208,
+        86.36403,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@cured",
+        "value": "892"
+      },
+      "color": "rgb(0,186,164)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "displayName": "治愈",
+      "anchorY": 0.45275,
+      "rect": [
+        358.93558,
+        86.3634,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": "40%",
+      "color": "rgb(0,186,164)",
+      "font": "16px Arial",
+      "visible": false,
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        388.06444,
+        86.3634,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(13,2,2)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "rect": [
+        259.74377,
+        122.22217,
+        26.69349,
+        11.42706
+      ]
+    },
+    {
+      "type": "text",
+      "text": "死亡",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        292.58208,
+        115.54119,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@death",
+        "value": "892"
+      },
+      "color": "rgb(13,2,2)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "displayName": "死亡",
+      "anchorY": 0.45275,
+      "rect": [
+        358.93558,
+        115.54119,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": "40%",
+      "color": "rgb(13,2,2)",
+      "font": "16px Arial",
+      "visible": false,
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        388.06444,
+        115.54119,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@confirm",
+        "value": "24363"
+      },
+      "align": "center",
+      "color": "rgb(219,44,44)",
+      "font": "18px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        85.06831,
+        76.74691,
+        41.86692,
+        22.20136
+      ]
+    },
+    {
+      "type": "text",
+      "text": "确诊病例",
+      "align": "center",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        65.18394,
+        95.97989,
+        81.63567,
+        24.78885
+      ]
+    },
+    {
+      "type": "components/ht/chart/pie.json",
+      "displayName": "pie",
+      "rect": [
+        0,
+        0,
+        212.00355,
+        200
+      ],
+      "onUp": "__ht__function(event, data, view, point, width, height) {\nht.vector.pieInteractor.onUp.apply(this, arguments);\n}",
+      "onMove": "__ht__function(event, data, view, point, width, height) {\nht.vector.pieInteractor.onMove.apply(this, arguments);\n}",
+      "onLeave": "__ht__function(event, data, view, point, width, height) {\nht.vector.pieInteractor.onLeave.apply(this, arguments);\n}",
+      "dataSource": {
+        "func": "attr@ht.dataSource",
+        "value": []
+      },
+      "radius": {
+        "func": "attr@ht.radius",
+        "value": [
+          0.45,
+          0.6
+        ]
+      },
+      "center": {
+        "func": "attr@ht.center",
+        "value": [
+          0.5,
+          0.5
+        ]
+      },
+      "color": {
+        "func": "attr@ht.color",
+        "value": [
+          "rgb(0,186,164)",
+          "rgb(61,61,61)",
+          "rgb(124,145,155)"
+        ]
+      },
+      "startAngle": {
+        "func": "attr@ht.startAngle",
+        "value": 0
+      },
+      "endAngle": {
+        "func": "attr@ht.endAngle",
+        "value": 359
+      },
+      "hoverOffset": {
+        "func": "attr@ht.hoverOffset",
+        "value": 4
+      },
+      "minRoseRadius": {
+        "func": "attr@ht.minRoseRadius",
+        "value": 0
+      },
+      "seriesName": {
+        "func": "attr@ht.seriesName",
+        "value": "饼图系列名"
+      },
+      "roseType": {
+        "func": "attr@ht.roseType",
+        "value": false
+      },
+      "avoidLabelOverlap": {
+        "func": "attr@ht.avoidLabelOverlap",
+        "value": false
+      },
+      "tooltip.show": {
+        "func": "attr@ht.tooltip.show",
+        "value": {
+          "show": true,
+          "formatter": ""
+        }
+      },
+      "tooltip.formatter": {
+        "func": "attr@ht.tooltip.formatter"
+      },
+      "label.normal.show": {
+        "func": "attr@ht.label.normal.show",
+        "value": false
+      },
+      "label.normal.position": {
+        "func": "attr@ht.label.normal.position",
+        "value": "center"
+      },
+      "label.normal.formatter": {
+        "func": "attr@ht.label.normal.formatter"
+      },
+      "label.normal.color": {
+        "func": "attr@ht.label.normal.color",
+        "value": null
+      },
+      "label.normal.font": {
+        "func": "attr@ht.label.normal.font",
+        "value": "12px serif"
+      },
+      "label.emphasis.show": {
+        "func": "attr@ht.label.emphasis.show",
+        "value": false
+      },
+      "label.emphasis.position": {
+        "func": "attr@ht.label.emphasis.position",
+        "value": "center"
+      },
+      "label.emphasis.formatter": {
+        "func": "attr@ht.label.emphasis.formatter"
+      },
+      "label.emphasis.color": {
+        "func": "attr@ht.label.emphasis.color",
+        "value": null
+      },
+      "label.emphasis.font": {
+        "func": "attr@ht.label.emphasis.font",
+        "value": "13px serif"
+      },
+      "labelLine.normal.show": {
+        "func": "attr@ht.labelLine.normal.show",
+        "value": false
+      },
+      "labelLine.normal.length": {
+        "func": "attr@ht.labelLine.normal.length",
+        "value": 15
+      },
+      "labelLine.normal.length2": {
+        "func": "attr@ht.labelLine.normal.length2",
+        "value": 10
+      },
+      "labelLine.normal.formatter": {
+        "func": "attr@ht.labelLine.normal.formatter"
+      },
+      "labelLine.normal.width": {
+        "func": "attr@ht.labelLine.normal.width",
+        "value": 1
+      },
+      "labelLine.normal.type": {
+        "func": "attr@ht.labelLine.normal.type",
+        "value": "dashed"
+      },
+      "labelLine.normal.font": {
+        "func": "attr@ht.labelLine.normal.font",
+        "value": "12px serif"
+      },
+      "labelLine.normal.lineColor": {
+        "func": "attr@ht.labelLine.normal.lineColor",
+        "value": null
+      },
+      "labelLine.normal.textColor": {
+        "func": "attr@ht.labelLine.normal.textColor",
+        "value": null
+      },
+      "labelLine.emphasis.show": {
+        "func": "attr@ht.labelLine.emphasis.show",
+        "value": false
+      },
+      "labelLine.emphasis.length": {
+        "func": "attr@ht.labelLine.emphasis.length",
+        "value": 15
+      },
+      "labelLine.emphasis.length2": {
+        "func": "attr@ht.labelLine.emphasis.length2",
+        "value": 10
+      },
+      "labelLine.emphasis.formatter": {
+        "func": "attr@ht.labelLine.emphasis.formatter"
+      },
+      "labelLine.emphasis.width": {
+        "func": "attr@ht.labelLine.emphasis.width",
+        "value": 2
+      },
+      "labelLine.emphasis.type": {
+        "func": "attr@ht.labelLine.emphasis.type",
+        "value": "dashed"
+      },
+      "labelLine.emphasis.font": {
+        "func": "attr@ht.labelLine.emphasis.font",
+        "value": "13px serif"
+      },
+      "labelLine.emphasis.lineColor": {
+        "func": "attr@ht.labelLine.emphasis.lineColor",
+        "value": null
+      },
+      "labelLine.emphasis.textColor": {
+        "func": "attr@ht.labelLine.emphasis.textColor",
+        "value": null
+      }
+    },
+    {
+      "type": "rect",
+      "background": "rgb(124,145,155)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "rect": [
+        259.74377,
+        64.14406,
+        26.69349,
+        11.42706
+      ]
+    },
+    {
+      "type": "text",
+      "text": "观察中",
+      "color": "rgb(120,129,161)",
+      "font": "14px Arial",
+      "pixelPerfect": true,
+      "anchorY": 0.45275,
+      "rect": [
+        292.58208,
+        57.4631,
+        39.06802,
+        24.78885
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@rest",
+        "value": "892"
+      },
+      "color": "rgb(124,145,155)",
+      "font": "16px Arial",
+      "pixelPerfect": true,
+      "displayName": "治愈",
+      "anchorY": 0.45275,
+      "rect": [
+        358.93558,
+        57.46247,
+        39.06802,
+        24.78885
+      ]
+    }
+  ]
+}

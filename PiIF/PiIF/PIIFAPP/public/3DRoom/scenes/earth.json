@@ -1,0 +1,2282 @@
+{
+  "v": "7.0.6",
+  "p": {
+    "background": "rgb(0,0,0)",
+    "envmap": "assets/贴图/坏境光/星光2.jpg",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true,
+    "postProcessingData": {
+      "bloom": {
+        "enable": true,
+        "strength": 0.3,
+        "radius": 0.1,
+        "overrideAlpha": false
+      },
+      "dof": {
+        "image": "assets/Depth.png"
+      }
+    }
+  },
+  "a": {
+    "custom.initFunc": "__ht__function() {\n\n}"
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 1834,
+      "p": {
+        "displayName": "环境球",
+        "tag": "skyBox",
+        "rotation": 7.97615,
+        "rotationZ": 0.61087,
+        "scale": {
+          "x": 1.5,
+          "y": 1.5
+        },
+        "scaleTall": 1.5,
+        "width": 5000,
+        "height": 5000,
+        "tall": 5000
+      },
+      "s": {
+        "shape3d": "sphere",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.reverse.flip": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.blend": "rgb(195,196,199)",
+        "shape3d.image.cache": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "wf.color": "rgb(35,194,162)",
+        "envmap": 0.3
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1835,
+      "p": {
+        "displayName": "地球",
+        "tag": "earth",
+        "rotationX": 0.17453,
+        "width": 800,
+        "height": 800,
+        "tall": 800
+      },
+      "s": {
+        "shape3d.side": 400,
+        "shape3d.side.from": 0,
+        "shape3d.side.to": 900,
+        "shape3d.resolution": 450,
+        "shape3d": "sphere",
+        "shape3d.color": "#DDDDDD",
+        "envmap": 0,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true,
+        "wf.color": "#60ACFC",
+        "shape3d.blend": "rgb(71,200,255)",
+        "shape3d.image": "assets/贴图/地球仪/dqxiesi.jpg"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1836,
+      "p": {
+        "parent": {
+          "__i": 1835
+        },
+        "tag": "chinaPng",
+        "host": {
+          "__i": 1835
+        },
+        "rotation": 1.5708,
+        "rotationZ": -0.15708,
+        "position": {
+          "x": 56.71128,
+          "y": 287.5527
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.41,
+          "y": 1.2
+        },
+        "scaleTall": 1.41,
+        "width": 127,
+        "height": 228,
+        "tall": 204,
+        "elevation": -8
+      },
+      "s": {
+        "shape3d": "models/中国.json",
+        "wf.visible": "selected",
+        "interactive": true,
+        "shape3d.blend": "rgb(99,221,255)",
+        "envmap": 0.2,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.7,
+        "shape3d.color": null
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1837,
+      "p": {
+        "parent": {
+          "__i": 1836
+        },
+        "tag": "hjx_icon",
+        "image": "symbols/hjx.json",
+        "host": {
+          "__i": 1836
+        },
+        "rotation": -1.74533,
+        "rotationX": 1.74533,
+        "rotationZ": 1.74533,
+        "position": {
+          "x": 70.40476,
+          "y": 364.49504
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "scaleTall": 0.5,
+        "width": 50,
+        "height": 1,
+        "tall": 50,
+        "elevation": 177.46855
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx.json",
+        "shape3d.autorotate": true,
+        "shape3d.fixSizeOnScreen": false,
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "shape3d.reverse.color": "rgb(247,237,94)",
+        "shape3d.vector.dynamic": false,
+        "shape3d.color": "rgb(240,225,19)",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer'}",
+        "interactive": true,
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default'}",
+        "2d.visible": false,
+        "3d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1838,
+      "p": {
+        "parent": {
+          "__i": 1836
+        },
+        "tag": "all_label",
+        "image": "symbols/earth/总调标签.json",
+        "host": {
+          "__i": 1836
+        },
+        "position": {
+          "x": -54.9125,
+          "y": 369.99187
+        },
+        "anchorElevation": 0,
+        "elevation": 177
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/earth/总调标签.json",
+        "shape3d.fixSizeOnScreen": false,
+        "wf.visible": "selected",
+        "shape3d.reverse.color": "#32D3EB",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer'}",
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default'}",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "wf.color": "rgba(26,189,156,0)",
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1839,
+      "p": {
+        "parent": {
+          "__i": 1836
+        },
+        "tag": "hjx_label",
+        "image": "symbols/earth/黄金峡标签.json",
+        "host": {
+          "__i": 1836
+        },
+        "position": {
+          "x": 71.27838,
+          "y": 369.68022
+        },
+        "anchorElevation": 0,
+        "elevation": 172.04325
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/earth/黄金峡标签.json",
+        "shape3d.fixSizeOnScreen": false,
+        "wf.visible": "selected",
+        "shape3d.reverse.color": "#32D3EB",
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default'}",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer'}",
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1840,
+      "p": {
+        "parent": {
+          "__i": 1836
+        },
+        "tag": "shk_label",
+        "image": "symbols/earth/三河口标签.json",
+        "host": {
+          "__i": 1836
+        },
+        "position": {
+          "x": 71.90858,
+          "y": 390.18083
+        },
+        "anchorElevation": 0,
+        "elevation": 88.03338
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/earth/三河口标签.json",
+        "shape3d.fixSizeOnScreen": false,
+        "wf.visible": "selected",
+        "shape3d.reverse.color": "#32D3EB",
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default'}",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer'}",
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1841,
+      "p": {
+        "displayName": "光晕",
+        "parent": {
+          "__i": 1835
+        },
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "width": 1663,
+        "height": 190.98912,
+        "tall": 1663
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/地球仪/dqgq512.png",
+        "shape3d.transparent": true,
+        "shape3d.autorotate": true,
+        "envmap": 0,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.alwaysOnTop": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1842,
+      "p": {
+        "displayName": "光晕",
+        "parent": {
+          "__i": 1835
+        },
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "width": 1663,
+        "height": 190.98912,
+        "tall": 1663
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/地球仪/dqgq512.png",
+        "shape3d.transparent": true,
+        "shape3d.autorotate": true,
+        "envmap": 0,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.alwaysOnTop": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1843,
+      "p": {
+        "parent": {
+          "__i": 1835
+        },
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "position": {
+          "x": 0,
+          "y": 82.27376
+        },
+        "anchorElevation": 0,
+        "width": 298.09067,
+        "height": 302.52215,
+        "tall": 6,
+        "elevation": 466.59771
+      },
+      "s": {
+        "shape3d": "cylinder",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.image": "symbols/htdesign/填充/飞光渐变 2.json",
+        "shape3d.top.visible": false,
+        "shape3d.bottom.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.uv.scale": [
+          2,
+          1
+        ],
+        "shape3d.side": 71,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1844,
+      "p": {
+        "parent": {
+          "__i": 1835
+        },
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "position": {
+          "x": 0,
+          "y": -75.12069
+        },
+        "anchorElevation": 0,
+        "width": 407.94632,
+        "height": 414.79065,
+        "tall": 10,
+        "elevation": -426.03064
+      },
+      "s": {
+        "shape3d": "cylinder",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.image": "symbols/htdesign/填充/飞光渐变 2.json",
+        "shape3d.top.visible": false,
+        "shape3d.bottom.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.uv.scale": [
+          2,
+          1
+        ],
+        "shape3d.side": 71,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1845,
+      "p": {
+        "parent": {
+          "__i": 1835
+        },
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "position": {
+          "x": 0,
+          "y": -90.49804
+        },
+        "anchorElevation": 0,
+        "width": 266.97571,
+        "height": 266.97571,
+        "tall": 1,
+        "elevation": -513.2399
+      },
+      "s": {
+        "shape3d": "cylinder",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.image": "symbols/htdesign/填充/渐变浅蓝有线.json",
+        "shape3d.bottom.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.uv.scale": [
+          2,
+          1
+        ],
+        "shape3d.side": 71,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.top.image": "symbols/htdesign/填充/渐变浅蓝有线.json"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1902,
+      "p": {
+        "displayName": "卫星",
+        "parent": {
+          "__i": 1835
+        },
+        "tag": "weixing",
+        "host": {
+          "__i": 1835
+        },
+        "rotationX": 0.17453,
+        "position": {
+          "x": -12.07721,
+          "y": 773.44809
+        },
+        "width": 105.68976,
+        "height": 156.672,
+        "tall": 48.68484,
+        "elevation": 230.1067
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1903,
+      "p": {
+        "parent": {
+          "__i": 1902
+        },
+        "host": {
+          "__i": 1902
+        },
+        "rotation": 2.94182,
+        "rotationX": 2.87709,
+        "rotationZ": 0.84434,
+        "position": {
+          "x": -10.8188,
+          "y": 773.99121
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "scaleTall": 0.3,
+        "width": 177.802,
+        "height": 522.24,
+        "tall": 36.997,
+        "elevation": 233.18699
+      },
+      "s": {
+        "shape3d": "models/HT模型库/交通/航天航空/卫星板.json",
+        "shape3d.blend": "rgb(145,171,255)",
+        "envmap": 0.8,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1904,
+      "p": {
+        "parent": {
+          "__i": 1902
+        },
+        "host": {
+          "__i": 1902
+        },
+        "rotation": -0.0392,
+        "rotationX": 0.17884,
+        "rotationZ": -0.21872,
+        "position": {
+          "x": -14.81881,
+          "y": 771.49457
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "scaleTall": 0.3,
+        "width": 342.437,
+        "height": 80.81,
+        "tall": 82.955,
+        "elevation": 219.02785
+      },
+      "s": {
+        "shape3d": "models/HT模型库/交通/航天航空/卫星机身.json",
+        "shape3d.blend": "rgb(32,122,212)",
+        "envmap": 0.58,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1846,
+      "p": {
+        "tag": "yuanzhu",
+        "rotationX": 0.17453,
+        "position": {
+          "x": 0,
+          "y": 8.11237
+        },
+        "anchorElevation": 0,
+        "width": 2507.98702,
+        "height": 2507.98702,
+        "tall": 6,
+        "elevation": 46.00751
+      },
+      "s": {
+        "shape3d": "cylinder",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.image": "symbols/htdesign/填充/飞光渐变 2.json",
+        "shape3d.top.visible": false,
+        "shape3d.bottom.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.uv.scale": [
+          2,
+          1
+        ],
+        "shape3d.side": 71,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1847,
+      "p": {
+        "displayName": "星星",
+        "rotationX": 1.5708,
+        "position": {
+          "x": -149.95988,
+          "y": -1305.26616
+        },
+        "width": 3426.11196,
+        "height": 1470.8147,
+        "tall": 8.23933,
+        "elevation": -221.95089
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1848,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -96.20365,
+          "y": -1936.87764
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 289.57793
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1849,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 132.92029,
+          "y": -1797.6257
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -13.86364
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1850,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 1446.91207,
+          "y": -1940.49622
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -76.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1851,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1183.51499,
+          "y": -2134.10688
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 653.72314
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1852,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -319.11495,
+          "y": -2548.12355
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -10.86364
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1853,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 465.15726,
+          "y": -2899.69288
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -100.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1854,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 587.01975,
+          "y": -2798.16925
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -601.26479
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1855,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 890.86824,
+          "y": -1830.28372
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -595.26479
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1856,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1106.89643,
+          "y": -1891.34169
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 52.99674
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1857,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 565.24873,
+          "y": -2800.77654
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 501.2627
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1858,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -427.57148,
+          "y": -2548.12355
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 507.2627
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1859,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -77.70985,
+          "y": -1751.80929
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 141.75354
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1860,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -528.90721,
+          "y": -2393.43654
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -89.29519
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1861,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1325.12967,
+          "y": -2134.10688
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 411.45277
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1862,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -697.6026,
+          "y": -2231.6395
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 405.45277
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1863,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -627.64445,
+          "y": -1940.49622
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": 647.72314
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1864,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -245.08736,
+          "y": -1822.72961
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -94.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1865,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 287.5508,
+          "y": -1871.67004
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -163.48082
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1866,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 610.27523,
+          "y": -2654.68776
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -391.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1867,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1100.84567,
+          "y": -1892.06633
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -397.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1868,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1040.40255,
+          "y": -1899.30497
+        },
+        "anchorElevation": 0,
+        "width": 6.17585,
+        "height": 3.61857,
+        "tall": 6,
+        "elevation": -459.12959
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1869,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": -205.31329,
+          "y": -1146.99066
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -258.23762
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1870,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -754.28301,
+          "y": 418.0101
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -403.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1871,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -2145.9269,
+          "y": -164.84901
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 28.84
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1872,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1664.92839,
+          "y": 83.76218
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -95.29519
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1873,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 128.52599,
+          "y": 2518.07534
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 289.57793
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1874,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 430.75006,
+          "y": 2696.8857
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -13.86364
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1875,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 2163.96016,
+          "y": 2513.42881
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -76.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1876,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1305.68312,
+          "y": 2264.81762
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 653.72314
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1877,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -165.50333,
+          "y": 1733.18793
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -10.86364
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1878,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 868.98451,
+          "y": 1281.74548
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -100.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1879,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1029.72623,
+          "y": 1412.10974
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -601.26479
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1880,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1430.51509,
+          "y": 2654.95026
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -595.26479
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1881,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1715.46531,
+          "y": 2576.54706
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 52.99674
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1882,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1001.00934,
+          "y": 1408.76178
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 501.2627
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1883,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -308.56203,
+          "y": 1733.18793
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 507.2627
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1884,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 152.9201,
+          "y": 2755.71755
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 141.75354
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1885,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -442.22808,
+          "y": 1931.81811
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -89.29519
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1886,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1492.47881,
+          "y": 2264.81762
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 411.45277
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1887,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -664.74436,
+          "y": 2139.57814
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 405.45277
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1888,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -572.46663,
+          "y": 2513.42881
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 647.72314
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1889,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -67.85783,
+          "y": 2664.65032
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -94.51683
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1890,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 634.71417,
+          "y": 2601.807
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -163.48082
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1891,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1060.40118,
+          "y": 1596.35117
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -391.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1892,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1707.48411,
+          "y": 2575.61657
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -397.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1893,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 1627.75709,
+          "y": 2566.32158
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -459.12959
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1894,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 0.20162,
+        "position": {
+          "x": 876.96571,
+          "y": 1282.67598
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -258.23762
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1895,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": 327.99599,
+          "y": 2847.67673
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -403.062
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1896,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -1063.6479,
+          "y": 2264.81762
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": 28.84
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1897,
+      "p": {
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "position": {
+          "x": -582.64939,
+          "y": 2513.42881
+        },
+        "anchorElevation": 0,
+        "width": 8.14621,
+        "height": 4.64653,
+        "tall": 6,
+        "elevation": -95.29519
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.color": "rgb(255,255,255)",
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1898,
+      "p": {
+        "displayName": "星球",
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 1.37881,
+        "rotationX": 0.10472,
+        "position": {
+          "x": 1204.74237,
+          "y": 2426.59338
+        },
+        "scale": {
+          "x": 0.1,
+          "y": 0.1
+        },
+        "scaleTall": 0.1,
+        "width": -1,
+        "height": -1,
+        "tall": -1,
+        "elevation": 229.2507
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/星球/1-06.png",
+        "shape3d.reverse.flip": true,
+        "shape3d.transparent": true,
+        "envmap": 0,
+        "shape3d.autorotate": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.cull": true
+      },
+      "a": {
+        "t": "嫌疑人数量"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1899,
+      "p": {
+        "displayName": "星球",
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 1.37881,
+        "rotationX": 0.10472,
+        "position": {
+          "x": -1959.9153,
+          "y": 1458.69586
+        },
+        "scale": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "scaleTall": 0.3,
+        "width": -1,
+        "height": -1,
+        "tall": -1,
+        "elevation": 229.2507
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/星球/1-05.png",
+        "shape3d.reverse.flip": true,
+        "shape3d.transparent": true,
+        "envmap": 0,
+        "shape3d.autorotate": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.cull": true
+      },
+      "a": {
+        "t": "嫌疑人数量"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1900,
+      "p": {
+        "displayName": "星球",
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 1.37881,
+        "rotationX": 0.10472,
+        "position": {
+          "x": 1210.64389,
+          "y": -1449.77227
+        },
+        "scale": {
+          "x": 0.1,
+          "y": 0.1
+        },
+        "scaleTall": 0.1,
+        "width": -1,
+        "height": -1,
+        "tall": -1,
+        "elevation": 229.2507
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/星球/1-06.png",
+        "shape3d.reverse.flip": true,
+        "shape3d.transparent": true,
+        "envmap": 0,
+        "shape3d.autorotate": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.cull": true
+      },
+      "a": {
+        "t": "嫌疑人数量"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 1901,
+      "p": {
+        "displayName": "星球",
+        "parent": {
+          "__i": 1847
+        },
+        "host": {
+          "__i": 1847
+        },
+        "rotation": 1.37881,
+        "rotationX": 0.10472,
+        "position": {
+          "x": -1337.06988,
+          "y": -2268.26354
+        },
+        "scale": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "scaleTall": 0.3,
+        "width": -1,
+        "height": -1,
+        "tall": -1,
+        "elevation": 229.2507
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/贴图/星球/1-05.png",
+        "shape3d.reverse.flip": true,
+        "shape3d.transparent": true,
+        "envmap": 0,
+        "shape3d.autorotate": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.cull": true
+      },
+      "a": {
+        "t": "嫌疑人数量"
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      831.06549,
+      358.68993,
+      743.41931
+    ],
+    "center": [
+      71.27838,
+      172.04325,
+      369.68022
+    ],
+    "near": 1,
+    "far": 2000000,
+    "background": "rgb(0,0,0)",
+    "gridVisible": true,
+    "gridSize": 0,
+    "gridGap": 46,
+    "gridColor": "rgb(49,210,235)",
+    "editHelperDisabled": false
+  }
+}

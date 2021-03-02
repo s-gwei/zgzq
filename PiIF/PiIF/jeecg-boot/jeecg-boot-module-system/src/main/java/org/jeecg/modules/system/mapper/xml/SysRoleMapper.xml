@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.system.mapper.SysRoleMapper">
+
+	<!-- 根据角色Id查询 -->
+	<select id="getRoleByDepartId" resultType="org.jeecg.modules.system.entity.SysRole">
+		select * from sys_role where id in (select role_id from sys_role_depart where depart_id=#{departId})
+		<if test="roleName!=null and roleName!=''">
+			and role_name = #{roleName}
+		</if>
+	</select>
+
+	<!-- 根据 orgCode 查询用户，包括子部门下的用户 -->
+	<select id="getRoleByOrgCode" resultType="org.jeecg.modules.system.model.SysRoleSysDepartModel">
+		SELECT
+		sys_role.id AS "sys_role.id",
+		sys_role.role_name AS "sys_role.role_name",
+		sys_role.role_code AS "sys_role.role_code",
+		sys_role.description AS "sys_role.description",
+		sys_depart.id AS "sys_depart.id",
+		sys_depart.depart_name AS "sys_depart.depart_name"
+		<include refid="getRoleByOrgCodeFromSql"/>
+		ORDER BY
+		sys_depart.org_code ASC
+	</select>
+
+	<!-- SQL片段：getRoleByOrgCode 的 FROM 和 WHERE 部分 -->
+	<sql id="getRoleByOrgCodeFromSql">
+		FROM
+		sys_depart
+		-- 关联查询出该部门有哪些角色
+		INNER JOIN sys_role_depart ON sys_role_depart.depart_id = sys_depart.id
+		-- 关联查询出该角色的详细信息
+		INNER JOIN sys_role ON sys_role.id = sys_role_depart.role_id
+		WHERE
+		sys_depart.org_code LIKE '${orgCode}%'
+
+		<if test="roleParams != null">
+			<if test="roleParams.roleName != null and roleParams.roleName != ''">
+				AND sys_role.role_name LIKE '%${roleParams.roleName}%'
+			</if>
+			<if test="roleParams.roleCode != null and roleParams.roleCode != ''">
+				AND sys_role.role_code LIKE '%${roleParams.roleCode}%'
+			</if>
+		</if>
+	</sql>
+
+
+	<!-- 查询 getRoleByOrgCode 的总数-->
+	<select id="getRoleByOrgCodeTotal" resultType="java.lang.Integer">
+		SELECT COUNT(1) <include refid="getRoleByOrgCodeFromSql"/>
+	</select>
+
+	<!-- 根据用户名查询 -->
+	<select id="getRoleByName" resultType="org.jeecg.modules.system.entity.SysRole">
+		select * from  sys_role  where id in (select role_id from sys_user_role where user_id=(
+		select id from sys_user where username = #{username}
+		))
+	</select>
+
+	<!-- 根据部门id查询 -->
+	<select id="getRoleByDepart" resultType="org.jeecg.modules.system.entity.SysRole">
+		select * from  sys_role  where id in (select role_id from sys_role_depart where depart_id=#{departId})
+	</select>
+</mapper>

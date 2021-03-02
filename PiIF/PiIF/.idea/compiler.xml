@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jeecg-boot-base-common" />
+        <module name="jeecg-boot-module-influxdb" />
+        <module name="jeecg-boot-module-investigation" />
+        <module name="jeecg-boot-module-iot" />
+        <module name="jeecg-boot-module-rockmq" />
+        <module name="jeecg-boot-module-system" />
+        <module name="jeecg-boot-module-workflow" />
+        <module name="jeecg-boot-moudle-elastic" />
+        <module name="maven-archiver" />
+        <module name="maven-archiver (1)" />
+        <module name="maven-archiver (2)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jeecg-boot-base-common" options="-parameters" />
+      <module name="jeecg-boot-module-influxdb" options="-parameters" />
+      <module name="jeecg-boot-module-investigation" options="-parameters" />
+      <module name="jeecg-boot-module-iot" options="-parameters" />
+      <module name="jeecg-boot-module-rockmq" options="-parameters" />
+      <module name="jeecg-boot-module-system" options="-parameters" />
+      <module name="jeecg-boot-module-workflow" options="-parameters" />
+      <module name="jeecg-boot-moudle-elastic" options="-parameters" />
+    </option>
+  </component>
+</project>

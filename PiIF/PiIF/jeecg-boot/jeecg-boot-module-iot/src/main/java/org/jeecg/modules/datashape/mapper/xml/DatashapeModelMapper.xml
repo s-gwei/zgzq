@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.datashape.mapper.DatashapeModelMapper">
+    <!--添加表相关信息-->
+    <update id="addTableMessages">
+        update iot_datashape_model
+        set configurationChanges = #{tableType},
+            fieldDefinitions     = #{tableMessage}
+        where name = #{name}
+    </update>
+    <!--通过表名查询已有的列信息-->
+    <select id="findExistColumns" resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select *
+        from iot_datashape_model
+        where name = #{tableName}
+          and json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+    </select>
+    <!--更新表新插入的列数据-->
+    <update id="updateTableColumn">
+        update iot_datashape_model
+        set configurationChanges = #{datashapeModel.configurationchanges},
+            fieldDefinitions     = #{datashapeModel.fielddefinitions}
+        where name = #{datashapeModel.name}
+    </update>
+    <!--根据表名查询表的最新列结构-->
+    <select id="findLastedTableColumn" resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select *
+        from iot_datashape_model
+        where name = #{tableName}
+          and json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+        order by lastModifiedDate desc
+        limit 1
+    </select>
+    <!--查询已经添加的表和列-->
+    <select id="findTableAndColumn" resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select any_value(id)                   as id,
+               name,
+               any_value(avatar)               as avatar,
+               any_value(description)          as description,
+               any_value(documentationContent) as documentationcontent,
+               any_value(homeMashup)           as homemashup,
+               any_value(projectName)          as projectname,
+               any_value(tags)                 as tags,
+               any_value(configurationChanges) as configurationchanges,
+               any_value(fieldDefinitions)     as fielddefinitions,
+               any_value(lastModifiedDate)     as lastmodifieddate,
+               any_value(object_pk)            as objectPk
+        from iot_datashape_model
+        where json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+        group by name
+    </select>
+    <!--根据表名查询已经添加的表和列-->
+    <select id="findTableAndColumnByTableName"
+            resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select *
+        from iot_datashape_model
+        where name = #{tableName}
+          and json_unquote(json_extract(configurationChanges, '$.type')) in ('insert', 'update', 'delete')
+        order by lastModifiedDate desc
+        limit 1
+    </select>
+    <!--根据id修改datashape表-->
+    <update id="updateTable">
+        update iot_datashape_model
+        set avatar               = #{datashapeModel.avatar},
+            name                 = #{datashapeModel.name},
+            description          = #{datashapeModel.description},
+            documentationContent = #{datashapeModel.documentationcontent},
+            homeMashup           = #{datashapeModel.homemashup},
+            projectName          = #{datashapeModel.projectname},
+            tags                 = #{datashapeModel.tags},
+            configurationChanges = #{datashapeModel.configurationchanges}
+        where id = #{datashapeModel.id}
+    </update>
+    <!--根据id查询datashape-->
+    <select id="findById" resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select *
+        from iot_datashape_model
+        where id = #{id}
+    </select>
+    <!--连表查询datashape-->
+    <select id="findWithValueStreamModel" resultType="org.jeecg.modules.datashape.entity.IotDatashapeModel">
+        select *
+        from iot_datashape_model idm
+        inner join iot_stream_model ivm
+        where idm.name = #{tableName} and idm.name=ivm.dataShape
+        order by ivm.lastModifiedDate limit 1
+    </select>
+    <!--删除datashape-->
+    <delete id="deleteTable">
+        delete from iot_datashape_model where id=#{datashapeModel.id}
+    </delete>
+</mapper>

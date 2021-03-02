@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.iot.mapper.SysIotRuntimePermissionMapper">
+
+    <select id="getIotUserEditRight" resultType="java.lang.String">
+		select codename from auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id
+		where d.table_name=#{tableName} and a.id in (select g.permission_id from guardian_userobjectpermission as g where
+		g.object_pk=#{thingId}
+		and g.user_id=#{personId})
+	</select>
+
+    <select id="getIotRoleEditRight" resultType="java.lang.String">
+		select codename from auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id
+		where d.table_name=#{tableName} and a.id in (select g.permission_id from guardian_roleobjectpermission as g where
+		g.object_pk=#{thingId}
+		and g.role_id=#{personId})
+	</select>
+
+    <delete id="deleteIotUserEditRight">
+		delete from guardian_userobjectpermission where object_pk = #{thingId} and user_id = #{personId} and
+		permission_id in
+		(select
+		a.id from auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id where
+		d.table_name = #{tableName} and a.codename = #{rightName})
+    </delete>
+
+    <delete id="deleteIotRoleEditRight">
+		delete from guardian_roleobjectpermission where object_pk = #{thingId} and role_id = #{personId} and
+		permission_id in
+		(select
+		a.id from auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id where
+		d.table_name = #{tableName} and a.codename = #{rightName})
+    </delete>
+
+    <insert id="addIotUserEditRight">
+		insert into guardian_userobjectpermission (object_pk, permission_id, user_id,is_extend) values (#{thingId}, (select a.id
+		from
+		auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id where d.table_name=
+		#{tableName}
+		and a.codename=#{rightName}), #{personId},#{is_extend})
+	</insert>
+
+    <insert id="addIotRoleEditRight">
+		insert into guardian_roleobjectpermission (object_pk, permission_id, role_id,is_extend) values (#{thingId}, (select a.id
+		from
+		auth_permission as a LEFT JOIN django_content_type as d on a.content_type_id = d.id where d.table_name=
+		#{tableName}
+		and a.codename=#{rightName}), #{personId},#{is_extend})
+	</insert>
+
+    <select id="queryIotEditRightUserList" resultType="java.util.Map">
+		select s.id, s.realname, a.codename,g.is_extend from guardian_userobjectpermission as g left join auth_permission as a on
+		g.permission_id = a.id
+		left join sys_user as s on g.user_id = s.id where g.object_pk = #{thingId} and a.content_type_id in (select
+		d.id from
+		django_content_type as d where table_name = #{tableName})
+    </select>
+
+    <select id="queryIotEditRightRoleList" resultType="java.util.Map">
+		select s.id, s.role_name, a.codename,g.is_extend from guardian_roleobjectpermission as g left join auth_permission as a on g.permission_id = a.id
+		left join sys_role as s on g.role_id = s.id where g.object_pk = #{thingId} and a.content_type_id in (select d.id from
+		django_content_type as d where table_name = #{tableName})
+    </select>
+</mapper>

@@ -1,0 +1,228 @@
+{
+  "modified": "Wed Sep 11 2019 13:58:20 GMT+0800 (中国标准时间)",
+  "width": 154,
+  "height": 92,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(6,12,36,0.6)",
+      "borderColor": "#979797",
+      "points": [
+        0.66567,
+        0.60375,
+        6.46193,
+        0.60375,
+        140.65195,
+        0.60375,
+        153.01493,
+        14.1441,
+        153.01493,
+        54,
+        6.46193,
+        54,
+        0.66567,
+        45.77199
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "visible": false,
+      "displayName": "不规则图形",
+      "rotation": -1.5708,
+      "points": [
+        192.12946,
+        -34.34412,
+        192.1289,
+        134.06827,
+        247.02034,
+        134.06849,
+        274.31783,
+        108.31797,
+        274.31811,
+        29.61717
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "#32D3EB",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        79.27698,
+        51.51057,
+        4.81895,
+        4.81895
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "#32D3EB",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        38.16352,
+        83.26779,
+        8.04586,
+        8.04586
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#32D3EB",
+      "borderCap": "round",
+      "opacity": 0.6,
+      "shadow": true,
+      "shadowColor": "#32D3EB",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "points": [
+        81.68646,
+        56.32952,
+        75.4004,
+        67.90684,
+        54.24058,
+        67.90684,
+        43.66067,
+        84.90125
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(41,155,217,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        77.66352,
+        49.89712,
+        8.04586,
+        8.04586
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        39.77697,
+        84.88124,
+        4.81895,
+        4.81895
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@generate_capLabel",
+        "value": "瞬时流量："
+      },
+      "align": "center",
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        2.70938,
+        3.2619,
+        79,
+        28.73743
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@generate_cap_value",
+        "value": "18"
+      },
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        72.85145,
+        3.2619,
+        60.79962,
+        28.73743
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@generate_cap_unit",
+        "value": "㎡/s"
+      },
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        114.46627,
+        3.2619,
+        32.25745,
+        28.73743
+      ]
+    },
+    {
+      "type": "text",
+      "text": "累计流量：",
+      "align": "center",
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        2.70938,
+        25.2619,
+        79,
+        28.73743
+      ]
+    },
+    {
+      "type": "text",
+      "text": "18654",
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        72.85145,
+        26.70098,
+        60.79962,
+        28.73743
+      ]
+    },
+    {
+      "type": "text",
+      "text": "㎡",
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        114.46627,
+        25.2619,
+        32.25745,
+        28.73743
+      ]
+    },
+    {
+      "type": "image",
+      "name": "symbols/hjx/发光.json",
+      "displayName": "发光",
+      "rect": [
+        5.65107,
+        51.92005,
+        146.65099,
+        4
+      ]
+    }
+  ]
+}

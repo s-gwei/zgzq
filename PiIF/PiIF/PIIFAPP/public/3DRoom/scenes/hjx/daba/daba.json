@@ -1,0 +1,146 @@
+{
+  "v": "7.0.6",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true,
+    "postProcessingData": {
+      "bloom": {
+        "strength": 0.36,
+        "threshold": 0.18
+      },
+      "dof": {
+        "image": "assets/Depth.png"
+      }
+    }
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 3533,
+      "p": {
+        "position": {
+          "x": -62.15449,
+          "y": 885.3177
+        },
+        "anchorElevation": 0,
+        "elevation": 70.30444
+      },
+      "s": {
+        "shape3d": "models/hjx/daba/dixing.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3534,
+      "p": {
+        "tag": "shk_daba",
+        "rotation": 2.38336,
+        "position": {
+          "x": -506.37413,
+          "y": 1715.95642
+        },
+        "anchorElevation": 0,
+        "elevation": 86.59674
+      },
+      "s": {
+        "shape3d": "models/hjx/daba/daba.json",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer';}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3535,
+      "p": {
+        "tag": "ljd",
+        "rotation": -0.1014,
+        "rotationX": 0.74929,
+        "rotationZ": -0.08171,
+        "position": {
+          "x": -797.30115,
+          "y": 1746.07361
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "scaleTall": 0.5,
+        "elevation": 173.76039
+      },
+      "s": {
+        "shape3d": "models/hjx/daba/lianjiedong.json",
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer';}",
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default';}",
+        "interactive": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3536,
+      "p": {
+        "image": "symbols/hjx/biaopai2.json",
+        "rotation": -0.87153,
+        "position": {
+          "x": -800.06121,
+          "y": 1747.14697
+        },
+        "anchor": {
+          "x": 0,
+          "y": 0.5
+        },
+        "anchorElevation": 0,
+        "width": 120,
+        "tall": 60,
+        "elevation": 165.88354
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/biaopai2.json",
+        "shape3d.autorotate": true,
+        "shape3d.fixSizeOnScreen": false,
+        "shape3d.vector.dynamic": false,
+        "shape3d.reverse.flip": true,
+        "shape3d.transparent": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      },
+      "a": {
+        "text": "连接洞"
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      -873.26748,
+      316.20517,
+      2081.15458
+    ],
+    "center": [
+      0,
+      0,
+      0
+    ],
+    "near": 10,
+    "far": 100300,
+    "gridVisible": true,
+    "gridSize": 50,
+    "gridGap": 75,
+    "gridColor": [
+      0.4,
+      0.75,
+      0.85,
+      1
+    ],
+    "editHelperDisabled": false
+  }
+}

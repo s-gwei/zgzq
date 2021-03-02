@@ -1,0 +1,245 @@
+[
+  {
+    "name": "张三",
+    "sum": 475,
+    "week": "2",
+    "ratio": 1.2
+    
+  },
+    {
+        "name": "张三",
+        "sum": 675,
+        "week": "1",
+        "ratio": 1.3
+    },
+    
+    {
+        "name": "张三",
+        "sum": "275",
+        "week": "3",
+        "ratio": 0.8
+      },
+      {
+        "name": "张三",
+        "sum": 575,
+        "week": "4",
+        "ratio": 0.6
+        
+      },
+      {
+        "name": "张三",
+        "sum": 775,
+        "week": "5",
+        "ratio": 1.2
+      },
+      {
+        "name": "张三",
+        "sum": 575,
+        "week": "6",
+        "ratio": 1.2
+      },
+      {
+        "name": "张三",
+        "sum": 675,
+        "week": "7",
+        "ratio": 1.2
+    },
+    {
+      "name": "张三",
+      "sum": 575,
+      "week": "8",
+      "ratio": 1.2
+    },
+    {
+        "name": "张三",
+        "sum": "275",
+        "week": "9",
+        "ratio": 0.8
+      },
+      {
+        "name": "张三",
+        "sum": 123,
+        "week": "10",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 575,
+        "week": "1",
+        "ratio": 1.3
+    },
+    {
+      "name": "张三基准",
+      "sumBenchmark": 445,
+      "week": "2",
+      "ratio": 1.2
+    },
+    {
+        "name": "张三基准",
+        "sumBenchmark": 287,
+        "week": "3",
+        "ratio": 0.8
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 375,
+        "week": "4",
+        "ratio": 0.6
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 975,
+        "week": "5",
+        "ratio": 1.2
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 575,
+        "week": "6",
+        "ratio": 1.2
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 875,
+        "week": "7",
+        "ratio": 1.2
+    },
+    {
+      "name": "张三基准",
+      "sumBenchmark": 575,
+      "week": "8",
+       "ratio": 1.2
+    },
+    {
+        "name": "张三基准",
+        "sumBenchmark": "250",
+        "week": "9",
+        "ratio": 0.8
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 175,
+        "week": "10",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 530,
+        "week": "11",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 375,
+        "week": "11",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 505,
+        "week": "12",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 175,
+        "week": "12",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 375,
+        "week": "13",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 575,
+        "week": "13",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 575,
+        "week": "14",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 575,
+        "week": "14",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 575,
+        "week": "15",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 575,
+        "week": "15",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 575,
+        "week": "16",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 55,
+        "week": "16",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 375,
+        "week": "17",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 375,
+        "week": "17",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 655,
+        "week": "18",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 125,
+        "week": "18",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 655,
+        "week": "19",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 125,
+        "week": "19",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三",
+        "sum": 655,
+        "week": "20",
+        "ratio": 0.7
+      },
+      {
+        "name": "张三基准",
+        "sumBenchmark": 125,
+        "week": "20",
+        "ratio": 0.7
+      }
+  ]

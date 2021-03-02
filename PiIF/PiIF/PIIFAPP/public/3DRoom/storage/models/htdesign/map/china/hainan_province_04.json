@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/map/china/hainan_province_04.obj",
+  "mtl": "assets/htdesign/objs/map/china/hainan_province_04.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/map/china/",
+  "center": false,
+  "reverseFlipMtls": "*",
+  "ignoreImage": false,
+  "ignoreColor": false,
+  "s3": [
+    300,
+    300,
+    300
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

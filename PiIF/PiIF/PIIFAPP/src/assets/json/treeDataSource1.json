@@ -1,0 +1,279 @@
+[
+    {
+        "id": "1",
+        "key": "1",
+        "departname": "整车",
+        "title": "整车",
+        "children": [
+            {
+                "id": "11",
+                "key": "11",
+                "departname": "发动机",
+                "title": "发动机",
+                "children": [
+                    {
+                       "id": "111",
+                       "key": "111",
+                       "departname": "轴承",
+                       "title": "轴承",
+                       "html": [
+                         {
+                            "type": "input",
+                            "name": " 进气压气",
+                            "unit": "MPa",
+                            "value": 20,
+                            "id": "110"
+                         },
+                          {
+                            "type": "input",
+                            "name": "出气压气",
+                            "unit": "MPa",
+                            "id": "120",
+                            "value": 30,
+                            "disabled": true
+                         },
+                         {
+                            "type": "select",
+                            "name": " 汽轮机形式",
+                            "id": "130",
+                            "value": "01",
+                            "select": [
+                              {
+                                  "text": "0101",
+                                  "value": "01"
+                              },
+                              {
+                                  "text": "0202",
+                                  "value": "02"
+                              }
+                            ]
+                         },
+                         {
+                           "type": "radio",
+                           "name": "冷却方式",
+                           "id": "140",
+                           "value": "w01",
+                           "select": [
+                              {
+                                  "text": "水冷",
+                                  "value": "w01"
+                              },
+                              {
+                                  "text": "空冷",
+                                  "value": "w02"
+                              }
+                            ]
+                         }
+                       ]
+                    },
+                    {
+                       "id": "112",
+                       "key": "112",
+                       "departname": "洗轮机形式",
+                       "title": "洗轮机形式",
+                       "html": [
+                         {
+                            "type": "checkbox",
+                            "name": "汽轮机形式",
+                            "id": "210",
+                            "value": ["cg"],
+                            "select": [
+                               { "label": "抽管", "value": "cg"},
+                               { "label": "补气", "value": "bq"},
+                               { "label": "再热", "value": "zr"}
+                            ]
+                         },
+                         {
+                            "type": "input",
+                            "name": "排汽",
+                            "id": "2110",
+                            "unit": "MPa"
+                         }
+                       ]
+                    }
+                ]
+            },
+            {
+                "id": "12",
+                "key": "12",
+                "departname": "前车",
+                "title": "前车",
+                "children": [
+                    {
+                       "id": "121",
+                       "key": "121",
+                       "departname": "转盘",
+                       "title": "转盘",
+                       "children": [
+                           {
+                                "id": "1211",
+                                "key": "1211",
+                                "departname": "进排气参数",
+                                "title": "进排气参数",
+                                "html": [
+                                 {
+                                     "type": "input",
+                                     "name": "进气压力",
+                                     "id": "2210",
+                                     "unit": "MPa"
+                                  },
+                                  {
+                                    "type": "input",
+                                    "name": "进气温度",
+                                    "id": "2310",
+                                    "unit": "°C"
+                                 },
+                                 {
+                                    "type": "input",
+                                    "name": "进排压力",
+                                    "id": "2410",
+                                    "unit": "MPa"
+                                 },
+                                  {
+                                     "type": "radio",
+                                     "name": "加热方式",
+                                     "id": "340",
+                                     "value": "w31",
+                                     "disabled":true,
+                                     "select": [
+                                        {
+                                            "text": "水热",
+                                            "value": "w31"
+                                        },
+                                        {
+                                            "text": "空热",
+                                            "value": "w32"
+                                        },
+                                        {
+                                            "text": "自然",
+                                            "value": "w33"
+                                        }
+                                     ]
+                                  }
+                                ]
+                           },
+                           {
+                                "id": "1512",
+                                "key": "1512",
+                                "departname": "公用工程条件",
+                                "title": "公用工程条件",
+                                "html": [
+                                    {
+                                        "type": "input",
+                                        "name": "进水压力",
+                                        "id": "3210",
+                                        "unit": "MPa"
+                                     },
+                                     {
+                                        "type": "input",
+                                        "name": "水质情况",
+                                        "id": "3310",
+                                        "unit": "MPa"
+                                     },
+                                     {
+                                        "type": "input",
+                                        "name": "回水温度",
+                                        "id": "3410",
+                                        "unit": "°C"
+                                     }
+                                ]
+                           },
+                           {
+                                "id": "1213",
+                                "key": "1213",
+                                "departname": "背景",
+                                "title": "背景",
+                                "html": [{
+                                    "type": "table",
+                                    "name": "冷却方式"
+                                 }]
+                           }
+                       ]
+                    },
+                    {
+                       "id": "112",
+                       "key": "112",
+                       "departname": "转速",
+                       "title": "转速",
+                      "children": [
+                           {
+                                "id": "12110",
+                                "key": "12110",
+                                "departname": "时速",
+                                "title": "时速",
+                                "html": [
+                                  {
+                                     "type": "radio",
+                                     "name": "制冷方式",
+                                     "id": "340",
+                                     "value": "w31",
+                                     "disabled":true,
+                                     "select": [
+                                        {
+                                            "text": "散热",
+                                            "value": "s31"
+                                        },
+                                        {
+                                            "text": "自然",
+                                            "value": "s33"
+                                        }
+                                     ]
+                                  },
+                                  { 
+                                    "id": "370",
+                                    "type": "textarea",
+                                    "name": "修改说明",
+                                    "value": "123"
+                                  }
+                                ]
+                             }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "13",
+                "key": "13",
+                "departname": "车轮",
+                "title": "车轮",
+                "html": [
+                         {
+                            "type": "checkbox",
+                            "name": "汽轮机形式",
+                            "id": "555",
+                            "key": "555",
+                            "select": [
+                               { "label": "抽管", "value": "cg" },
+                               { "label": "补气", "value": "bq" },
+                               { "label": "再热", "value": "zr" }
+                            ]
+                         },
+                         {
+                            "type": "input",
+                            "name": "高加数量",
+                            "id": "5110",
+                            "unit": "°C"
+                         },
+                         {
+                            "type": "input",
+                            "name": "低加数量",
+                            "id": "5120",
+                            "unit": "°C"
+                         },
+                         {
+                            "type": "input",
+                            "name": "出口温度",
+                            "id": "5210",
+                            "unit": "°C"
+                         },
+                         {
+                            "type": "input",
+                            "name": "锅炉给水温度",
+                            "id": "5310",
+                            "unit": "°C"
+                         }
+                ]
+            }
+        ]
+    }
+  ]

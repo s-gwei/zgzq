@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.ReportMapper">
+
+
+    <!-- PERT查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.P2020052.pojo.PiplanActivityVo">
+        <result column="activityId" property="activityId"/>
+        <result column="targetStartTime" property="targetStartTime"/>
+        <result column="byTime" property="byTime"/>
+        <result column="expectedFinishTime" property="expectedFinishTime"/>
+        <result column="actualStartTime" property="actualStartTime"/>
+        <result column="actualEndTime" property="actualEndTime"/>
+    </resultMap>
+
+    <!-- 部门风险系数表查询映射结果 -->
+    <resultMap id="CaseResultMap" type="org.jeecg.modules.P2020052.pojo.GroupRiskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="plan_activity_ref_id" property="activityId"/>
+        <result column="actual_start_date" property="actualStartDate"/>
+        <result column="standard_work_qty" property="standardWorkQty"/>
+        <result column="actual_work_qty" property="actualWorkQty"/>
+        <result column="weights" property="weights"/>
+        <result column="standard_deviation_value" property="standardDeviationValue"/>
+        <result column="standard_difficulty_value" property="standardDifficultyValue"/>
+        <result column="deviation_report" property="deviationReport"/>
+        <result column="difficulty_report" property="difficultyReport"/>
+        <result column="breadth" property="breadth"/>
+        <result column="criticality" property="criticality"/>
+    </resultMap>
+
+
+    <!-- 项目风险系数表查询映射结果 -->
+    <resultMap id="DaseResultMap" type="org.jeecg.modules.P2020052.pojo.ProjectRiskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="project_id" property="projectId"/>
+        <result column="project_name" property="name"/>
+        <result column="plan_activity_ref_id" property="preRatio"/>
+        <result column="plan_start_date" property="startTime"/>
+        <result column="standard_deviation_value" property="standardDeviationValue"/>
+        <result column="standard_difficulty_value" property="standardDifficultyValue"/>
+        <result column="deviation_report" property="deviationReport"/>
+        <result column="difficulty_report" property="difficultyReport"/>
+    </resultMap>
+
+    <!-- 用户部门查询映射结果 -->
+    <resultMap id="UaseResultMap" type="org.jeecg.modules.P2020052.pojo.UserVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="id" property="groupId"/>
+        <result column="name" property="groupName"/>
+        <result column="rolebobject_id" property="userId"/>
+        <result column="userName" property="userName"/>
+    </resultMap>
+    <!-- 任务执行查询映射结果 -->
+    <resultMap id="TaseResultMap" type="org.jeecg.modules.P2020052.pojo.TaskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="container_info_name" property="executive"/>
+        <result column="name" property="planName"/>
+        <result column="plan_activity_ref_id" property="planId"/>
+        <result column="weights" property="weights"/>
+        <result column="standard_deviation_value" property="standardDeviationValue"/>
+        <result column="standard_difficulty_value" property="standardDifficultyValue"/>
+        <result column="deviation_report" property="deviationReport"/>
+        <result column="difficulty_report" property="difficultyReport"/>
+        <result column="breadth" property="breadth"/>
+        <result column="criticality" property="criticality"/>
+        <result column="actual_work_qty" property="standardWork"/>
+        <result column="target_work_qty" property="reportWork"/>
+        <result column="otRating" property="Output"/>
+        <result column="completion_status" property="releases"/>
+    </resultMap>
+
+    <select id="projectWeekCycle" resultMap="BaseResultMap">
+            SELECT
+	a.target_start_date as targetStartTime,
+	b.target_end_date as byTime
+FROM
+	( SELECT piplan_activity.target_start_date, piplan_activity.project_ref_id FROM piplan_activity WHERE piplan_activity.project_ref_id = #{projectId} ORDER BY piplan_activity.target_start_date LIMIT 1 ) a,
+	( SELECT piplan_activity.target_end_date, piplan_activity.project_ref_id FROM piplan_activity WHERE piplan_activity.project_ref_id = #{projectId} ORDER BY piplan_activity.target_end_date DESC LIMIT 1 ) b
+WHERE
+	a.project_ref_id = b.project_ref_id
+
+    </select>
+
+    <select id="taskExecution" resultMap="TaseResultMap">
+        select * from
+        (
+        select
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality,
+        stproject_instanceotindicator.completion_status,
+        e.otRating,
+        piproject_container.container_info_name
+        from
+        stproject_instanceotindicator left join piproject_container on
+        stproject_instanceotindicator.container_ref_id = piproject_container.id,
+        stproject_instanceinindicator
+        LEFT JOIN
+        ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' )
+        otRating FROM strating
+        GROUP BY strating.in_indicator_ref_id ) e
+        ON e.in_indicator_ref_id = stproject_instanceinindicator.id
+        where stproject_instanceinindicator.ot_code = stproject_instanceotindicator.code
+        and stproject_instanceinindicator.plan_activity_ref_id in(select id from piplan_activity where
+        piplan_activity.project_ref_id = #{projectId} )
+        )a,
+        (
+        select piplan_activity.id,
+        piplan_activity.name,
+        piplan_activity.actual_work_qty,
+        piplan_activity.target_work_qty
+        from piplan_activity where piplan_activity.project_ref_id = #{projectId}
+        <if test="userId != null and userId!= ''">
+            and piplan_activity.owner_id in
+            <foreach collection="userId" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+        </if>
+
+        )b
+        where a.plan_activity_ref_id = b.id
+        order by a.plan_activity_ref_id
+    </select>
+
+
+    <select id="groupUser" resultMap="UaseResultMap">
+      SELECT
+            d.*,
+            piuser.NAME AS userName
+        FROM
+            (
+        SELECT
+            *
+        FROM
+            (
+        SELECT
+            pigroup.id,
+            pigroup.NAME
+        FROM
+            pigroup
+        WHERE
+             pigroup.internal = 0
+            and
+            id IN ( SELECT membership_link.roleaobject_id FROM membership_link WHERE membership_link.rolebobject_id IN (
+            SELECT piresource_assignment.rsrc_ref_id FROM piresource_assignment WHERE piresource_assignment.project_ref_id = #{projectId} ) )
+            ) a,
+            (
+        SELECT
+            membership_link.roleaobject_id,
+            membership_link.rolebobject_id
+        FROM
+            membership_link
+        WHERE
+            membership_link.rolebobject_id IN ( SELECT piresource_assignment.rsrc_ref_id FROM piresource_assignment WHERE piresource_assignment.project_ref_id = #{projectId} )
+            ) b
+        WHERE
+            a.id = b.roleaobject_id
+            ) d,
+            piuser
+        WHERE
+            piuser.id = d.rolebobject_id
+    </select>
+
+
+    <select id="pertTable" resultMap="BaseResultMap">
+        SELECT
+            pa.id AS activityId,
+            pa.target_start_date AS targetStartTime,
+            pa.target_end_date AS byTime,
+            sft.expected_finish_time AS expectedFinishTime,
+            pa.actual_start_date AS actualStartTime
+        FROM
+            piplan_activity pa,
+            stexpected_finish_time sft
+        WHERE
+            pa.id = sft.plan_activity_ref_id
+			and pa.id = #{activeId}
+    </select>
+
+    <!-- 根据用户名查询 -->
+    <select id="ProjectRiskTable" resultMap="DaseResultMap">
+        SELECT
+        c.*,
+        d.plan_start_date,
+        d.project_name
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT id FROM piplan_activity  pa WHERE pa.project_ref_id = #{projectId}
+         )
+        ) a,
+        (SELECT id,pa.project_ref_id as project_id FROM piplan_activity  pa WHERE pa.project_ref_id =#{projectId}
+         ) b
+        WHERE
+        a.plan_activity_ref_id = b.id
+        ) c,
+        (SELECT piproject.id,piproject.plan_start_date, piproject.project_name FROM piproject WHERE id =#{projectId}
+        ) d
+        WHERE
+        c.project_id = d.id
+        ORDER BY
+        c.project_id
+    </select>
+    <!-- 根据用户名查询 -->
+    <select id="SectorRiskFactor" resultMap="CaseResultMap">
+        SELECT
+        a.*,
+        b.*,
+        c.*
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        piresource_assignment.actual_start_date &gt;= #{startTime}
+        AND piresource_assignment.actual_end_date &lt;= #{endTime}
+        AND piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+        <foreach collection="userId" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        )
+        )
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty
+        FROM
+        piplan_activity
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        piresource_assignment.actual_start_date &gt;= #{startTime}
+        AND piresource_assignment.actual_end_date &lt;= #{endTime}
+        AND piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+        <foreach collection="userId" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        )
+        )
+        ) b,
+        (
+        SELECT
+        piresource_assignment.plannable_ref_id,
+        piresource_assignment.actual_start_date
+        FROM
+        piresource_assignment
+        WHERE
+        piresource_assignment.actual_start_date &gt;= #{startTime}
+        AND piresource_assignment.actual_end_date &lt;= #{endTime}
+        AND piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+        <foreach collection="userId" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        )
+        ) c
+    </select>
+
+</mapper>

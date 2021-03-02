@@ -1,0 +1,307 @@
+{
+  "v": "7.0.2",
+  "p": {
+    "background": "rgba(2,11,26,0)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true,
+    "postProcessingData": {
+      "bloom": {
+        "enable": true,
+        "strength": 0.2,
+        "threshold": 0.55,
+        "radius": 0.4,
+        "overrideAlpha": false
+      },
+      "dof": {
+        "enable": false,
+        "aperture": 0.025,
+        "maxblur": 1,
+        "image": null
+      }
+    }
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 2846,
+      "p": {
+        "tag": "box",
+        "position": {
+          "x": 234.43441,
+          "y": 181.72308
+        },
+        "width": 10000,
+        "height": 10000,
+        "tall": 10000,
+        "elevation": 100
+      },
+      "s": {
+        "shape3d": "sphere",
+        "shape3d.color": "rgb(29,44,84)",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 1,
+        "shape3d.reverse.color": "rgb(29,44,84)",
+        "wf.color": "rgba(26,189,156,0)",
+        "shape3d.image": "assets/background/天空球.jpg",
+        "2d.visible": false,
+        "3d.visible": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2847,
+      "p": {
+        "position": {
+          "x": 158.17853,
+          "y": 181.72308
+        },
+        "anchorElevation": 0,
+        "width": 612
+      },
+      "s": {
+        "shape3d": "models/黄金峡/DB.json",
+        "wf.visible": "selected",
+        "wf.color": "rgba(26,189,156,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2848,
+      "p": {
+        "parent": {
+          "__i": 2847
+        },
+        "tag": "boat",
+        "host": {
+          "__i": 2847
+        },
+        "position": {
+          "x": 35,
+          "y": 300
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 100,
+          "y": 100
+        },
+        "scaleTall": 100,
+        "elevation": 77
+      },
+      "s": {
+        "shape3d": "models/黄金峡/船.json",
+        "wf.visible": "selected",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.color": "#ffffff",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {view.getView().style.cursor = 'pointer';}",
+        "onLeave": "__ht__function(event, data, view) {view.getView().style.cursor = 'default';}"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2849,
+      "p": {
+        "parent": {
+          "__i": 2848
+        },
+        "image": "symbols/3d场景用/轮船信息.json",
+        "host": {
+          "__i": 2848
+        },
+        "rotation": 3.05211,
+        "rotationX": 1.32032,
+        "rotationZ": 0.11122,
+        "position": {
+          "x": 37.02424,
+          "y": 288.26526
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.49278,
+          "y": 1.51388
+        },
+        "scaleTall": 0.40619,
+        "width": 200,
+        "height": 1,
+        "tall": 100,
+        "elevation": 82.55904
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/3d场景用/轮船信息.json",
+        "shape3d.autorotate": true,
+        "shape3d.alwaysOnTop": true,
+        "shape3d.fixSizeOnScreen": [
+          -1,
+          -1
+        ],
+        "wf.visible": "selected",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2850,
+      "p": {
+        "image": "symbols/hjx/泄洪闸流量.json",
+        "position": {
+          "x": 118.50419,
+          "y": 132.74862
+        },
+        "anchor": {
+          "x": 0.2,
+          "y": 0.5
+        },
+        "anchorElevation": 0,
+        "elevation": 86
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/泄洪闸流量.json",
+        "shape3d.autorotate": true,
+        "shape3d.alwaysOnTop": true,
+        "shape3d.fixSizeOnScreen": [
+          -1,
+          -1
+        ],
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2851,
+      "p": {
+        "image": "symbols/hjx/排沙闸流量.json",
+        "position": {
+          "x": 79.88864,
+          "y": 135.71752
+        },
+        "anchor": {
+          "x": 0.92,
+          "y": 0.5
+        },
+        "anchorElevation": 0,
+        "elevation": 86
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/排沙闸流量.json",
+        "shape3d.autorotate": true,
+        "shape3d.alwaysOnTop": true,
+        "shape3d.fixSizeOnScreen": [
+          -1,
+          -1
+        ],
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2852,
+      "p": {
+        "image": "symbols/hjx/泵站出口流量.json",
+        "position": {
+          "x": 259.91576,
+          "y": 172.31571
+        },
+        "anchor": {
+          "x": 0.28,
+          "y": 0.1
+        },
+        "anchorElevation": 0,
+        "elevation": 106.50661
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/泵站出口流量.json",
+        "shape3d.autorotate": true,
+        "shape3d.alwaysOnTop": true,
+        "shape3d.fixSizeOnScreen": [
+          -1,
+          -1
+        ],
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 2853,
+      "p": {
+        "image": "symbols/hjx/黄金峡属性框.json",
+        "position": {
+          "x": 163.25525,
+          "y": -1606.02866
+        },
+        "anchorElevation": 0
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/hjx/黄金峡属性框.json",
+        "shape3d.autorotate": true,
+        "shape3d.alwaysOnTop": true,
+        "shape3d.fixSizeOnScreen": [
+          -1,
+          -1
+        ],
+        "wf.visible": "selected",
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      144.8991,
+      381.05712,
+      802.01874
+    ],
+    "center": [
+      79.88864,
+      86,
+      135.71752
+    ],
+    "near": 10,
+    "far": 10000,
+    "background": "rgba(2,11,26,0)",
+    "gridVisible": true,
+    "gridSize": 50,
+    "gridGap": 50,
+    "gridColor": "rgba(29,44,84,0)",
+    "editHelperDisabled": false
+  }
+}

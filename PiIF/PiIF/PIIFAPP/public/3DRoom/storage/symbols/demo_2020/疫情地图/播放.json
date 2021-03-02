@@ -1,0 +1,82 @@
+{
+  "modified": "Sun Apr 26 2020 15:23:25 GMT+0800 (中国标准时间)",
+  "stateEnum": [
+    {
+      "value": "播放"
+    },
+    {
+      "value": "暂停"
+    }
+  ],
+  "width": 24,
+  "height": 24,
+  "boundExtend": 5,
+  "comps": [
+    {
+      "type": "oval",
+      "background": "rgba(217,217,217,0.00)",
+      "borderWidth": 1,
+      "borderColor": "rgb(135,138,232)",
+      "pixelPerfect": true,
+      "state": "播放",
+      "rect": [
+        0,
+        0,
+        24,
+        24
+      ]
+    },
+    {
+      "type": "triangle",
+      "background": "rgb(135,138,232)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "state": "播放",
+      "rotation": 1.5708,
+      "rect": [
+        7.1144,
+        7.10235,
+        13.32605,
+        10.27535
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(217,217,217,0.00)",
+      "borderWidth": 1,
+      "borderColor": "rgb(135,138,232)",
+      "pixelPerfect": true,
+      "state": "暂停",
+      "rect": [
+        0,
+        0,
+        24,
+        24
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(135,138,232)",
+      "state": "暂停",
+      "points": [
+        10.13818,
+        7.34008,
+        10.13818,
+        17.48128
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(135,138,232)",
+      "state": "暂停",
+      "points": [
+        13.86182,
+        7.34008,
+        13.86182,
+        17.48128
+      ]
+    }
+  ]
+}

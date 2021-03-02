@@ -1,0 +1,4223 @@
+{
+  "v": "7.0.5",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "rotateAsClock": false,
+    "connectActionType": null
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 77960,
+      "p": {
+        "position": {
+          "x": 953.91701,
+          "y": 78.38033
+        },
+        "width": 1920,
+        "height": 930
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(217,217,217,0)",
+        "shape.border.color": "#979797",
+        "fullscreen": "fill",
+        "fullscreen.lock": "h",
+        "2d.movable": false,
+        "2d.selectable": false,
+        "fullscreen.gap": 0
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77961,
+      "p": {
+        "displayName": "左侧",
+        "parent": {
+          "__i": 77960
+        },
+        "host": {
+          "__i": 77960
+        },
+        "position": {
+          "x": 209.97544,
+          "y": 77.6521
+        },
+        "width": 426.47247,
+        "height": 917.28591
+      },
+      "s": {
+        "layout.h": "scale",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77962,
+      "p": {
+        "displayName": "左上",
+        "parent": {
+          "__i": 77961
+        },
+        "position": {
+          "x": 210.07008,
+          "y": -180.99086
+        },
+        "width": 426.28318,
+        "height": 400
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 77963,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 215.57867,
+          "y": -161.30631
+        },
+        "width": 350.8139,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 40.17172,
+              "y": -161.30631
+            },
+            {
+              "x": 40.17172,
+              "y": -161.30631
+            },
+            {
+              "x": 303.28215,
+              "y": -161.30631
+            },
+            {
+              "x": 390.98563,
+              "y": -161.30631
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 77964,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 275.57867,
+          "y": -163.30631
+        },
+        "width": 300,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 125.57867,
+              "y": -163.30631
+            },
+            {
+              "x": 125.57867,
+              "y": -163.30631
+            },
+            {
+              "x": 350.57867,
+              "y": -163.30631
+            },
+            {
+              "x": 425.57867,
+              "y": -163.30631
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 77965,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 136.57867,
+          "y": -163.30631
+        },
+        "width": 300,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -13.42133,
+              "y": -163.30631
+            },
+            {
+              "x": -13.42133,
+              "y": -163.30631
+            },
+            {
+              "x": 211.57867,
+              "y": -163.30631
+            },
+            {
+              "x": 286.57867,
+              "y": -163.30631
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77966,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 210.07008,
+          "y": -180.99086
+        },
+        "width": 426.28318,
+        "height": 400
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgba(2,27,69,0.6)",
+        "shape.border.width": 2,
+        "shape.border.color": "rgba(29,104,224,0)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width.absolute": true,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#1e69e1"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 77967,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 215.71582,
+          "y": -361.62001
+        },
+        "width": 206.01557,
+        "height": 36.28012,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 112.70803,
+              "y": -379.76007
+            },
+            {
+              "x": 124.14442,
+              "y": -368.49213
+            },
+            {
+              "x": 127.02657,
+              "y": -353.69109
+            },
+            {
+              "x": 130.26171,
+              "y": -349.46617
+            },
+            {
+              "x": 133.49686,
+              "y": -345.24124
+            },
+            {
+              "x": 140.22787,
+              "y": -344.14555
+            },
+            {
+              "x": 140.22787,
+              "y": -344.14555
+            },
+            {
+              "x": 140.22787,
+              "y": -344.14555
+            },
+            {
+              "x": 141.94692,
+              "y": -344.14555
+            },
+            {
+              "x": 179.75136,
+              "y": -344.14555
+            },
+            {
+              "x": 217.5558,
+              "y": -344.14555
+            },
+            {
+              "x": 290.2468,
+              "y": -344.14555
+            },
+            {
+              "x": 290.2468,
+              "y": -344.14555
+            },
+            {
+              "x": 290.2468,
+              "y": -344.14555
+            },
+            {
+              "x": 294.11791,
+              "y": -343.47995
+            },
+            {
+              "x": 299.78858,
+              "y": -349.46617
+            },
+            {
+              "x": 302.25121,
+              "y": -352.06585
+            },
+            {
+              "x": 304.47103,
+              "y": -365.68002
+            },
+            {
+              "x": 307.69345,
+              "y": -370.74862
+            },
+            {
+              "x": 310.91586,
+              "y": -375.8172
+            },
+            {
+              "x": 318.7236,
+              "y": -379.76007
+            },
+            {
+              "x": 318.7236,
+              "y": -379.76007
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": "rgba(0,33,79,0)",
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2,
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#00214e"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77968,
+      "p": {
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 219.53127,
+          "y": -362.36773
+        },
+        "width": 108.65784,
+        "height": 23.67675
+      },
+      "s": {
+        "text": "泵站运行监测",
+        "text.color": "#0ac1fa",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77969,
+      "p": {
+        "displayName": "水泵状态",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 78.37356,
+          "y": -250.40061
+        },
+        "width": 60,
+        "height": 121.8114
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77970,
+      "p": {
+        "displayName": "运行状态",
+        "parent": {
+          "__i": 77969
+        },
+        "image": "symbols/icon/运行状态.json",
+        "position": {
+          "x": 78.37356,
+          "y": -281.30631
+        },
+        "width": 60,
+        "height": 60
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77971,
+      "p": {
+        "parent": {
+          "__i": 77969
+        },
+        "position": {
+          "x": 78.56286,
+          "y": -231.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "运行",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77972,
+      "p": {
+        "parent": {
+          "__i": 77969
+        },
+        "position": {
+          "x": 78.56286,
+          "y": -196.30631
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "水泵状态",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77973,
+      "p": {
+        "displayName": "电动蝶阀状态",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 207.26067,
+          "y": -250.40061
+        },
+        "width": 87.28108,
+        "height": 121.8114
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77974,
+      "p": {
+        "parent": {
+          "__i": 77973
+        },
+        "position": {
+          "x": 210.07008,
+          "y": -231.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "30%",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77975,
+      "p": {
+        "parent": {
+          "__i": 77973
+        },
+        "position": {
+          "x": 207.26067,
+          "y": -196.30631
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "电动蝶阀状态",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77976,
+      "p": {
+        "displayName": "icon_蝶阀",
+        "parent": {
+          "__i": 77973
+        },
+        "image": "symbols/icon/icon_蝶阀.json",
+        "position": {
+          "x": 209.88079,
+          "y": -281.30631
+        },
+        "width": 60,
+        "height": 60
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77977,
+      "p": {
+        "displayName": "闸前水位",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 334.13336,
+          "y": -248.15061
+        },
+        "width": 52.22073,
+        "height": 117.3114
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77978,
+      "p": {
+        "parent": {
+          "__i": 77977
+        },
+        "position": {
+          "x": 334.13336,
+          "y": -231.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "4000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77979,
+      "p": {
+        "parent": {
+          "__i": 77977
+        },
+        "position": {
+          "x": 334.13336,
+          "y": -196.30631
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸前水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77980,
+      "p": {
+        "displayName": "水位",
+        "parent": {
+          "__i": 77977
+        },
+        "image": "symbols/icon/水位.json",
+        "position": {
+          "x": 335.04592,
+          "y": -284.30631
+        },
+        "width": 45,
+        "height": 45
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77981,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 79.28612,
+          "y": -84.36538
+        },
+        "width": 60,
+        "height": 119.74093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77982,
+      "p": {
+        "parent": {
+          "__i": 77981
+        },
+        "position": {
+          "x": 79.47541,
+          "y": -66.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "5000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77983,
+      "p": {
+        "parent": {
+          "__i": 77981
+        },
+        "position": {
+          "x": 79.47541,
+          "y": -31.30631
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸后水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77984,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 77981
+        },
+        "image": "symbols/icon/闸后水位.json",
+        "position": {
+          "x": 79.28612,
+          "y": -114.23584
+        },
+        "width": 60,
+        "height": 60
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77985,
+      "p": {
+        "displayName": "闸门开度",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 208.17322,
+          "y": -84.36537
+        },
+        "width": 87.28108,
+        "height": 119.74093
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77986,
+      "p": {
+        "displayName": "调度中心",
+        "parent": {
+          "__i": 77985
+        },
+        "image": "symbols/调度中心.json",
+        "position": {
+          "x": 210.79335,
+          "y": -114.23584
+        },
+        "width": 60,
+        "height": 60
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77987,
+      "p": {
+        "parent": {
+          "__i": 77985
+        },
+        "position": {
+          "x": 210.98264,
+          "y": -66.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "30%",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77988,
+      "p": {
+        "parent": {
+          "__i": 77985
+        },
+        "position": {
+          "x": 208.17322,
+          "y": -31.30631
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门开度",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77989,
+      "p": {
+        "displayName": "闸门状态",
+        "parent": {
+          "__i": 77962
+        },
+        "position": {
+          "x": 335.04592,
+          "y": -80.61538
+        },
+        "width": 52.22073,
+        "height": 112.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77990,
+      "p": {
+        "parent": {
+          "__i": 77989
+        },
+        "position": {
+          "x": 335.04592,
+          "y": -66.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "关闭",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77991,
+      "p": {
+        "parent": {
+          "__i": 77989
+        },
+        "position": {
+          "x": 335.04592,
+          "y": -31.30631
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸前水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77992,
+      "p": {
+        "displayName": "状态",
+        "parent": {
+          "__i": 77989
+        },
+        "image": "symbols/icon/状态.json",
+        "position": {
+          "x": 335.04592,
+          "y": -114.23584
+        },
+        "width": 45,
+        "height": 45
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77993,
+      "p": {
+        "displayName": "左中",
+        "parent": {
+          "__i": 77961
+        },
+        "position": {
+          "x": 209.88079,
+          "y": 162.47158
+        },
+        "width": 426.28318,
+        "height": 265
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77994,
+      "p": {
+        "parent": {
+          "__i": 77993
+        },
+        "position": {
+          "x": 209.88079,
+          "y": 162.47158
+        },
+        "width": 426.28318,
+        "height": 265
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgba(2,27,69,0.6)",
+        "shape.border.width": 2,
+        "shape.border.color": "rgba(29,104,224,0)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width.absolute": true,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#1e69e1"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 77995,
+      "p": {
+        "parent": {
+          "__i": 77993
+        },
+        "position": {
+          "x": 215.52653,
+          "y": 50.43826
+        },
+        "width": 206.01557,
+        "height": 36.28012,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 112.51874,
+              "y": 32.2982
+            },
+            {
+              "x": 123.95513,
+              "y": 43.56614
+            },
+            {
+              "x": 126.83728,
+              "y": 58.36718
+            },
+            {
+              "x": 130.07242,
+              "y": 62.5921
+            },
+            {
+              "x": 133.30757,
+              "y": 66.81703
+            },
+            {
+              "x": 140.03858,
+              "y": 67.91272
+            },
+            {
+              "x": 140.03858,
+              "y": 67.91272
+            },
+            {
+              "x": 140.03858,
+              "y": 67.91272
+            },
+            {
+              "x": 141.75763,
+              "y": 67.91272
+            },
+            {
+              "x": 179.56207,
+              "y": 67.91272
+            },
+            {
+              "x": 217.36651,
+              "y": 67.91272
+            },
+            {
+              "x": 290.05751,
+              "y": 67.91272
+            },
+            {
+              "x": 290.05751,
+              "y": 67.91272
+            },
+            {
+              "x": 290.05751,
+              "y": 67.91272
+            },
+            {
+              "x": 293.92862,
+              "y": 68.57832
+            },
+            {
+              "x": 299.59929,
+              "y": 62.5921
+            },
+            {
+              "x": 302.06192,
+              "y": 59.99242
+            },
+            {
+              "x": 304.28174,
+              "y": 46.37825
+            },
+            {
+              "x": 307.50416,
+              "y": 41.30965
+            },
+            {
+              "x": 310.72657,
+              "y": 36.24107
+            },
+            {
+              "x": 318.53431,
+              "y": 32.2982
+            },
+            {
+              "x": 318.53431,
+              "y": 32.2982
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": "rgba(0,33,79,0)",
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2,
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#00214e"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 77996,
+      "p": {
+        "parent": {
+          "__i": 77993
+        },
+        "position": {
+          "x": 216.03892,
+          "y": 50.43826
+        },
+        "width": 144.62707,
+        "height": 23.67675
+      },
+      "s": {
+        "text": "泵站电机运行监测",
+        "text.color": "#0ac1fa",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77997,
+      "p": {
+        "displayName": "lineAreaChart",
+        "parent": {
+          "__i": 77993
+        },
+        "image": "symbols/图表/lineAreaChart.json",
+        "position": {
+          "x": 205.68963,
+          "y": 198.13187
+        },
+        "width": 370.21339,
+        "height": 145.36068
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "x.lineColor": "#0eadf1",
+        "y.fontColor": "#0eadf1",
+        "y.lineColor": "#0eadf1",
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ],
+        "x.lineFont": "12px Arial",
+        "charts.x.fontColor": "#0eadf1",
+        "y.borderColors": [
+          "rgba(29,37,82,0)",
+          "rgba(16,22,54,0)"
+        ],
+        "line.isShade": true,
+        "line.isPoint": true,
+        "line.pointRs": 2,
+        "y.isScaleLine": false,
+        "y.isScaleShow": true,
+        "y.pointWidth": 3,
+        "y.fontStyle": "12px Arial"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77998,
+      "p": {
+        "displayName": "图例说明",
+        "parent": {
+          "__i": 77993
+        },
+        "position": {
+          "x": 266.92327,
+          "y": 100.31993
+        },
+        "width": 242.39575,
+        "height": 23.72156
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 77999,
+      "p": {
+        "parent": {
+          "__i": 77998
+        },
+        "position": {
+          "x": 178.86069,
+          "y": 100.31993
+        },
+        "width": 66.2706,
+        "height": 23.72156
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78000,
+      "p": {
+        "parent": {
+          "__i": 77999
+        },
+        "position": {
+          "x": 151.72539,
+          "y": 100.31993
+        },
+        "width": 8,
+        "height": 8
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#32D3EB",
+        "shape.border.width": 1,
+        "shape.border.color": "#32D3EB"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78001,
+      "p": {
+        "parent": {
+          "__i": 77999
+        },
+        "position": {
+          "x": 187.86544,
+          "y": 100.31993
+        },
+        "width": 48.26111,
+        "height": 23.72156
+      },
+      "s": {
+        "text": "电机电压",
+        "text.color": "rgb(179,185,189)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78002,
+      "p": {
+        "parent": {
+          "__i": 77999
+        },
+        "position": {
+          "x": 151.72539,
+          "y": 100.31993
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgba(49,210,235,0.4)",
+        "shape.border.color": "#32D3EB"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78003,
+      "p": {
+        "parent": {
+          "__i": 77998
+        },
+        "position": {
+          "x": 265.86069,
+          "y": 100.31993
+        },
+        "width": 66.2706,
+        "height": 23.72156
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78004,
+      "p": {
+        "parent": {
+          "__i": 78003
+        },
+        "position": {
+          "x": 238.72539,
+          "y": 100.31993
+        },
+        "width": 8,
+        "height": 8
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgb(241,125,164)",
+        "shape.border.width": 1,
+        "shape.border.color": "rgb(241,125,164)"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78005,
+      "p": {
+        "parent": {
+          "__i": 78003
+        },
+        "position": {
+          "x": 274.86544,
+          "y": 100.31993
+        },
+        "width": 48.26111,
+        "height": 23.72156
+      },
+      "s": {
+        "text": "电机电流",
+        "text.color": "rgb(179,185,189)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78006,
+      "p": {
+        "parent": {
+          "__i": 78003
+        },
+        "position": {
+          "x": 238.72539,
+          "y": 100.31993
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgba(242,126,165,0.4)",
+        "shape.border.color": "rgb(241,125,164)"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78007,
+      "p": {
+        "parent": {
+          "__i": 77998
+        },
+        "position": {
+          "x": 354.98584,
+          "y": 100.31993
+        },
+        "width": 66.2706,
+        "height": 23.72156
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78008,
+      "p": {
+        "parent": {
+          "__i": 78007
+        },
+        "position": {
+          "x": 327.85054,
+          "y": 100.31993
+        },
+        "width": 8,
+        "height": 8
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "#FEB64D",
+        "shape.border.width": 1,
+        "shape.border.color": "#FEB64D"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78009,
+      "p": {
+        "parent": {
+          "__i": 78007
+        },
+        "position": {
+          "x": 363.99059,
+          "y": 100.31993
+        },
+        "width": 48.26111,
+        "height": 23.72156
+      },
+      "s": {
+        "text": "电机频率",
+        "text.color": "rgb(179,185,189)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78010,
+      "p": {
+        "parent": {
+          "__i": 78007
+        },
+        "position": {
+          "x": 327.85054,
+          "y": 100.31993
+        },
+        "width": 12,
+        "height": 12
+      },
+      "s": {
+        "shape": "oval",
+        "shape.background": "rgba(255,184,77,0.4)",
+        "shape.border.color": "#FEB64D"
+      },
+      "a": {
+        "line.colors": [
+          "#32D3EB",
+          "rgb(241,125,164)",
+          "#FEB64D"
+        ]
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78011,
+      "p": {
+        "displayName": "左下",
+        "parent": {
+          "__i": 77961
+        },
+        "position": {
+          "x": 1952.01937,
+          "y": 95.47605
+        },
+        "anchor": {
+          "x": 4.58654,
+          "y": -0.91175
+        },
+        "width": 426.28318,
+        "height": 230.58379
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78012,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 209.99599,
+          "y": 421.29506
+        },
+        "width": 426.28318,
+        "height": 230
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgba(2,27,69,0.6)",
+        "shape.border.width": 2,
+        "shape.border.color": "rgba(29,104,224,0)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width.absolute": true,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#1e69e1"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78013,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 215.64174,
+          "y": 323.85132
+        },
+        "width": 206.01557,
+        "height": 36.28012,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 112.63395,
+              "y": 305.71126
+            },
+            {
+              "x": 124.07034,
+              "y": 316.9792
+            },
+            {
+              "x": 126.95249,
+              "y": 331.78024
+            },
+            {
+              "x": 130.18763,
+              "y": 336.00516
+            },
+            {
+              "x": 133.42278,
+              "y": 340.23009
+            },
+            {
+              "x": 140.15379,
+              "y": 341.32578
+            },
+            {
+              "x": 140.15379,
+              "y": 341.32578
+            },
+            {
+              "x": 140.15379,
+              "y": 341.32578
+            },
+            {
+              "x": 141.87284,
+              "y": 341.32578
+            },
+            {
+              "x": 179.67728,
+              "y": 341.32578
+            },
+            {
+              "x": 217.48172,
+              "y": 341.32578
+            },
+            {
+              "x": 290.17272,
+              "y": 341.32578
+            },
+            {
+              "x": 290.17272,
+              "y": 341.32578
+            },
+            {
+              "x": 290.17272,
+              "y": 341.32578
+            },
+            {
+              "x": 294.04383,
+              "y": 341.99138
+            },
+            {
+              "x": 299.7145,
+              "y": 336.00516
+            },
+            {
+              "x": 302.17713,
+              "y": 333.40548
+            },
+            {
+              "x": 304.39695,
+              "y": 319.79131
+            },
+            {
+              "x": 307.61937,
+              "y": 314.72271
+            },
+            {
+              "x": 310.84178,
+              "y": 309.65413
+            },
+            {
+              "x": 318.64952,
+              "y": 305.71126
+            },
+            {
+              "x": 318.64952,
+              "y": 305.71126
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": "rgba(0,33,79,0)",
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2,
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#00214e"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78014,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 216.15413,
+          "y": 325.11744
+        },
+        "width": 108.65784,
+        "height": 23.67675
+      },
+      "s": {
+        "text": "电站数据监控",
+        "text.color": "#0ac1fa",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78015,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 78011
+        },
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 223.33119,
+          "y": 432.48928
+        },
+        "width": 130.27296,
+        "height": 127.83181
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "gauge.colors": [
+          "#3dccae",
+          "#207ae8",
+          "#f06e23"
+        ],
+        "gauge.fontColor": "rgb(169,174,186)",
+        "gauge.activeValue": 30,
+        "gauge.pinColor": "#207ae8"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78016,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 78011
+        },
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 132.00459,
+          "y": 432.48928
+        },
+        "width": 130.27296,
+        "height": 127.83181
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "gauge.endAngle": 1.75,
+        "gauge.colors": [
+          "#3dccae",
+          "#207ae8",
+          "#f06e23"
+        ],
+        "gauge.pinColor": "#3dccae",
+        "gauge.activeValue": 16
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78017,
+      "p": {
+        "displayName": "仪表封装",
+        "parent": {
+          "__i": 78011
+        },
+        "image": "symbols/demo/jiji/仪表封装.json",
+        "position": {
+          "x": 315.33119,
+          "y": 433.48928
+        },
+        "width": 130.27296,
+        "height": 127.83181
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "gauge.endAngle": 2.25,
+        "gauge.startAngle": 1.25,
+        "gauge.colors": [
+          "#3dccae",
+          "#207ae8",
+          "#f06e23"
+        ],
+        "gauge.pinColor": "#f06e23",
+        "gauge.activeValue": 85
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78018,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 219.45718,
+          "y": 502.48677
+        },
+        "width": 77.45401,
+        "height": 31.07703
+      },
+      "s": {
+        "text": "三项电压",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78019,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 124.81904,
+          "y": 502.48677
+        },
+        "width": 77.45401,
+        "height": 31.07703
+      },
+      "s": {
+        "text": "三项电流",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78020,
+      "p": {
+        "parent": {
+          "__i": 78011
+        },
+        "position": {
+          "x": 317.9141,
+          "y": 502.48677
+        },
+        "width": 77.45401,
+        "height": 31.07703
+      },
+      "s": {
+        "text": "有功功率",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78021,
+      "p": {
+        "displayName": "右侧",
+        "parent": {
+          "__i": 77960
+        },
+        "host": {
+          "__i": 77960
+        },
+        "position": {
+          "x": 1696.98452,
+          "y": 77.44191
+        },
+        "width": 427.0926,
+        "height": 918.42039
+      },
+      "s": {
+        "layout.h": "scale",
+        "layout.v": "scale"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78022,
+      "p": {
+        "displayName": "右上",
+        "parent": {
+          "__i": 78021
+        },
+        "position": {
+          "x": 1697.38923,
+          "y": -154.26829
+        },
+        "width": 426.28318,
+        "height": 455
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78023,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1702.89782,
+          "y": -140
+        },
+        "width": 350.8139,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1527.49087,
+              "y": -140
+            },
+            {
+              "x": 1527.49087,
+              "y": -140
+            },
+            {
+              "x": 1790.60129,
+              "y": -140
+            },
+            {
+              "x": 1878.30477,
+              "y": -140
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78024,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1762.89782,
+          "y": -140
+        },
+        "width": 350,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1587.89782,
+              "y": -140
+            },
+            {
+              "x": 1587.89782,
+              "y": -140
+            },
+            {
+              "x": 1850.39782,
+              "y": -140
+            },
+            {
+              "x": 1937.89782,
+              "y": -140
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78025,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1623.89782,
+          "y": -140
+        },
+        "width": 350,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1448.89782,
+              "y": -140
+            },
+            {
+              "x": 1448.89782,
+              "y": -140
+            },
+            {
+              "x": 1711.39782,
+              "y": -140
+            },
+            {
+              "x": 1798.89782,
+              "y": -140
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78026,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1697.38923,
+          "y": -154.26829
+        },
+        "width": 426.28318,
+        "height": 455
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgba(2,27,69,0.6)",
+        "shape.border.width": 2,
+        "shape.border.color": "rgba(29,104,224,0)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width.absolute": true,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#1e69e1"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78027,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1703.03497,
+          "y": -363.58199
+        },
+        "width": 206.01557,
+        "height": 36.28012,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1600.02717,
+              "y": -381.72205
+            },
+            {
+              "x": 1611.46356,
+              "y": -370.45411
+            },
+            {
+              "x": 1614.34572,
+              "y": -355.65307
+            },
+            {
+              "x": 1617.58085,
+              "y": -351.42815
+            },
+            {
+              "x": 1620.81601,
+              "y": -347.20322
+            },
+            {
+              "x": 1627.54702,
+              "y": -346.10753
+            },
+            {
+              "x": 1627.54702,
+              "y": -346.10753
+            },
+            {
+              "x": 1627.54702,
+              "y": -346.10753
+            },
+            {
+              "x": 1629.26606,
+              "y": -346.10753
+            },
+            {
+              "x": 1667.0705,
+              "y": -346.10753
+            },
+            {
+              "x": 1704.87494,
+              "y": -346.10753
+            },
+            {
+              "x": 1777.56595,
+              "y": -346.10753
+            },
+            {
+              "x": 1777.56595,
+              "y": -346.10753
+            },
+            {
+              "x": 1777.56595,
+              "y": -346.10753
+            },
+            {
+              "x": 1781.43706,
+              "y": -345.44193
+            },
+            {
+              "x": 1787.10773,
+              "y": -351.42815
+            },
+            {
+              "x": 1789.57036,
+              "y": -354.02783
+            },
+            {
+              "x": 1791.79017,
+              "y": -367.642
+            },
+            {
+              "x": 1795.01259,
+              "y": -372.7106
+            },
+            {
+              "x": 1798.235,
+              "y": -377.77918
+            },
+            {
+              "x": 1806.04274,
+              "y": -381.72205
+            },
+            {
+              "x": 1806.04274,
+              "y": -381.72205
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": "rgba(0,33,79,0)",
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2,
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#00214e"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78028,
+      "p": {
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1706.85042,
+          "y": -364.32971
+        },
+        "width": 108.65784,
+        "height": 23.67675
+      },
+      "s": {
+        "text": "泄洪闸运行监测",
+        "text.color": "#0ac1fa",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78029,
+      "p": {
+        "displayName": "闸门开度",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1566.93845,
+          "y": -236.10695
+        },
+        "width": 60,
+        "height": 131.53946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78030,
+      "p": {
+        "parent": {
+          "__i": 78029
+        },
+        "position": {
+          "x": 1565.882,
+          "y": -213.14862
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "56%",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78031,
+      "p": {
+        "parent": {
+          "__i": 78029
+        },
+        "position": {
+          "x": 1565.882,
+          "y": -177.14862
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门开度",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78032,
+      "p": {
+        "displayName": "调度中心",
+        "parent": {
+          "__i": 78029
+        },
+        "image": "symbols/调度中心.json",
+        "position": {
+          "x": 1566.93845,
+          "y": -271.87668
+        },
+        "width": 60,
+        "height": 60
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78033,
+      "p": {
+        "displayName": "闸前水位",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1694.57981,
+          "y": -232.35695
+        },
+        "width": 87.28108,
+        "height": 124.03946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78034,
+      "p": {
+        "parent": {
+          "__i": 78033
+        },
+        "position": {
+          "x": 1697.38923,
+          "y": -213.14862
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "3000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78035,
+      "p": {
+        "parent": {
+          "__i": 78033
+        },
+        "position": {
+          "x": 1694.57981,
+          "y": -177.14862
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸前水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78036,
+      "p": {
+        "displayName": "水位",
+        "parent": {
+          "__i": 78033
+        },
+        "image": "symbols/icon/水位.json",
+        "position": {
+          "x": 1695.05361,
+          "y": -271.87668
+        },
+        "width": 45,
+        "height": 45
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78037,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1821.45251,
+          "y": -236.10695
+        },
+        "width": 60,
+        "height": 131.53946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78038,
+      "p": {
+        "parent": {
+          "__i": 78037
+        },
+        "position": {
+          "x": 1821.45251,
+          "y": -213.14862
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "4000",
+        "text.color": "rgb(255,255,255)",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78039,
+      "p": {
+        "parent": {
+          "__i": 78037
+        },
+        "position": {
+          "x": 1821.45251,
+          "y": -177.14862
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸后水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78040,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 78037
+        },
+        "image": "symbols/icon/闸后水位.json",
+        "position": {
+          "x": 1821.45251,
+          "y": -271.87668
+        },
+        "width": 60,
+        "height": 60
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78041,
+      "p": {
+        "displayName": "闸门通流量",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1565.69271,
+          "y": -46.61538
+        },
+        "width": 55,
+        "height": 124.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78042,
+      "p": {
+        "parent": {
+          "__i": 78041
+        },
+        "position": {
+          "x": 1566.79456,
+          "y": -26.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "5000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78043,
+      "p": {
+        "parent": {
+          "__i": 78041
+        },
+        "position": {
+          "x": 1566.79456,
+          "y": 8.69369
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通流量",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78044,
+      "p": {
+        "displayName": "流量",
+        "parent": {
+          "__i": 78041
+        },
+        "image": "symbols/流量.json",
+        "position": {
+          "x": 1565.69271,
+          "y": -81.23584
+        },
+        "width": 55,
+        "height": 55
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78045,
+      "p": {
+        "displayName": "闸门通流速",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1695.49237,
+          "y": -46.61538
+        },
+        "width": 87.28108,
+        "height": 124.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78046,
+      "p": {
+        "parent": {
+          "__i": 78045
+        },
+        "position": {
+          "x": 1698.30178,
+          "y": -26.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "60",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78047,
+      "p": {
+        "parent": {
+          "__i": 78045
+        },
+        "position": {
+          "x": 1695.49237,
+          "y": 8.69369
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通流速",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78048,
+      "p": {
+        "displayName": "速度",
+        "parent": {
+          "__i": 78045
+        },
+        "image": "symbols/速度.json",
+        "position": {
+          "x": 1698.1125,
+          "y": -81.23584
+        },
+        "width": 55,
+        "height": 55
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78049,
+      "p": {
+        "displayName": "闸门通压力",
+        "parent": {
+          "__i": 78022
+        },
+        "position": {
+          "x": 1822.36507,
+          "y": -44.11538
+        },
+        "width": 52.22073,
+        "height": 119.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78050,
+      "p": {
+        "parent": {
+          "__i": 78049
+        },
+        "position": {
+          "x": 1822.36507,
+          "y": -26.30631
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "1000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78051,
+      "p": {
+        "parent": {
+          "__i": 78049
+        },
+        "position": {
+          "x": 1822.36507,
+          "y": 8.69369
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通压力",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78052,
+      "p": {
+        "displayName": "状态",
+        "parent": {
+          "__i": 78049
+        },
+        "image": "symbols/icon/状态.json",
+        "position": {
+          "x": 1820.97258,
+          "y": -81.23584
+        },
+        "width": 45,
+        "height": 45
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78053,
+      "p": {
+        "displayName": "右下",
+        "parent": {
+          "__i": 78021
+        },
+        "position": {
+          "x": 1696.57981,
+          "y": 309.1521
+        },
+        "width": 426.28318,
+        "height": 455
+      },
+      "s": {
+        "layout.h": "left",
+        "layout.v": "top"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78054,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1702.0884,
+          "y": 323.42039
+        },
+        "width": 350.8139,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1526.68145,
+              "y": 323.42039
+            },
+            {
+              "x": 1526.68145,
+              "y": 323.42039
+            },
+            {
+              "x": 1789.79187,
+              "y": 323.42039
+            },
+            {
+              "x": 1877.49535,
+              "y": 323.42039
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78055,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1762.0884,
+          "y": 323.42039
+        },
+        "width": 350,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1587.0884,
+              "y": 323.42039
+            },
+            {
+              "x": 1587.0884,
+              "y": 323.42039
+            },
+            {
+              "x": 1849.5884,
+              "y": 323.42039
+            },
+            {
+              "x": 1937.0884,
+              "y": 323.42039
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78056,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1623.0884,
+          "y": 323.42039
+        },
+        "width": 350,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1448.0884,
+              "y": 323.42039
+            },
+            {
+              "x": 1448.0884,
+              "y": 323.42039
+            },
+            {
+              "x": 1710.5884,
+              "y": 323.42039
+            },
+            {
+              "x": 1798.0884,
+              "y": 323.42039
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78057,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1696.57981,
+          "y": 309.1521
+        },
+        "width": 426.28318,
+        "height": 455
+      },
+      "s": {
+        "shape": "roundRect",
+        "shape.background": "rgba(2,27,69,0.6)",
+        "shape.border.width": 2,
+        "shape.border.color": "rgba(29,104,224,0)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width.absolute": true,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#1e69e1"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78058,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1702.22555,
+          "y": 99.8384
+        },
+        "width": 206.01557,
+        "height": 36.28012,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 1599.21775,
+              "y": 81.69834
+            },
+            {
+              "x": 1610.65414,
+              "y": 92.96628
+            },
+            {
+              "x": 1613.5363,
+              "y": 107.76732
+            },
+            {
+              "x": 1616.77143,
+              "y": 111.99224
+            },
+            {
+              "x": 1620.00659,
+              "y": 116.21717
+            },
+            {
+              "x": 1626.7376,
+              "y": 117.31286
+            },
+            {
+              "x": 1626.7376,
+              "y": 117.31286
+            },
+            {
+              "x": 1626.7376,
+              "y": 117.31286
+            },
+            {
+              "x": 1628.45664,
+              "y": 117.31286
+            },
+            {
+              "x": 1666.26108,
+              "y": 117.31286
+            },
+            {
+              "x": 1704.06552,
+              "y": 117.31286
+            },
+            {
+              "x": 1776.75653,
+              "y": 117.31286
+            },
+            {
+              "x": 1776.75653,
+              "y": 117.31286
+            },
+            {
+              "x": 1776.75653,
+              "y": 117.31286
+            },
+            {
+              "x": 1780.62764,
+              "y": 117.97846
+            },
+            {
+              "x": 1786.29831,
+              "y": 111.99224
+            },
+            {
+              "x": 1788.76094,
+              "y": 109.39256
+            },
+            {
+              "x": 1790.98075,
+              "y": 95.77839
+            },
+            {
+              "x": 1794.20317,
+              "y": 90.70979
+            },
+            {
+              "x": 1797.42558,
+              "y": 85.64121
+            },
+            {
+              "x": 1805.23332,
+              "y": 81.69834
+            },
+            {
+              "x": 1805.23332,
+              "y": 81.69834
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": "rgba(0,33,79,0)",
+        "shape.border.color": "#00214e",
+        "shape.border.width": 2,
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.3d": true,
+        "shape.border.3d.color": "#00214e"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78059,
+      "p": {
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1706.041,
+          "y": 99.09068
+        },
+        "width": 108.65784,
+        "height": 23.67675
+      },
+      "s": {
+        "text": "排沙闸运行监测",
+        "text.color": "#0ac1fa",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78060,
+      "p": {
+        "displayName": "闸门开度",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1566.12903,
+          "y": 227.31344
+        },
+        "width": 60,
+        "height": 131.53946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78061,
+      "p": {
+        "parent": {
+          "__i": 78060
+        },
+        "position": {
+          "x": 1565.07258,
+          "y": 250.27177
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "56%",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78062,
+      "p": {
+        "parent": {
+          "__i": 78060
+        },
+        "position": {
+          "x": 1565.07258,
+          "y": 286.27177
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门开度",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78063,
+      "p": {
+        "displayName": "调度中心",
+        "parent": {
+          "__i": 78060
+        },
+        "image": "symbols/调度中心.json",
+        "position": {
+          "x": 1566.12903,
+          "y": 191.54371
+        },
+        "width": 60,
+        "height": 60
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78064,
+      "p": {
+        "displayName": "闸前水位",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1693.77039,
+          "y": 231.06344
+        },
+        "width": 87.28108,
+        "height": 124.03946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78065,
+      "p": {
+        "parent": {
+          "__i": 78064
+        },
+        "position": {
+          "x": 1696.57981,
+          "y": 250.27177
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "3000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78066,
+      "p": {
+        "parent": {
+          "__i": 78064
+        },
+        "position": {
+          "x": 1693.77039,
+          "y": 286.27177
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸前水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78067,
+      "p": {
+        "displayName": "水位",
+        "parent": {
+          "__i": 78064
+        },
+        "image": "symbols/icon/水位.json",
+        "position": {
+          "x": 1694.24419,
+          "y": 191.54371
+        },
+        "width": 45,
+        "height": 45
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78068,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1820.64309,
+          "y": 227.31344
+        },
+        "width": 60,
+        "height": 131.53946
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78069,
+      "p": {
+        "parent": {
+          "__i": 78068
+        },
+        "position": {
+          "x": 1820.64309,
+          "y": 250.27177
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "4000",
+        "text.color": "rgb(255,255,255)",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78070,
+      "p": {
+        "parent": {
+          "__i": 78068
+        },
+        "position": {
+          "x": 1820.64309,
+          "y": 286.27177
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸后水位",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78071,
+      "p": {
+        "displayName": "闸后水位",
+        "parent": {
+          "__i": 78068
+        },
+        "image": "symbols/icon/闸后水位.json",
+        "position": {
+          "x": 1820.64309,
+          "y": 191.54371
+        },
+        "width": 60,
+        "height": 60
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78072,
+      "p": {
+        "displayName": "闸门通流量",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1564.88329,
+          "y": 416.80502
+        },
+        "width": 55,
+        "height": 124.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78073,
+      "p": {
+        "parent": {
+          "__i": 78072
+        },
+        "position": {
+          "x": 1565.98514,
+          "y": 437.11408
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "5000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78074,
+      "p": {
+        "parent": {
+          "__i": 78072
+        },
+        "position": {
+          "x": 1565.98514,
+          "y": 472.11408
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通流量",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78075,
+      "p": {
+        "displayName": "流量",
+        "parent": {
+          "__i": 78072
+        },
+        "image": "symbols/流量.json",
+        "position": {
+          "x": 1564.88329,
+          "y": 382.18455
+        },
+        "width": 55,
+        "height": 55
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78076,
+      "p": {
+        "displayName": "闸门通流速",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1694.68295,
+          "y": 416.80502
+        },
+        "width": 87.28108,
+        "height": 124.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78077,
+      "p": {
+        "parent": {
+          "__i": 78076
+        },
+        "position": {
+          "x": 1697.49236,
+          "y": 437.11408
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "60",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78078,
+      "p": {
+        "parent": {
+          "__i": 78076
+        },
+        "position": {
+          "x": 1694.68295,
+          "y": 472.11408
+        },
+        "width": 87.28108,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通流速",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78079,
+      "p": {
+        "displayName": "速度",
+        "parent": {
+          "__i": 78076
+        },
+        "image": "symbols/速度.json",
+        "position": {
+          "x": 1697.30308,
+          "y": 382.18455
+        },
+        "width": 55,
+        "height": 55
+      },
+      "s": {
+        "image.stretch": "uniform"
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78080,
+      "p": {
+        "displayName": "闸门通压力",
+        "parent": {
+          "__i": 78053
+        },
+        "position": {
+          "x": 1821.55565,
+          "y": 419.30502
+        },
+        "width": 52.22073,
+        "height": 119.24093
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78081,
+      "p": {
+        "parent": {
+          "__i": 78080
+        },
+        "position": {
+          "x": 1821.55565,
+          "y": 437.11408
+        },
+        "width": 32.29036,
+        "height": 22.69217
+      },
+      "s": {
+        "text": "1000",
+        "text.color": "#ffffff",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78082,
+      "p": {
+        "parent": {
+          "__i": 78080
+        },
+        "position": {
+          "x": 1821.55565,
+          "y": 472.11408
+        },
+        "width": 52.22073,
+        "height": 13.6228
+      },
+      "s": {
+        "text": "闸门通压力",
+        "text.align": "center",
+        "text.color": "#08cbff",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78083,
+      "p": {
+        "displayName": "状态",
+        "parent": {
+          "__i": 78080
+        },
+        "image": "symbols/icon/状态.json",
+        "position": {
+          "x": 1820.16316,
+          "y": 382.18455
+        },
+        "width": 45,
+        "height": 45
+      },
+      "a": {
+        "shapeColor": "#08cbff"
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78084,
+      "p": {
+        "displayName": "视频弹窗",
+        "parent": {
+          "__i": 77960
+        },
+        "tag": "video_win",
+        "host": {
+          "__i": 77960
+        },
+        "position": {
+          "x": 648.91966,
+          "y": -249.37668
+        },
+        "width": 404.69063,
+        "height": 251.28558
+      },
+      "s": {
+        "2d.visible": false,
+        "layout.v": "scale",
+        "layout.h": "scale",
+        "2d.selectable": false,
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78085,
+      "p": {
+        "parent": {
+          "__i": 78084
+        },
+        "position": {
+          "x": 648.79899,
+          "y": -248.10869
+        },
+        "width": 400.44929,
+        "height": 248.7496
+      },
+      "s": {
+        "shape": "rect",
+        "shape.background": "rgba(60,95,130,0.3)",
+        "shape.border.color": "rgb(53,201,242)",
+        "layout.v": "top",
+        "layout.h": "left",
+        "shape.border.width": 1,
+        "shape.border.3d": true,
+        "shape.border.3d.color": "rgb(0,238,255)",
+        "select.width": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78086,
+      "p": {
+        "displayName": "video",
+        "parent": {
+          "__i": 78084
+        },
+        "image": "symbols/html/video.json",
+        "position": {
+          "x": 648.70542,
+          "y": -237.52859
+        },
+        "width": 400.14582,
+        "height": 226.0394
+      },
+      "s": {
+        "2d.selectable": false,
+        "2d.movable": false,
+        "2d.editable": false,
+        "select.width": 0,
+        "select.padding": 0
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78087,
+      "p": {
+        "parent": {
+          "__i": 78084
+        },
+        "position": {
+          "x": 454.35634,
+          "y": -367.20341
+        },
+        "width": 15.56399,
+        "height": 15.63207
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78088,
+      "p": {
+        "parent": {
+          "__i": 78087
+        },
+        "position": {
+          "x": 454.35634,
+          "y": -373.03282
+        },
+        "width": 15.56399,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 446.57434,
+              "y": -373.03282
+            },
+            {
+              "x": 462.13833,
+              "y": -373.03282
+            },
+            {
+              "x": 462.13833,
+              "y": -373.03282
+            },
+            {
+              "x": 462.13833,
+              "y": -373.03282
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(23,232,229)",
+        "shape.border.width": 4
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78089,
+      "p": {
+        "parent": {
+          "__i": 78087
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 448.55933,
+          "y": -367.20341
+        },
+        "width": 15.63208,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 440.74329,
+              "y": -367.20341
+            },
+            {
+              "x": 456.37537,
+              "y": -367.20341
+            },
+            {
+              "x": 456.37537,
+              "y": -367.20341
+            },
+            {
+              "x": 456.37537,
+              "y": -367.20341
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(23,232,229)",
+        "shape.border.width": 4
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78090,
+      "p": {
+        "parent": {
+          "__i": 78084
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 843.44891,
+          "y": -367.23745
+        },
+        "width": 15.56399,
+        "height": 15.63207
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78091,
+      "p": {
+        "parent": {
+          "__i": 78090
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 849.27833,
+          "y": -367.23745
+        },
+        "width": 15.56399,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 841.49633,
+              "y": -367.23745
+            },
+            {
+              "x": 857.06032,
+              "y": -367.23745
+            },
+            {
+              "x": 857.06032,
+              "y": -367.23745
+            },
+            {
+              "x": 857.06032,
+              "y": -367.23745
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(23,232,229)",
+        "shape.border.width": 4
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78092,
+      "p": {
+        "parent": {
+          "__i": 78090
+        },
+        "rotation": -3.14159,
+        "position": {
+          "x": 843.44891,
+          "y": -373.03445
+        },
+        "width": 15.63208,
+        "height": 1,
+        "segments": {
+          "__a": [
+            1,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 835.63287,
+              "y": -373.03445
+            },
+            {
+              "x": 851.26495,
+              "y": -373.03445
+            },
+            {
+              "x": 851.26495,
+              "y": -373.03445
+            },
+            {
+              "x": 851.26495,
+              "y": -373.03445
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.color": "rgb(23,232,229)",
+        "shape.border.width": 4
+      }
+    },
+    {
+      "c": "ht.Block",
+      "i": 78093,
+      "p": {
+        "displayName": "流量图标",
+        "parent": {
+          "__i": 78084
+        },
+        "position": {
+          "x": 471.13891,
+          "y": -348.84529
+        },
+        "width": 18.00115,
+        "height": 17.78451
+      },
+      "s": {
+        "2d.selectable": false,
+        "2d.movable": false,
+        "2d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78094,
+      "p": {
+        "parent": {
+          "__i": 78093
+        },
+        "position": {
+          "x": 471.13891,
+          "y": -348.84529
+        },
+        "width": 18.00115,
+        "height": 17.78451,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            2,
+            4,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            5,
+            1,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2,
+            4,
+            5
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 471.13891,
+              "y": -339.95303
+            },
+            {
+              "x": 469.89356,
+              "y": -339.95303
+            },
+            {
+              "x": 468.7048,
+              "y": -340.1224
+            },
+            {
+              "x": 467.57264,
+              "y": -340.5035
+            },
+            {
+              "x": 466.49711,
+              "y": -340.84226
+            },
+            {
+              "x": 465.53478,
+              "y": -341.35038
+            },
+            {
+              "x": 464.68567,
+              "y": -341.98555
+            },
+            {
+              "x": 463.04404,
+              "y": -343.25587
+            },
+            {
+              "x": 462.13833,
+              "y": -344.90729
+            },
+            {
+              "x": 462.19493,
+              "y": -346.68574
+            },
+            {
+              "x": 462.25156,
+              "y": -348.08309
+            },
+            {
+              "x": 462.76102,
+              "y": -349.35341
+            },
+            {
+              "x": 463.94978,
+              "y": -350.70843
+            },
+            {
+              "x": 469.44069,
+              "y": -357.06004
+            },
+            {
+              "x": 469.83693,
+              "y": -357.48348
+            },
+            {
+              "x": 470.45962,
+              "y": -357.73754
+            },
+            {
+              "x": 471.13891,
+              "y": -357.73754
+            },
+            {
+              "x": 471.8182,
+              "y": -357.73754
+            },
+            {
+              "x": 472.44089,
+              "y": -357.48348
+            },
+            {
+              "x": 472.83713,
+              "y": -357.06004
+            },
+            {
+              "x": 478.78091,
+              "y": -350.11561
+            },
+            {
+              "x": 479.23377,
+              "y": -349.48045
+            },
+            {
+              "x": 479.51679,
+              "y": -348.97232
+            },
+            {
+              "x": 479.74324,
+              "y": -348.46419
+            },
+            {
+              "x": 480.02626,
+              "y": -347.87136
+            },
+            {
+              "x": 480.13948,
+              "y": -347.27856
+            },
+            {
+              "x": 480.13948,
+              "y": -346.68574
+            },
+            {
+              "x": 480.13948,
+              "y": -344.90729
+            },
+            {
+              "x": 479.17715,
+              "y": -343.21353
+            },
+            {
+              "x": 477.53555,
+              "y": -341.94321
+            },
+            {
+              "x": 475.78071,
+              "y": -340.63053
+            },
+            {
+              "x": 473.51642,
+              "y": -339.95303
+            },
+            {
+              "x": 471.13891,
+              "y": -339.95303
+            },
+            {
+              "x": 471.08231,
+              "y": -356.34019
+            },
+            {
+              "x": 471.02568,
+              "y": -356.34019
+            },
+            {
+              "x": 470.96909,
+              "y": -356.34019
+            },
+            {
+              "x": 470.96909,
+              "y": -356.29785
+            },
+            {
+              "x": 465.47818,
+              "y": -349.90388
+            },
+            {
+              "x": 464.51584,
+              "y": -348.76059
+            },
+            {
+              "x": 464.06298,
+              "y": -347.74433
+            },
+            {
+              "x": 464.00638,
+              "y": -346.60104
+            },
+            {
+              "x": 463.94978,
+              "y": -345.20369
+            },
+            {
+              "x": 464.68567,
+              "y": -343.89103
+            },
+            {
+              "x": 465.98765,
+              "y": -342.91711
+            },
+            {
+              "x": 466.66693,
+              "y": -342.40898
+            },
+            {
+              "x": 467.40282,
+              "y": -342.02788
+            },
+            {
+              "x": 468.30853,
+              "y": -341.73148
+            },
+            {
+              "x": 469.21427,
+              "y": -341.43508
+            },
+            {
+              "x": 470.11998,
+              "y": -341.30805
+            },
+            {
+              "x": 471.13891,
+              "y": -341.30805
+            },
+            {
+              "x": 473.00695,
+              "y": -341.30805
+            },
+            {
+              "x": 474.8184,
+              "y": -341.85851
+            },
+            {
+              "x": 476.12035,
+              "y": -342.87477
+            },
+            {
+              "x": 477.47893,
+              "y": -343.89103
+            },
+            {
+              "x": 478.21484,
+              "y": -345.20369
+            },
+            {
+              "x": 478.21484,
+              "y": -346.6434
+            },
+            {
+              "x": 478.21484,
+              "y": -347.49027
+            },
+            {
+              "x": 477.8752,
+              "y": -348.25246
+            },
+            {
+              "x": 477.08268,
+              "y": -349.39575
+            },
+            {
+              "x": 471.25213,
+              "y": -356.29785
+            },
+            {
+              "x": 471.19551,
+              "y": -356.34019
+            },
+            {
+              "x": 471.13891,
+              "y": -356.34019
+            },
+            {
+              "x": 471.08231,
+              "y": -356.34019
+            }
+          ]
+        }
+      },
+      "s": {
+        "type": "shape",
+        "opacity": 1,
+        "shape.background": "#44def9",
+        "shape.border.color": null,
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78095,
+      "p": {
+        "parent": {
+          "__i": 78093
+        },
+        "position": {
+          "x": 471.16721,
+          "y": -345.733
+        },
+        "width": 8.77415,
+        "height": 5.20832,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            5
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 472.38426,
+              "y": -348.21012
+            },
+            {
+              "x": 470.11998,
+              "y": -347.87136
+            },
+            {
+              "x": 470.2332,
+              "y": -346.89746
+            },
+            {
+              "x": 468.36516,
+              "y": -346.89746
+            },
+            {
+              "x": 467.85569,
+              "y": -346.89746
+            },
+            {
+              "x": 467.34622,
+              "y": -346.98214
+            },
+            {
+              "x": 466.94995,
+              "y": -347.15153
+            },
+            {
+              "x": 466.89335,
+              "y": -347.15153
+            },
+            {
+              "x": 466.83676,
+              "y": -347.15153
+            },
+            {
+              "x": 466.83676,
+              "y": -347.10917
+            },
+            {
+              "x": 466.78013,
+              "y": -346.89746
+            },
+            {
+              "x": 466.78013,
+              "y": -346.68574
+            },
+            {
+              "x": 466.78013,
+              "y": -346.47401
+            },
+            {
+              "x": 466.78013,
+              "y": -344.69556
+            },
+            {
+              "x": 468.7048,
+              "y": -343.21353
+            },
+            {
+              "x": 471.08231,
+              "y": -343.17117
+            },
+            {
+              "x": 473.51642,
+              "y": -343.12884
+            },
+            {
+              "x": 475.55428,
+              "y": -344.65322
+            },
+            {
+              "x": 475.55428,
+              "y": -346.47401
+            },
+            {
+              "x": 475.55428,
+              "y": -346.98214
+            },
+            {
+              "x": 475.38446,
+              "y": -347.40559
+            },
+            {
+              "x": 475.15804,
+              "y": -347.82903
+            },
+            {
+              "x": 475.15804,
+              "y": -347.82903
+            },
+            {
+              "x": 475.15804,
+              "y": -347.87136
+            },
+            {
+              "x": 475.10142,
+              "y": -347.87136
+            },
+            {
+              "x": 474.19571,
+              "y": -348.16779
+            },
+            {
+              "x": 473.17677,
+              "y": -348.33716
+            },
+            {
+              "x": 472.38426,
+              "y": -348.21012
+            }
+          ]
+        }
+      },
+      "s": {
+        "type": "shape",
+        "opacity": 1,
+        "shape.background": "#44def9",
+        "shape.border.color": null,
+        "shape.dash.pattern": [
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 78096,
+      "p": {
+        "parent": {
+          "__i": 78084
+        },
+        "position": {
+          "x": 561.37711,
+          "y": -347.64658
+        },
+        "width": 150,
+        "height": 20.18193
+      },
+      "s": {
+        "text": "泵站视频监控",
+        "text.color": "#fbfbfc",
+        "text.font": "14px arial, sans-serif"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 78097,
+      "p": {
+        "displayName": "关闭",
+        "parent": {
+          "__i": 78084
+        },
+        "tag": "close_video",
+        "image": "symbols/icon/关闭.json",
+        "position": {
+          "x": 829.71793,
+          "y": -354.39553
+        },
+        "width": 26.6898,
+        "height": 24.58097
+      },
+      "s": {
+        "shape.foreground": "rgb(227,100,123)",
+        "interactive": true,
+        "onEnter": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'pointer';\n}",
+        "onLeave": "__ht__function(event, data, view) {\nview.getView().style.cursor = 'default';\n}"
+      }
+    }
+  ],
+  "modified": "Fri Nov 29 2019 13:46:05 GMT+0800 (中国标准时间)",
+  "contentRect": {
+    "x": -79.41707,
+    "y": -386.61967,
+    "width": 1993.33408,
+    "height": 930
+  }
+}

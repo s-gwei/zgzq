@@ -1,0 +1,12 @@
+server:
+  port: 7077
+spring:
+  influx:
+    url: http://192.168.2.71:6008
+    userName: admin
+    password: 123456
+    database: test
+    retention_policy: default
+    retention_policy_time: 0s
+    actions: 10000
+    bufferLimit: 20000

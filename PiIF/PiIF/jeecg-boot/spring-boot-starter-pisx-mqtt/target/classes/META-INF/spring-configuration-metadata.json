@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "mqtt",
+      "type": "com.pisx.config.MqttProperties",
+      "sourceType": "com.pisx.config.MqttProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mqtt.config",
+      "type": "java.util.Map<java.lang.String,com.pisx.config.MqttProperties$Config>",
+      "description": "所有的配置",
+      "sourceType": "com.pisx.config.MqttProperties"
+    },
+    {
+      "name": "mqtt.host-address",
+      "type": "java.lang.String",
+      "description": "本机ip作为clientid的后缀",
+      "sourceType": "com.pisx.config.MqttProperties"
+    }
+  ],
+  "hints": []
+}

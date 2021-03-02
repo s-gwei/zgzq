@@ -1,0 +1,186 @@
+{
+  "modified": "Mon Sep 02 2019 13:26:50 GMT+0800 (中国标准时间)",
+  "width": 136,
+  "height": 80,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "#979797",
+      "points": [
+        2.37888,
+        2.96464,
+        7.39833,
+        2.96464,
+        123.60451,
+        2.96464,
+        134.31062,
+        12.34463,
+        134.31062,
+        45.77773,
+        5.99496,
+        45.77773,
+        2.37888,
+        39.18051
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "scaleX": -1,
+      "rotation": -1.5708,
+      "points": [
+        -11.71519,
+        22.88585,
+        -11.71523,
+        11.71551,
+        29.29548,
+        11.71536,
+        36.5772,
+        15.6373,
+        36.57728,
+        36.57723
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "visible": false,
+      "displayName": "不规则图形",
+      "rotation": -1.5708,
+      "points": [
+        146.33885,
+        -40.13955,
+        146.33829,
+        128.27284,
+        201.22973,
+        128.27306,
+        228.52722,
+        102.52254,
+        228.5275,
+        23.82174
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "#32D3EB",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        58.65331,
+        44.52772,
+        2.5,
+        2.5
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "#32D3EB",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        27.4954,
+        74.01773,
+        3.78262,
+        4.88261
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#32D3EB",
+      "borderCap": "round",
+      "shadow": true,
+      "shadowColor": "#32D3EB",
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "points": [
+        59.4186,
+        47.33809,
+        54.97338,
+        55.26788,
+        40.1502,
+        55.26788,
+        30.23536,
+        74.01773
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(41,155,217,0.15)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        58.15331,
+        44.02773,
+        3.5,
+        3.5
+      ]
+    },
+    {
+      "type": "oval",
+      "background": "rgba(41,155,217,0.51)",
+      "borderColor": "#979797",
+      "shadow": true,
+      "shadowColor": "rgb(41,155,217)",
+      "shadowBlur": 24,
+      "shadowOffsetX": 0,
+      "shadowOffsetY": 0,
+      "rect": [
+        28.25393,
+        74.99685,
+        2.26555,
+        2.92437
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@generate_capLabel",
+        "value": "黄金峡分调中心"
+      },
+      "align": "center",
+      "color": "#32D3EB",
+      "font": "14px arial, sans-serif",
+      "rect": [
+        16.58691,
+        8.88536,
+        100.96411,
+        28.73743
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 2,
+      "borderColor": "rgb(0,145,194)",
+      "points": [
+        97.21285,
+        0.36089,
+        124.69661,
+        0.68918,
+        131.15364,
+        5.97702,
+        131.15364,
+        48.2926,
+        74.19934,
+        48.2926
+      ]
+    }
+  ]
+}

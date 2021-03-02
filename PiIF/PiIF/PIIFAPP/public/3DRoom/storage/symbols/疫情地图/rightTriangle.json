@@ -1,0 +1,23 @@
+{
+  "modified": "Sun Apr 26 2020 15:16:43 GMT+0800 (中国标准时间)",
+  "width": 5.5,
+  "height": 10,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgb(247,247,247)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(247,247,247)",
+      "borderJoin": "miter",
+      "closePath": true,
+      "points": [
+        0.06049,
+        0,
+        0.06049,
+        9.96631,
+        5.10483,
+        4.92198
+      ]
+    }
+  ]
+}

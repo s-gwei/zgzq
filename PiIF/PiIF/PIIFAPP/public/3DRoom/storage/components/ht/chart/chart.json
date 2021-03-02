@@ -1,0 +1,132 @@
+{
+  "modified": "Fri Feb 21 2020 17:46:33 GMT+0800 (中国标准时间)",
+  "width": 300,
+  "height": 260,
+  "snapshotURL": "",
+  "func": "__ht__function(g, rect, comp, data, view) {\nht.vector.comp.chart.apply(null, arguments);\n}",
+  "properties": {
+    "series": {
+      "valueType": "Object",
+      "defaultValue": [
+        {
+          "type": "bar",
+          "data": [
+            10,
+            30,
+            20
+          ]
+        },
+        {
+          "type": "line",
+          "data": [
+            40,
+            50,
+            10
+          ]
+        }
+      ],
+      "name": "ChartSeries"
+    },
+    "xAxis": {
+      "valueType": "Object",
+      "defaultValue": [
+        {
+          "data": [
+            "2017",
+            "2018",
+            "2019"
+          ]
+        }
+      ],
+      "name": "ChartXAxis"
+    },
+    "yAxis": {
+      "valueType": "Object",
+      "name": "ChartYAxis"
+    },
+    "colors": {
+      "valueType": "ColorArray",
+      "defaultValue": [
+        "rgb(51,153,255)",
+        "rgb(93,217,174)",
+        "#FEB64D",
+        "rgb(241,125,164)",
+        "rgb(135,144,204)",
+        "rgb(124,145,155)",
+        "rgb(48,242,120)",
+        "rgb(212,0,0)",
+        "#32D3EB",
+        "#c4ccd3"
+      ],
+      "name": "ChartColors"
+    },
+    "background": {
+      "valueType": "Color",
+      "defaultValue": null,
+      "name": "UIBackground"
+    },
+    "boundaryGap": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "ChartBoundaryGap"
+    },
+    "rectSelectBorderColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(61,61,61)",
+      "name": "ChartRectSelectBorderColor",
+      "group": "UISelect"
+    },
+    "rectSelectBackground": {
+      "valueType": "Color",
+      "defaultValue": "rgba(61,61,61,0.30)",
+      "name": "ChartRectSelectBackground"
+    },
+    "onRectSelected": {
+      "valueType": "Function",
+      "name": "ChartOnRectSelected",
+      "extraInfo": {
+        "arguments": [
+          "ranges",
+          "data",
+          "view"
+        ]
+      }
+    },
+    "tooltip": {
+      "valueType": "Boolean",
+      "defaultValue": true,
+      "name": "editor.tooltip",
+      "group": "editor.tooltip"
+    },
+    "tooltipLineColor": {
+      "valueType": "Color",
+      "defaultValue": "rgb(124,145,155)",
+      "name": "ChartTooltiLineColor"
+    },
+    "tooltipLineWidth": {
+      "valueType": "PositiveNumber",
+      "defaultValue": 1,
+      "name": "ChartTooltiLineWidth"
+    },
+    "tooltipLinePattern": {
+      "valueType": "NumberArray",
+      "name": "ChartTooltiLinePattern"
+    },
+    "tooltipPointerType": {
+      "valueType": "String",
+      "defaultValue": "line",
+      "name": "ChartTooltipPointerType"
+    }
+  },
+  "events": {
+    "onClick": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onClick.apply(this, arguments);\n}",
+    "onDown": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onDown.apply(this, arguments);\n}",
+    "onUp": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onUp.apply(this, arguments);\n}",
+    "onMove": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onMove.apply(this, arguments);\n}",
+    "onEnter": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onEnter.apply(this, arguments);\n}",
+    "onLeave": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onLeave.apply(this, arguments);\n}",
+    "onBeginDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onBeginDrag.apply(this, arguments);\n}",
+    "onDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onDrag.apply(this, arguments);\n}",
+    "onEndDrag": "__ht__function(event, data, view, point, width, height) {\nht.vector.chartInteractor.onEndDrag.apply(this, arguments);\n}"
+  }
+}

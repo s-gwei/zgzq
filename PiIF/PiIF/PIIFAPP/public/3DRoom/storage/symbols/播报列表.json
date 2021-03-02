@@ -1,0 +1,61 @@
+{
+  "modified": "Sun Apr 26 2020 15:54:27 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "date",
+      "valueType": "String"
+    },
+    {
+      "attr": "content",
+      "valueType": "String"
+    }
+  ],
+  "width": 380,
+  "height": 70,
+  "comps": [
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@date",
+        "value": "02月05日  11:08"
+      },
+      "color": "rgb(150,150,168)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        5.94283,
+        2.92122,
+        112.90751,
+        32.18014
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(245,248,252)",
+      "borderColor": "#979797",
+      "pixelPerfect": true,
+      "rect": [
+        1.38974,
+        35.10137,
+        378.61026,
+        31.77469
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@content",
+        "value": "国台办介绍疫情防控涉台工作：在陆台胞确诊3例疑似2例"
+      },
+      "color": "rgb(48,52,84)",
+      "font": "12px Arial",
+      "pixelPerfect": true,
+      "rect": [
+        5.94283,
+        34.89865,
+        368.71411,
+        32.18014
+      ]
+    }
+  ]
+}
