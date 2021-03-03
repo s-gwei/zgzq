@@ -254,8 +254,9 @@
         // return
          this.loading = true
          var obj = {
-              time: this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null,
+              time: this.$route.query.startTime && this.$route.query.startTime != 'null' ? this.$route.query.startTime +","+this.$route.query.endTime : null,
               projectId: this.$route.query.projectId,
+              planId: this.$route.query.planId,
               group: this.$route.query.departmentId,
               status: this.$route.query.status
           }
