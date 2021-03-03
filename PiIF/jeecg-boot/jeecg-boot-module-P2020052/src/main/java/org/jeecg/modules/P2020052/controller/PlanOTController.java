@@ -77,22 +77,21 @@ public class PlanOTController {
     public Result selectRiskTable(
             @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-            String[] time,String[] group,String planId) {
-
-        List<RiskVo> list = planOTService.selectRiskTable(time, group,planId);
+            String[] time,String[] group,String planId,String projectId) {
+        List<RiskVo> list = planOTService.selectRiskTable(time, group,planId,projectId);
         return Result.ok(list);
     }
 
     @GetMapping(value = "/exportRiskExcel")
     @ApiOperation(value = "风险措施报表导出")
-    public void exportRiskExcel(HttpServletResponse response,  String[] time,String[] group,String planId) throws IOException {
-        planOTService.exportRiskExcel(response, time,group,planId);
+    public void exportRiskExcel(HttpServletResponse response,  String[] time,String[] group,String planId,String projectId) throws IOException {
+        planOTService.exportRiskExcel(response, time,group,planId,projectId);
     }
     @GetMapping(value = "/WorkDelayTable")
     @ApiOperation(value = "工作任务延期报表")
     public Result WorkDelayTable(
-            String[] time,String projectId,String flag) throws ParseException {
-        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, projectId,flag);
+            String[] time,String[] group,String projectId) throws ParseException {
+        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, group,projectId);
         return Result.ok(list);
     }
 

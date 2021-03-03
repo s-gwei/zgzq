@@ -16,15 +16,16 @@ public interface PlanOTMapper {
 
     IPage<PlanINVo> selectINTable(Page page, @Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId") String planId);
 
-    List<RiskVo>  selectRiskProject(String[] time, String[] group);
+    List<RiskVo>  selectRiskProject(@Param("startTime")String startTime,@Param("endTime") String endTime, String[] group, @Param("projectId")String projectId);
 
     List<RiskVo>  selectRiskByPlan( String[] time, String[] group,@Param("planId") String planId);
 
-    List<PiplanActivityVo> WorkDelayTable(@Param("startTime")String startTime, @Param("endTime")String endTime, @Param("projectId")String projectId, @Param("flag")String flag);
+    List<PiplanActivityVo> WorkDelayTable(@Param("startTime") String startTime,@Param("group") String[] group, @Param("endTime") String endTime, @Param("projectId") String projectId);
 
     List<PlanOTVo> exportOTExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
     List<PlanINVo> exportINExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
     List<ProblemRickChainVo> problemRickChain(String riskId);
+
 }

@@ -58,19 +58,27 @@ public class PlanOTServiceImpl implements PlanOTService {
 
 
     @Override
-    public List<RiskVo> selectRiskTable(String[] time, String[] group, String planId) {
+    public List<RiskVo> selectRiskTable(String[] time, String[] group,  String planId,String projectId) {
+        String startTime = null;
+        String endTime = null;
+        if (time != null && !"".equals(time)) {
+            startTime = time[0];
+            endTime = time[1];
+        }
         if (planId == null || "".equals(planId)) {
-            List<RiskVo> list = planOTMapper.selectRiskProject(time, group);
+            List<RiskVo> list = planOTMapper.selectRiskProject(startTime, endTime,group,projectId);
             List resultList = new ArrayList();
             Map map = new HashMap<>();
             List nameList = null;
             for (int i = 0; i < list.size(); i++) {
                 if (i == 0) {
                     nameList = new ArrayList();
-                    map.put("name", list.get(i).getRisk_name());
+                    map.put(list.get(i).getRisk_name(), list.get(i).getRisk_name());
                     nameList.add(list.get(i));
                     continue;
                 }
+                String name = list.get(i).getRisk_name();
+                String a = (String) map.get(name);
                 if (map.get(list.get(i).getRisk_name()) == null) {
 
                     resultList.add(nameList);
@@ -128,17 +136,17 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public List<PiplanActivityVo> WorkDelayTable(String[] time, String projectId, String flag) throws ParseException {
+    public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId) throws ParseException {
         String startTime = null;
         String endTime = null;
-        time = new String[2];
-        time[0] = "2021-01-10";
-        time[1] = "2021-02-16";
+//        time = new String[2];
+//        time[0] = "2021-01-10";
+//        time[1] = "2021-02-16";
         if (time != null && !"".equals(time)) {
             startTime = time[0];
             endTime = time[1];
         }
-        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, endTime, projectId, flag);
+        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime,group, endTime, projectId);
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         long start = formatter.parse(startTime).getTime();
@@ -195,14 +203,17 @@ public class PlanOTServiceImpl implements PlanOTService {
                     String Xaxis = df.format(x);
                     act.setXaxis(Double.parseDouble(Xaxis));
                     //偏差值
-                    String deviation = null;
+                    String deviation = "0";
                     if(actualEndLong !=0) {
                         deviation = df.format((btTImeLong - actualEndLong) / (1000 * 60 * 60 * 24));
                     }else if(actualEndLong == 0 && targetStartTimeStrLong<currentStr){
                         deviation = df.format((btTImeLong - currentStr) / (1000 * 60 * 60 * 24));
-                    }else if(actualEndLong == 0 && targetStartTimeStrLong>currentStr){
-                        deviation = "0";
                     }
+//                    else if(actualEndLong == 0 && targetStartTimeStrLong>currentStr){
+//                        deviation = "0";
+//                    }else{
+//                        deviation = "0";
+//                    }
                     act.setDeviation(Double.parseDouble(deviation));
                 }
             }
@@ -354,10 +365,16 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException {
+    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String projectId, String planId) throws IOException {
         List<RiskVo> list = null;
+        String startTime = null;
+        String endTime = null;
+        if (time != null && !"".equals(time)) {
+            startTime = time[0];
+            endTime = time[1];
+        }
         if (planId == null || "".equals(planId)) {
-            list = planOTMapper.selectRiskProject(time, group);
+            list = planOTMapper.selectRiskProject(startTime,endTime, group, projectId);
         } else {
             list = planOTMapper.selectRiskByPlan(time, group, planId);
 

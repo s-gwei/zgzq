@@ -80,6 +80,9 @@
                 piplan_activity  pa
             WHERE
                 pa.id = ot.plan_activity_ref_id
+            <if test="planId!= null and planId !=''" >
+                and  ot.plan_activity_ref_id =#{planId}
+            </if>
            <if test="startTime!= null and startTime !=''" >
               and  pa.actual_start_date between  #{startTime}  and #{endTime}
            </if>
@@ -160,6 +163,9 @@
         piplan_activity  pa
         WHERE
         pa.id = sin.plan_activity_ref_id
+        <if test="planId!= null and planId !=''" >
+            and  sin.plan_activity_ref_id =#{planId}
+        </if>
         <if test="startTime!= null and startTime !=''" >
             and  pa.actual_start_date between  #{startTime}  and #{endTime}
         </if>
@@ -199,6 +205,9 @@
         piplan_activity  pa
         WHERE
         pa.id = sin.plan_activity_ref_id
+        <if test="planId!= null and planId !=''" >
+            and  sin.plan_activity_ref_id =#{planId}
+        </if>
         <if test="startTime!= null and startTime !=''" >
             and  pa.actual_start_date between  #{startTime}  and #{endTime}
         </if>
@@ -322,6 +331,16 @@
                     ) a ON pa.id = a.plan_activity_ref_id
                 WHERE
                      pa.actual_start_date is not null
+                     and pa.id in
+					( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+                    <if test="group!= null and group !=''" >
+                        and pigroup  in
+                        <foreach item="id"  collection="group"
+                                 open="(" separator="," close=")">
+                            #{id}
+                        </foreach>
+                    </if>
+        )
     </select>
 
     <select id="problemRickChain" resultMap="CaseResultMap">

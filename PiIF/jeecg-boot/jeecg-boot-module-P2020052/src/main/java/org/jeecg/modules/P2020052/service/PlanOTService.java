@@ -18,15 +18,15 @@ public interface PlanOTService {
 
     IPage<PlanINVo> selectINTable(Page page, String[] time, String[] group, String planId);
 
-    List<RiskVo>  selectRiskTable( String[] time, String[] group, String planId);
+    List<RiskVo>  selectRiskTable(String[] time, String[] group,  String planId,String projectId);
 
-    List<PiplanActivityVo> WorkDelayTable(String[] time, String projectId, String flag) throws ParseException;
+    List<PiplanActivityVo> WorkDelayTable(String[] time, String[] projectId, String flag) throws ParseException;
 
     void exportOTExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 
     void exportINExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 
-    void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
+    void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String id, String planId) throws IOException;
 
     List<ProblemRickChainVo> problemRickChain(String riskId);
 }
