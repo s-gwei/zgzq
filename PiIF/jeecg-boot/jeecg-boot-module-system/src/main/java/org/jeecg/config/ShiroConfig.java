@@ -77,8 +77,7 @@ public class ShiroConfig {
 
         //重汽项目过滤
         filterChainDefinitionMap.put("/test/test", "anon");
-        filterChainDefinitionMap.put("/HeavyDuty/**", "anon");
-        filterChainDefinitionMap.put("/HeavyDuty/**", "anon");
+        filterChainDefinitionMap.put("/HeavyDutyTable/**", "anon");
         filterChainDefinitionMap.put("/OTDrivice/**", "anon");
         //cas验证登录
         filterChainDefinitionMap.put("/cas/client/validateLogin", "anon");
