@@ -136,9 +136,9 @@ export default {
           this.isLoading = true
           this.isLoading = true
           var obj = {
-              time: this.$route.query.startTime +","+this.$route.query.endTime,
-              group: this.$route.query.departmentId,
-              planId: this.$route.query.planId
+              time: this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null,
+              projectId: this.$route.query.projectId,
+              // planId: this.$route.query.planId
           }
           this.queryParam = Object.assign({},obj)
           getAction(url,this.queryParam,'get').then((res) => {

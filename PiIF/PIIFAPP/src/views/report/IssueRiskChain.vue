@@ -175,7 +175,6 @@ import {getAction} from '@/api/manage';
           params.riskId = this.$route.query.riskId
           this.isLoading = true
           this.queryParam = Object.assign({},params)
-          // delete this.queryParam.name
           getAction(url,this.queryParam,'get').then((res) => {
             _this.isLoading = false
            if(res.success && res.result){

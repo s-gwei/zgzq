@@ -237,7 +237,7 @@
             .point()
             .position('xaxis*deviation')
             .color('sexuality',function(item){
-                return item === "正常进行任务" ? "#1890FF" : (item === "已完成任务" ? "#00F5FF" :item === "已逾期任务" ? "#F5222D" : (item === "可能逾期任务" ? "#FABC16" : "#fff"))
+                return item === "正常进行任务" ? "#1890FF" : (item === "已完成任务" ? "black" :item === "已逾期任务" ? "#F5222D" : (item === "可能逾期任务" ? "#FABC16" : "#fff"))
             })
             .size(4)
             .shape('circle')
@@ -254,25 +254,21 @@
         // return
          this.loading = true
          var obj = {
-              time: this.$route.query.startTime +","+this.$route.query.endTime,
+              time: this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null,
               projectId: this.$route.query.projectId,
+              group: this.$route.query.departmentId,
               status: this.$route.query.status
           }
          getAction(url,obj,'get').then((res) => {
               _this.loading = false
            if(res.success && res.result){
-                 _this.$nextTick(function(){
-                    // res.result.map(function(item){
-                    //    item.pert = Number(item.pert)
-                    // })
+              _this.$nextTick(function(){
                      _this.$set(_this,"chartDateALL", res.result)
                     !_this.loading && _this.renderChart(res.result)
               })
               // _this.renderChart(data)
            }else{
              _this.$nextTick(function(){
-              //  _this.$set(_this,"chartDateALL" , res.result)
-              //  !_this.loading && _this.renderChart(data)
               _this.visible = true
               _this.descriptionError = res.message
               setTimeout(function(){
