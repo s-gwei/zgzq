@@ -15,7 +15,6 @@
         locale: zhCN,
       }
     },
-    // data
     created () {
       let that = this
       enquireScreen(deviceType => {
