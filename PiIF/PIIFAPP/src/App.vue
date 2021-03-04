@@ -17,7 +17,7 @@
     },
 
 
-    
+    //我自己修改的内容，测试
     created () {
       let that = this
       enquireScreen(deviceType => {
