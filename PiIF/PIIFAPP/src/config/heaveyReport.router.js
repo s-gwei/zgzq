@@ -33,6 +33,11 @@ const router = {
         path: "issueRiskChain",
         name: "issueRiskChain",
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/IssueRiskChain')
+      },
+      {
+        path: "test",
+        name: "test",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/Test')
       }
     ]
   },
