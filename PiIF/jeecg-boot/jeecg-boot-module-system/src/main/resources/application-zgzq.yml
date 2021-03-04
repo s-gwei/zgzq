@@ -110,7 +110,7 @@ spring:
 
           # 多数据源配置
         multi-datasource1:
-          url: jdbc:mysql://localhost:3306/stold?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
           password: sungw
           driver-class-name: com.mysql.jdbc.Driver

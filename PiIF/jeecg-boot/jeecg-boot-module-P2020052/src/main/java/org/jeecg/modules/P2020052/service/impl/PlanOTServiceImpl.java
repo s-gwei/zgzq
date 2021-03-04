@@ -139,9 +139,9 @@ public class PlanOTServiceImpl implements PlanOTService {
     public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId) throws ParseException {
         String startTime = null;
         String endTime = null;
-//        time = new String[2];
-//        time[0] = "2021-01-10";
-//        time[1] = "2021-02-16";
+        time = new String[2];
+        time[0] = "2021-01-10";
+        time[1] = "2021-02-16";
         if (time != null && !"".equals(time)) {
             startTime = time[0];
             endTime = time[1];
