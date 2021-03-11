@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.ZLMapper">
+
+
+    <!-- PERT查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.P2020052.pojo.PiplanActivityVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="activityId" property="activityId"/>
+        <result column="targetStartTime" property="targetStartTime"/>
+        <result column="byTime" property="byTime"/>
+        <result column="expectedFinishTime" property="expectedFinishTime"/>
+        <result column="actualStartTime" property="actualStartTime"/>
+        <result column="actualEndTime" property="actualEndTime"/>
+    </resultMap>
+
+    <select id="pertTable" resultMap="BaseResultMap">
+        SELECT
+            pa.id AS activityId,
+            pa.target_start_date AS targetStartTime,
+            pa.target_end_date AS byTime,
+            sft.expected_finish_time AS expectedFinishTime,
+            pa.actual_start_date AS actualStartTime
+        FROM
+            piplan_activity pa,
+            stexpected_finish_time sft
+        WHERE
+            pa.id = sft.plan_activity_ref_id
+			and pa.id = #{activeId}
+    </select>
+</mapper>

@@ -79,6 +79,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/test/test", "anon");
         filterChainDefinitionMap.put("/HeavyDutyTable/**", "anon");
         filterChainDefinitionMap.put("/OTDrivice/**", "anon");
+        filterChainDefinitionMap.put("/ZLTable/**", "anon");
         //cas验证登录
         filterChainDefinitionMap.put("/cas/client/validateLogin", "anon");
         // 配置不会被拦截的链接 顺序判断
