@@ -35,9 +35,9 @@ const router = {
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/IssueRiskChain')
       },
       {
-        path: "test",
-        name: "test",
-        component: () => import(/* webpackChunkName: "report" */  '@/views/report/Test')
+        path: "my_inRatingList",
+        name: "my_inRatingList",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/My_inRatingList')
       }
     ]
   },
@@ -62,6 +62,11 @@ const router = {
         path: 'pertReport',
         name: 'pertReport',
          component: () => import(/* webpackChunkName: "report" */  '@/views/report/PertReport')
+      },
+      {
+        path: 'LK_pertReport',
+        name: 'LK_pertReport',
+         component: () => import(/* webpackChunkName: "report" */  '@/views/report/LK_PertReport')
       },
       {
         path: 'taskDelayReport',
