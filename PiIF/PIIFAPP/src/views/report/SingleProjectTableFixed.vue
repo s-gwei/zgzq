@@ -534,6 +534,17 @@
               </div>
          </div>
     </div>
+    <a-pagination
+        style="float: right;"
+        v-model="ispagination.pageNo"
+        show-size-changer
+        :page-size.sync="ispagination.pageSize"
+        :pageSizeOptions="ispagination.pageSizeOptions"
+        :total="ispagination.total"
+        :showTotal="total => `总共有  ${total}  个计划`"
+        @showSizeChange="onShowSizeChange"
+        @change="onChange"
+      />
        </div>
        <a-modal title="任务执行评价表" destroyOnClose :visible="visibleCreateModal" @cancel="visibleCreateModal=false">
             <!---->
@@ -565,7 +576,14 @@ export default {
   name: "singleProjectTableFixed",
   data() {
       return{
+        ispagination: {
+          pageSize: 10,
+          pageNo: 1,
+          total: 0,
+          pageSizeOptions: ['10']
+        },
           tableDate: [],
+          tableDateAll: [],
           visibleCreateModal:false,
           queryParam: {},
           queryParamName: "",
@@ -588,7 +606,7 @@ export default {
           // 资源部门获取员工id
           ids: [],
           url: {
-              tableDate:"/HeavyDuty/TaskExecutionTable",
+              // tableDate:"/HeavyDuty/TaskExecutionTable",
               // new
               tableDate: "/HeavyDutyTable/TaskExecution",
               export: "/HeavyDuty/exportExcel",
@@ -678,6 +696,20 @@ export default {
       this.dom.removeEventListener('scroll', this.scrollX);
   },
   methods:{
+     //  分页
+      onShowSizeChange (page, size) {
+      },
+      onChange (page, size) {
+        document.querySelector('.table-container .fixed-table-body').scrollTop = 0
+        this.isLoading = true
+        const _this = this
+        const start = (page - 1) * size
+        setTimeout(function(){
+          _this.isLoading = false
+           _this.$set(_this,'tableDate',_this.tableDateAll.slice(start, start+size))
+        },100)
+        // this.getData(page, size)
+      },
     // 获取部门和用户数据
     receiveUserData(userDate){
         var url = this.url.userDate,_this=this
@@ -732,7 +764,7 @@ export default {
          if(adaptiveH > tableHeight ) {
            this.adaptiveH = tableHeight + 10
          } else {
-             this.adaptiveH = adaptiveH - 20
+             this.adaptiveH = adaptiveH - 56
          }
         //  loding加载的高度与table剩余等高,宽度与屏幕等宽
          this.adaptiveload = this.adaptiveH -68
@@ -759,7 +791,6 @@ export default {
         // console.log(this.resourceSector,this.queryParam.ResourceSector);
         if(this.resourceSector && this.queryParam.ResourceSector){
           var ids = [],id = this.queryParam.ResourceSector
-          console.log(id);
           var resultUserData = JSON.parse(JSON.stringify(this.resultUserData))
           resultUserData.forEach(function(item,index){
             if(id == item.groupId){
@@ -777,11 +808,15 @@ export default {
             "userIds" : this.nameSelected ? this.queryParamName : (this.resourceSector ? this.ids.toString() : [])
           }
           this.queryParam = Object.assign({}, this.queryParam,obj)
+          this.ispagination.pageNo = 1
           // delete this.queryParam.name
           getAction(url,this.queryParam,'get').then((res) => {
             _this.isLoading = false
            if(res.success && res.result){
-              _this.$set(_this,'tableDate',res.result)
+            //  console.log(res.result);
+             _this.ispagination.total = res.result.length
+              _this.$set(_this,'tableDate',res.result.slice(0,_this.ispagination.pageSize))
+              _this.$set(_this,'tableDateAll',res.result)
               // _this.$set(_this,'tableDate',singleProject)
               _this.$nextTick(function(){
                  _this.getAdaptiveH()
@@ -803,6 +838,7 @@ export default {
       },
       // 重置
       resetSearchForm(){
+          this.ispagination.pageNo = 1
           this.selected = "02"
           this.queryParam.ResourceSector = ""
           this.queryParam.projectId = this.$route.params.projectId
@@ -958,6 +994,7 @@ export default {
          height: 300px;
          position: relative;
          overflow-x: auto;
+         margin-bottom: 7px;
         //  overflow-y: hidden;
          .fix-column{
              position: absolute;

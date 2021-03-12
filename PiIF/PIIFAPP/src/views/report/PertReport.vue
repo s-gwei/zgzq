@@ -5,9 +5,9 @@
       <!-- 气泡图区域-begin -->
       <div id="container"></div>
       <!-- 气泡图区域-end -->
-       <div class="noData" v-if="!chartDateALL || !chartDateALL.length" :style="{height: adaptiveContainH +'px',lineHeight: adaptiveContainH +'px'}">
+       <!-- <div class="noData" v-if="!chartDateALL || !chartDateALL.length" :style="{height: adaptiveContainH +'px',lineHeight: adaptiveContainH +'px'}">
         暂无数据
-    </div>
+       </div> -->
     <a-alert
       v-if="visible"
       message="Error"
@@ -97,6 +97,7 @@
               index: {
                 alias: '',
                 nice: true,
+                tickInterval: 1
                 // min: 0,
                 // max: max ,
                 // tickCount: max - 1 < 2 ? 2 : max-1,

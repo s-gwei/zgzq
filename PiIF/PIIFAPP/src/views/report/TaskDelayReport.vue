@@ -293,6 +293,24 @@
          })
          
       },
+      // sort(propertyA,propertyB){
+      //    return function (a, b) {
+      //      if(a[propertyA] === b[propertyA]) {    
+	    //         	if(a[propertyB] > b[propertyB]) {      
+	    //         		return 1;    
+	    //         	} else if(a[propertyB] < b[propertyB]) {      
+	    //         		return -1;    
+	    //         	} else {      
+	    //         		return 0;    
+	    //         	}  
+	    //         } else {    
+	    //         	if(a[propertyA] > b[propertyA]) {      
+	    //         		return 1;    
+	    //         	} else {      
+	    //         		return -1;    
+	    //         	}  
+	    //         }}
+      // },
       resetSearchForm(){
         this.start = null;
         this.end = null

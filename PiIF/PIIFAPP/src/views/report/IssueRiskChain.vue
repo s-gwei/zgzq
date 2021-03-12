@@ -147,6 +147,14 @@ import {getAction} from '@/api/manage';
           //           ]
           //           },
           //            { id: 'A12',confirm_status: '1' }, { id: 'A13',confirm_status: '0' }, { id: 'A14',confirm_status: '0' }],
+          //       },
+          //       {
+          //         id: 'W1',
+          //         confirm_status: '1',
+          //       },
+          //        {
+          //         id: 'q1',
+          //         confirm_status: '1',
           //       }
           //     ],
           // }
@@ -196,11 +204,10 @@ import {getAction} from '@/api/manage';
                 const color = '#5B8FF9';
                 const w = cfg.size[0];
                 const h = cfg.size[1];
-                // const w = 300,h=40;
-                const colors = {
-                  0: '#FF424C',
-                  1: '#40a9ff'
-                }
+                // const colors = {
+                //   0: '#FF424C',
+                //   1: '#40a9ff'
+                // }
                 const textStyle = {
                   textAlign: 'center',
                   fontSize: 16,
@@ -215,9 +222,10 @@ import {getAction} from '@/api/manage';
                     stroke: color,
                     radius: r,
                     fill: '#fff',
+                    stroke: cfg.confirm_status == 1 ? '#40a9ff' : '#FF424C',
                   },
                   name: 'main-box',
-                  draggable: true,
+                  // draggable: false,
                 });
                 group.addShape('rect', {
                   attrs: {
@@ -231,7 +239,7 @@ import {getAction} from '@/api/manage';
                     radius: [r, r, 0, 0],
                   },
                   name: 'title-box',
-                  draggable: true,
+                  // draggable: false,
                 });
             
                 // title text
@@ -286,27 +294,27 @@ import {getAction} from '@/api/manage';
                      </ul>`;
                    return outDiv;
                  },
-                 shouldBegin: (e) => {
-                   // console.log(e.item);
-                   let res = true;
-                   switch (e.item.getModel().id) {
-                     case '1':
-                       res = false;
-                       break;
-                     case '2':
-                       if (e.target.get('name') === 'text-shape') res = true;
-                       else res = false;
-                       break;
-                     case '3':
-                       if (e.target.get('name') !== 'text-shape') res = true;
-                       else res = false;
-                       break;
-                     default:
-                       res = true;
-                       break;
-                   }
-                   return res;
-                 },
+                //  shouldBegin: (e) => {
+                //    // console.log(e.item);
+                //    let res = true;
+                //    switch (e.item.getModel().id) {
+                //      case '1':
+                //        res = false;
+                //        break;
+                //      case '2':
+                //        if (e.target.get('name') === 'text-shape') res = true;
+                //        else res = false;
+                //        break;
+                //      case '3':
+                //        if (e.target.get('name') !== 'text-shape') res = true;
+                //        else res = false;
+                //        break;
+                //      default:
+                //        res = true;
+                //        break;
+                //    }
+                //    return res;
+                //  },
               });
               this.tooltip = tooltip
               this.renderChart(tooltip,i)
@@ -314,9 +322,11 @@ import {getAction} from '@/api/manage';
        renderChart(tooltip,i){
         //  const name = "container" + i
          const container = document.getElementById("container");
-         const width = document.body.clientWidth;
+         const width = !this.data[i-1].children || !this.data[i-1].children.length ? 300 : (!this.data[i-1].children.some(function(item){ return item.children }) ? 700 : document.body.clientWidth - 20 ) 
+        //  const width = document.body.clientWidth - 20;
          const height =  document.body.clientHeight - 120;
         //  console.log(document.body.clientHeight,container.scrollHeight);
+        const flag = !this.data.children || this.data.children.length == 1 
          const graph = new G6.TreeGraph({
            container: container,
            width,
@@ -324,11 +334,11 @@ import {getAction} from '@/api/manage';
            linkCenter: true,
            plugins: [tooltip],
            modes: {
-             default: ['drag-canvas'],
+            //  default: ['drag-canvas'],
            },
            defaultNode: {
              type: 'card-node',
-             size: [300, 80],
+             size: [360, 80],
            },
            defaultEdge: {
              type: 'cubic-horizontal',
@@ -340,7 +350,7 @@ import {getAction} from '@/api/manage';
              type: 'indented',
              direction: 'LR',
              dropCap: false,
-             indent: 400,
+             indent: 420,
              getHeight: () => {
                return 80;
              },
