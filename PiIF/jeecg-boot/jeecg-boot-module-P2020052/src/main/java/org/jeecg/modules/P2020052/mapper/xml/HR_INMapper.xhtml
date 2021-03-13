@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.ZLMapper">
+
+
+    <resultMap id="InResultMap" type="org.jeecg.modules.P2020052.pojo.PlanINVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="plan_activity_ref_id" property="plan_activity_ref_id"/>
+        <result column="code" property="code"/>
+        <result column="weights" property="weights"/>
+        <result column="is_deleted" property="is_deleted"/>
+        <result column="is_persisted" property="is_persisted"/>
+        <result column="update_count" property="update_count"/>
+    </resultMap>
+
+
+    <select id="selectINTable" resultMap="InResultMap">
+        SELECT
+        sin.*
+        FROM
+        stproject_instanceinindicator sin,
+        piplan_activity  pa
+        WHERE
+        pa.id = sin.plan_activity_ref_id
+        <if test="planId!= null and planId !=''" >
+            and  sin.plan_activity_ref_id =#{planId}
+        </if>
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
+        and sin.plan_activity_ref_id IN (
+        SELECT DISTINCT
+        ( pa.plannable_ref_id )
+        FROM
+        piresource_assignment pa
+        WHERE
+        pa.rsrc_ref_id IN (
+        SELECT
+        piresource.id
+        FROM
+        piresource
+        WHERE
+        piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !=''" >
+            and pigroup  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        )
+        )
+        )
+    </select>
+
+</mapper>
