@@ -27,7 +27,6 @@
   import { Chart } from '@antv/g2';
   // import DataSet from '@antv/data-set';
   import html2canvas from 'html2canvas'
-  //const pertJson = require('@assets/json/pertJson.json')
  
   export default {
     name: "pertReport",
@@ -42,9 +41,10 @@
         queryParam: {},
         chartDateALL: [],
         url: {
-          // chartDate:"/HeavyDuty/pert"
-          // 新接口
+          // 服务器
           //chartDate: "/HeavyDutyTable/pertTable"
+          
+          //朱丽
           chartDate: "/ZLTable/pertTable"
         },
       }
