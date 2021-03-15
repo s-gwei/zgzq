@@ -101,7 +101,7 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://localhost:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          url: jdbc:mysql://192.168.111.137:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
 #          url: jdbc:mysql://192.168.2.224:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           #正式机数据库
           #url: jdbc:mysql://pioa.pisx.com:7004/piif?characterEncoding=UTF-8&useUnicode=true&useSSL=false
@@ -112,7 +112,7 @@ spring:
 
           # 多数据源配置
         multi-datasource1:
-          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+          url: jdbc:mysql://192.168.111.137:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
 #          url: jdbc:mysql://192.168.2.224:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
 #          password: sungw
