@@ -34,8 +34,8 @@ public class PlanOTServiceImpl implements PlanOTService {
             startTime = time[0];
             endTime = time[1];
         }
-
-        return  planOTMapper.OTTable(page, startTime, endTime, group,planId);
+        IPage<PlanOTVo> list = planOTMapper.OTTable(page, startTime, endTime, group,planId);
+        return  list;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class PlanOTServiceImpl implements PlanOTService {
             startTime = time[0];
             endTime = time[1];
         }
-
-        return planOTMapper.selectINTable(page, startTime, endTime, group,planId);
+        IPage<PlanINVo> planINVoIPage = planOTMapper.selectINTable(page, startTime, endTime, group, planId);
+        return planINVoIPage;
     }
 
 
@@ -75,6 +75,10 @@ public class PlanOTServiceImpl implements PlanOTService {
                     nameList = new ArrayList();
                     map.put(list.get(i).getRisk_name(), list.get(i).getRisk_name());
                     nameList.add(list.get(i));
+                    if (i == list.size() - 1) {
+                        resultList.add(nameList);
+
+                    }
                     continue;
                 }
                 String name = list.get(i).getRisk_name();
@@ -87,18 +91,20 @@ public class PlanOTServiceImpl implements PlanOTService {
                     nameList.add(list.get(i));
                 } else {
                     nameList.add(list.get(i));
+                    if (i == list.size() - 1) {
+                        resultList.add(nameList);
+                    }
                     continue;
                 }
                 if (i == list.size() - 1) {
                     resultList.add(nameList);
-
                 }
             }
-            for (Object set : map.keySet()) {
-                for (RiskVo riskVo : list) {
-
-                }
-            }
+//            for (Object set : map.keySet()) {
+//                for (RiskVo riskVo : list) {
+//
+//                }
+//            }
             return resultList;
         } else {
             List<RiskVo> list = planOTMapper.selectRiskByPlan(time, group, planId);
@@ -143,25 +149,33 @@ public class PlanOTServiceImpl implements PlanOTService {
 //        time[0] = "2021-01-10";
 //        time[1] = "2021-02-16";
         if (time != null && !"".equals(time)) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0]+" 00:00:00";
+            endTime = time[1]+" 23:59:59";
+        }
+        if(group !=null ){
+            String a = group[0];
+            if("''".equals(group[0]) ||"null".equals(group[0]) ||group[0] == null){
+                group = null;
+            }
         }
         List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime,group, endTime, projectId);
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        long start = formatter.parse(startTime).getTime();
-        long end = formatter.parse(endTime).getTime() ;
-        long week = (end - start) / (1000 * 60 * 60 * 24*7) > 0 ? (end - start) / (1000 * 60 * 60 * 24*7) + 1 : (end - start) / (1000 * 60 * 60 * 24*7);
+
+        long start = startTime == null  ? 0 :formatter.parse(startTime).getTime();
+        long end = endTime == null ? 0:formatter.parse(endTime).getTime() ;
+        double weeks= (end - start) / (1000 * 60 * 60 * 24*7.0);
+        long week = (long) Math.ceil(weeks);
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
         List result = new ArrayList();
-        for (int i = 1; i <= week; i++) {
+        for (long i = 1; i <= week; i++) {
+            // 每周开始时间
+            long startLong = start + (i-1) * 1000 * 60 * 60 * 24 * 7;
+            // 每周结束时间
+            long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
             for (PiplanActivityVo act : list) {
-                // 每周开始时间
-                long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
-                // 每周结束时间
-                long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
-                String taskStr = act.getActualStartTime();
+                String taskStr = act.getTargetStartTime();
                 long taskLong = taskStr == null ? 0 :formatter.parse(taskStr).getTime();
                 if (taskLong >= startLong && taskLong < endLong) {
                     long currentStr = new Date().getTime();//当前时间
@@ -178,7 +192,7 @@ public class PlanOTServiceImpl implements PlanOTService {
 
                     String taskTypa = null;
                     //任务状态1，正常执行
-                    if(actualEndLong == 0 && btTImeLong>expectedFinishLong){
+                    if(actualEndLong == 0 && btTImeLong>expectedFinishLong && btTImeLong>=currentStr){
                         taskTypa = "normal";
                     }
                     //任务状态2，可能逾期
@@ -199,7 +213,7 @@ public class PlanOTServiceImpl implements PlanOTService {
                     act.setTaskType(taskTypa);
                     //横坐标
 //                    long X = (taskLong - startLong)%(1000 * 60 * 60 * 24 * 7)+1;
-                    double  x = (taskLong - startLong)/(1000 * 60 * 60 * 24 * 7.0)+1;
+                    double  x = (taskLong - start)/(1000 * 60 * 60 * 24 * 7.0)+1 + Math.random();
                     String Xaxis = df.format(x);
                     act.setXaxis(Double.parseDouble(Xaxis));
                     //偏差值

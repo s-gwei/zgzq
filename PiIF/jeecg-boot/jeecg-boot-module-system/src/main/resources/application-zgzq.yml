@@ -102,17 +102,21 @@ spring:
       datasource:
         master:
           url: jdbc:mysql://localhost:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+#          url: jdbc:mysql://192.168.2.224:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           #正式机数据库
           #url: jdbc:mysql://pioa.pisx.com:7004/piif?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           username: root
-          password: sungw
+#          password: sungw
+          password: 123456
           driver-class-name: com.mysql.jdbc.Driver
 
           # 多数据源配置
         multi-datasource1:
-          url: jdbc:mysql://localhost:3306/stold?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+#          url: jdbc:mysql://192.168.2.224:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
-          password: sungw
+#          password: sungw
+          password: 123456
           driver-class-name: com.mysql.jdbc.Driver
   #redis 配置
   redis:
@@ -179,9 +183,9 @@ mybatis-plus:
       table-underline: true
   configuration:
     call-setters-on-nulls: true
-    #configuration:
+#    configuration:
     # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
-    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #jeecg专用配置
 jeecg:
   path:

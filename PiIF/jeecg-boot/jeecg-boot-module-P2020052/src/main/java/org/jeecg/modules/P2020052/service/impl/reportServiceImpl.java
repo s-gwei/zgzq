@@ -62,16 +62,18 @@ public class reportServiceImpl implements ReportService {
     @Override
     public List SectorRiskFactor(String userIds, String name, String startTime, String endTime) throws ParseException {
         String[] userId = userIds.split(",");
+        startTime = startTime+ " 00:00:00";
+        endTime = endTime + " 23:59:59";
         List<GroupRiskVo> list = reportMapper.SectorRiskFactor(userId, startTime, endTime);
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        long start = formatter.parse(startTime).getTime() / (1000 * 60 * 60 * 24);
+         long start = formatter.parse(startTime).getTime() / (1000 * 60 * 60 * 24);
         long end = formatter.parse(endTime).getTime() / (1000 * 60 * 60 * 24);
         long week = (end - start) / 7 > 0 ? (end - start) / 7 + 1 : (end - start) / 7;
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
         List result = new ArrayList();
-        for (int i = 1; i <= week; i++) {
+        for (long i = 1; i <= week; i++) {
             Map<String, Object> staffMap = new HashMap<String, Object>();
             Map<String, Object> markMap = new HashMap<String, Object>();
             //每周项目风险系数之和
@@ -85,11 +87,11 @@ public class reportServiceImpl implements ReportService {
             Double actualSum = 0.0;
             for (GroupRiskVo groupRiskVo : list) {
                 // 每周开始时间
-                long startLong = start + (i-1) * 1000 * 60 * 60 * 24;
+                long startLong = formatter.parse(startTime).getTime()  + (i-1) * 1000 * 60 * 60 * 24*7;
                 // 每周结束时间
-                long endLong = start + i* 1000 * 60 * 60 * 24;
+                long endLong = formatter.parse(startTime).getTime() + i* 1000 * 60 * 60 * 24*7;
                 String taskStr = groupRiskVo.getActualStartDate();
-                long taskLong = formatter.parse(taskStr).getTime();
+                long taskLong = taskStr == null ? 0 :formatter.parse(taskStr).getTime();
                 if (taskLong >= startLong && taskLong < endLong) {
                     // 计算输出质量风险
                     double reportingDeviations = groupRiskVo.getDeviationReport()

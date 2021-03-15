@@ -46,7 +46,6 @@
         <result column="is_deleted" property="is_deleted"/>
         <result column="is_persisted" property="is_persisted"/>
         <result column="update_count" property="update_count"/>
-
     </resultMap>
 
 
@@ -72,6 +71,11 @@
         <result column="risk_code" property="risk_code"/>
         <result column="risk_description" property="risk_description"/>
     </resultMap>
+
+    <!--           <if test="startTime!= null and startTime !=''" >-->
+    <!--              and  pa.actual_start_date between  #{startTime}  and #{endTime}-->
+    <!--           </if>-->
+
     <select id="OTTable" resultMap="TaseResultMap">
           SELECT
                  *
@@ -80,12 +84,10 @@
                 piplan_activity  pa
             WHERE
                 pa.id = ot.plan_activity_ref_id
-            <if test="planId!= null and planId !=''" >
-                and  ot.plan_activity_ref_id =#{planId}
+            <if test="planId!= null and planId !='' and planId !='null'" >
+                and   pa.root_ref_id =#{planId}
             </if>
-           <if test="startTime!= null and startTime !=''" >
-              and  pa.actual_start_date between  #{startTime}  and #{endTime}
-           </if>
+
                and ot.plan_activity_ref_id IN (
             SELECT DISTINCT
                 ( pa.plannable_ref_id )
@@ -99,13 +101,13 @@
                 piresource
             WHERE
                 piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
-        <if test="group!= null and group !=''" >
-            and pigroup.id  in
-            <foreach item="id"  collection="group"
-                     open="(" separator="," close=")">
-                #{id}
-            </foreach>
-        </if>
+      <if test="group!= null and group !=''" >
+              and pigroup.id  in
+              <foreach item="id"  collection="group"
+                       open="(" separator="," close=")">
+                  #{id}
+              </foreach>
+          </if>
                 )
                 )
                 )
@@ -163,12 +165,12 @@
         piplan_activity  pa
         WHERE
         pa.id = sin.plan_activity_ref_id
-        <if test="planId!= null and planId !=''" >
-            and  sin.plan_activity_ref_id =#{planId}
+        <if test="planId!= null and planId !='' and planId !='null'" >
+            and   pa.root_ref_id =#{planId}
         </if>
-        <if test="startTime!= null and startTime !=''" >
-            and  pa.actual_start_date between  #{startTime}  and #{endTime}
-        </if>
+<!--        <if test="startTime!= null and startTime !=''" >-->
+<!--            and  pa.actual_start_date between  #{startTime}  and #{endTime}-->
+<!--        </if>-->
         and sin.plan_activity_ref_id IN (
         SELECT DISTINCT
         ( pa.plannable_ref_id )
@@ -182,8 +184,8 @@
         piresource
         WHERE
         piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
-        <if test="group!= null and group !=''" >
-            and pigroup  in
+      <if test="group!= null and group !=''" >
+            and pigroup.id   in
             <foreach item="id"  collection="group"
                      open="(" separator="," close=")">
                 #{id}
@@ -239,28 +241,19 @@
 
 
     <select id="selectRiskProject" resultMap="RiskResultMap">
-            SELECT
-                b.risk_name,
-                a.*
-            FROM
-                (
-            SELECT
-                sr.id AS id,
-                sr.risk_name AS risk_name
-            FROM
-                stproject_risk sr,
-                piproject pp
-            WHERE
-                sr.project_ref_id = pp.id
-                ) b
-                LEFT JOIN (
-            SELECT
-                sm.*
-            FROM
-                stproject_measures sm
-            WHERE
-                sm.project_risk_ref_id IN ( SELECT sr.id FROM stproject_risk sr, piproject pp WHERE sr.project_ref_id = pp.id )
-                ) a ON b.id = a.project_risk_ref_id
+     	select *
+     	from stproject_risk srl
+     	left join stproject_measures sm
+		on srl.id = project_risk_ref_id
+        <where>
+            <if test="projectId!= null and projectId !=''" >
+                 srl.project_ref_id = #{projectId}
+            </if>
+            <if test="startTime!= null and startTime !=''" >
+                and  srl.create_stamp between  #{startTime}  and #{endTime}
+            </if>
+        </where>
+
 
     </select>
 
@@ -329,18 +322,39 @@
                 GROUP BY
                     t.t1id
                     ) a ON pa.id = a.plan_activity_ref_id
-                WHERE
-                     pa.actual_start_date is not null
+                WHERE 1=1
+        <if test="projectId!= null and projectId !=''" >
+            and pa.project_ref_id  = #{projectId}
+
+        </if>
+        <if test="startTime!= null and startTime !=''" >
+            and pa.target_start_date between  #{startTime}  and #{endTime}
+        </if>
+
                      and pa.id in
-					( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
-                    <if test="group!= null and group !=''" >
-                        and pigroup  in
-                        <foreach item="id"  collection="group"
-                                 open="(" separator="," close=")">
-                            #{id}
-                        </foreach>
-                    </if>
+					( SELECT
+        plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT
+        id
+        FROM
+        piresource
+        WHERE
+        piresource.user_ref_id IN ( SELECT DISTINCT ( ml.rolebobject_id ) FROM membership_link ml, pigroup WHERE pigroup.id = ml.roleaobject_id
+        <if test="group!= null and group !='' and group != 'null'" >
+            and pigroup.id  in
+            <foreach item="id"  collection="group"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
         )
+        )
+        )
+
     </select>
 
     <select id="problemRickChain" resultMap="CaseResultMap">
@@ -352,6 +366,12 @@
                 confirm_status,
                 risk_description
             from stproject_risk spr
+        <where>
+            <if test="riskId!= null and riskId !=''and riskId !='null'" >
+                spr.id = #{riskId}
+            </if>
+
+        </where>
     </select>
 
 </mapper>

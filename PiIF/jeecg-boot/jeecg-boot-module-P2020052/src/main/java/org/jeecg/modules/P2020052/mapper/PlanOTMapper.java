@@ -26,6 +26,6 @@ public interface PlanOTMapper {
 
     List<PlanINVo> exportINExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
-    List<ProblemRickChainVo> problemRickChain(String riskId);
+    List<ProblemRickChainVo> problemRickChain(@Param("riskId") String riskId);
 
 }
