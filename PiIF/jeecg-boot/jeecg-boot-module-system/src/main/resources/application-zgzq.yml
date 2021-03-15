@@ -102,7 +102,7 @@ spring:
       datasource:
         master:
           url: jdbc:mysql://192.168.111.137:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
-#          url: jdbc:mysql://192.168.2.224:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           #正式机数据库
           #url: jdbc:mysql://pioa.pisx.com:7004/piif?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           username: root
@@ -113,7 +113,7 @@ spring:
           # 多数据源配置
         multi-datasource1:
           url: jdbc:mysql://192.168.111.137:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
-#          url: jdbc:mysql://192.168.2.224:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+#          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
 #          password: sungw
           password: 123456
@@ -132,11 +132,11 @@ spring:
     password: ''
     port: 6016
   #influxDB 配置
-  influx:
-    url: http://pioa.pisx.com:8086
-    password: admin
-    user: admin
-    database: pisx
+#  influx:
+#    url: http://pioa.pisx.com:8086
+#    password: admin
+#    user: admin
+#    database: pisx
 #  influx:
 #    url: http://192.168.2.71:6008
 #    userName: admin
