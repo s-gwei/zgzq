@@ -226,8 +226,9 @@ WHERE
     <select id="SectorRiskFactor" resultMap="CaseResultMap">
         SELECT
         a.*,
-        b.*,
-        c.*
+        b.*
+/*        ,
+        c.**/
         FROM
         (
         SELECT
@@ -248,7 +249,7 @@ WHERE
         SELECT
         id
         FROM
-        piplan_activity
+        piplan_activity pa
         WHERE
         piplan_activity.id IN (
         SELECT
@@ -256,23 +257,28 @@ WHERE
         FROM
         piresource_assignment
         WHERE
-        piresource_assignment.actual_start_date &gt;= #{startTime}
+  /*      piresource_assignment.actual_start_date &gt;= #{startTime}
         AND piresource_assignment.actual_end_date &lt;= #{endTime}
-        AND piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
         <foreach collection="userId" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
         )
         )
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
         )
         ) a,
         (
         SELECT
         id,
         piplan_activity.actual_work_qty,
-        piplan_activity.standard_work_qty
+        piplan_activity.standard_work_qty,
+        piplan_activity.
         FROM
-        piplan_activity
+        piplan_activity pa
         WHERE
         piplan_activity.id IN (
         SELECT
@@ -280,32 +286,38 @@ WHERE
         FROM
         piresource_assignment
         WHERE
-        piresource_assignment.actual_start_date &gt;= #{startTime}
+/*        piresource_assignment.actual_start_date &gt;= #{startTime}
         AND piresource_assignment.actual_end_date &lt;= #{endTime}
-        AND piresource_assignment.rsrc_ref_id IN (
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
         <foreach collection="userId" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
         )
         )
-        ) b,
-        (
-        SELECT
-        piresource_assignment.plannable_ref_id,
-        piresource_assignment.actual_start_date
-        FROM
-        piresource_assignment
-        WHERE
-        piresource_assignment.actual_start_date &gt;= #{startTime}
-        AND piresource_assignment.actual_end_date &lt;= #{endTime}
-        AND piresource_assignment.rsrc_ref_id IN (
-        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
-        <foreach collection="userId" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
-        )
-        ) c
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
+        ) b
+<!--        ,-->
+<!--        (-->
+<!--        SELECT-->
+<!--        piresource_assignment.plannable_ref_id,-->
+<!--        piresource_assignment.actual_start_date-->
+<!--        FROM-->
+<!--        piresource_assignment-->
+<!--        WHERE-->
+<!--/*        piresource_assignment.actual_start_date &gt;= #{startTime}-->
+<!--        AND piresource_assignment.actual_end_date &lt;= #{endTime}-->
+<!--        AND */-->
+<!--        piresource_assignment.rsrc_ref_id IN (-->
+<!--        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in-->
+<!--        <foreach collection="userId" item="id" open="(" close=")" separator=",">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--        )-->
+<!--        ) c-->
     </select>
 
 </mapper>
