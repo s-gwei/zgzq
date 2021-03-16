@@ -35,7 +35,7 @@
   import { Chart } from '@antv/g2';
   // import DataSet from '@antv/data-set';
   import html2canvas from 'html2canvas'
-  const riskJson = require('@assets/json/gkRiskReport.json')
+  const gkRiskReport = require('@assets/json/gkRiskReport.json')
  
   export default {
     name: "taskDelayReport",
@@ -116,7 +116,7 @@
           });
           data.map(function(item){
               // item["toolTitle"] = item.activityName
-              item["sexuality"] = item.taskType === "normal" ? "正常进行任务" : (item.taskType === "finished" ? "已完成任务" :item.taskType === "overdue" ? "已逾期任务" : (item.taskType === "isoverdue" ? "可能逾期任务" : ""))
+              item["sexuality"] = item.taskType === "normal" ? "正常进行任务" : (item.taskType === "finished" ? "已完成任务" :item.taskType === "overdue" ? "逾期未完成" : (item.taskType === "isoverdue" ? "可能逾期任务" : (item.taskType === "red" ? "逾期已完成" : "" )))
           })
           chart.source(data);
           // 为各个字段设置别名
@@ -227,9 +227,9 @@
             //  flipPage: false,
               position: 'top-center',
               itemGap: 20,
-              offsetX: width - 240,
+              offsetX: width - 270,
               offsetY: -2,
-              width: 400,
+              width: 500,
               marker:'circle'
           }
           );
@@ -237,7 +237,7 @@
             .point()
             .position('xaxis*deviation')
             .color('sexuality',function(item){
-                return item === "正常进行任务" ? "#1890FF" : (item === "已完成任务" ? "black" :item === "已逾期任务" ? "#F5222D" : (item === "可能逾期任务" ? "#FABC16" : "#fff"))
+                return item === "正常进行任务" ? "#1890FF" : (item === "已完成任务" ? "black" :item === "逾期未完成" ? "#F5222D" : (item === "可能逾期任务" ? "#FABC16" : (item === "逾期已完成" ? "#ccc" : "#fff")))
             })
             .size(4)
             .shape('circle')
@@ -250,7 +250,7 @@
       drawChart(){
          const  url = this.url.chartDate,id = this.$route.query.id,_this=this 
         //  模拟数据
-        // this.renderChart(data)
+        // this.renderChart(gkRiskReport)
         // return
          this.loading = true
          var obj = {
@@ -287,7 +287,7 @@
               },4000)
             //  })
             _this.$nextTick(function(){
-              // _this.$set(_this,"chartDateALL" , data)
+              //  _this.$set(_this,"chartDateALL" , gkRiskReport)
               //  !_this.loading && _this.renderChart(data)
             })
          })
