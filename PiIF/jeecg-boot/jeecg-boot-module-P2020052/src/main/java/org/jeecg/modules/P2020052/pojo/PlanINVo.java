@@ -19,5 +19,10 @@ public class PlanINVo implements Serializable {
 
      private String update_count;//更改次数
 
+     private String description;//描述
+
+     private Double ot_rating;//评定
+
+
 
 }

@@ -200,20 +200,21 @@ public class PlanOTServiceImpl implements PlanOTService {
                         taskTypa = "isoverdue";
                     }
                     //任务状态3，已完成
-                    if(actualEndLong != 0){
+                    if(actualEndLong != 0 &&btTImeLong>=actualEndLong){
                         taskTypa = "finished";
                     }
-                    //任务状态4，已逾期
+                    //任务状态4，逾期未完成
                     if(actualEndLong == 0 && btTImeLong<currentStr){
                         taskTypa = "overdue";
                     }
-                    if(actualEndLong != 0 && btTImeLong<=expectedFinishLong){
-                        taskTypa = "overdue";
+                    //任务状态5，逾期已完成
+                    if(actualEndLong != 0 && btTImeLong<actualEndLong){
+                        taskTypa = "red";
                     }
                     act.setTaskType(taskTypa);
                     //横坐标
 //                    long X = (taskLong - startLong)%(1000 * 60 * 60 * 24 * 7)+1;
-                    double  x = (taskLong - start)/(1000 * 60 * 60 * 24 * 7.0)+1 + Math.random();
+                    double  x = (taskLong - start)/(1000 * 60 * 60 * 24 * 7.0)+1 + Math.random()*0.5;
                     String Xaxis = df.format(x);
                     act.setXaxis(Double.parseDouble(Xaxis));
                     //偏差值
