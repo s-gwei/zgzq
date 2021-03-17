@@ -541,7 +541,7 @@
         :page-size.sync="ispagination.pageSize"
         :pageSizeOptions="ispagination.pageSizeOptions"
         :total="ispagination.total"
-        :showTotal="total => `总共有  ${total}  个计划`"
+        :showTotal="total => `总共有  ${total}  个任务`"
         @showSizeChange="onShowSizeChange"
         @change="onChange"
       />
