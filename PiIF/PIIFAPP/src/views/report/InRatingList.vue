@@ -15,6 +15,8 @@
                         <th>序号</th>
                         <th>任务ID</th>
                         <th>权重</th>
+                        <th>描述</th>
+                        <th>评定</th>
                         <th>是否删除</th>
                         <th>是否存在</th>
                         <th>更改次数</th>
@@ -26,6 +28,8 @@
                                 <td>{{index + 1}}</td>
                                 <td>{{item.plan_activity_ref_id}}</td>
                                 <td>{{item.weight}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.ot_rating}}</td>
                                 <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
                                 <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
                                 <td>{{item.update_count}}</td>
@@ -43,6 +47,8 @@
                        <th>序号</th>
                         <th>任务ID</th>
                         <th>权重</th>
+                        <th>描述</th>
+                        <th>评定</th>
                         <th>是否删除</th>
                         <th>是否存在</th>
                         <th>更改次数</th>
@@ -54,6 +60,8 @@
                                 <td>{{index + 1}}</td>
                                 <td>{{item.plan_activity_ref_id}}</td>
                                 <td>{{item.weight}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.ot_rating}}</td>
                                 <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
                                 <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
                                 <td>{{item.update_count}}</td>
