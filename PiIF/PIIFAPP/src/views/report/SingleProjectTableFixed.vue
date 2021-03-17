@@ -577,10 +577,10 @@ export default {
   data() {
       return{
         ispagination: {
-          pageSize: 5,
+          pageSize: 3,
           pageNo: 1,
           total: 0,
-          pageSizeOptions: ['5']
+          pageSizeOptions: ['3']
         },
           tableDate: [],
           tableDateAll: [],
