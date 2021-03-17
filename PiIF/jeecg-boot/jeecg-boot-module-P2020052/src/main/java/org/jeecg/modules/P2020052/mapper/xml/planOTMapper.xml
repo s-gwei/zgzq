@@ -25,6 +25,8 @@
         <result column="is_deleted" property="is_deleted"/>
         <result column="is_persisted" property="is_persisted"/>
         <result column="update_count" property="update_count"/>
+        <result column="description" property="description"/>
+        <result column="ot_rating" property="ot_rating"/>
 
 
     </resultMap>
@@ -159,18 +161,22 @@
 
     <select id="selectINTable" resultMap="InResultMap">
         SELECT
-        sin.*
+        sin.*,
+        strating.description,strating.ot_rating
         FROM
         stproject_instanceinindicator sin,
-        piplan_activity  pa
+        piplan_activity  pa,
+        strating
         WHERE
+        sin.id = strating.in_indicator_ref_id
+        and
         pa.id = sin.plan_activity_ref_id
         <if test="planId!= null and planId !='' and planId !='null'" >
             and   pa.root_ref_id =#{planId}
         </if>
-<!--        <if test="startTime!= null and startTime !=''" >-->
-<!--            and  pa.actual_start_date between  #{startTime}  and #{endTime}-->
-<!--        </if>-->
+        <if test="startTime!= null and startTime !=''" >
+            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        </if>
         and sin.plan_activity_ref_id IN (
         SELECT DISTINCT
         ( pa.plannable_ref_id )
