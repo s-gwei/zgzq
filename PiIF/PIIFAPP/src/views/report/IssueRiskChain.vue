@@ -186,6 +186,7 @@ import {getAction} from '@/api/manage';
           getAction(url,this.queryParam,'get').then((res) => {
             _this.isLoading = false
            if(res.success && res.result){
+              _this.dealRes(res.result)
               _this.$set(_this,'data',res.result)
               _this.$nextTick(function(){
                 _this.getShape(this.activeIdx+1)
@@ -195,6 +196,17 @@ import {getAction} from '@/api/manage';
          })
          .catch(function(err){
               _this.isLoading = false
+         })
+       },
+       dealRes(data){
+         var str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+         var _this = this
+         data.map(function(item){
+           var random = str[Math.floor(Math.random() * str.length)] + str[Math.floor(Math.random() * str.length)] 
+           item.id = item.id + random + Math.random()
+           if(item.children && item.children.length){
+               _this.dealRes(item.children)
+           }
          })
        },
        getShape(i){
