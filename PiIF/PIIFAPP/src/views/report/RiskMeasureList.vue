@@ -119,7 +119,7 @@
              :page-size.sync="ispagination.pageSize"
              :pageSizeOptions="ispagination.pageSizeOptions"
              :total="ispagination.total"
-             :showTotal="total => `总共有  ${total}  个任务`"
+             :showTotal="total => `总共有  ${total}  个风险`"
              @showSizeChange="onShowSizeChange"
              @change="onChange"
            />
