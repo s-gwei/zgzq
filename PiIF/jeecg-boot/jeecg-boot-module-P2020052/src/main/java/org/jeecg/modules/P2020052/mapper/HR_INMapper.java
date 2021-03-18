@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.jeecg.modules.P2020052.pojo.PlanINVo;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
 public interface HR_INMapper {
