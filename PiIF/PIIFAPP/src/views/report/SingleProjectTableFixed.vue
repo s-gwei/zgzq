@@ -70,9 +70,9 @@
                    <tr>
                        <th>执行职能</th>
                        <th>任务名</th>
-                       <th colspan="4">数据准备</th>
+                       <th colspan="6">数据准备</th>
                        <th colspan="3">计划环境</th>
-                       <th colspan="6">输出质量</th>
+                       <th colspan="9">输出质量</th>
                        <th colspan="2">输出加权</th>
                        <th >项目风险</th>
                        <th>输出评定</th>
@@ -81,6 +81,8 @@
                    <tr>
                         <th></th>
                         <th></th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -88,10 +90,13 @@
                         <th>标准工期</th>
                         <th>项目工期</th>
                         <th>风险KPI</th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>输出质量KPI</th>
                         <th>质量风险</th>
                         <th>广度</th>
@@ -108,6 +113,8 @@
                                 <!-- <td >z职能</td> -->
                                 <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                                 <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
+                                <td>{{item.code}}</td>
+                               <td>{{item.description}}</td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
@@ -117,10 +124,14 @@
                                 <td :rowspan="getrowNums(itm)" :title="item['reportPeriod']">{{item['reportPeriod']}}</td>
                                 <!-- <td>{{item.reportPeriod}}</td> -->
                                 <td>{{item.riskKPI}}</td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.description}}</td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
                                 <td>{{item.standardDifficulty}}</td>
                                 <td>{{item.reportingDifficulty}}</td>
+                                <td>{{item.reportTime}}</td>
+                                <td>{{item.OutputaualityKPI}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
@@ -131,6 +142,8 @@
                            </tr>
                            <tr  v-if="index && index != itm.length -1" class="otherRow">
                            <!-- <td >z职能</td> -->
+                               <td>{{item.code}}</td>
+                               <td>{{item.description}}</td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
@@ -138,10 +151,13 @@
                                 <!-- <td>{{item.StandardPeriod}}</td>
                                 <td>{{item.reportPeriod}}</td> -->
                                 <td>{{item.riskKPI}}</td>
+                                <td>{{item.code}}</td>
+                               <td>{{item.description}}</td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
                                 <td>{{item.standardDifficulty}}</td>
                                 <td>{{item.reportingDifficulty}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
                                 <td>{{item.OutputaualityKPI}}</td>
@@ -152,13 +168,13 @@
                            </tr>
                         </template>
                         <tr class="trtotal" :key="idx">
-                            <td colspan="3">环境质量指标(预设值基准:0)</td>
+                            <td colspan="5">环境质量指标(预设值基准:0)</td>
                              <td class="tdBorderRight">{{getcolcontent('qualityIndex',itm)}}</td>
                             <td colspan="2">工期风险KPI(预设值基准:1)</td>
                             <td class="tdBorderRight">{{getcolcontent('riskKPI',itm)}}</td>
-                            <td colspan="4">总质量指标(预设值基准:1)</td>
+                            <td colspan="8">总质量指标(预设值基准:1)</td>
                              <td class="tdBorderRight">{{getcolcontent('totalQualityKpi',itm)}}</td>
-                            <td colspan="5">平均发布次数</td>
+                            <td colspan="4">平均发布次数</td>
                             <td class="tdBorderRight">{{getcolcontent('NumbereleasesAvg',itm)}}</td>
                         </tr>
                   </template>
@@ -173,9 +189,9 @@
                    <tr>
                        <th>执行职能</th>
                        <th>任务名</th>
-                       <th colspan="4">数据准备</th>
+                       <th colspan="6">数据准备</th>
                        <th colspan="3">计划环境</th>
-                       <th colspan="6">输出质量</th>
+                       <th colspan="9">输出质量</th>
                        <th colspan="2">输出加权</th>
                        <th >项目风险</th>
                        <th>输出评定</th>
@@ -184,6 +200,8 @@
                    <tr>
                         <th></th>
                         <th></th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -191,10 +209,13 @@
                         <th>标准工期</th>
                         <th>项目工期</th>
                         <th>风险KPI</th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>输出质量KPI</th>
                         <th>质量风险</th>
                         <th>广度</th>
@@ -211,6 +232,8 @@
                     <!-- <td >z职能</td> -->
                     <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                     <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.description}}</td>
                     <td>{{item.weight}}</td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDeviations}}</td>
@@ -220,10 +243,13 @@
                      <td :rowspan="getrowNums(itm)" :title="item['reportPeriod']">{{item['reportPeriod']}}</td>
                     <!-- <td>{{item.reportPeriod}}</td> -->
                     <td>{{item.riskKPI}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.description}}</td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDeviations}}</td>
                     <td>{{item.standardDifficulty}}</td>
                     <td>{{item.reportingDifficulty}}</td>
+                    <td>{{item.reportTime}}</td>
                     <td>{{item.OutputaualityKPI}}</td>
                     <td>{{item.OutputQualityRisk}}</td>
                     <td>{{item.span}}</td>
@@ -234,6 +260,8 @@
                           </tr>
                           <tr v-if="index && index != itm.length -1" class="otherRow">
                     <!-- <td >z职能</td> -->
+                    <td>{{item.code}}</td>
+                    <td>{{item.description}}</td>
                     <td>{{item.weight}}</td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDeviations}}</td>
@@ -242,10 +270,13 @@
                     <!-- <td :rowspan="getrowNum(itm)" :title="item['StandardPeriod']">{{item['StandardPeriod']}}</td> -->
                     <!-- <td>{{item.reportPeriod}}</td> -->
                     <td>{{item.riskKPI}}</td>
+                    <td>{{item.code}}</td>
+                    <td>{{item.description}}</td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDifficulty}}</td>
                     <td>{{item.standardDifficulty}}</td>
                     <td>{{item.reportingDifficulty}}</td>
+                    <td>{{item.reportTime}}</td>
                     <td>{{item.OutputaualityKPI}}</td>
                     <td>{{item.OutputQualityRisk}}</td>
                     <td>{{item.span}}</td>
@@ -257,13 +288,13 @@
                      </template>
                 <!-- <template v-if="index && index == itm.length -1"> -->
                      <tr class="trtotal">
-                    <td colspan="3">环境质量指标(预设值:0)</td>
+                    <td colspan="5">环境质量指标(预设值:0)</td>
                     <td class="tdBorderRight">{{getcolcontent('qualityIndex',itm)}}</td>
                     <td colspan="2">工期风险KPI(预设值:1)</td>
                     <td class="tdBorderRight">{{getcolcontent('riskKPI',itm)}}</td>
-                    <td colspan="4">总质量指标(预设值:1)</td>
+                    <td colspan="8">总质量指标(预设值:1)</td>
                     <td class="tdBorderRight">{{getcolcontent('totalQualityKpi',itm)}}</td>
-                    <td colspan="5">平均发布次数</td>
+                    <td colspan="4">平均发布次数</td>
                     <td class="tdBorderRight">{{getcolcontent('NumbereleasesAvg',itm)}}</td>
                      </tr>
                 <!-- <tr class="trtotal">
@@ -305,9 +336,9 @@
                    <tr>
                        <th>执行职能</th>
                        <th>任务名</th>
-                       <th colspan="4">数据准备</th>
+                       <th colspan="6">数据准备</th>
                        <th colspan="3">计划环境</th>
-                       <th colspan="6">输出质量</th>
+                       <th colspan="9">输出质量</th>
                        <th colspan="2">输出加权</th>
                        <th >项目风险</th>
                        <th>输出评定</th>
@@ -316,6 +347,8 @@
                    <tr>
                         <th></th>
                         <th></th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -323,10 +356,13 @@
                         <th>标准工期</th>
                         <th>项目工期</th>
                         <th>风险KPI</th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>输出质量KPI</th>
                         <th>质量风险</th>
                         <th>广度</th>
@@ -352,10 +388,13 @@
                         <td :rowspan="getrowNums(itm)" :title="item['reportPeriod']">{{item['reportPeriod']}}</td>
                         <!-- <td>{{item.reportPeriod}}</td> -->
                         <td>{{item.riskKPI}}</td>
+                        <td>{{item.code}}</td>
+                        <td>{{item.description}}</td>
                         <td>{{item.standardDeviation}}</td>
                         <td>{{item.reportingDeviations}}</td>
                         <td>{{item.standardDifficulty}}</td>
                         <td>{{item.reportingDifficulty}}</td>
+                        <td>{{item.reportTime}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
@@ -374,10 +413,13 @@
                         <!-- <td>{{item.StandardPeriod}}</td> -->
                         <!-- <td>{{item.reportPeriod}}</td> -->
                         <td>{{item.riskKPI}}</td>
+                        <td>{{item.code}}</td>
+                        <td>{{item.description}}</td>
                         <td>{{item.standardDeviation}}</td>
                         <td>{{item.reportingDeviations}}</td>
                         <td>{{item.standardDifficulty}}</td>
                         <td>{{item.reportingDifficulty}}</td>
+                        <td>{{item.reportTime}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
                         <td>{{item.OutputaualityKPI}}</td>
@@ -388,13 +430,13 @@
                     </tr>
                 </template>
                 <tr class="trtotal" :key="idx">
-                    <td colspan="3">环境质量指标(预设值基准:0)</td>
+                    <td colspan="5">环境质量指标(预设值基准:0)</td>
                     <td class="tdBorderRight">{{getcolcontent('qualityIndex',itm)}}</td>
                     <td colspan="2">工期风险KPI(预设值基准:1)</td>
                     <td class="tdBorderRight">{{getcolcontent('riskKPI',itm)}}</td>
-                    <td colspan="4">总质量指标(预设值基准:1)</td>
+                    <td colspan="8">总质量指标(预设值基准:1)</td>
                     <td class="tdBorderRight">{{getcolcontent('totalQualityKpi',itm)}}</td>
-                    <td colspan="5">平均发布次数</td>
+                    <td colspan="4">平均发布次数</td>
                     <td class="tdBorderRight">{{getcolcontent('NumbereleasesAvg',itm)}}</td>
                   </tr>
                    </template>
@@ -409,9 +451,9 @@
                    <tr>
                        <th>执行职能</th>
                        <th>任务名</th>
-                       <th colspan="4">数据准备</th>
+                       <th colspan="6">数据准备</th>
                        <th colspan="3">计划环境</th>
-                       <th colspan="6">输出质量</th>
+                       <th colspan="9">输出质量</th>
                        <th colspan="2">输出加权</th>
                        <th >项目风险</th>
                        <th>输出评定</th>
@@ -420,6 +462,8 @@
                    <tr>
                         <th></th>
                         <th></th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -427,10 +471,13 @@
                         <th>标准工期</th>
                         <th>项目工期</th>
                         <th>风险KPI</th>
+                        <th>指标编码</th>
+                        <th>指标名称</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>输出质量KPI</th>
                         <th>质量风险</th>
                         <th>广度</th>
@@ -447,6 +494,8 @@
                                <!-- <td >z职能</td> -->
                                <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                                <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
+                               <td>{{item.code}}</td>
+                               <td>{{item.description}}</td>
                                <td>{{item.weight}}</td>
                                <td>{{item.standardDeviation}}</td>
                                <td>{{item.reportingDeviations}}</td>
@@ -460,6 +509,7 @@
                                <td>{{item.reportingDeviations}}</td>
                                <td>{{item.standardDifficulty}}</td>
                                <td>{{item.reportingDifficulty}}</td>
+                               <td>{{item.reportTime}}</td>
                                <td>{{item.OutputaualityKPI}}</td>
                                <td>{{item.OutputQualityRisk}}</td>
                                <td>{{item.span}}</td>
@@ -470,6 +520,8 @@
                           </tr>
                           <tr v-if="index && index != itm.length -1" class="otherRow">
                                <!-- <td >z职能</td> -->
+                               <td>{{item.code}}</td>
+                               <td>{{item.description}}</td>
                                <td>{{item.weight}}</td>
                                <td>{{item.standardDeviation}}</td>
                                <td>{{item.reportingDeviations}}</td>
@@ -482,6 +534,7 @@
                                <td>{{item.reportingDifficulty}}</td>
                                <td>{{item.standardDifficulty}}</td>
                                <td>{{item.reportingDifficulty}}</td>
+                               <td>{{item.reportTime}}</td>
                                <td>{{item.OutputaualityKPI}}</td>
                                <td>{{item.OutputQualityRisk}}</td>
                                <td>{{item.span}}</td>
@@ -493,13 +546,13 @@
                      </template>
                 <!-- <template v-if="index && index == itm.length -1"> -->
                      <tr class="trtotal">
-                           <td colspan="3">环境质量指标(预设值:0)</td>
+                           <td colspan="5">环境质量指标(预设值:0)</td>
                            <td class="tdBorderRight">{{getcolcontent('qualityIndex',itm)}}</td>
                            <td colspan="2">工期风险KPI(预设值:1)</td>
                            <td class="tdBorderRight">{{getcolcontent('riskKPI',itm)}}</td>
-                           <td colspan="4">总质量指标(预设值:1)</td>
+                           <td colspan="8">总质量指标(预设值:1)</td>
                            <td class="tdBorderRight">{{getcolcontent('totalQualityKpi',itm)}}</td>
-                           <td colspan="5">平均发布次数</td>
+                           <td colspan="4">平均发布次数</td>
                            <td class="tdBorderRight">{{getcolcontent('NumbereleasesAvg',itm)}}</td>
                      </tr>
                 <!-- <tr class="trtotal">
@@ -1040,9 +1093,10 @@ export default {
         word-wrap:break-word;
       }
      
-     .firstRow td:nth-child(6),
-     .firstRow td:nth-child(9),
-     .otherRow td:nth-child(5),
+     .firstRow td:nth-child(8),
+     .firstRow td:nth-child(11),
+     .otherRow td:nth-child(6),
+     .otherRow td:nth-child(7),
      .firstRow td:nth-last-child(1),
      .firstRow td:nth-last-child(6),
      .firstRow td:nth-last-child(3),
@@ -1051,7 +1105,7 @@ export default {
      .otherRow td:nth-last-child(7),
      .otherRow td:nth-last-child(3),
      .otherRow td:nth-last-child(6),
-     .otherRow td:nth-child(4){
+     .otherRow td:nth-child(6){
          background: #F4F5F7;
          font-weight: 540;
      }
