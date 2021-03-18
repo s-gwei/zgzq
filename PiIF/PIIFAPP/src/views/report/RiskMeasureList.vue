@@ -6,18 +6,28 @@
                <a-button type="primary" style="margin-left: 8px"  @click="exportExcel" :disabled="isLoading">导出为Excel</a-button>
            </div>
            <!-- table部分start -->
-           <div class="table-container table" id="table" >
+           <div class="table-container table" id="table" :style="{height: adaptiveH+'px'}">
                 <!-- header -->
           <div class="table-child"  id="theadDiv" >
              <table id="tableId1" cellpadding="0" cellspacing="0">
                <thead>
+                 <tr style="fontWeight: 700">
+                       <th colspan="4">风险属性</th>
+                       <th colspan="4">预防措施属性</th>
+                       <th rowspan="2">更改次数</th>
+                   </tr>
                    <tr>
                         <th>风险名称</th>
-                        <th>措施名称</th>
-                        <th>创建时间</th>
-                        <th>是否删除</th>
-                        <th>是否存在</th>
-                        <th>更改次数</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                        <!-- <th>是否删除</th>
+                        <th>是否存在</th> -->
+                        <!-- <th>更改次数</th> -->
                    </tr>
                </thead>
                <tbody>
@@ -25,11 +35,16 @@
                   <template v-if="tableDate && tableDate.length && !isLoading" v-for="itm in tableDate">
                         <template v-for="(item,index) in itm" >
                            <tr  class="otherRow">
-                                <td :rowspan="getrowNum(itm)" v-if="!index">{{item.risk_name}}</td>
+                                <td :rowspan="getrowNum(itm)" v-if="!index">{{item.riskName}}</td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
                                 <td>{{item.name}}</td>
-                                <td>{{item.create_time}}</td>
-                                <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
-                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                                <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
+                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>
                            </tr>
                         </template>
@@ -42,24 +57,39 @@
           <div class="table-next-child" id="tbodyDiv">
              <table id="tableId2" cellpadding="0" cellspacing="0" style="height: 100%">
                <thead>
+                  <tr>
+                       <th colspan="4">风险属性</th>
+                       <th colspan="4">预防措施属性</th>
+                       <th rowspan="2">更改次数</th>
+                   </tr>
                    <tr>
                         <th>风险名称</th>
-                        <th>措施名称</th>
-                        <th>创建时间</th>
-                        <th>是否删除</th>
-                        <th>是否存在</th>
-                        <th>更改次数</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                        <!-- <th>是否删除</th>
+                        <th>是否存在</th> -->
+                        <!-- <th>更改次数</th> -->
                    </tr>
                </thead>
                <tbody>
                    <template v-if="tableDate && tableDate.length && !isLoading" v-for="itm in tableDate">
                         <template v-for="(item,index) in itm" >
                            <tr  class="otherRow">
-                                <td :rowspan="getrowNum(itm)" v-if="!index">{{item.risk_name}}</td>
+                                <td :rowspan="getrowNum(itm)" v-if="!index">{{item.riskName}}</td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
                                 <td>{{item.name}}</td>
-                                <td>{{item.create_time}}</td>
-                                <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
-                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                                <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
+                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>
                            </tr>
                         </template>
@@ -81,6 +111,18 @@
           </div>
           <!-- body ending-->
            </div>
+           <!-- 分页 -->
+           <a-pagination
+             style="float: right;marginTop: 10px"
+             v-model="ispagination.pageNo"
+             show-size-changer
+             :page-size.sync="ispagination.pageSize"
+             :pageSizeOptions="ispagination.pageSizeOptions"
+             :total="ispagination.total"
+             :showTotal="total => `总共有  ${total}  个任务`"
+             @showSizeChange="onShowSizeChange"
+             @change="onChange"
+           />
        </div>
   </a-card>
 </template>
@@ -95,9 +137,16 @@ export default {
   data() {
       return{
           tableDate: [],
+          tableDateAll: [],
           queryParam: {},
           queryParamName: "",
-        //   adaptiveH: 400,
+          adaptiveH: 400,
+          ispagination: {
+            pageSize: 5,
+            pageNo: 1,
+            total: 0,
+            pageSizeOptions: ['5']
+          },
         //   adaptiveload: 400,
           loadingwidth: '100%',
         //   adaptiveContainH: 500,
@@ -117,11 +166,13 @@ export default {
   mounted(){
      this.screenWidth = document.body.clientWidth;
      this.screenHeight = document.body.clientHeight;
+     this.adaptiveH = this.screenHeight - 100
       this.getData()
       window.onresize = () => {
          return (() => {
            this.screenWidth = document.body.clientWidth;
            this.screenHeight = document.body.clientHeight;
+           this.adaptiveH = this.screenHeight - 100
          })();
        };
   },
@@ -133,7 +184,10 @@ export default {
       },
       getData(pageNo, pageSize){
           const  url = this.url.tableDate,_this=this;
-          this.isLoading = true
+          // _this.ispagination.total = fxyfcs.length
+          // _this.$set(_this,'tableDateAll',fxyfcs)
+          // _this.$set(_this,'tableDate',_this.tableDateAll.slice(0,_this.ispagination.pageSize))
+          // return
           this.isLoading = true
           var obj = {
               time: this.$route.query.startTime ? this.$route.query.startTime +","+this.$route.query.endTime : null,
@@ -144,7 +198,9 @@ export default {
           getAction(url,this.queryParam,'get').then((res) => {
             _this.isLoading = false
            if(res.success && res.result){
-              _this.$set(_this,'tableDate',res.result)
+             _this.ispagination.total = res.result.length
+              _this.$set(_this,'tableDateAll',res.result)
+              _this.$set(_this,'tableDate',res.result.slice(0,_this.ispagination.pageSize))
             //   _this.$set(_this,'tableDate',fxyfcs)
            }else{
               _this.$nextTick(function(){
@@ -158,15 +214,19 @@ export default {
               })
          })
       },
-    //    //  分页
-    //   onShowSizeChange (page, size) {
-    //     this.$set(this,'tableDate',[])
-    //     this.getData(page, size)
-    //   },
-    //   onChange (page, size) {
-    //     this.$set(this,'tableDate',[])
-    //     this.getData(page, size)
-    //   },
+      onShowSizeChange (page, size) {
+      },
+      onChange (page, size) {
+        document.querySelector('.table-next-child').scrollTop = 0
+        this.isLoading = true
+        const _this = this
+        const start = (page - 1) * size
+        setTimeout(function(){
+          _this.isLoading = false
+           _this.$set(_this,'tableDate',_this.tableDateAll.slice(start, start+size))
+        },100)
+        // this.getData(page, size)
+      },
       // 重置
       resetSearchForm(){
         //   this.ontimeChange([],[])
@@ -397,6 +457,9 @@ export default {
      table tbody tr:hover{
          background: rgba(160,214,245,.3);
      }
+     table thead tr:nth-child(1) th{
+       font-weight: 700;
+     }
      .table{
           min-width: 100%;
         //  max-height: 800px;
@@ -419,7 +482,7 @@ export default {
                      position: absolute;
                      top: 0;
                      left: 0;
-                     height: 35px;
+                     height: 66px;
                      overflow: hidden;
                      width: calc(100% - 8px);
                     //  z-index: 2;
