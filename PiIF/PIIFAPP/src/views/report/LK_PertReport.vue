@@ -42,10 +42,10 @@
         chartDateALL: [],
         url: {
           // 服务器
-          //chartDate: "/HeavyDutyTable/pertTable"
+          chartDate: "/HeavyDutyTable/pertTable"
           
           //朱丽
-          chartDate: "/ZLTable/pertTable"
+          //chartDate: "/ZLTable/pertTable"
         },
       }
     },

@@ -44,8 +44,8 @@
         url: {
           // chartDate:"/HeavyDuty/pert"
           // 新接口
-          //chartDate: "/HeavyDutyTable/pertTable"
-          chartDate: "/ZLTable/pertTable"
+          chartDate: "/HeavyDutyTable/pertTable"
+          //chartDate: "/ZLTable/pertTable"
         },
       }
     },

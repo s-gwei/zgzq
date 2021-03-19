@@ -12,7 +12,7 @@
             <a-table
                 :columns="columns"
                 :data-source="data"
-                :scroll="{ y: 380 }"
+                :scroll="{ y: height }"
                 :pagination="pagination"
                 :bordered="true"
                 size="small"
@@ -100,8 +100,21 @@ export default {
                 showSizeChange: (current, pageSize) => this.pageSize = pageSize, // 改变每页数量时更新显示
                 showQuickJumper: true
             },
-            activeId:186,
+            height: 500,
+            screenHeight:null,
         };
+    },
+    mounted() {
+        this.screenHeight = document.body.clientHeight;//获取当前屏幕的高度
+        this.height = this.screenHeight - document.querySelector(".title").offsetHeight - 140;
+
+        //屏幕高度调整
+        window.onresize = () => {
+            return (() => {
+                //console.log(12);
+                this.height = document.body.clientHeight - document.querySelector(".title").offsetHeight - 140;
+            })()
+        }
     },
     methods: {
         onShowSizeChange(){
@@ -121,13 +134,6 @@ export default {
     margin-bottom: 15px;
     font-family: '微软雅黑';
     font-size: 16px;
-}
-
-.exportExcel {
-    //float: right;
-    //position: absolute;
-    //margin-right: 0px;
-    //display: flex;
 }
 
 .paginationStyle {

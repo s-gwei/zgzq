@@ -53,6 +53,11 @@ const router = {
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/ProjectRisk')
       },
       {
+        path: 'LK_projectRisk',
+        name: 'LK_projectRisk',
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/LK_ProjectRisk')
+      },
+      {
         path: 'departmentRisk',
         name: 'departmentRisk',
         //  component: () => import(/* webpackChunkName: "report" */ '@/views/report/DepartmentRisk')

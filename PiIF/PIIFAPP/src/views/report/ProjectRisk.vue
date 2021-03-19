@@ -19,7 +19,7 @@
 
 <script>
   import {getAction} from '@/api/manage';
-  import DataSet from '@antv/data-set';
+  //import DataSet from '@antv/data-set';
   import { Chart } from '@antv/g2';
   import html2canvas from 'html2canvas'
   const projectJson = require('@assets/json/projectJson.json')
@@ -144,9 +144,8 @@
              label: {
                formatter(value) {
                  return (value * 100) + '%';
-               } // 格式化坐标轴的显示
-             },
-             label: {
+               }, // 格式化坐标轴的显示
+            
                offset: 12, // 设置坐标轴文本 label 距离坐标轴线的距离
                textStyle: {
                  textAlign: 'center', // 文本对齐方向，可取值为： start middle end
@@ -272,7 +271,7 @@
        },
       //  模拟数据与后端数据返回横坐标相同时,截取模拟字段对应的数据
        getSimulationData: function(data){
-        var index = []
+        //var index = []
          for(var i = 0; i <data.length;i++){
               for(var j = 0; j <this.simulationSata.length;j++){
                 if(data[i].Xaxis == this.simulationSata[j].Xaxis){
@@ -285,7 +284,7 @@
          return  this.simulationSata.concat(data)
        },
       drawChart(){
-         const  url = this.url.chartDate,projectIds = this.$route.query.ids || this.$route.query.id,_this = this,data = JSON.parse(JSON.stringify(projectJson))
+         const  url = this.url.chartDate,projectIds = this.$route.query.ids || this.$route.query.id,_this = this//,data = JSON.parse(JSON.stringify(projectJson))
          //  模拟
          // this.renderChart(data)
          // return
@@ -313,7 +312,7 @@
               })
            }
            })
-           .catch(function(err){
+           .catch(function(){
               _this.loading = false
               _this.visible = true
               _this.descriptionError = ""
@@ -389,8 +388,12 @@
   /* .ant-layout-content{
     background:#fff!important;
   } */
-  .ant-layout-content>div{
-  }
+
+//暂时没用到，自己注释
+  // .ant-layout-content>div{
+  // }
+
+
   .noData{
     width:100%;
     text-align: center;
