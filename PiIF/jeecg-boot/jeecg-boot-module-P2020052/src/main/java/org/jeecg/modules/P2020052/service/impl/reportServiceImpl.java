@@ -71,7 +71,7 @@ public class reportServiceImpl implements ReportService {
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
         List result = new ArrayList();
-        for (int i = 1; i <= week; i++) {
+        for (long i = 1; i <= week; i++) {
             Map<String, Object> staffMap = new HashMap<String, Object>();
             Map<String, Object> markMap = new HashMap<String, Object>();
             //每周项目风险系数之和

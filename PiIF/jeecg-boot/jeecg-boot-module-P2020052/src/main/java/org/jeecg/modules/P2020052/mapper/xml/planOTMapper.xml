@@ -252,6 +252,9 @@
                 piproject pp
             WHERE
                 sr.project_ref_id = pp.id
+        <if test="startTime!= null and startTime !=''" >
+            and  sr.create_stamp between  #{startTime}  and #{endTime}
+        </if>
                 ) b
                 LEFT JOIN (
             SELECT
