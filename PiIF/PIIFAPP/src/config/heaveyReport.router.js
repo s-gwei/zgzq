@@ -64,6 +64,11 @@ const router = {
          component: () => import(/* webpackChunkName: "report" */  '@/views/report/PertReport')
       },
       {
+        path: 'pertReportZL',
+        name: 'pertReportZL',
+         component: () => import(/* webpackChunkName: "report" */  '@/views/report/PertReportZL')
+      },
+      {
         path: 'taskDelayReport',
         name: 'taskDelayReport',
          component: () => import(/* webpackChunkName: "report" */  '@/views/report/TaskDelayReport')
