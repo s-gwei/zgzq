@@ -88,6 +88,7 @@ public class Result<T> implements Serializable {
 		r.setSuccess(true);
 		r.setCode(CommonConstant.SC_OK_200);
 		r.setResult(data);
+		System.out.println("test=3");
 		return r;
 	}
 	

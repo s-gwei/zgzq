@@ -139,9 +139,9 @@ public class PlanOTServiceImpl implements PlanOTService {
     public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId) throws ParseException {
         String startTime = null;
         String endTime = null;
-        time = new String[2];
-        time[0] = "2021-01-10";
-        time[1] = "2021-02-16";
+//        time = new String[2];
+//        time[0] = "2021-01-10";
+//        time[1] = "2021-02-16";
         if (time != null && !"".equals(time)) {
             startTime = time[0];
             endTime = time[1];
@@ -155,7 +155,7 @@ public class PlanOTServiceImpl implements PlanOTService {
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
         List result = new ArrayList();
-        for (int i = 1; i <= week; i++) {
+        for (long i = 1; i <= week; i++) {
             for (PiplanActivityVo act : list) {
                 // 每周开始时间
                 long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
@@ -186,15 +186,16 @@ public class PlanOTServiceImpl implements PlanOTService {
                         taskTypa = "isoverdue";
                     }
                     //任务状态3，已完成
-                    if(actualEndLong != 0){
+                    if(actualEndLong != 0 && actualEndLong<=btTImeLong){
                         taskTypa = "finished";
                     }
-                    //任务状态4，已逾期
+                    //任务状态4，逾期未完成
                     if(actualEndLong == 0 && btTImeLong<currentStr){
                         taskTypa = "overdue";
                     }
-                    if(actualEndLong != 0 && btTImeLong<=expectedFinishLong){
-                        taskTypa = "overdue";
+                    //任务状态5，逾期已完成
+                    if(actualEndLong != 0 && actualEndLong>btTImeLong){
+                        taskTypa = "red";
                     }
                     act.setTaskType(taskTypa);
                     //横坐标
@@ -209,11 +210,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     }else if(actualEndLong == 0 && targetStartTimeStrLong<currentStr){
                         deviation = df.format((btTImeLong - currentStr) / (1000 * 60 * 60 * 24));
                     }
-//                    else if(actualEndLong == 0 && targetStartTimeStrLong>currentStr){
-//                        deviation = "0";
-//                    }else{
-//                        deviation = "0";
-//                    }
                     act.setDeviation(Double.parseDouble(deviation));
                 }
             }
