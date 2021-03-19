@@ -41,13 +41,16 @@
 
     <resultMap id="RiskResultMap" type="org.jeecg.modules.P2020052.pojo.RiskVo">
         <!--        colum对应数据库的字段,property对应实体类的属性-->
-        <result column="risk_name" property="risk_name"/>
-        <result column="name" property="name"/>
+
+        <result column="risk_name" property="riskName"/>
         <result column="id" property="id"/>
-        <result column="create_stamp" property="create_time"/>
-        <result column="is_deleted" property="is_deleted"/>
-        <result column="is_persisted" property="is_persisted"/>
-        <result column="update_count" property="update_count"/>
+        <result column="create_Stamp" property="createStamp"/>
+        <result column="risk_description" property="riskDescription"/>
+        <result column="userName" property="userName"/>
+        <result column="name" property="name"/>
+        <result column="precaution" property="precaution"/>
+        <result column="group_name" property="groupName"/>
+        <result column="user_name" property="user_name"/>
     </resultMap>
 
 
@@ -72,6 +75,8 @@
         <result column="risk_to_type" property="risk_to_type"/>
         <result column="risk_code" property="risk_code"/>
         <result column="risk_description" property="risk_description"/>
+        <result column="pid" property="pid"/>
+        <result column="childrenId" property="childrenId"/>
     </resultMap>
 
     <!--           <if test="startTime!= null and startTime !=''" >-->
@@ -247,18 +252,42 @@
 
 
     <select id="selectRiskProject" resultMap="RiskResultMap">
-     	select *
-     	from stproject_risk srl
-     	left join stproject_measures sm
-		on srl.id = project_risk_ref_id
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        str.risk_name,
+        str.create_stamp,
+        str.risk_description,
+        str.id,
+        b.NAME AS userName
+        FROM
+        stproject_risk str
+        LEFT JOIN ( SELECT id, NAME FROM piuser WHERE id IN ( SELECT identified_by_ref_id FROM stproject_risk ) ) b ON str.creator_ref_id = b.id
         <where>
             <if test="projectId!= null and projectId !=''" >
-                 srl.project_ref_id = #{projectId}
+                str.project_ref_id = #{projectId}
             </if>
             <if test="startTime!= null and startTime !=''" >
-                and  srl.create_stamp between  #{startTime}  and #{endTime}
+                and  str.create_stamp between  #{startTime}  and #{endTime}
             </if>
         </where>
+        ) d
+        LEFT JOIN (
+        SELECT
+        piuser.NAME AS user_name,
+        c.group_name,
+        stproject_measures.NAME,
+        stproject_measures.precaution,
+        stproject_measures.project_risk_ref_id
+        FROM
+        stproject_measures
+        LEFT JOIN ( SELECT NAME AS group_name, id FROM pigroup WHERE id IN ( SELECT involve_group_reference_id FROM stproject_measures ) ) c ON stproject_measures.involve_group_reference_id = c.id
+        LEFT JOIN piuser ON stproject_measures.creator_ref_id = piuser.id
+        ) e ON d.id = e.project_risk_ref_id
+
+
 
 
     </select>
@@ -364,18 +393,28 @@
     </select>
 
     <select id="problemRickChain" resultMap="CaseResultMap">
-            SELECT
-                id,
-                risk_name,
-                risk_code,
-                risk_to_type,
-                confirm_status,
-                risk_description
-            from stproject_risk spr
+        SELECT
+        spr.id,
+        spr.risk_name,
+        spr.risk_code,
+        spr.risk_to_type,
+        spr.confirm_status,
+        spr.risk_description,
+        srprl.roleaobject_id as pid,
+        srprl.rolebobject_id as childrenId
+        from stproject_risk spr left join stproject_risk_pre_risk_link srprl on
+        spr.id=srprl.roleaobject_id
+
+    </select>
+
+
+    <select id="selectPid" resultMap="CaseResultMap">
+        SELECT
+        id
+        FROM
+        stproject_risk a
         <where>
-            <if test="riskId!= null and riskId !=''and riskId !='null'" >
-                spr.id = #{riskId}
-            </if>
+        a.id NOT IN ( SELECT spr.id FROM stproject_risk spr, stproject_risk_pre_risk_link srprl WHERE spr.id = srprl.rolebobject_id )
 
         </where>
     </select>

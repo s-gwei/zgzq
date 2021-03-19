@@ -35,6 +35,12 @@ public class TaskVo implements Serializable {
 
     private String releases;//发布次数
 
+    private String code;//指标编码
+
+    private String report_time;//汇报时间
+
+    private String description;//描述
+
 
 
 }

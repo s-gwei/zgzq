@@ -102,21 +102,23 @@ spring:
       datasource:
         master:
 #          url: jdbc:mysql://192.168.111.137:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
-          url: jdbc:mysql://localhost:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          url: jdbc:mysql://10.2.81.218:3306/pilf?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           #正式机数据库
           #url: jdbc:mysql://pioa.pisx.com:7004/piif?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           username: root
-          password: sungw
-#          password: 123456
+#          password: sungw
+          password: 123456
           driver-class-name: com.mysql.jdbc.Driver
 
           # 多数据源配置
         multi-datasource1:
 #          url: jdbc:mysql://192.168.111.137:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
-          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+#          url: jdbc:mysql://localhost:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+          url: jdbc:mysql://10.2.81.218:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
-          password: sungw
-#          password: 123456
+#          password: sungw
+          password: 123456
           driver-class-name: com.mysql.jdbc.Driver
   #redis 配置
   redis:

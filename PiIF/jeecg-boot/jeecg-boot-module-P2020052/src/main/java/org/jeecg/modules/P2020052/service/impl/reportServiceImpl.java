@@ -69,7 +69,8 @@ public class reportServiceImpl implements ReportService {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
          long start = formatter.parse(startTime).getTime() / (1000 * 60 * 60 * 24);
         long end = formatter.parse(endTime).getTime() / (1000 * 60 * 60 * 24);
-        long week = (end - start) / 7 > 0 ? (end - start) / 7 + 1 : (end - start) / 7;
+        double weeks= (end - start) / (7.0);
+        long week = (long) Math.ceil(weeks);
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
         List result = new ArrayList();
@@ -162,7 +163,6 @@ public class reportServiceImpl implements ReportService {
             DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
             String project = "";
             Map<Object, Object> map = new HashMap();
-            ;
             double OutputQualityRiskSum = 0;
             if(list.size() == 0){
                 continue;
@@ -180,7 +180,8 @@ public class reportServiceImpl implements ReportService {
                     long end2 =piplanActivityVo.getByTime() == ""? 0:formatter.parse(piplanActivityVo.getByTime()).getTime();
                     double end = end2-end1;
                     // x轴
-                    map.put("Xaxis",startDate/(end == 0 ? 1 :end));
+                    double x =startDate/(end == 0 ? 1 :end);
+                    map.put("Xaxis", Double.parseDouble(df.format(x)));
                     // y轴
                     String Yaxis = projectRiskVo.getPreRatio() == "" ? "0.5" : projectRiskVo.getPreRatio();
                     map.put("Yaxis", 0.5);
@@ -343,6 +344,10 @@ public class reportServiceImpl implements ReportService {
                 String ProjectRiskIndicators = df.format((Double.parseDouble(OutputQualityRisk) - 1) * span * Criticality);
                 resultMap.put("ProjectRiskIndicators", ProjectRiskIndicators);
                 resultMap.put("Criticality", Criticality);
+                resultMap.put("code", task.getCode());
+                resultMap.put("reportTime", task.getReport_time());
+                resultMap.put("description", task.getDescription());
+
                 resultList.add(resultMap);
                 k++;
             }
@@ -355,7 +360,7 @@ public class reportServiceImpl implements ReportService {
             totalMap.put("totalQualityKpi", totalQualityKpi);
             // 平均发布次数
             NumbereleasesAvg = NumbereleasesAvg / k;
-            totalMap.put("NumbereleasesAvg", NumbereleasesAvg);
+            totalMap.put("NumbereleasesAvg", df.format(NumbereleasesAvg));
             //环境质量指标
             String qualityIndex = df.format((qualityInfluenceSum - weightSum) / k);
             totalMap.put("qualityIndex", qualityIndex);
