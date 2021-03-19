@@ -11,7 +11,7 @@ public class ProjectRiskVo implements Serializable {
 
     private String name;//项目名称
 
-    private String preRatio;//项目名称
+    private String preRatio;//项目预实比
 
     private String startTime;//项目启动时间和当前日期差
 

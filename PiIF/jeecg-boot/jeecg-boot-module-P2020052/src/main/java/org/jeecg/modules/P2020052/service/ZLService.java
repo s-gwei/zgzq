@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ZLService {
     List<PiplanActivityVo> pertTable(String activeId) throws ParseException;
+    List ProjectRiskTable(String projectIds) throws ParseException;
 }

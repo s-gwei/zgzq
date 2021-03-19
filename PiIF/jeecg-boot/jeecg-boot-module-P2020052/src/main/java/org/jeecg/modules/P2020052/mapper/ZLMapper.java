@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface ZLMapper {
     List<PiplanActivityVo> pertTable(@Param("activeId") String activeId);
+    List<ProjectRiskVo> ProjectRiskTable(@Param("projectId")String projectId);
+    PiplanActivityVo projectWeekCycle(@Param("projectId")String id);
 }

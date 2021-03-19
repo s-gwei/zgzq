@@ -28,5 +28,10 @@ public class ZLController {
     public Result pert(String activeId) throws ParseException{
         return Result.ok(ZLService.pertTable(activeId));
     }
+    @GetMapping(value = "ProjectRiskTable")
+    @ApiOperation(value = "项目风险系数表")
+    public Result ProjectRiskTable(String projectIds) throws ParseException {
+        return Result.ok(ZLService.ProjectRiskTable(projectIds));
+    }
 
 }
