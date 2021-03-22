@@ -661,8 +661,8 @@ export default {
           url: {
               // tableDate:"/HeavyDuty/TaskExecutionTable",
               // new
-              tableDate: "/HeavyDutyTable/TaskExecution",
-              export: "/HeavyDuty/exportExcel",
+              tableDate: "/HeavyDutyTable/TaskExecution",  
+              export: "/HeavyDutyTable/exportExcel",
               userDate: "/HeavyDutyTable/GroupUser"
            },
            isLoading: false,

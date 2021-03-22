@@ -202,7 +202,7 @@ export default {
             paramsUrl += key + "=" + this.queryParam[key] + "&"
         }
         paramsUrl =  paramsUrl.substr(0,paramsUrl.length - 1)
-        window.open('http://192.168.2.176:9999/jeecg-boot'+ this.url.export, "_blank");
+        // window.open('http://192.168.2.176:9999/jeecg-boot'+ this.url.export, "_blank");
         window.open( window._CONFIG['domianURL']+ url+ paramsUrl, "_blank");
       },
     }
