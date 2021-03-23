@@ -113,11 +113,11 @@
                                 <!-- <td >z职能</td> -->
                                 <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                                 <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
-                                <td>{{item.code}}</td>
-                               <td>{{item.description}}</td>
+                                <td>{{item.in_code}}</td>
+                                <td>{{item.in_description}}</td>
                                 <td>{{item.weight}}</td>
-                                <td>{{item.standardDeviation}}</td>
-                                <td>{{item.reportingDeviations}}</td>
+                                <td>{{item.in_standardDeviationValue}}</td>
+                                <td>{{item.in_deviationReport}}</td>
                                 <td>{{item.qualityInfluenceFactor}}</td>
                                 <!-- <td>{{item.StandardPeriod}}</td> -->
                                 <td :rowspan="getrowNums(itm)" :title="item['StandardPeriod']">{{item['StandardPeriod']}}</td>
@@ -232,11 +232,13 @@
                     <!-- <td >z职能</td> -->
                     <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                     <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
-                    <td>{{item.code}}</td>
-                    <td>{{item.description}}</td>
+                    <!-- <td>{{item.code}}</td>
+                    <td>{{item.description}}</td> -->
+                    <td>{{item.in_code}}</td>
+                    <td>{{item.in_description}}</td>
                     <td>{{item.weight}}</td>
-                    <td>{{item.standardDeviation}}</td>
-                    <td>{{item.reportingDeviations}}</td>
+                    <td>{{item.in_standardDeviationValue}}</td>
+                    <td>{{item.in_deviationReport}}</td>
                     <td>{{item.qualityInfluenceFactor}}</td>
                     <!-- <td>{{item.StandardPeriod}}</td> -->
                      <td :rowspan="getrowNums(itm)" :title="item['StandardPeriod']">{{item['StandardPeriod']}}</td>
@@ -260,11 +262,11 @@
                           </tr>
                           <tr v-if="index && index != itm.length -1" class="otherRow">
                     <!-- <td >z职能</td> -->
-                    <td>{{item.code}}</td>
-                    <td>{{item.description}}</td>
+                   <td>{{item.in_code}}</td>
+                    <td>{{item.in_description}}</td>
                     <td>{{item.weight}}</td>
-                    <td>{{item.standardDeviation}}</td>
-                    <td>{{item.reportingDeviations}}</td>
+                    <td>{{item.in_standardDeviationValue}}</td>
+                    <td>{{item.in_deviationReport}}</td>
                     <td>{{item.qualityInfluenceFactor}}</td>
                     <!-- <td>{{item.StandardPeriod}}</td> -->
                     <!-- <td :rowspan="getrowNum(itm)" :title="item['StandardPeriod']">{{item['StandardPeriod']}}</td> -->
@@ -494,8 +496,10 @@
                                <!-- <td >z职能</td> -->
                                <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                                <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
-                               <td>{{item.code}}</td>
-                               <td>{{item.description}}</td>
+                               <!-- <td>{{item.code}}</td>
+                               <td>{{item.description}}</td> -->
+                               <td>{{item.in_code}}</td>
+                               <td>{{item.in_description}}</td>
                                <td>{{item.weight}}</td>
                                <td>{{item.standardDeviation}}</td>
                                <td>{{item.reportingDeviations}}</td>
@@ -520,8 +524,10 @@
                           </tr>
                           <tr v-if="index && index != itm.length -1" class="otherRow">
                                <!-- <td >z职能</td> -->
-                               <td>{{item.code}}</td>
-                               <td>{{item.description}}</td>
+                               <!-- <td>{{item.code}}</td>
+                               <td>{{item.description}}</td> -->
+                               <td>{{item.in_code}}</td>
+                                <td>{{item.in_description}}</td>
                                <td>{{item.weight}}</td>
                                <td>{{item.standardDeviation}}</td>
                                <td>{{item.reportingDeviations}}</td>
@@ -856,6 +862,7 @@ export default {
         }
           // console.log(this.selected,this.ids,this.resourceSector ,this.nameSelected,this.queryParam.name,this.ids );
           const  url = this.url.tableDate,_this=this;
+          // _this.$set(_this,'tableDate',singleProject)
           this.isLoading = true
           var obj = {
             "userIds" : this.nameSelected ? this.queryParamName : (this.resourceSector ? this.ids.toString() : [])
