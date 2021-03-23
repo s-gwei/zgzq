@@ -129,9 +129,10 @@
         piplan_activity  pa
         WHERE
         pa.id = ot.plan_activity_ref_id
-        <if test="startTime!= null and startTime !=''" >
-            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+        <if test="planId!= null and planId !='' and planId !='null'" >
+            and   pa.root_ref_id =#{planId}
         </if>
+
         and ot.plan_activity_ref_id IN (
         SELECT DISTINCT
         ( pa.plannable_ref_id )

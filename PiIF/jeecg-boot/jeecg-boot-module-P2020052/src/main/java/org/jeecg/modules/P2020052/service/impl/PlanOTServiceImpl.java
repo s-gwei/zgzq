@@ -107,7 +107,7 @@ public class PlanOTServiceImpl implements PlanOTService {
 //            }
             return resultList;
         } else {
-            List<RiskVo> list = planOTMapper.selectRiskByPlan(time, group, planId);
+            List<RiskVo> list =   planOTMapper.selectRiskByPlan(startTime,endTime, group, planId);
             List resultList = new ArrayList();
             Map map = new HashMap<>();
             List nameList = null;
@@ -241,8 +241,8 @@ public class PlanOTServiceImpl implements PlanOTService {
         String startTime = null;
         String endTime = null;
         if (time != null) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
         List<PlanOTVo> list = planOTMapper.exportOTExcel(startTime, endTime, group, planId);
         //创建HSSFWorkbook对象
@@ -318,8 +318,8 @@ public class PlanOTServiceImpl implements PlanOTService {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
 
         List<PlanINVo> list = planOTMapper.exportINExcel(startTime, endTime, group, planId);
@@ -380,18 +380,18 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String projectId, String planId) throws IOException {
+    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String  planId , String projectId ) throws IOException {
         List<RiskVo> list = null;
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
         if (planId == null || "".equals(planId)) {
             list = planOTMapper.selectRiskProject(startTime, endTime, group, projectId);
         } else {
-            list = planOTMapper.selectRiskByPlan(time, group, planId);
+            list = planOTMapper.selectRiskByPlan(startTime,endTime, group, planId);
 
         }
         //创建HSSFWorkbook对象
@@ -411,38 +411,47 @@ public class PlanOTServiceImpl implements PlanOTService {
         cell = row.createCell(1);
         cell.setCellValue("风险名称");
         cell = row.createCell(2);
-        cell.setCellValue("创建时间");
+        cell.setCellValue("风险描述");
         cell = row.createCell(3);
-        cell.setCellValue("措施名称");
+        cell.setCellValue("提出人");
         cell = row.createCell(4);
-        cell.setCellValue("是否删除");
+        cell.setCellValue("提出时间");
         cell = row.createCell(5);
-        cell.setCellValue("是否存在");
+        cell.setCellValue("预防措施名称");
         cell = row.createCell(6);
-        cell.setCellValue("更改次数");
+        cell.setCellValue("涉及部门");
+        cell = row.createCell(7);
+        cell.setCellValue("预防措施描述");
+        cell = row.createCell(8);
+        cell.setCellValue("责任人");
         int i = 1;
         for (RiskVo riskVo : list) {
             row = sheet.createRow(i);
             cell = row.createCell(0);
             cell.setCellValue(i);
             cell = row.createCell(1);
-//            cell.setCellValue(riskVo.getRisk_name());
+            cell.setCellValue(riskVo.getRiskName());
             cell = row.createCell(2);
-//            Date date = riskVo.getCreate_time();
-            String timeFormat = null;
-//            if (riskVo.getCreate_time() != null) {
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-////                timeFormat = sdf.format(riskVo.getCreate_time());
-//            }
-            cell.setCellValue(timeFormat);
+            cell.setCellValue(riskVo.getRiskDescription());
             cell = row.createCell(3);
-            cell.setCellValue(riskVo.getName());
+            cell.setCellValue(riskVo.getUserName());
             cell = row.createCell(4);
-//            cell.setCellValue(riskVo.getIs_deleted());
-//            cell = row.createCell(5);
-//            cell.setCellValue(riskVo.getIs_persisted());
-//            cell = row.createCell(6);
-//            cell.setCellValue(riskVo.getUpdate_count());
+            Date date = riskVo.getCreateStamp();
+            String timeFormat = null;
+            if (date != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                timeFormat = sdf.format(riskVo.getCreateStamp());
+            }
+            cell.setCellValue(timeFormat);
+
+            cell = row.createCell(5);
+            cell.setCellValue(riskVo.getName());
+            cell = row.createCell(6);
+            cell.setCellValue(riskVo.getGroupName());
+            cell = row.createCell(7);
+            cell.setCellValue(riskVo.getPrecaution());
+            cell = row.createCell(8);
+            cell.setCellValue(riskVo.getUser_name());
             i++;
         }
         //导出数据

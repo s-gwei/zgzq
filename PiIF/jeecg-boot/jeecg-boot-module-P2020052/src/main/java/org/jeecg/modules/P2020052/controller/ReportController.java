@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,12 +54,17 @@ public class ReportController {
     public Result taskExecution(String projectId,String userIds) throws ParseException {
         log.info("请求完毕");
         return Result.ok(reportService.taskExecution(projectId,userIds));
-
     }
 
     @GetMapping(value = "GroupUser")
     @ApiOperation(value = "部门用户关系")
     public Result groupUser(String projectId) throws ParseException {
         return Result.ok(reportService.groupUser(projectId));
+    }
+    @GetMapping(value = "exportExcel")
+    @ApiOperation(value = "任务执行报表导出")
+    public void exportTable(HttpServletResponse response, String projectId ,String userIds ,String fileName) throws IOException {
+
+        reportService.exportTaskTable(response, fileName,projectId,userIds);
     }
 }
