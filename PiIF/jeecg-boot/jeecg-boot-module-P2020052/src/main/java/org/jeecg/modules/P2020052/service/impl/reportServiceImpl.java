@@ -252,19 +252,19 @@ public class reportServiceImpl implements ReportService {
         if (!"".equals(userIds) && userIds != null) {
             userId = userIds.split(",");
         }
-        List<TaskVo> list = reportMapper.taskExecution(projectId, userId);
-
+        //查询所有的任务id
+        List<TaskId> idList = reportMapper.selectAllActId(projectId, userId);
         String planId = "";
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
         List result = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            TaskVo taskVo = list.get(i);
-            if (taskVo.getPlanId().equals(planId)) {
+        for (TaskId id : idList) {
+            //查询任务下in,ot的值
+            List<TaskVo> list = reportMapper.selectINOTById(id.getId());
+            if (list == null || list.size() == 0) {
                 continue;
             }
             //每个任务都作为数组存储
             List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
-            planId = taskVo.getPlanId();
             //kpi风险系数之和
             double OutputaualityKPISum = 0;
             //权重之和
@@ -278,11 +278,9 @@ public class reportServiceImpl implements ReportService {
             double reportPeriod = 0;
             //平均发布次数
             double NumbereleasesAvg = 0;
-            for (int j = i; j < list.size(); j++) {
+            Map<String, Object> totalMap = new HashMap<String, Object>();
+            for (int j = 0; j < list.size(); j++) {
                 TaskVo task = list.get(j);
-                if (!task.getPlanId().equals(planId)) {
-                    break;
-                }
                 Map<String, Object> resultMap = new HashMap<String, Object>();
                 resultMap.put("taskname", task.getPlanName());
                 resultMap.put("executive", task.getExecutive());
@@ -293,32 +291,41 @@ public class reportServiceImpl implements ReportService {
                 //项目工期
                 reportPeriod = Double.parseDouble(task.getReportWork() == null ? "0" : task.getReportWork());
                 resultMap.put("reportPeriod", reportPeriod);
-                //标准偏差
-                Double standardDeviation = Double.parseDouble(task.getStandardDeviationValue() == null ?
-                        "0" : task.getStandardDeviationValue());
-                resultMap.put("standardDeviation", standardDeviation);
+                //in标准偏差
+                Double in_standardDeviationValue = Double.parseDouble(task.getIn_standardDeviationValue() == null ?
+                        "0" : task.getIn_standardDeviationValue());
+                resultMap.put("in_standardDeviationValue", task.getIn_standardDeviationValue());
                 // 汇报偏差
-                Double reportingDeviations = Double.parseDouble(task.getDeviationReport() == null ?
-                        "0" : task.getDeviationReport());
-                resultMap.put("reportingDeviations", reportingDeviations);
+                Double in_deviationReport = Double.parseDouble(task.getIn_deviationReport() == null ?
+                        "0" : task.getIn_deviationReport());
+                resultMap.put("in_deviationReport", in_deviationReport);
+
                 // 权重
                 Double weight = Double.parseDouble(task.getWeights() == null ?
                         "0" : task.getWeights());
                 weightSum += weight;
-                resultMap.put("weight", weight);
+                resultMap.put("weight", task.getWeights());
                 // 计算得出质量影响因子
-                String qualityInfluenceFactor = df.format(weight * (reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)));
+                String qualityInfluenceFactor = df.format(weight * (in_deviationReport / (in_standardDeviationValue == 0 ? 1 : in_standardDeviationValue)));
                 qualityInfluenceSum += Double.parseDouble(qualityInfluenceFactor);
                 resultMap.put("qualityInfluenceFactor", qualityInfluenceFactor);
+                //标准偏差
+                Double standardDeviation = Double.parseDouble(task.getStandardDeviationValue() == null ?
+                        "0" : task.getStandardDeviationValue());
 
+                resultMap.put("standardDeviation", task.getStandardDeviationValue());
+                // 汇报偏差
+                Double reportingDeviations = Double.parseDouble(task.getDeviationReport() == null ?
+                        "0" : task.getDeviationReport());
+                resultMap.put("reportingDeviations", task.getDeviationReport());
                 // 汇报困难度
                 double reportingDifficulty = Double.parseDouble(task.getDifficultyReport() == null ?
                         "0" : task.getDifficultyReport());
-                resultMap.put("reportingDifficulty", reportingDifficulty);
+                resultMap.put("reportingDifficulty", task.getDifficultyReport());
                 // 标准困难度
                 double standardDifficulty = Double.parseDouble(task.getStandardDifficultyValue() == null ?
                         "0" : task.getStandardDifficultyValue());
-                resultMap.put("standardDifficulty", standardDifficulty);
+                resultMap.put("standardDifficulty", task.getStandardDifficultyValue());
                 // 计算得出输出质量KPI
                 String OutputaualityKPI = df
                         .format((reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)) *
@@ -333,10 +340,11 @@ public class reportServiceImpl implements ReportService {
                 // 广度
                 double span = Double.parseDouble(task.getBreadth() == null ?
                         "0" : task.getBreadth());
-                resultMap.put("span", span);
+                resultMap.put("span", task.getBreadth());
                 // 关键度
                 double Criticality = Double.parseDouble(task.getCriticality() == null ?
                         "0" : task.getCriticality());
+                resultMap.put("criticality", task.getCriticality());
                 //输出评定
                 String OutputEvalua = task.getOutput() == null ? "" : task.getOutput();
                 resultMap.put("OutputEvalua", OutputEvalua);
@@ -344,7 +352,7 @@ public class reportServiceImpl implements ReportService {
                 double Numbereleases = Double.parseDouble(task.getReleases() == null ?
                         "0" : task.getReleases());
                 NumbereleasesAvg += Numbereleases;
-                resultMap.put("Numbereleases", Numbereleases);
+                resultMap.put("Numbereleases", task.getReleases());
                 // 计算项目风险指标
                 String ProjectRiskIndicators = df.format((Double.parseDouble(OutputQualityRisk) - 1) * span * Criticality);
                 resultMap.put("ProjectRiskIndicators", ProjectRiskIndicators);
@@ -352,14 +360,16 @@ public class reportServiceImpl implements ReportService {
                 resultMap.put("code", task.getCode());
                 resultMap.put("reportTime", task.getReport_time());
                 resultMap.put("description", task.getDescription());
-
+                //in指标编码
+                resultMap.put("in_code", task.getIn_code());
+                resultMap.put("in_description", task.getIn_description());
                 resultList.add(resultMap);
+                totalMap.put("taskname", task.getPlanName());
+                totalMap.put("Executive", task.getExecutive());
+                totalMap.put("taskid", task.getPlanId());
                 k++;
             }
-            Map<String, Object> totalMap = new HashMap<String, Object>();
-            totalMap.put("taskname", taskVo.getPlanName());
-            totalMap.put("Executive", taskVo.getExecutive());
-            totalMap.put("taskid", taskVo.getPlanId());
+
             //总质量指标
             String totalQualityKpi = df.format(OutputaualityKPISum / k);
             totalMap.put("totalQualityKpi", totalQualityKpi);
@@ -391,7 +401,8 @@ public class reportServiceImpl implements ReportService {
         if (!"".equals(userIds) && userIds != null) {
             userId = userIds.split(",");
         }
-        List<TaskVo> list = reportMapper.taskExecution(projectId, userId);
+        //查询所有的任务id
+//        List<TaskVo> list = reportMapper.taskExecution(projectId, userId);
         //创建HSSFWorkbook对象
         HSSFWorkbook wb = new HSSFWorkbook();
         //创建HSSFSheet对象
@@ -403,10 +414,10 @@ public class reportServiceImpl implements ReportService {
 //        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 水平居中
 //        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);// 垂直居中
         //创建合并单元格
-        CellRangeAddress cellRangeAddress = new CellRangeAddress(0, 0, 2, 5);// 起始行号，结束行号，起始列号，结束列号
-        CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 0, 6, 8);// 起始行号，结束行号，起始列号，结束列号
-        CellRangeAddress cellRangeAddress2 = new CellRangeAddress(0, 0, 9, 14);// 起始行号，结束行号，起始列号，结束列号
-        CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 0, 15, 16);// 起始行号，结束行号，起始列号，结束列号
+        CellRangeAddress cellRangeAddress = new CellRangeAddress(0, 0, 2, 7);// 起始行号，结束行号，起始列号，结束列号
+        CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 0, 8, 10);// 起始行号，结束行号，起始列号，结束列号
+        CellRangeAddress cellRangeAddress2 = new CellRangeAddress(0, 0, 11, 18);// 起始行号，结束行号，起始列号，结束列号
+        CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 0, 19, 20);// 起始行号，结束行号，起始列号，结束列号
 
         sheet.addMergedRegion(cellRangeAddress);
         sheet.addMergedRegion(cellRangeAddress1);
@@ -424,68 +435,79 @@ public class reportServiceImpl implements ReportService {
         cell = row.createCell(2);
         cell.setCellValue("数据准备");
         cell.setCellStyle(style);
-        cell = row.createCell(6);
+        cell = row.createCell(8);
         cell.setCellStyle(style);
         cell.setCellValue("计划环境");
-        cell = row.createCell(9);
+        cell = row.createCell(11);
         cell.setCellStyle(style);
         cell.setCellValue("输出质量");
-        cell = row.createCell(15);
+        cell = row.createCell(19);
         cell.setCellStyle(style);
         cell.setCellValue("输出加权");
-        cell = row.createCell(17);
+        cell = row.createCell(21);
         cell.setCellValue("项目风险");
-        cell = row.createCell(18);
+        cell = row.createCell(22);
         cell.setCellValue("输出评定");
-        cell = row.createCell(19);
+        cell = row.createCell(23);
         cell.setCellValue("发布次数");
 
         //设置第二行表头的值单元格的值
         row = sheet.createRow(1);
         cell = row.createCell(2);
-        cell.setCellValue("权重");
+        cell.setCellValue("指标编码");
         cell = row.createCell(3);
-        cell.setCellValue("标准偏差");
+        cell.setCellValue("指标名称");
         cell = row.createCell(4);
-        cell.setCellValue("汇报偏差");
+        cell.setCellValue("权重");
         cell = row.createCell(5);
-        cell.setCellValue("质量影响因子");
-        cell = row.createCell(6);
-        cell.setCellValue("标准工期");
-        cell = row.createCell(7);
-        cell.setCellValue("项目工期");
-        cell = row.createCell(8);
-        cell.setCellValue("风险KPI");
-        cell = row.createCell(9);
         cell.setCellValue("标准偏差");
-        cell = row.createCell(10);
+        cell = row.createCell(6);
         cell.setCellValue("汇报偏差");
+        cell = row.createCell(7);
+        cell.setCellValue("质量影响因子");
+        cell = row.createCell(8);
+        cell.setCellValue("标准工期");
+        cell = row.createCell(9);
+        cell.setCellValue("项目工期");
+        cell = row.createCell(10);
+        cell.setCellValue("风险KPI");
         cell = row.createCell(11);
-        cell.setCellValue("标准困难度");
+        cell.setCellValue("指标code");
         cell = row.createCell(12);
-        cell.setCellValue("汇报困难度");
+        cell.setCellValue("指标名称");
         cell = row.createCell(13);
-        cell.setCellValue("输出质量KPI");
+        cell.setCellValue("标准偏差");
         cell = row.createCell(14);
-        cell.setCellValue("质量风险");
+        cell.setCellValue("汇报偏差");
         cell = row.createCell(15);
+        cell.setCellValue("标准困难度");
+        cell = row.createCell(16);
+        cell.setCellValue("汇报困难度");
+        cell = row.createCell(17);
+        cell.setCellValue("输出质量KPI");
+        cell = row.createCell(18);
+        cell.setCellValue("质量风险");
+        cell = row.createCell(19);
         cell.setCellValue("广度");
         cell = row.createCell(16);
         cell.setCellValue("关键度");
         //环境质量指标：qualityIndex
-        cell = row.createCell(20);
+        cell = row.createCell(24);
         cell.setCellValue("环境质量指标");
         //工期风险KPI:riskKPI
-        cell = row.createCell(21);
+        cell = row.createCell(25);
         cell.setCellValue("工期风险KPI");
         //总质量指标：totalQualityKpi
-        cell = row.createCell(22);
+        cell = row.createCell(26);
         cell.setCellValue("总质量指标");
         //平均发布次数：NumbereleasesAvg
-        cell = row.createCell(23);
+        cell = row.createCell(27);
         cell.setCellValue("平均发布次数");
         //excel写入数据
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
+        //查询所有的任务id
+        List<TaskId> idList = reportMapper.selectAllActId(projectId, userId);
+        List result = new ArrayList();
         //kpi风险系数之和
         double OutputaualityKPISum = 0;
         //权重之和
@@ -502,138 +524,148 @@ public class reportServiceImpl implements ReportService {
         int k = 2;
         //标记任务条数
         int i = 1;
-        String id = "";
-        for (TaskVo taskVo : list) {
-            if (!"".equals(id) && !taskVo.getPlanId().equals(id)) {
-                //环境质量指标：qualityIndex
-                cell = row.createCell(20);
-                cell.setCellValue(df.format(qualityInfluenceSum / i));
-                //工期风险KPI:riskKPI
-                cell = row.createCell(21);
-                cell.setCellValue(df.format(reportPeriod/(StandardPeriod==0?1:StandardPeriod)));
-                StandardPeriod = 0;
-                //项目工期
-                reportPeriod = 0;
-                //总质量指标：totalQualityKpi
-                cell = row.createCell(22);
-                cell.setCellValue(df.format(OutputaualityKPISum/i));
-                //平均发布次数：NumbereleasesAvg
-                cell = row.createCell(23);
-                cell.setCellValue(df.format(NumbereleasesAvg / i));
-                i = 1;
+        for (TaskId id : idList) {
+            //查询任务下in,ot的值
+            List<TaskVo> list = reportMapper.selectINOTById(id.getId());
+            if (list == null || list.size() == 0) {
+                continue;
             }
-            id = taskVo.getPlanId();
-            row = sheet.createRow(k);
-            cell = row.createCell(0);
-            cell.setCellValue("研发");
-            cell = row.createCell(1);
-            cell.setCellValue(taskVo.getPlanName());
-            //标准偏差
-            Double standardDeviation = Double.parseDouble(taskVo.getStandardDeviationValue() == null ?
-                    "0" : taskVo.getStandardDeviationValue());
-            cell = row.createCell(3);
-            cell.setCellValue(standardDeviation);
-            // 汇报偏差
-            Double reportingDeviations = Double.parseDouble(taskVo.getDeviationReport() == null ?
-                    "0" : taskVo.getDeviationReport());
-            cell = row.createCell(4);
-            cell.setCellValue(reportingDeviations);
-            // 权重
-            Double weight = Double.parseDouble(taskVo.getWeights() == null ?
-                    "0" : taskVo.getWeights());
-            cell = row.createCell(2);
-            cell.setCellValue(weight);
-            weightSum += weight;
-            //质量影响因子
-            String qualityInfluenceFactor = df.format(weight * (reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)));
-            qualityInfluenceSum += Double.parseDouble(qualityInfluenceFactor);
-            cell = row.createCell(5);
-            cell.setCellValue(qualityInfluenceFactor);
-            //标准工期
-            StandardPeriod = taskVo.getStandardWork() == null ? 0 : Double.parseDouble(taskVo.getStandardWork());
-            cell = row.createCell(6);
-            cell.setCellValue(StandardPeriod);
-            //项目工期
-            reportPeriod = taskVo.getReportWork() == null ? 0 : Double.parseDouble(taskVo.getReportWork());
-            cell = row.createCell(7);
-            cell.setCellValue(reportPeriod);
-            //标准偏差
-            cell = row.createCell(9);
-            cell.setCellValue(standardDeviation);
-            //汇报偏差
-            cell = row.createCell(10);
-            cell.setCellValue(reportingDeviations);
-            // 标准困难度
-            double standardDifficulty = Double.parseDouble(taskVo.getStandardDifficultyValue() == null ?
-                    "0" : taskVo.getStandardDifficultyValue());
-            cell = row.createCell(11);
-            cell.setCellValue(standardDifficulty);
-            //汇报困难度
-            double reportingDifficulty = Double.parseDouble(taskVo.getDifficultyReport() == null ?
-                    "0" : taskVo.getDifficultyReport());
-            cell = row.createCell(12);
-            cell.setCellValue(reportingDifficulty);
-            // 计算得出输出质量KPI
-            String OutputaualityKPI = df
-                    .format((reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)) *
-                            (reportingDifficulty / (standardDifficulty == 0 ? 1 : standardDifficulty)));
-            //输出质量KPI
-            cell = row.createCell(13);
-            cell.setCellValue(reportPeriod/(StandardPeriod==0?1:StandardPeriod));
-            //风险KPI
-            cell = row.createCell(8);
-            OutputaualityKPISum += Double.parseDouble(OutputaualityKPI);
-            cell.setCellValue(df.format(reportPeriod/StandardPeriod));
-            // 计算输出质量风险
-            String OutputQualityRisk = df.format(((abs(reportingDeviations - standardDeviation)) * 10 + 1)
-                    * ((abs(reportingDifficulty - standardDifficulty)) * 10 + 1));
-            cell = row.createCell(14);
-            cell.setCellValue(OutputQualityRisk);
-            //广度
-            double span = Double.parseDouble(taskVo.getBreadth() == null ?
-                    "0" : taskVo.getBreadth());
-            cell = row.createCell(15);
-            cell.setCellValue(span);
-            //关键度
-            double Criticality = Double.parseDouble(taskVo.getCriticality() == null ?
-                    "0" : taskVo.getCriticality());
-            cell = row.createCell(16);
-            cell.setCellValue(Criticality);
-            //项目风险
-            String ProjectRiskIndicators = df.format((Double.parseDouble(OutputQualityRisk) - 1) * span * Criticality);
-            cell = row.createCell(17);
-            cell.setCellValue(ProjectRiskIndicators);
-            //输出评定
-            String OutputEvalua = taskVo.getOutput() == null ? "" : taskVo.getOutput();
-            cell = row.createCell(18);
-            cell.setCellValue(OutputEvalua);
-            //发布次数
-            double Numbereleases = Double.parseDouble(taskVo.getReleases() == null ?
-                    "0" : taskVo.getReleases());
-            NumbereleasesAvg += Numbereleases;
-            cell = row.createCell(19);
-            cell.setCellValue(Numbereleases);
-            i++;
-            if (k - 2 == list.size() - 1) {
-                //环境质量指标：qualityIndex
-                cell = row.createCell(20);
-                cell.setCellValue(df.format(qualityInfluenceSum / i));
-                //工期风险KPI:riskKPI
-                cell = row.createCell(21);
-                cell.setCellValue(df.format(reportPeriod/(StandardPeriod==0?1:StandardPeriod)));
-                StandardPeriod = 0;
+            for (TaskVo taskVo : list) {
+                row = sheet.createRow(k);
+                cell = row.createCell(0);
+                cell.setCellValue("研发");
+                cell = row.createCell(1);
+                String name = taskVo.getPlanName() == null ? taskVo.getInPlanName() : taskVo.getPlanName();
+                cell.setCellValue(name);
+                //指标编码
+                cell = row.createCell(2);
+                cell.setCellValue(taskVo.getIn_code());
+                //指标名称
+                cell = row.createCell(3);
+                cell.setCellValue(taskVo.getIn_description());
+                // 权重
+                Double weight = Double.parseDouble(taskVo.getWeights() == null ?
+                        "0" : taskVo.getWeights());
+                cell = row.createCell(4);
+                cell.setCellValue(weight);
+                weightSum += weight;
+                //标准偏差
+                Double in_standardDeviationValue = Double.parseDouble(taskVo.getIn_standardDeviationValue() == null ?
+                        "0" : taskVo.getIn_standardDeviationValue());
+                cell = row.createCell(5);
+                cell.setCellValue(taskVo.getIn_standardDeviationValue());
+                // 汇报偏差
+                Double in_deviationReport = Double.parseDouble(taskVo.getIn_deviationReport() == null ?
+                        "0" : taskVo.getIn_deviationReport());
+                cell = row.createCell(6);
+                cell.setCellValue(taskVo.getIn_deviationReport());
+
+                //质量影响因子
+                String qualityInfluenceFactor = df.format(weight * (in_deviationReport / (in_standardDeviationValue == 0 ? 1 : in_standardDeviationValue)));
+                qualityInfluenceSum += Double.parseDouble(qualityInfluenceFactor);
+                cell = row.createCell(7);
+                cell.setCellValue(qualityInfluenceFactor);
+                //标准工期
+                StandardPeriod = taskVo.getStandardWork() == null ? 0 : Double.parseDouble(taskVo.getStandardWork());
+                cell = row.createCell(8);
+                cell.setCellValue(StandardPeriod);
                 //项目工期
-                reportPeriod = 0;
-                //总质量指标：totalQualityKpi
+                reportPeriod = taskVo.getReportWork() == null ? 0 : Double.parseDouble(taskVo.getReportWork());
+                cell = row.createCell(9);
+                cell.setCellValue(reportPeriod);
+                //风险KPI
+                cell = row.createCell(10);
+                cell.setCellValue(df.format(reportPeriod / (StandardPeriod == 0 ? 1 : StandardPeriod)));
+                //指标编码
+                cell = row.createCell(11);
+                cell.setCellValue(taskVo.getCode());
+                //指标名称
+                cell = row.createCell(12);
+                cell.setCellValue(taskVo.getDescription());
+                //标准偏差
+                Double standardDeviationValue = Double.parseDouble(taskVo.getStandardDeviationValue() == null ?
+                        "0" : taskVo.getStandardDeviationValue());
+                cell = row.createCell(13);
+                cell.setCellValue(taskVo.getStandardDeviationValue());
+                //汇报偏差
+                Double deviationReport = Double.parseDouble(taskVo.getDeviationReport() == null ?
+                        "0" : taskVo.getDeviationReport());
+                cell = row.createCell(14);
+                cell.setCellValue(taskVo.getDeviationReport());
+                // 标准困难度
+                double standardDifficulty = Double.parseDouble(taskVo.getStandardDifficultyValue() == null ?
+                        "0" : taskVo.getStandardDifficultyValue());
+                cell = row.createCell(15);
+                cell.setCellValue(taskVo.getStandardDifficultyValue());
+                //汇报困难度
+                double reportingDifficulty = Double.parseDouble(taskVo.getDifficultyReport() == null ?
+                        "0" : taskVo.getDifficultyReport());
+                cell = row.createCell(16);
+                cell.setCellValue(taskVo.getDifficultyReport());
+                // 计算得出输出质量KPI
+                String OutputaualityKPI = df
+                        .format((deviationReport / (standardDeviationValue == 0 ? 1 : standardDeviationValue)) *
+                                (reportingDifficulty / (standardDifficulty == 0 ? 1 : standardDifficulty)));
+                //输出质量KPI
+                cell = row.createCell(17);
+                cell.setCellValue(reportPeriod / (StandardPeriod == 0 ? 1 : StandardPeriod));
+                OutputaualityKPISum += Double.parseDouble(OutputaualityKPI);
+                // 计算输出质量风险
+                String OutputQualityRisk = df.format(((abs(deviationReport - standardDeviationValue)) * 10 + 1)
+                        * ((abs(reportingDifficulty - standardDifficulty)) * 10 + 1));
+                cell = row.createCell(18);
+                cell.setCellValue(OutputQualityRisk);
+                //广度
+                double span = Double.parseDouble(taskVo.getBreadth() == null ?
+                        "0" : taskVo.getBreadth());
+                cell = row.createCell(19);
+                cell.setCellValue(taskVo.getBreadth());
+                //关键度
+                double Criticality = Double.parseDouble(taskVo.getCriticality() == null ?
+                        "0" : taskVo.getCriticality());
+                cell = row.createCell(20);
+                cell.setCellValue(taskVo.getCriticality());
+                //项目风险
+                String ProjectRiskIndicators = df.format((Double.parseDouble(OutputQualityRisk) - 1) * span * Criticality);
+                cell = row.createCell(21);
+                cell.setCellValue(ProjectRiskIndicators);
+                //输出评定
+                String OutputEvalua = taskVo.getOutput() == null ? "" : taskVo.getOutput();
                 cell = row.createCell(22);
-                cell.setCellValue(df.format(OutputaualityKPISum/i));
-                //平均发布次数：NumbereleasesAvg
+                cell.setCellValue(taskVo.getOutput());
+                //发布次数
+                double Numbereleases = Double.parseDouble(taskVo.getReleases() == null ?
+                        "0" : taskVo.getReleases());
+                NumbereleasesAvg += Numbereleases;
                 cell = row.createCell(23);
-                cell.setCellValue(df.format(NumbereleasesAvg / i));
+                cell.setCellValue(taskVo.getReleases());
+                if (i == list.size()) {
+                    //环境质量指标：qualityIndex
+                    cell = row.createCell(24);
+                    String qualityIndex = df.format(qualityInfluenceSum / i);
+                    cell.setCellValue(qualityIndex);
+                    //工期风险KPI:riskKPI
+                    cell = row.createCell(25);
+                    String riskKPI = df.format(reportPeriod / (StandardPeriod == 0 ? 1 : StandardPeriod));
+                    cell.setCellValue(riskKPI);
+                    StandardPeriod = 0;
+                    //项目工期
+                    reportPeriod = 0;
+                    //总质量指标：totalQualityKpi
+                    cell = row.createCell(26);
+                    String totalQualityKpi = df.format(OutputaualityKPISum / i);
+                    cell.setCellValue(totalQualityKpi);
+                    //平均发布次数：NumbereleasesAvg
+                    cell = row.createCell(27);
+                    String NumbereleasesAvgs = df.format(NumbereleasesAvg / i);
+                    cell.setCellValue(NumbereleasesAvgs);
+                    i = 0;
+                }
+                i++;
+                k++;
             }
-            k++;
-            continue;
         }
+
 
         //导出数据
         try {
@@ -659,4 +691,152 @@ public class reportServiceImpl implements ReportService {
     public double abs(double a) {
         return (a > 0) ? a : -a;
     }
+
+//    @Override
+//    public List taskExecution(String projectId, String userIds) {
+//        String[] userId = null;
+//        if (!"".equals(userIds) && userIds != null) {
+//            userId = userIds.split(",");
+//        }
+////        List<TaskVo> list = reportMapper.taskExecution(projectId, userId);
+////查询所有的任务id
+//        List<TaskId> idList = reportMapper.selectAllActId(projectId,userId);
+//        String planId = "";
+//        DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
+//        List result = new ArrayList();
+//        for(TaskId id : idList){
+//            //查询任务下in,ot的值
+//            List<TaskVo> list = reportMapper.selectINOTById(id);
+////                for (int i = 0; i < list.size(); i++) {
+////                    TaskVo taskVo = list.get(i);
+////                    if (taskVo.getPlanId().equals(planId)) {
+////                        continue;
+////                    }
+//            //每个任务都作为数组存储
+//            List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+//            //kpi风险系数之和
+//            double OutputaualityKPISum = 0;
+//            //权重之和
+//            double weightSum = 0;
+//            //质量影响因子
+//            double qualityInfluenceSum = 0;
+//            int k = 0;
+//            //标准工期
+//            double StandardPeriod = 0;
+//            //项目工期
+//            double reportPeriod = 0;
+//            //平均发布次数
+//            double NumbereleasesAvg = 0;
+//            for (int j = 0; j < list.size(); j++) {
+//                TaskVo task = list.get(j);
+//                planId = task.getPlanId();
+//                if (!task.getPlanId().equals(planId)) {
+//                    break;
+//                }
+//                Map<String, Object> resultMap = new HashMap<String, Object>();
+//                resultMap.put("taskname", task.getPlanName());
+//                resultMap.put("executive", task.getExecutive());
+//                resultMap.put("任务id", task.getPlanId());
+//                //标准工期
+//                StandardPeriod = Double.parseDouble(task.getStandardWork() == null ? "0" : task.getStandardWork());
+//                resultMap.put("StandardPeriod", StandardPeriod);
+//                //项目工期
+//                reportPeriod = Double.parseDouble(task.getReportWork() == null ? "0" : task.getReportWork());
+//                resultMap.put("reportPeriod", reportPeriod);
+//                //标准偏差
+//                Double standardDeviation = Double.parseDouble(task.getIn_standardDeviationValue() == null ?
+//                        "0" : task.getStandardDeviationValue());
+//                resultMap.put("standardDeviation", standardDeviation);
+//                // 汇报偏差
+//                Double reportingDeviations = Double.parseDouble(task.getDeviationReport() == null ?
+//                        "0" : task.getDeviationReport());
+//                resultMap.put("reportingDeviations", reportingDeviations);
+//                // 权重
+//                Double weight = Double.parseDouble(task.getWeights() == null ?
+//                        "0" : task.getWeights());
+//                weightSum += weight;
+//                resultMap.put("weight", weight);
+//                // 计算得出质量影响因子
+//                String qualityInfluenceFactor = df.format(weight * (reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)));
+//                qualityInfluenceSum += Double.parseDouble(qualityInfluenceFactor);
+//                resultMap.put("qualityInfluenceFactor", qualityInfluenceFactor);
+//
+//                // 汇报困难度
+//                double reportingDifficulty = Double.parseDouble(task.getDifficultyReport() == null ?
+//                        "0" : task.getDifficultyReport());
+//                resultMap.put("reportingDifficulty", reportingDifficulty);
+//                // 标准困难度
+//                double standardDifficulty = Double.parseDouble(task.getStandardDifficultyValue() == null ?
+//                        "0" : task.getStandardDifficultyValue());
+//                resultMap.put("standardDifficulty", standardDifficulty);
+//                // 计算得出输出质量KPI
+//                String OutputaualityKPI = df
+//                        .format((reportingDeviations / (standardDeviation == 0 ? 1 : standardDeviation)) *
+//                                (reportingDifficulty / (standardDifficulty == 0 ? 1 : standardDifficulty)));
+//                resultMap.put("OutputaualityKPI", OutputaualityKPI);
+//                //计算输出质量KPI风险系数之和
+//                OutputaualityKPISum += Double.parseDouble(OutputaualityKPI);
+//                // 计算输出质量风险
+//                String OutputQualityRisk = df.format(((abs(reportingDeviations - standardDeviation)) * 10 + 1)
+//                        * ((abs(reportingDifficulty - standardDifficulty)) * 10 + 1));
+//                resultMap.put("OutputQualityRisk", OutputQualityRisk);
+//                // 广度
+//                double span = Double.parseDouble(task.getBreadth() == null ?
+//                        "0" : task.getBreadth());
+//                resultMap.put("span", span);
+//                // 关键度
+//                double Criticality = Double.parseDouble(task.getCriticality() == null ?
+//                        "0" : task.getCriticality());
+//                //输出评定
+//                String OutputEvalua = task.getOutput() == null ? "" : task.getOutput();
+//                resultMap.put("OutputEvalua", OutputEvalua);
+//                // 发布次数
+//                double Numbereleases = Double.parseDouble(task.getReleases() == null ?
+//                        "0" : task.getReleases());
+//                NumbereleasesAvg += Numbereleases;
+//                resultMap.put("Numbereleases", Numbereleases);
+//                // 计算项目风险指标
+//                String ProjectRiskIndicators = df.format((Double.parseDouble(OutputQualityRisk) - 1) * span * Criticality);
+//                resultMap.put("ProjectRiskIndicators", ProjectRiskIndicators);
+//                resultMap.put("Criticality", Criticality);
+//                resultMap.put("code", task.getCode());
+//                resultMap.put("reportTime", task.getReport_time());
+//                resultMap.put("description", task.getDescription());
+//
+//                resultList.add(resultMap);
+//                k++;
+//            }
+//            Map<String, Object> totalMap = new HashMap<String, Object>();
+//            totalMap.put("taskname", task.getPlanName());
+//            totalMap.put("Executive", task.getExecutive());
+//            totalMap.put("taskid", task.getPlanId());
+//            //总质量指标
+//            String totalQualityKpi = df.format(OutputaualityKPISum / k);
+//            totalMap.put("totalQualityKpi", totalQualityKpi);
+//            // 平均发布次数
+//            NumbereleasesAvg = NumbereleasesAvg / k;
+//            totalMap.put("NumbereleasesAvg", df.format(NumbereleasesAvg));
+//            //环境质量指标
+//            String qualityIndex = df.format((qualityInfluenceSum - weightSum) / k);
+//            totalMap.put("qualityIndex", qualityIndex);
+//
+//            //风险工期kpi
+//            String riskKPI = null;
+//            if (StandardPeriod != 0) {
+//                riskKPI = df.format(reportPeriod / StandardPeriod);
+//            } else {
+//                riskKPI = "0";
+//            }
+//            totalMap.put("riskKPI", riskKPI);
+//            resultList.add(totalMap);
+//            result.add(resultList);
+//        }
+//
+//
+////        }
+//
+//        return result;
+//
+//    }
+
 }

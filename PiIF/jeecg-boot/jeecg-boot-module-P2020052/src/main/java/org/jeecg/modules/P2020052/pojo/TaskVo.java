@@ -11,15 +11,21 @@ public class TaskVo implements Serializable {
 
     private String planName;//任务名称
 
+    private String inPlanName;//任务名称
+
     private String planId;//任务id
 
     private String weights;//权重
 
     private String standardDeviationValue;//标准偏差
 
+    private String in_standardDeviationValue;//in标准偏差
+
     private String standardDifficultyValue;//标准困难度
 
     private String deviationReport;//汇报偏差
+
+    private String in_deviationReport;//汇报偏差
 
     private String difficultyReport;//汇报困难度
 
@@ -37,9 +43,13 @@ public class TaskVo implements Serializable {
 
     private String code;//指标编码
 
+    private String in_code;//指标编码
+
     private String report_time;//汇报时间
 
     private String description;//描述
+
+    private String in_description;//in描述
 
 
 

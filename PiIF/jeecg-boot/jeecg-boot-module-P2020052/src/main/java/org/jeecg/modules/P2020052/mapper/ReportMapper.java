@@ -22,4 +22,12 @@ public interface ReportMapper {
     List<TaskVo> taskExecution(@Param("projectId")String projectId, @Param("userId")String[] userId);
 
     PiplanActivityVo projectWeekCycle(@Param("projectId")String id);
+
+    List<TaskId> selectAllActId(@Param("projectId")String projectId, @Param("userId")String[] userId);
+
+    List<TaskVo> selectInById(@Param("id")TaskId id);
+
+    List<TaskVo> selectOTById(@Param("id")TaskId id);
+
+    List<TaskVo> selectINOTById(@Param("id")String id);
 }
