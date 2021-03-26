@@ -3,16 +3,18 @@
       <div class="table-page-search-wrapper wrapperselect">
       <a-form layout="inline">
         <a-row :gutter="48">
-          <a-col :md="18" :sm="18">
-            <a-form-item label="偏差范围">
+          <a-col :md="18" :sm="18" >
+            <a-form-item label="偏差范围" :class="btnDisabled ? 'none': ''">
               <a-input-number v-model="start" /> —
               <a-input-number v-model="end" />
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="6" class="btn">
             <span class="table-page-search-submitButtons">
+              <!-- <a class="help" @click="visibleCreateModal = true"><a-icon type="question-circle-o"></a-icon><span>帮助</span></a> -->
               <a-button style="margin-left: 8px,color: #000" @click="resetSearchForm"  class="reset">重置</a-button>
-              <a-button type="primary" style="margin-left: 8px" @click="doSearch(start,end)" >查询</a-button>
+              <a-button type="primary" style="margin-left: 8px"  :class="btnDisabled ? 'none': ''" @click="doSearch(start,end)" >查询</a-button>
+              <a-button type="primary" style="margin-left: 8px" @click="visibleCreateModal = true">查看详情</a-button>
             </span>
           </a-col>
         </a-row>
@@ -21,28 +23,167 @@
        <div class="tableContainer" >
       <div class="title"><p class="tilcontent">工作任务延期报表</p><a-button type="dashed" icon="download" id="test">保存</a-button></div>
            <!-- 气泡图区域-begin -->
-           <div id="container"></div>
+           <div id="container" ></div>
+           <div class="scrollBarWrap">
+             <ScrollBar ref="scrollBar" @updatePosRate="throttleUpdateDs" />
+           </div>
            <!-- 气泡图区域-end -->
             <!-- <div class="noData" v-if="!chartDateALL || !chartDateALL.length" :style="{height: adaptiveContainH +'px',lineHeight: adaptiveContainH +'px'}">
              暂无数据
             </div> -->
        </div>
+        <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="visibleCreateModal=false">
+            <!---->
+            <div class="mainMadal">
+              <a-table
+               :columns="columns"
+               :data-source="getCurrentData"
+               rowKey="index"
+               :pagination="{ pageSize: 100 }"
+               :scroll="{ y: yScroll }"
+             >
+               <p slot="taskType" slot-scope="record" style="margin: 0" :class="record">
+                 {{record === "normal" ? "正常进行任务" : (record === "finished" ? "已完成任务" :record === "overdue" ? "逾期未完成" : (record === "isoverdue" ? "可能逾期任务" : (record === "red" ? "逾期已完成" : "" )))}}
+               </p>
+              </a-table>
+            </div>
+            <template slot="footer">
+                <a-button style="display: none">关闭</a-button>
+           </template>
+
+    </a-modal>
     </a-card>
 </template>
 
 <script>
   import {getAction} from '@/api/manage';
   import { Chart } from '@antv/g2';
-  // import DataSet from '@antv/data-set';
+  import ScrollBar from "./ScrollBar"
+  import throttle from '@/mixins/throttle'
+  import DataSet from '@antv/data-set';
   import html2canvas from 'html2canvas'
   const gkRiskReport = require('@assets/json/gkRiskReport.json')
- 
+  const columns=[
+          {
+            title: '序号',
+            dataIndex: 'index',
+            width: 60,
+            align: 'center'
+          },
+          {
+            title: '项目名称',
+            dataIndex: 'projectName',
+            width: 250,
+            align: 'center'
+          },
+          {
+            title: '工作任务状态',
+            dataIndex: 'taskType',
+            width: 140,
+            filters: [
+              { value: 'normal', text: '正常进行任务' },
+              { value: 'finished', text: '已完成任务' },
+              { value: 'overdue', text: '逾期未完成' },
+              { value: 'isoverdue', text: '可能逾期任务' },
+              { value: 'red', text: '逾期已完成' }
+            ],
+            // filteredValue: filteredInfo.taskType || null,
+            onFilter: function (value, record) {
+              console.log(value,record);
+              return value == record.taskType
+            },
+            scopedSlots: { customRender: 'taskType' },
+            align: 'center'
+          },
+          {
+            title: '周数',
+            dataIndex: 'xaxis',
+            width: 80,
+            align: 'center',
+            sorter: (a, b) => a.xaxis - b.xaxis,
+          },
+          {
+            title: '偏差值',
+            dataIndex: 'deviation',
+            width: 100,
+            align: 'center',
+            sorter: (a, b) => a.deviation - b.deviation,
+          },
+          {
+            title: '预估开始时间',
+            dataIndex: 'targetStartTime',
+            width: 140,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.targetStartTime.split('-').join('')
+              const bSort = b.targetStartTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '计划完成时间',
+            dataIndex: 'byTime',
+            width: 140,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.byTime.split('-').join('')
+              const bSort = b.byTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '预估完成时间',
+            dataIndex: 'expectedFinishTime',
+            width: 140,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际开始时间',
+            dataIndex: 'actualStartTime',
+            width: 120,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际完成时间',
+            dataIndex: 'actualEndTime',
+            width: 140,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.actualEndTime.split('-').join('')
+              const bSort = b.actualEndTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          }
+        ]
+  // const BASE_LEN = 32 
   export default {
     name: "taskDelayReport",
     components: {
+      ScrollBar
     },
     data() {
       return {
+        min: 0,
+        max: 100,
+        allMax: 200,
+        btnDisabled: false,
+        title: "工作任务延期详情信息",
+        getCurrentData:[],//当前页面数据
+        columns:columns,
+        yScroll: 300,
+        baseRate: 1,
+        i: 1,
+        visibleCreateModal: false,
         visible: false,
         loading: false,
         queryParam: {},
@@ -59,22 +200,24 @@
       }
     },
     computed:{
-      //  adaptiveContainH(){
-      //     const height = document.querySelector("#app").offsetHeight ,heightTop=document.querySelector('.header') && document.querySelector('header').offsetHeight || 60,adaptiveH = height - heightTop -118;
-      //    return adaptiveH
-      //  }
     },
     mounted(){
         this.$nextTick(function(){
             this.drawChart()
             // this.renderChart(riskJson)
         })
+        this.yScroll = document.body.clientHeight - 260
         //  this.getAdaptiveH()
         window.onresize = () => {
           return (() => {
             if(this.chartDateALL && this.chartDateALL.length){
+              this.yScroll = document.body.clientHeight - 260
+                  this.start = null
+             this.end = null
+             this.$bus.$emit('changeTranx', 0)
                document.querySelector("#container") && document.querySelector("#container>div").remove()
                this.renderChart(this.chartDateALL)
+               
               //  this.getAdaptiveH()
             }
           })();
@@ -83,11 +226,24 @@
     beforeDestroy(){
        document.querySelector("#container") && document.querySelector("#container>div")  && document.querySelector("#container>div").remove()
     },
+    watch: {
+        'chartDateALL'(v){
+          if(v.length && this.i <= 1){
+               this.i ++
+               document.querySelector("#container") && document.querySelector("#container>div").remove()
+               this.renderChart(this.chartDateALL)
+          }
+        }
+    },
     methods: {
        doSearch(s,e){
          var data
+         this.$bus.$emit('changeTranx', 0)
+         this.$set(this,"getCurrentData", [])
          if(typeof(s) != 'number' && typeof(e) != 'number') return
          if(typeof(s) == 'number' && typeof(e) == 'number'){
+             this.start = s
+             this.end = e
              data = this.chartDateALL.filter(function(item){
                   return item.deviation >= s && item.deviation <= e
              })
@@ -99,14 +255,81 @@
              data = this.chartDateALL.filter(function(item){
                   return item.deviation <= e
              })
+             this.$set(this,"chartDateALL",data)
          }
-         document.querySelector("#container") && document.querySelector("#container>div").remove()
+           document.querySelector("#container") && document.querySelector("#container>div").remove()
           this.renderChart(data)
        },
-       renderChart(data){
+       renderChart (data) {
+          const isFirstRender = !this.chartView
+          if (isFirstRender) {
+            this.initChart(data)
+          } else {
+            this.updateChart(data)
+          }
+       },
+       initChart(data){
+         if(!data.length) return
+          const dateSNew = []
+          const dataSorted = data.sort((a, b) => { return a.xaxis - b.xaxis })
+          this.min = Math.floor(dataSorted[0].xaxis)
+          // console.log(dataSorted,"dataSorted");
+          dataSorted.forEach((element,index) => {
+               if(element.xaxis < this.min + 53){
+                 dateSNew.push(element)
+               }
+          });
+          this.max = Math.ceil(dateSNew[dateSNew.length -1].xaxis)
+          this.allMax = Math.ceil(dataSorted[dataSorted.length -1].xaxis)
+          // console.log(this.min,this.max,this.allMax );
+          let baseRate = 1
+          if ( this.allMax - this.min > 54) {
+            baseRate = (this.max - this.min) / (this.allMax - this.min)
+          }
+          if(baseRate < 1){
+            this.btnDisabled = true
+          }
+          this.scrollProportion = baseRate
+          this.$nextTick(function(){
+              this.$refs.scrollBar.initScroll(baseRate)
+          })
+          this.ds = new DataSet({
+            state: {
+              start: 0,
+              end: baseRate
+            }
+          })
+          const dv = this.ds.createView('origin').source(dataSorted)
+          if(baseRate != 1){
+            dv.transform({
+            type: 'filter',
+            callback: (obj, index, arr) => {
+              this.start = null
+             this.end = null
+              // console.log(arr,this.getCurrentData);
+              if(obj.xaxis   >= this.ds.state.start * (this.allMax - this.min) + this.min && obj.xaxis  <= this.ds.state.end * (this.allMax - this.min) + this.min){
+                this.getCurrentData.push(obj)
+              }
+              this.getCurrentData.map(function(item,index){
+                 item.index = index + 1
+              })
+              // console.log(this.getCurrentData,'getCurrentData');
+              this.title ="工作任务延期详情信息 共(" + this.getCurrentData.length + ")条数据"
+              return obj.xaxis   >= this.ds.state.start * (this.allMax - this.min) + this.min && obj.xaxis  <= this.ds.state.end * (this.allMax - this.min) + this.min
+            }
+          })
+          } else{
+             dataSorted.map(function(item,index){
+                 item.index = index + 1
+              })
+              this.getCurrentData = JSON.parse(JSON.stringify(dataSorted))
+          this.title ="工作任务延期详情信息 共(" + this.getCurrentData.length + ")条数据"
+
+          }
           var asideWidth = document.querySelector(".ant-layout-sider") && document.querySelector(".ant-layout-sider").offsetWidth || 0,
              width = (document.querySelector(".ant-card-body").offsetWidth - asideWidth -40)/2 ,
              height = document.querySelector("#app").offsetHeight -240;
+            //  height = this.screenHeight - 240
           const chart = new Chart({
               container: 'container',
               forceFit: true,
@@ -118,9 +341,10 @@
               // item["toolTitle"] = item.activityName
               item["sexuality"] = item.taskType === "normal" ? "正常进行任务" : (item.taskType === "finished" ? "已完成任务" :item.taskType === "overdue" ? "逾期未完成" : (item.taskType === "isoverdue" ? "可能逾期任务" : (item.taskType === "red" ? "逾期已完成" : "" )))
           })
-          chart.source(data);
+          chart.source(dv);
           // 为各个字段设置别名
           chart.scale({
+            projectName: {nice:true,alias: "项目名称"},
             xaxis: { nice: true,alias: "周数" ,tickInterval: 1},
             activityName: { nice: true,alias: "任务名称"},
             deviation: { nice: true,alias: "偏差值" },
@@ -241,11 +465,12 @@
             })
             .size(4)
             .shape('circle')
-            .tooltip('activityName*xaxis*deviation*byTime*expectedFinishTime*actualEndTime')
+            .tooltip('projectName*activityName*xaxis*deviation*byTime*expectedFinishTime*actualEndTime')
             .style({
               fillOpacity: 0.85
             });
           chart.render();
+          // chart.repaint();
       },
       drawChart(){
          const  url = this.url.chartDate,id = this.$route.query.id,_this=this 
@@ -256,7 +481,7 @@
          var obj = {
               time: this.$route.query.startTime && this.$route.query.startTime != 'null' ? this.$route.query.startTime +","+this.$route.query.endTime : null,
               projectId: this.$route.query.projectId,
-              planId: this.$route.query.planId,
+              projectId: this.$route.query.planId,
               group: this.$route.query.departmentId,
               status: this.$route.query.status
           }
@@ -265,6 +490,13 @@
            if(res.success && res.result){
               _this.$nextTick(function(){
                      _this.$set(_this,"chartDateALL", res.result)
+                _this.chartDateALL.map(function(item){
+                  item.targetStartTime = item.targetStartTime ? item.targetStartTime.split(' ')[0] : ''
+                 item.actualEndTime = item.actualEndTime ? item.actualEndTime.split(' ')[0] : ''
+                 item.actualStartTime = item.actualStartTime ? item.actualStartTime.split(' ')[0] : ''
+                 item.expectedFinishTime = item.expectedFinishTime ? item.expectedFinishTime.split(' ')[0] : ''
+                 item.byTime = item.byTime ? item.byTime.split(' ')[0] : ''
+                })
                     !_this.loading && _this.renderChart(res.result)
               })
               // _this.renderChart(data)
@@ -293,27 +525,60 @@
          })
          
       },
-      // sort(propertyA,propertyB){
-      //    return function (a, b) {
-      //      if(a[propertyA] === b[propertyA]) {    
-	    //         	if(a[propertyB] > b[propertyB]) {      
-	    //         		return 1;    
-	    //         	} else if(a[propertyB] < b[propertyB]) {      
-	    //         		return -1;    
-	    //         	} else {      
-	    //         		return 0;    
-	    //         	}  
-	    //         } else {    
-	    //         	if(a[propertyA] > b[propertyA]) {      
-	    //         		return 1;    
-	    //         	} else {      
-	    //         		return -1;    
-	    //         	}  
-	    //         }}
-      // },
+      updateChart (data) {
+         let baseRate = 1
+         // const data = departmentJson
+         if ( this.allMax > this.max - this.min) {
+               baseRate = (this.max - this.min) / this.allMax
+               this.baseRate = baseRate
+         }
+         this.scrollProportion = baseRate
+
+         this.ds.getView('origin').source(data)
+
+         let currentPos = this.ds.state.start
+
+         // 处理边界情况
+         if (currentPos + this.scrollProportion > 1) {
+           currentPos = 1 - this.scrollProportion
+         }
+         let endPos = Math.min(1, currentPos + this.scrollProportion)
+         // 处理精度误差问题
+         if (1 - endPos < 1 / data.length) {
+           endPos = 1
+         }
+         this.ds.setState('start', currentPos)
+         this.ds.setState('end', endPos)
+
+         // this.$refs.scrollBar.initScroll(baseRate)
+         this.$nextTick(function(){
+             this.$refs.scrollBar.initScroll(baseRate)
+         })
+         this.chartView
+           .guide()
+           .clear()
+         // this.setChartViewGuide()
+         // 让guide可以刷新，同时让tooltip刷新
+         this.chart.repaint()
+         this.$nextTick(function(){
+             this.$refs.scrollBar.initScroll(this.scrollProportion, this.ds.state.start)
+         })
+      },
+      throttleUpdateDs: throttle(function updateDs (rate) {
+        this.$set(this,"getCurrentData", [])
+        this.ds.setState('start', rate)
+        let endPos = rate + this.scrollProportion
+        // 处理精度误差问题
+        if (1 - endPos < 1 / this.chartDateALL.length) {
+          endPos = 1
+        }
+        this.ds.setState('end', endPos)
+      }, 500),
       resetSearchForm(){
         this.start = null;
-        this.end = null
+        this.end = null;
+        this.scrollProportion = this.baseRate
+        this.$bus.$emit('changeTranx', 0)
         document.querySelector("#container") && document.querySelector("#container>div").remove()
         this.renderChart(this.chartDateALL)
       }
@@ -321,9 +586,119 @@
   }
 </script>
 <style scoped lang="less">
+// return item === "正常进行任务" ? "#1890FF" : (item === "已完成任务" ? "black" :item === "逾期未完成" ? "#F5222D" : (item === "可能逾期任务" ? "#FABC16" : (item === "逾期已完成" ? "#ccc" : "#fff")))
+//  {{record === "normal" ? "正常进行任务" : (record === "finished" ? "已完成任务" :record === "overdue" ? "逾期未完成" : (record === "isoverdue" ? "可能逾期任务" : (record === "red" ? "逾期已完成" : "" )))}}
+   
+  // 弹窗样式
+    .normal{
+      color: #1890FF
+    }
+    .finished{
+      color: black
+    }
+    .overdue{
+      color: #F5222D;
+    }
+    .isoverdue{
+      color: #FABC16;
+    }
+    .red{
+      color: #ccc;
+    }
+    /deep/ .ant-modal{
+      position: relative;
+      top: 50px;
+      height: calc(100% - 30px);
+      width: 90%!important;
+      td{
+        font-size: 12px;
+      }
+      th{
+        font-size: 12px;
+        padding: 13px 8px;
+        font-weight: 600;
+      }
+    }
+    /deep/ .ant-modal-content{
+      height: calc(100% - 20px);
+    }
+    /deep/ .ant-modal-footer{
+      border-top: 1px solid transparent;
+      padding: 0;
+    }  
+    /deep/ .ant-modal-body{
+          // max-height: 820px;
+          // height: 80%;
+           height: calc(100% - 60px);
+          overflow: auto;
+          padding: 0 24px 10px;
+          font-size: 12px;
+          .ant-table-tbody .ant-table-row td {
+              padding-top: 10px;
+              padding-bottom: 10px;
+          }
+       }
+       /deep/ .ant-modal-header{
+         border-bottom: 1px solid transparent
+       }
+      /deep/ .ant-modal-close{
+              position: absolute;
+              top: -20px;
+              right: 4px;
+              color: #fff;
+               border: 1px solid #fff;
+              border-radius: 50%;
+       }
+       /deep/ .ant-modal-close-x{
+         width: 10px;
+         height: 10px;
+         line-height: 0;
+        
+       }
+       /deep/ .ant-modal-close svg {
+         width: 8px;
+         height: 8px;
+         padding-top: 2px;
+       }
+      /deep/ .ant-modal-header .ant-modal-title{
+          text-align: center;
+          border-bottom: 1px solid transparent;
+          font-weight: bold;
+          font-size: 18px;
+          color: #333;
+       }
+  .mainMadal .madalContent{
+         color: #333;
+         font-weight: 500;
+       .title{
+         font-size: 16px;
+         font-weight: 600;
+         position: relative;
+         &::before{
+           display: block;
+           content: '';
+           position: absolute;
+           left: -8px;
+           top: 7px;
+           width: 2px;
+           height: 12px;
+           background: #1890FF;
+           display: block;
+         }
+       }
+    }
+    .mainMadal .madalContent:nth-child(n+2){
+         margin-top: 18px;
+    }
   /deep/ .ant-card-body{
        padding: 6px 8px;
        box-sizing: border-box;
+  }
+  /deep/.ant-spin-container{
+    ul>li{
+      // height: 16px;
+      // line-height: 16px;
+    }
   }
   .ant-card{
         background: #F4F5F7;
@@ -386,5 +761,9 @@
 }
 /deep/.ant-input-number{
   width: 100px;
+}
+.none{
+  // display: none;
+  // opacity: 0;
 }
 </style>

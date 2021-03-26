@@ -36,11 +36,17 @@ export default {
     document.removeEventListener('mousemove', this.onmousemove)
     document.removeEventListener('mouseup', this.onmouseup)
   },
+  mounted(){
+    this.$bus.$on('changeTranx', (flag) => {
+        this.tranX = flag
+      })
+  },
   methods: {
     /**
      * {Number} proportion - 滚动条占总长比例,[0,1],1时不需要显示
      * {Number} pos - 滚动条初始位置的起点坐标与总长的比值，范围：[0,(1-滚动条占总长比例)]
      */
+    
     initScroll (proportion = 0, pos) {
       if (!proportion) {
         return
