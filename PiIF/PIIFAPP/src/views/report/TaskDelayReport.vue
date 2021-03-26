@@ -110,7 +110,7 @@
             sorter: (a, b) => a.deviation - b.deviation,
           },
           {
-            title: '预估开始时间',
+            title: '计划开始时间',
             dataIndex: 'targetStartTime',
             width: 140,
             align: 'center',
@@ -349,7 +349,7 @@
             activityName: { nice: true,alias: "任务名称"},
             deviation: { nice: true,alias: "偏差值" },
             actualStartTime: {nice: true,alias: '实际开始时间'},
-            targetStartTime: {alias: '预估开始时间',nice: true},
+            targetStartTime: {alias: '计划开始时间',nice: true},
             expectedFinishTime: { nice: true,alias: '预估完成时间'},
             actualEndTime: {nice: true,alias: '实际完成时间'},
             byTime: {nice: true,alias: '计划完成时间'}
@@ -465,7 +465,7 @@
             })
             .size(4)
             .shape('circle')
-            .tooltip('projectName*activityName*xaxis*deviation*byTime*expectedFinishTime*actualEndTime')
+            .tooltip('projectName*activityName*xaxis*deviation*targetStartTime*byTime*expectedFinishTime*actualEndTime*actualStartTime')
             .style({
               fillOpacity: 0.85
             });
