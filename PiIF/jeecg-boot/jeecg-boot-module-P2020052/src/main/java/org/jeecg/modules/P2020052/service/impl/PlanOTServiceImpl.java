@@ -145,9 +145,6 @@ public class PlanOTServiceImpl implements PlanOTService {
     public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId) throws ParseException {
         String startTime = null;
         String endTime = null;
-//        time = new String[2];
-//        time[0] = "2021-01-10";
-//        time[1] = "2021-02-16";
         if (time != null && !"".equals(time)) {
             startTime = time[0] + " 00:00:00";
             endTime = time[1] + " 23:59:59";
@@ -159,6 +156,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             }
         }
         List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, group, endTime, projectId);
+
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -175,7 +173,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             // 每周结束时间
             long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
             for (PiplanActivityVo act : list) {
-                String taskStr = act.getTargetStartTime();
+                String taskStr = act.getByTime();
                 long taskLong = taskStr == null ? 0 : formatter.parse(taskStr).getTime();
                 if (taskLong >= startLong && taskLong < endLong) {
                     long currentStr = new Date().getTime();//当前时间
@@ -185,8 +183,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     long actualEndLong = actualEnd == null ? 0 : formatter.parse(actualEnd).getTime();
                     String expectedFinishStr = act.getExpectedFinishTime();//预估完成时间
                     long expectedFinishLong = expectedFinishStr == null ? 0 : formatter.parse(expectedFinishStr).getTime();
-
-
                     String targetStartTimeStr = act.getTargetStartTime();//预估完成时间
                     long targetStartTimeStrLong = targetStartTimeStr == null ? 0 : formatter.parse(targetStartTimeStr).getTime();
 

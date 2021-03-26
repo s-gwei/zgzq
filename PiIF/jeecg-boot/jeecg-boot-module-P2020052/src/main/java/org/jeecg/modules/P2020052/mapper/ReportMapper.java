@@ -1,5 +1,6 @@
 package org.jeecg.modules.P2020052.mapper;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import org.apache.ibatis.annotations.Param;
 import org.jeecg.modules.P2020052.pojo.*;
 import org.springframework.stereotype.Repository;
@@ -23,11 +24,12 @@ public interface ReportMapper {
 
     PiplanActivityVo projectWeekCycle(@Param("projectId")String id);
 
-    List<TaskId> selectAllActId(@Param("projectId")String projectId, @Param("userId")String[] userId);
+    List<String> selectAllActId(@Param("projectId")String projectId, @Param("userId")String[] userId);
 
     List<TaskVo> selectInById(@Param("id")TaskId id);
 
     List<TaskVo> selectOTById(@Param("id")TaskId id);
 
     List<TaskVo> selectINOTById(@Param("id")String id);
+
 }

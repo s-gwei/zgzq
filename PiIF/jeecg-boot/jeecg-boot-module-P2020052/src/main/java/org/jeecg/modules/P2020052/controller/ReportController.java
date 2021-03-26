@@ -1,5 +1,6 @@
 package org.jeecg.modules.P2020052.controller;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class ReportController {
     @ApiOperation(value = "任务执行报表")
     public Result taskExecution(String projectId,String userIds) throws ParseException {
         log.info("请求完毕");
-        return Result.ok(reportService.taskExecution(projectId,userIds));
+        return Result.ok(reportService.taskExecutionById(projectId,userIds));
     }
 
     @GetMapping(value = "GroupUser")
@@ -65,6 +66,6 @@ public class ReportController {
     @ApiOperation(value = "任务执行报表导出")
     public void exportTable(HttpServletResponse response, String projectId ,String userIds ,String fileName) throws IOException {
 
-        reportService.exportTaskTable(response, fileName,projectId,userIds);
+        reportService.exportTaskTableById(response, fileName,projectId,userIds);
     }
 }

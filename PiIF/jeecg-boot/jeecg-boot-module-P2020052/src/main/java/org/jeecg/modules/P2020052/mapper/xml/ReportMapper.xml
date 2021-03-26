@@ -57,7 +57,7 @@
         <result column="container_info_name" property="executive"/>
         <result column="name" property="planName"/>
         <result column="inPlanName" property="inPlanName"/>
-        <result column="plan_activity_ref_id" property="planId"/>
+        <result column="plan_activity_ref_id" property="activiteId"/>
         <result column="weights" property="weights"/>
         <result column="in_standardDeviationValue" property="in_standardDeviationValue"/>
         <result column="in_code" property="in_code"/>
@@ -373,7 +373,7 @@ WHERE
         </if>
         ) b
     </select>
-    <select id="selectAllActId" resultMap="TaseIdResultMap">
+    <select id="selectAllActId" resultType="java.lang.String">
       	SELECT
 		id
 	FROM

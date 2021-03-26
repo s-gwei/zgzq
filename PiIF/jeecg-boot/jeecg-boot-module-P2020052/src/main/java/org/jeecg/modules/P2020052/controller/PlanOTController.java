@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.modules.P2020052.pojo.*;
 import org.jeecg.modules.P2020052.service.PlanOTService;
+import org.jeecg.modules.P2020052.service.ScheduleTaskService;
 import org.jeecg.modules.P2020052.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,9 @@ public class PlanOTController {
 
     @Autowired
     PlanOTService planOTService;
+
+    @Autowired
+    ScheduleTaskService scheduleTaskService;
 
 
     @GetMapping(value = "/OTTable")
@@ -100,6 +104,13 @@ public class PlanOTController {
     public Result problemRickChain(String riskId)  {
         List<ProblemRickChainVo> list = planOTService.problemRickChain(riskId);
         return Result.ok(list);
+    }
+
+    @GetMapping(value = "/taskExecution")
+    @ApiOperation(value = "定时任务")
+    public Result taskExecution()  {
+        scheduleTaskService.taskExecution();
+        return Result.ok();
     }
 
 }

@@ -13,7 +13,7 @@ public class TaskVo implements Serializable {
 
     private String inPlanName;//任务名称
 
-    private String planId;//任务id
+    private String activiteId;//任务id
 
     private String weights;//权重
 

@@ -1,5 +1,6 @@
 package org.jeecg;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +19,7 @@ import java.net.UnknownHostException;
 
 @Slf4j
 @EnableSwagger2
-@SpringBootApplication(exclude ={SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
+@SpringBootApplication(exclude ={DruidDataSourceAutoConfigure.class,SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 @EnableScheduling
 @MapperScan("org.jeecg.boot.mapper")
 public class JeecgApplication {

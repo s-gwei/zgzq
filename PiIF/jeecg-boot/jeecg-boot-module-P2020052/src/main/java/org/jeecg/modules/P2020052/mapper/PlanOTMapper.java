@@ -29,4 +29,6 @@ public interface PlanOTMapper {
     List<ProblemRickChainVo> selectPid();
 
     List<RiskVo> selectRiskByPlan(@Param("startTime")String startTime,@Param("endTime") String endTime, String[] group, String planId);
+
+    String selectNameById(@Param("projectId")String projectId);
 }

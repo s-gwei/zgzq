@@ -1,0 +1,20 @@
+package org.jeecg.modules.P2020052.mapper;
+
+import org.apache.ibatis.annotations.Param;
+import org.jeecg.modules.P2020052.pojo.TaskVo;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ScheduleTaskMapper {
+    void taskExecution();
+
+    List<String> getProjectIds();
+
+    List<TaskVo> getTaskById(@Param("projectId") String projectId);
+
+    List<TaskVo> getTaskInById(@Param("activiteId")String activiteId);
+
+    List<TaskVo> getTaskOTById(@Param("activiteId")String activiteId);
+}
