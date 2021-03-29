@@ -82,7 +82,7 @@
                         <th></th>
                         <th></th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -91,7 +91,7 @@
                         <th>项目工期</th>
                         <th>风险KPI</th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
@@ -114,7 +114,7 @@
                                 <td :rowspan="getrowNum(itm)" :title="item['Executive']">{{item['Executive']}}</td>
                                 <td :rowspan="getrowNum(itm)" :title="item['taskname']">{{item['taskname']}}</td>
                                 <td>{{item.in_code}}</td>
-                                <td>{{item.in_description}}</td>
+                                <td :title="item.in_description">{{item.in_description}}</td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.in_standardDeviationValue}}</td>
                                 <td>{{item.in_deviationReport}}</td>
@@ -125,7 +125,7 @@
                                 <!-- <td>{{item.reportPeriod}}</td> -->
                                 <td>{{item.riskKPI}}</td>
                                 <td>{{item.code}}</td>
-                                <td>{{item.description}}</td>
+                                <td :title="item.description"><div>{{item.description}}</div></td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
                                 <td>{{item.standardDifficulty}}</td>
@@ -143,7 +143,7 @@
                            <tr  v-if="index && index != itm.length -1" class="otherRow">
                            <!-- <td >z职能</td> -->
                                <td>{{item.code}}</td>
-                               <td>{{item.description}}</td>
+                               <td :title="item.description"><div>{{item.description}}</div></td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
@@ -152,7 +152,7 @@
                                 <td>{{item.reportPeriod}}</td> -->
                                 <td>{{item.riskKPI}}</td>
                                 <td>{{item.code}}</td>
-                               <td>{{item.description}}</td>
+                               <td :title="item.description"><div>{{item.description}}</div></td>
                                 <td>{{item.standardDeviation}}</td>
                                 <td>{{item.reportingDeviations}}</td>
                                 <td>{{item.standardDifficulty}}</td>
@@ -201,7 +201,7 @@
                         <th></th>
                         <th></th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -210,7 +210,7 @@
                         <th>项目工期</th>
                         <th>风险KPI</th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
@@ -235,7 +235,7 @@
                     <!-- <td>{{item.code}}</td>
                     <td>{{item.description}}</td> -->
                     <td>{{item.in_code}}</td>
-                    <td>{{item.in_description}}</td>
+                    <td :title="item.in_description"><div  class="zbmc">{{item.in_description}}</div></td>
                     <td>{{item.weight}}</td>
                     <td>{{item.in_standardDeviationValue}}</td>
                     <td>{{item.in_deviationReport}}</td>
@@ -246,7 +246,7 @@
                     <!-- <td>{{item.reportPeriod}}</td> -->
                     <td>{{item.riskKPI}}</td>
                     <td>{{item.code}}</td>
-                    <td>{{item.description}}</td>
+                    <td :title="item.description"><div>{{item.description}}</div></td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDeviations}}</td>
                     <td>{{item.standardDifficulty}}</td>
@@ -263,7 +263,7 @@
                           <tr v-if="index && index != itm.length -1" class="otherRow">
                     <!-- <td >z职能</td> -->
                    <td>{{item.in_code}}</td>
-                    <td>{{item.in_description}}</td>
+                    <td :title="item.in_description"><div  class="zbmc">{{item.in_description}}</div></td>
                     <td>{{item.weight}}</td>
                     <td>{{item.in_standardDeviationValue}}</td>
                     <td>{{item.in_deviationReport}}</td>
@@ -273,7 +273,7 @@
                     <!-- <td>{{item.reportPeriod}}</td> -->
                     <td>{{item.riskKPI}}</td>
                     <td>{{item.code}}</td>
-                    <td>{{item.description}}</td>
+                    <td :title="item.description"><div>{{item.description}}</div></td>
                     <td>{{item.standardDeviation}}</td>
                     <td>{{item.reportingDifficulty}}</td>
                     <td>{{item.standardDifficulty}}</td>
@@ -350,7 +350,7 @@
                         <th></th>
                         <th></th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -359,7 +359,7 @@
                         <th>项目工期</th>
                         <th>风险KPI</th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
@@ -391,7 +391,7 @@
                         <!-- <td>{{item.reportPeriod}}</td> -->
                         <td>{{item.riskKPI}}</td>
                         <td>{{item.code}}</td>
-                        <td>{{item.description}}</td>
+                        <td :title="item.description"><div>{{item.description}}</div></td>
                         <td>{{item.standardDeviation}}</td>
                         <td>{{item.reportingDeviations}}</td>
                         <td>{{item.standardDifficulty}}</td>
@@ -416,7 +416,7 @@
                         <!-- <td>{{item.reportPeriod}}</td> -->
                         <td>{{item.riskKPI}}</td>
                         <td>{{item.code}}</td>
-                        <td>{{item.description}}</td>
+                        <td :title="item.description"><div>{{item.description}}</div></td>
                         <td>{{item.standardDeviation}}</td>
                         <td>{{item.reportingDeviations}}</td>
                         <td>{{item.standardDifficulty}}</td>
@@ -465,7 +465,7 @@
                         <th></th>
                         <th></th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>权重</th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
@@ -474,7 +474,7 @@
                         <th>项目工期</th>
                         <th>风险KPI</th>
                         <th>指标编码</th>
-                        <th>指标名称</th>
+                        <th><div  class="zbmcs">指标名称</div></th>
                         <th>标准偏差</th>
                         <th>汇报偏差</th>
                         <th>标准困难度</th>
@@ -499,7 +499,8 @@
                                <!-- <td>{{item.code}}</td>
                                <td>{{item.description}}</td> -->
                                <td>{{item.in_code}}</td>
-                               <td>{{item.in_description}}</td>
+                               <!-- <td :title="item.in_description">{{item.in_description}}</td> -->
+                               <td :title="item.in_description"><div  class="zbmc">{{item.in_description}}</div></td>
                                <td>{{item.weight}}</td>
                                <td>{{item.standardDeviation}}</td>
                                <td>{{item.reportingDeviations}}</td>
@@ -636,10 +637,10 @@ export default {
   data() {
       return{
         ispagination: {
-          pageSize: 3,
+          pageSize: 10,
           pageNo: 1,
           total: 0,
-          pageSizeOptions: ['3']
+          pageSizeOptions: ['10']
         },
           tableDate: [],
           tableDateAll: [],
@@ -873,7 +874,6 @@ export default {
           getAction(url,this.queryParam,'get').then((res) => {
             _this.isLoading = false
            if(res.success && res.result){
-            //  console.log(res.result);
              _this.ispagination.total = res.result.length
               _this.$set(_this,'tableDate',res.result.slice(0,_this.ispagination.pageSize))
               _this.$set(_this,'tableDateAll',res.result)
@@ -1099,7 +1099,17 @@ export default {
         width: 100px;
         word-wrap:break-word;
       }
-     
+     td:nth-last-child(13)>div,
+     td:nth-last-child(20)>div,.zbmc{
+      //  min-width: 200px;
+       width: 280px;
+       white-space: nowrap;
+        text-overflow: ellipsis;
+       overflow: hidden;
+     }
+     .zbmcs{
+       width: 204px;
+     }
      .firstRow td:nth-child(8),
      .firstRow td:nth-child(11),
      .otherRow td:nth-child(6),
