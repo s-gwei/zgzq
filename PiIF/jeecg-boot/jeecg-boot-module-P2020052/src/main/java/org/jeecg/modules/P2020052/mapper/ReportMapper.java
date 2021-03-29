@@ -32,4 +32,6 @@ public interface ReportMapper {
 
     List<TaskVo> selectINOTById(@Param("id")String id);
 
+
+    List<String> selectAllId();
 }

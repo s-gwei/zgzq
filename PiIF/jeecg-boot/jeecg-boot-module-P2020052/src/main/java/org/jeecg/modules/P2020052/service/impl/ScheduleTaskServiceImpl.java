@@ -3,17 +3,19 @@ package org.jeecg.modules.P2020052.service.impl;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import org.jeecg.modules.P2020052.mapper.PlanOTMapper;
 import org.jeecg.modules.P2020052.mapper.ScheduleTaskMapper;
+import org.jeecg.modules.P2020052.pojo.PiplanActivityVo;
+import org.jeecg.modules.P2020052.pojo.ProjectRiskVo;
 import org.jeecg.modules.P2020052.pojo.TaskVo;
 import org.jeecg.modules.P2020052.service.ScheduleTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @DS("multi-datasource1")
@@ -66,9 +68,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 //标准工期
                 double StandardPeriod = 0;
                 //项目工期
-                 double reportPeriod = 0;
+                double reportPeriod = 0;
                 //平均发布次数
-                  double NumbereleasesAvg = 0;
+                double NumbereleasesAvg = 0;
                 for (int i = 0; i < list.size(); i++) {
                     TaskVo task = list.get(i);
                     TaskVo inTask = i <= inList.size() - 1 ? inList.get(i) : null;
@@ -189,9 +191,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                         // 汇报困难度
                         double reportingDifficulty = Double.parseDouble(otTask.getDifficultyReport() == null ?
                                 "0" : otTask.getDifficultyReport());
-                          resultMap.put("reportingDifficulty", otTask.getDifficultyReport());
+                        resultMap.put("reportingDifficulty", otTask.getDifficultyReport());
                         // 标准困难度
-                         double standardDifficulty = Double.parseDouble(otTask.getStandardDifficultyValue() == null ?
+                        double standardDifficulty = Double.parseDouble(otTask.getStandardDifficultyValue() == null ?
                                 "0" : otTask.getStandardDifficultyValue());
                         resultMap.put("standardDifficulty", otTask.getStandardDifficultyValue());
                         // 计算得出输出质量KPI
@@ -210,7 +212,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                                 "0" : otTask.getBreadth());
                         resultMap.put("span", otTask.getBreadth());
                         // 关键度
-                          double Criticality = Double.parseDouble(otTask.getCriticality() == null ?
+                        double Criticality = Double.parseDouble(otTask.getCriticality() == null ?
                                 "0" : otTask.getCriticality());
                         resultMap.put("criticality", otTask.getCriticality());
                         // 计算项目风险指标
@@ -226,7 +228,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                     }
                     resultList.add(resultMap);
 
-                    k=i+1;
+                    k = i + 1;
                 }
                 totalMap.put("taskname", taskVo.getPlanName());
                 totalMap.put("Executive", taskVo.getExecutive());
@@ -249,10 +251,75 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 }
                 totalMap.put("riskKPI", riskKPI);
                 resultList.add(totalMap);
-                redisTemplate.opsForValue().set(projectId+taskVo.getActiviteId(),resultList);
+                redisTemplate.opsForValue().set(projectId + taskVo.getActiviteId(), resultList);
             }
         }
     }
+
+    @Override
+    public void ProjectRiskTable() throws ParseException {
+        //获取所有的项目id
+        List<String> projectIds = scheduleTaskMapper.selectAllId();
+        //查询每个项目下所有的任务信息
+        Date date = new Date();
+        // 计算时间周数
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
+        for (String projectId : projectIds) {
+            List<ProjectRiskVo> list = scheduleTaskMapper.ProjectRiskTable(projectId);
+            String project = "";
+            Map<Object, Object> map = new HashMap();
+            double OutputQualityRiskSum = 0;
+            if (list.size() == 0) {
+                continue;
+            }
+            for (ProjectRiskVo projectRiskVo : list) {
+                if ("".equals(project)) {
+                    project = projectRiskVo.getProjectId();
+                    // 开始时间
+                    long startTime = projectRiskVo.getStartTime() == "" ? 0 : formatter.parse(projectRiskVo.getStartTime()).getTime();
+                    //项目启动时间和当前日期差=当前时间 - 项目开始时间
+                    long startDate = date.getTime() - startTime;
+                    //项目周期 = 项目计划最早开始时间 - 项目计划最晚完成时间
+                    PiplanActivityVo piplanActivityVo = scheduleTaskMapper.projectWeekCycle(projectId);
+                    long end1 = piplanActivityVo.getTargetStartTime() == "" ? 0 : formatter.parse(piplanActivityVo.getTargetStartTime()).getTime();
+                    long end2 = piplanActivityVo.getByTime() == "" ? 0 : formatter.parse(piplanActivityVo.getByTime()).getTime();
+                    double end = end2 - end1;
+                    // x轴
+                    double x = startDate / (end == 0 ? 1 : end);
+                    map.put("Xaxis", Double.parseDouble(df.format(x)));
+                    // y轴
+                    String Yaxis = projectRiskVo.getPreRatio() == "" ? "0.5" : projectRiskVo.getPreRatio();
+                    map.put("Yaxis", 0.5);
+                    //项目名称
+                    String proName = projectRiskVo.getName() == "" ? "0.5" : projectRiskVo.getName();
+                    map.put("proName", proName);
+                    map.put("projectId", projectRiskVo.getProjectId());
+                }
+                //标准偏差
+                double standardDeviation = projectRiskVo.getStandardDeviationValue() == "" ?
+                        0 : Double.parseDouble(projectRiskVo.getStandardDeviationValue());
+                // 汇报偏差
+                double reportingDeviations = projectRiskVo.getDeviationReport() == "" ?
+                        0 : Double.parseDouble(projectRiskVo.getDeviationReport());
+                // 汇报困难度
+                double reportingDifficulty = projectRiskVo.getDifficultyReport() == "" ?
+                        0 : Double.parseDouble(projectRiskVo.getDifficultyReport());
+                // 标准困难度
+                double standardDifficulty = projectRiskVo.getStandardDifficultyValue() == "" ?
+                        0 : Double.parseDouble(projectRiskVo.getStandardDifficultyValue());
+                // 计算输出质量风险
+                String OutputQualityRisk = df.format(((abs(reportingDeviations - standardDeviation)) * 10 + 1)
+                        * ((abs(reportingDifficulty - standardDifficulty)) * 10 + 1));
+                // 计算输出质量风险之和
+                OutputQualityRiskSum += Double.parseDouble(OutputQualityRisk);
+            }
+            map.put("OutputQualityRiskSum", Double.parseDouble(df.format(OutputQualityRiskSum)));
+            redisTemplate.opsForValue().set(projectId , map);
+        }
+
+    }
+
 
     // 计算绝对值
     public double abs(double a) {

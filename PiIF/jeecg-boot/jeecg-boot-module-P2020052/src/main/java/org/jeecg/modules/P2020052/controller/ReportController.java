@@ -47,8 +47,11 @@ public class ReportController {
     @GetMapping(value = "ProjectRiskTable")
     @ApiOperation(value = "项目风险系数表")
     public Result ProjectRiskTable(String projectIds) throws ParseException {
-        return Result.ok(reportService.ProjectRiskTable(projectIds));
+        return Result.ok(reportService.ProjectRiskTableById(projectIds));
+
     }
+
+
 
     @GetMapping(value = "TaskExecution")
     @ApiOperation(value = "任务执行报表")

@@ -557,4 +557,8 @@ FROM
 	( SELECT @rownum3 := 0 ) t
 ) B ON A.rn = B.rn
     </select>
+
+    <select id="selectAllId" resultType="java.lang.String">
+           select id from piproject
+    </select>
 </mapper>

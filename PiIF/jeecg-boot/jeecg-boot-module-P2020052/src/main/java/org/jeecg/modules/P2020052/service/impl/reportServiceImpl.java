@@ -162,7 +162,24 @@ public class reportServiceImpl implements ReportService {
         }
         return result;
     }
-
+    @Override
+    public List ProjectRiskTableById(String projectIds) {
+        List<String> projectId = new ArrayList<>();
+        if("".equals(projectIds) || projectIds == null){
+            projectId = reportMapper.selectAllId();
+        }else{
+            String[] project = projectIds.split(",");
+            for(int i =0;i<project.length;i++){
+                projectId.add(project[i]);
+            }
+        }
+        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        for(String  id :projectId){
+            Map<String, Object> map = (Map<String, Object>) redisTemplate.opsForValue().get(id);
+            list.add(map);
+        }
+        return list;
+    }
     @Override
     public List ProjectRiskTable(String projectIds) throws ParseException {
         String[] projectId = projectIds.split(",");
@@ -1204,6 +1221,8 @@ public class reportServiceImpl implements ReportService {
             throw new IOException("导出Excel出现严重异常，异常信息：" + ex.getMessage());
         }
     }
+
+
 
     private List redisGet(String projectId, String actId) {
         List<Map<String, Object>> list = (List<Map<String, Object>>) redisTemplate.opsForValue().get(projectId + actId);

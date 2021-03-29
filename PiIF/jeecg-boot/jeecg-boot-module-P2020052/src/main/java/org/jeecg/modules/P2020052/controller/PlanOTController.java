@@ -113,4 +113,11 @@ public class PlanOTController {
         return Result.ok();
     }
 
+    @GetMapping(value = "/ptaskExecution")
+    @ApiOperation(value = "项目风险系数定时任务")
+    public Result projectRiskTable() throws ParseException {
+        scheduleTaskService.ProjectRiskTable();
+        return Result.ok();
+    }
+
 }

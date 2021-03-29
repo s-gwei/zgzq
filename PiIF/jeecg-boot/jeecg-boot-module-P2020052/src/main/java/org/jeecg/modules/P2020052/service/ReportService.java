@@ -30,4 +30,6 @@ public interface ReportService {
     List taskExecutionById(String projectId, String userIds);
 
     void exportTaskTableById(HttpServletResponse response, String fileName, String projectId, String userIds) throws IOException;
+
+    List ProjectRiskTableById(String projectIds);
 }
