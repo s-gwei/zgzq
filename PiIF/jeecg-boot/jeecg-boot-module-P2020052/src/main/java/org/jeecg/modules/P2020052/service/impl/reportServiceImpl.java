@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-//@DS("multi-datasource1")
+@DS("multi-datasource1")
 public class reportServiceImpl implements ReportService {
 
     @Autowired
@@ -883,6 +883,11 @@ public class reportServiceImpl implements ReportService {
             userId = userIds.split(",");
         }
         List<String> actIds = reportMapper.selectAllActId(projectId, userId);
+//        List resultList = new ArrayList();
+//        for(String id: actIds){
+//            List<Map<String, Object>> list = (List<Map<String, Object>>) redisTemplate.opsForValue().get(projectId + id);
+//            resultList.add(list);
+//        }
         ExecutorService executor = Executors.newFixedThreadPool(actIds.size());
         List<Future<List>> futures = new ArrayList<>();
         for (String actId : actIds) {
@@ -902,10 +907,15 @@ public class reportServiceImpl implements ReportService {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            list.add(join);
+            if(join !=null){
+                list.add(join);
+            }
+
         }
         executor.shutdown();
         return list;
+//        return  resultList;
+
     }
 
     @Override
@@ -1042,10 +1052,10 @@ public class reportServiceImpl implements ReportService {
         //excel写入数据
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
         //查询所有的任务id
+        //标记excel行数
+        int k = 2;
         for(Object task : list){
             List<Map<String,Object>> result = (List<Map<String, Object>>) task;
-            //标记excel行数
-            int k = 2;
             //标记任务条数
             int i = 1;
             //查询任务下in,ot的值
@@ -1053,23 +1063,15 @@ public class reportServiceImpl implements ReportService {
                 if (map.size() ==7) {
                     //环境质量指标：qualityIndex
                     System.out.println(map.get("qualityIndex"));
-//                    Double qualityIndex = Double.parseDouble(map.get("qualityIndex") == null ?
-//                            "0" : map.get("qualityIndex").toString() );
                     cell = row.createCell(24);
                     cell.setCellValue(map.get("qualityIndex").toString());
                     //工期风险KPI:riskKPI
-//                    double riskKPI = Double.parseDouble(map.get("riskKPI") == null ?
-//                            "0" : map.get("riskKPI").toString() );
                     cell = row.createCell(25);
                     cell.setCellValue(map.get("riskKPI").toString());
                     //总质量指标：totalQualityKpi
-//                    double totalQualityKpi = Double.parseDouble(map.get("totalQualityKpi") == null ?
-//                            "0" : map.get("totalQualityKpi").toString() );
                     cell = row.createCell(26);
                     cell.setCellValue(map.get("totalQualityKpi").toString());
                     //平均发布次数：NumbereleasesAvg
-//                    Double NumbereleasesAvg = Double.parseDouble(map.get("NumbereleasesAvg") == null ?
-//                            "0" : map.get("NumbereleasesAvg").toString() );
                     cell = row.createCell(27);
                     cell.setCellValue(map.get("NumbereleasesAvg").toString());
                     continue;
@@ -1081,11 +1083,11 @@ public class reportServiceImpl implements ReportService {
                 String name = (String) map.get("taskname");
                 cell.setCellValue(name);
                 //指标编码
-                String inCode = map.get("in_code") == null ? (String) map.get("in_code") :"";
+                String inCode = map.get("in_code") == null ? "" :(String) map.get("in_code");
                 cell = row.createCell(2);
                 cell.setCellValue(inCode);
-                //指标名称
-                String InDescription = map.get("In_description") == null ?null: (String) map.get("In_description");
+                //指标名称in_description
+                String InDescription = map.get("in_description") == null ?"": (String) map.get("in_description");
                 cell = row.createCell(3);
                 cell.setCellValue(InDescription);
                 // 权重
@@ -1110,7 +1112,7 @@ public class reportServiceImpl implements ReportService {
                 cell = row.createCell(7);
                 cell.setCellValue(qualityInfluenceFactor);
                 //标准工期
-                Double StandardPeriod =map.get("standardWork") == null ? 0 : Double.parseDouble(map.get("standardWork").toString());
+                Double StandardPeriod =map.get("StandardPeriod") == null ? 0 : Double.parseDouble(map.get("StandardPeriod").toString());
                 cell = row.createCell(8);
                 cell.setCellValue(StandardPeriod);
                 //项目工期

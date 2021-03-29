@@ -1,5 +1,6 @@
 package org.jeecg.modules.P2020052.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import org.jeecg.modules.P2020052.mapper.PlanOTMapper;
 import org.jeecg.modules.P2020052.mapper.ScheduleTaskMapper;
 import org.jeecg.modules.P2020052.pojo.TaskVo;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@DS("multi-datasource1")
 public class ScheduleTaskServiceImpl implements ScheduleTaskService {
 
     @Autowired
@@ -78,7 +80,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                     //执行职能
                     resultMap.put("executive", taskVo.getExecutive());
                     //任务id
-                    resultMap.put("任务id", taskVo.getActiviteId());
+                    resultMap.put("activiteId", taskVo.getActiviteId());
                     //标准工期
                     StandardPeriod = Double.parseDouble(taskVo.getStandardWork() == null ? "0" : taskVo.getStandardWork());
                     resultMap.put("StandardPeriod", StandardPeriod);
@@ -127,7 +129,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                         resultMap.put("qualityInfluenceFactor", qualityInfluenceFactor);
                         //输出评定
                         String OutputEvalua = inTask.getOutput() == null ? "" : inTask.getOutput();
-                        resultMap.put("OutputEvalua", inTask);
+                        resultMap.put("OutputEvalua", OutputEvalua);
                     }
                     //ot的属性通过otTask获取,
                     if (otTask == null) {
@@ -173,9 +175,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                         resultMap.put("ProjectRiskIndicators", ProjectRiskIndicators);
                         resultMap.put("Criticality", Criticality);
                     } else {
-                        resultMap.put("code", task.getCode());
-                        resultMap.put("reportTime", task.getReport_time());
-                        resultMap.put("description", task.getDescription());
+                        resultMap.put("code", otTask.getCode());
+                        resultMap.put("reportTime", otTask.getReport_time());
+                        resultMap.put("description", otTask.getDescription());
                         //标准偏差
                         Double standardDeviation = Double.parseDouble(otTask.getStandardDeviationValue() == null ?
                                 "0" : otTask.getStandardDeviationValue());
@@ -189,7 +191,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                                 "0" : otTask.getDifficultyReport());
                           resultMap.put("reportingDifficulty", otTask.getDifficultyReport());
                         // 标准困难度
-                        double standardDifficulty = Double.parseDouble(otTask.getStandardDifficultyValue() == null ?
+                         double standardDifficulty = Double.parseDouble(otTask.getStandardDifficultyValue() == null ?
                                 "0" : otTask.getStandardDifficultyValue());
                         resultMap.put("standardDifficulty", otTask.getStandardDifficultyValue());
                         // 计算得出输出质量KPI
@@ -221,13 +223,14 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                         resultMap.put("Numbereleases", otTask.getReleases());
                         resultMap.put("ProjectRiskIndicators", ProjectRiskIndicators);
                         resultMap.put("Criticality", Criticality);
-                        resultList.add(resultMap);
-                        totalMap.put("taskname", task.getPlanName());
-                        totalMap.put("Executive", task.getExecutive());
-                        totalMap.put("taskid", task.getActiviteId());
                     }
-                    k=i;
+                    resultList.add(resultMap);
+
+                    k=i+1;
                 }
+                totalMap.put("taskname", taskVo.getPlanName());
+                totalMap.put("Executive", taskVo.getExecutive());
+                totalMap.put("taskid", taskVo.getActiviteId());
                 //总质量指标
                 String totalQualityKpi = df.format(OutputaualityKPISum / k);
                 totalMap.put("totalQualityKpi", totalQualityKpi);
@@ -247,8 +250,6 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 totalMap.put("riskKPI", riskKPI);
                 resultList.add(totalMap);
                 redisTemplate.opsForValue().set(projectId+taskVo.getActiviteId(),resultList);
-
-
             }
         }
     }

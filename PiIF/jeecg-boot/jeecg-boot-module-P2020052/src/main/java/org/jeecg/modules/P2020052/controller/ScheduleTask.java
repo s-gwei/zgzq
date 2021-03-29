@@ -24,7 +24,7 @@ public class ScheduleTask  {
     //获取任务执行报表
     @Scheduled(cron ="${cron}")
     public void taskExecution(){
-//        scheduleTaskService.taskExecution();
+        scheduleTaskService.taskExecution();
         System.out.println("任务执行。。。。cron");
     }
 
