@@ -33,7 +33,6 @@ public class ScheduleTask  {
 
     @Scheduled(cron ="${cron}")
     public void ProjectRiskTable() throws ParseException {
-
         scheduleTaskService.ProjectRiskTable();
         System.out.println("任务执行。。。。cron");
     }

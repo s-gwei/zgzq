@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @DS("multi-datasource1")
@@ -251,7 +252,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 }
                 totalMap.put("riskKPI", riskKPI);
                 resultList.add(totalMap);
-                redisTemplate.opsForValue().set(projectId + taskVo.getActiviteId(), resultList);
+                redisTemplate.opsForValue().set(projectId + taskVo.getActiviteId(), resultList, 1, TimeUnit.DAYS);
             }
         }
     }
@@ -315,7 +316,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 OutputQualityRiskSum += Double.parseDouble(OutputQualityRisk);
             }
             map.put("OutputQualityRiskSum", Double.parseDouble(df.format(OutputQualityRiskSum)));
-            redisTemplate.opsForValue().set(projectId , map);
+            redisTemplate.opsForValue().set(projectId, map, 1, TimeUnit.DAYS);
         }
 
     }

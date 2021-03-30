@@ -73,16 +73,21 @@ SELECT
 	stproject_instanceotindicator.description AS in_description,
 	stproject_instanceotindicator.standard_deviation_value AS in_standardDeviationValue,
 	stproject_instanceotindicator.deviation_report AS in_deviationReport,
-	e.otRating,
-	piproject_container.container_info_name
+	e.otRating
 FROM
-	stproject_instanceotindicator
-	LEFT JOIN piproject_container ON stproject_instanceotindicator.container_ref_id = piproject_container.id,
+	stproject_instanceotindicator,
 	stproject_instanceinindicator
 	LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id
 WHERE
 	stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
 	AND stproject_instanceinindicator.plan_activity_ref_id = #{activiteId}
+GROUP BY
+	stproject_instanceinindicator.weights,
+	stproject_instanceotindicator.CODE,
+	stproject_instanceotindicator.description,
+	stproject_instanceotindicator.standard_deviation_value,
+	stproject_instanceotindicator.deviation_report,
+	e.otRating
     </select>
 
     <select id="getTaskOTById" resultMap="TaseResultMap">

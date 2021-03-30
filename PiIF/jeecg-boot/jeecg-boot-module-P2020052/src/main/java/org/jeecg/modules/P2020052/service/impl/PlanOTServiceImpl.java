@@ -31,8 +31,8 @@ public class PlanOTServiceImpl implements PlanOTService {
         String startTime = null;
         String endTime = null;
         if (time != null) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
         IPage<PlanOTVo> list = planOTMapper.OTTable(page, startTime, endTime, group, planId);
         return list;
@@ -49,8 +49,8 @@ public class PlanOTServiceImpl implements PlanOTService {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
         IPage<PlanINVo> planINVoIPage = planOTMapper.selectINTable(page, startTime, endTime, group, planId);
         return planINVoIPage;
@@ -62,87 +62,85 @@ public class PlanOTServiceImpl implements PlanOTService {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
-            startTime = time[0];
-            endTime = time[1];
+            startTime = time[0] + " 00:00:00";
+            endTime = time[1] + " 23:59:59";
         }
         if (planId == null || "".equals(planId)) {
+            //获取所有的风险
             List<RiskVo> list = planOTMapper.selectRiskProject(startTime, endTime, group, projectId);
+            //将同一个项目风险下的措施放在同一个list中
             List resultList = new ArrayList();
-            Map map = new HashMap<>();
-            List nameList = null;
+            List nameList = new ArrayList();;
+            String riskName = "";
             for (int i = 0; i < list.size(); i++) {
-                if (i == 0) {
-                    nameList = new ArrayList();
-                    map.put(list.get(i).getRiskName(), list.get(i).getRiskName());
+                if("".equals(riskName) || list.get(i).getRiskName().equals(riskName) ){
+                    riskName = list.get(i).getRiskName();
                     nameList.add(list.get(i));
-                    if (i == list.size() - 1) {
-                        resultList.add(nameList);
-
-                    }
                     continue;
                 }
-                String name = list.get(i).getRiskName();
-                String a = (String) map.get(name);
-                if (map.get(list.get(i).getRiskName()) == null) {
-
-                    resultList.add(nameList);
-                    map.put("name", list.get(i).getRiskName());
-                    nameList = new ArrayList();
-                    nameList.add(list.get(i));
-                } else {
-                    nameList.add(list.get(i));
-                    if (i == list.size() - 1) {
-                        resultList.add(nameList);
-                    }
-                    continue;
-                }
-                if (i == list.size() - 1) {
-                    resultList.add(nameList);
-                }
+                resultList.add(nameList);
+                nameList = new ArrayList();
+                riskName = list.get(i).getRiskName();
+                nameList.add(list.get(i));
+                continue;
             }
+            resultList.add(nameList);
+            return resultList;
+        } else {
+            List<RiskVo> list = planOTMapper.selectRiskByPlan(startTime, endTime, group, planId);
+            //将同一个项目风险下的措施放在同一个list中
+            List resultList = new ArrayList();
+            List nameList = new ArrayList();;
+            String riskName = "";
+            for (int i = 0; i < list.size(); i++) {
+                if("".equals(riskName) || list.get(i).getRiskName().equals(riskName) ){
+                    riskName = list.get(i).getRiskName();
+                    nameList.add(list.get(i));
+                    continue;
+                }
+                resultList.add(nameList);
+                nameList = new ArrayList();
+                riskName = list.get(i).getRiskName();
+                nameList.add(list.get(i));
+                continue;
+            }
+            resultList.add(nameList);
+            return resultList;
+//            List resultList = new ArrayList();
+//            Map map = new HashMap<>();
+//            List nameList = null;
+//            for (int i = 0; i < list.size(); i++) {
+//                if (i == 0) {
+//                    nameList = new ArrayList();
+//                    map.put("name", list.get(i).getRiskName());
+//                    nameList.add(list.get(i));
+//                    continue;
+//                }
+//                if (map.get(list.get(i).getRiskName()) == null) {
+//                    resultList.add(nameList);
+//                    map.put("name", list.get(i).getRiskName());
+//                    nameList = new ArrayList();
+//                } else {
+//                    nameList.add(list.get(i));
+//                    continue;
+//                }
+//                if (i == list.size() - 1) {
+//                    resultList.add(nameList);
+//
+//                }
+//            }
 //            for (Object set : map.keySet()) {
 //                for (RiskVo riskVo : list) {
 //
 //                }
 //            }
-            return resultList;
-        } else {
-            List<RiskVo> list =   planOTMapper.selectRiskByPlan(startTime,endTime, group, planId);
-            List resultList = new ArrayList();
-            Map map = new HashMap<>();
-            List nameList = null;
-            for (int i = 0; i < list.size(); i++) {
-                if (i == 0) {
-                    nameList = new ArrayList();
-                    map.put("name", list.get(i).getRiskName());
-                    nameList.add(list.get(i));
-                    continue;
-                }
-                if (map.get(list.get(i).getRiskName()) == null) {
-                    resultList.add(nameList);
-                    map.put("name", list.get(i).getRiskName());
-                    nameList = new ArrayList();
-                } else {
-                    nameList.add(list.get(i));
-                    continue;
-                }
-                if (i == list.size() - 1) {
-                    resultList.add(nameList);
-
-                }
-            }
-            for (Object set : map.keySet()) {
-                for (RiskVo riskVo : list) {
-
-                }
-            }
-            return resultList;
+//            return resultList;
         }
 
     }
 
     @Override
-    public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId) throws ParseException {
+    public List<PiplanActivityVo> WorkDelayTable(String[] time, String[] group, String projectId, String planId) throws ParseException {
         String startTime = null;
         String endTime = null;
         if (time != null && !"".equals(time)) {
@@ -155,7 +153,7 @@ public class PlanOTServiceImpl implements PlanOTService {
                 group = null;
             }
         }
-        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, group, endTime, projectId);
+        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, endTime,group, projectId,planId);
 
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -185,7 +183,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     long expectedFinishLong = expectedFinishStr == null ? 0 : formatter.parse(expectedFinishStr).getTime();
                     String targetStartTimeStr = act.getTargetStartTime();//预估完成时间
                     long targetStartTimeStrLong = targetStartTimeStr == null ? 0 : formatter.parse(targetStartTimeStr).getTime();
-
                     String taskTypa = null;
                     //任务状态1，正常执行
                     if (actualEndLong == 0 && btTImeLong > expectedFinishLong && btTImeLong >= currentStr) {
@@ -220,11 +217,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     } else if (actualEndLong == 0 && targetStartTimeStrLong < currentStr) {
                         deviation = df.format((btTImeLong - currentStr) / (1000 * 60 * 60 * 24));
                     }
-//                    else if(actualEndLong == 0 && targetStartTimeStrLong>currentStr){
-//                        deviation = "0";
-//                    }else{
-//                        deviation = "0";
-//                    }
                     act.setDeviation(Double.parseDouble(deviation));
                 }
             }
@@ -262,12 +254,14 @@ public class PlanOTServiceImpl implements PlanOTService {
         cell = row.createCell(3);
         cell.setCellValue("汇报困难度");
         cell = row.createCell(4);
-        cell.setCellValue("广度");
+        cell.setCellValue("汇报时间");
         cell = row.createCell(5);
-        cell.setCellValue("关键度");
+        cell.setCellValue("广度");
         cell = row.createCell(6);
-        cell.setCellValue("标准偏差");
+        cell.setCellValue("关键度");
         cell = row.createCell(7);
+        cell.setCellValue("标准偏差");
+        cell = row.createCell(8);
         cell.setCellValue("标准困难度");
         int i = 1;
         for (PlanOTVo planOTVo : list) {
@@ -281,12 +275,14 @@ public class PlanOTServiceImpl implements PlanOTService {
             cell = row.createCell(3);
             cell.setCellValue(planOTVo.getDifficulty_report());
             cell = row.createCell(4);
-            cell.setCellValue(planOTVo.getBreadth());
+            cell.setCellValue(planOTVo.getReportTime());
             cell = row.createCell(5);
-            cell.setCellValue(planOTVo.getCriticiailty());
+            cell.setCellValue(planOTVo.getBreadth());
             cell = row.createCell(6);
-            cell.setCellValue(planOTVo.getStandard_deviation_value());
+            cell.setCellValue(planOTVo.getCriticiailty());
             cell = row.createCell(7);
+            cell.setCellValue(planOTVo.getStandard_deviation_value());
+            cell = row.createCell(8);
             cell.setCellValue(planOTVo.getStandard_difficulty_value());
             i++;
         }
@@ -376,7 +372,7 @@ public class PlanOTServiceImpl implements PlanOTService {
     }
 
     @Override
-    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String  planId , String projectId ) throws IOException {
+    public void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String planId, String projectId) throws IOException {
         List<RiskVo> list = null;
         String startTime = null;
         String endTime = null;
@@ -387,7 +383,7 @@ public class PlanOTServiceImpl implements PlanOTService {
         if (planId == null || "".equals(planId)) {
             list = planOTMapper.selectRiskProject(startTime, endTime, group, projectId);
         } else {
-            list = planOTMapper.selectRiskByPlan(startTime,endTime, group, planId);
+            list = planOTMapper.selectRiskByPlan(startTime, endTime, group, planId);
 
         }
         //创建HSSFWorkbook对象
@@ -497,7 +493,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             for (ProblemRickChainVo ProblemRickChainVo : list) {
                 if (map1.get(ProblemRickChainVo.getId()) != null) {
                     map2.put(ProblemRickChainVo.getChildrenId(), ProblemRickChainVo.getChildrenId());
-                    if(map.get(ProblemRickChainVo.getId()) == null){
+                    if (map.get(ProblemRickChainVo.getId()) == null) {
                         map.put(ProblemRickChainVo.getId(), ProblemRickChainVo.getId());
                         children1red.add(ProblemRickChainVo);
                     }
@@ -506,39 +502,10 @@ public class PlanOTServiceImpl implements PlanOTService {
             if (children1red.size() != 0) {
                 parent.setChildren(children1red);
             }
-
-
             recursion(map, map2, children1red, list);
-
-
-//            List<ProblemRickChainVo> children2red = new ArrayList<>();
-//            for(ProblemRickChainVo children2 : children1red){
-//                for(ProblemRickChainVo ProblemRickChainVo:list){
-//                    if(children2.getChildrenId().equals(ProblemRickChainVo.getId())){
-//                        map.put(ProblemRickChainVo.getId(),ProblemRickChainVo.getId());
-//                        children2red.add(ProblemRickChainVo);
-//                    }
-//                }
-//                if(children2red.size() !=0){
-//                    children2.setChildren(children2red);
-//                }
-//            }
-//            List<ProblemRickChainVo> children3red = new ArrayList<>();
-//            for(ProblemRickChainVo children3 : children2red){
-//                for(ProblemRickChainVo ProblemRickChainVo:list){
-//                    if(ProblemRickChainVo.getId().equals(children3.getChildrenId())){
-//                        map.put(ProblemRickChainVo.getId(),ProblemRickChainVo.getId());
-//                        children2red.add(ProblemRickChainVo);
-//                    }
-//                }
-//                if(children3red.size() !=0){
-//                    children3.setChildren(children2red);
-//                }
-//            }
             if (map.get(riskId) != null) {
                 result.add(parent);
             }
-
         }
 
 
@@ -553,7 +520,7 @@ public class PlanOTServiceImpl implements PlanOTService {
             for (ProblemRickChainVo ProblemRickChainVo : list) {
                 if (map2.get(ProblemRickChainVo.getId()) != null) {
                     map3.put(ProblemRickChainVo.getChildrenId(), ProblemRickChainVo.getChildrenId());
-                    if(map1.get(ProblemRickChainVo.getId()) == null){
+                    if (map1.get(ProblemRickChainVo.getId()) == null) {
                         map1.put(ProblemRickChainVo.getId(), ProblemRickChainVo.getId());
                         children2red.add(ProblemRickChainVo);
                     }

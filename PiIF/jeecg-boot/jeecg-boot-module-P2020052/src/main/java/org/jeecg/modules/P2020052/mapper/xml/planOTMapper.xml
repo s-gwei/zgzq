@@ -7,6 +7,7 @@
         <result column="plan_activity_ref_id" property="plan_activity_ref_id"/>
         <result column="code" property="code"/>
         <result column="description" property="description"/>
+        <result column="report_Time" property="reportTime"/>
         <result column="deviation_report" property="deviation_report"/>
         <result column="difficulty_report" property="difficulty_report"/>
         <result column="breadth" property="breadth"/>
@@ -26,6 +27,7 @@
         <result column="update_count" property="update_count"/>
         <result column="description" property="description"/>
         <result column="ot_rating" property="ot_rating"/>
+        <result column="report_time" property="reportTime"/>
 
 
     </resultMap>
@@ -168,7 +170,9 @@
     <select id="selectINTable" resultMap="InResultMap">
         SELECT
         sin.*,
-        strating.description,strating.ot_rating
+        strating.description,
+        strating.report_time,
+        strating.ot_rating
         FROM
         stproject_instanceinindicator sin,
         piplan_activity pa,
@@ -288,7 +292,7 @@
         stproject_measures ) ) c ON stproject_measures.involve_group_reference_id = c.id
         LEFT JOIN piuser ON stproject_measures.creator_ref_id = piuser.id
         ) e ON d.id = e.project_risk_ref_id
-
+        order by id
 
     </select>
 
@@ -334,7 +338,7 @@
     <select id="WorkDelayTable" resultMap="BaseResultMap">
         SELECT
         pa.id AS activityId,
-        pa.NAME AS activityName,
+        pa.NAME AS activity_name,
         pa.target_start_date AS targetStartTime,
         pa.target_end_date AS byTime,
         a.expected_finish_time AS expectedFinishTime,
@@ -367,10 +371,12 @@
         WHERE piproject.id = pa.project_ref_id
         <if test="projectId!= null and projectId !='' and projectId !='null' ">
             and pa.project_ref_id = #{projectId}
-
+        </if>
+        <if test="planId!= null and planId !='' and planId !='null' ">
+            and pa.root_ref_id = #{planId}
         </if>
         <if test="startTime!= null and startTime !=''">
-            and pa.target_start_date between #{startTime} and #{endTime}
+            and pa.target_end_date between #{startTime} and #{endTime}
         </if>
 
         and pa.id in

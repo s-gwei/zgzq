@@ -23,6 +23,8 @@ public class PlanINVo implements Serializable {
 
      private Double ot_rating;//评定
 
+     private String  reportTime;//汇报时间
+
 
 
 }

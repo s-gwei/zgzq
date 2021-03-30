@@ -12,6 +12,8 @@ public class PlanOTVo implements Serializable {
 
      private  String description;//描述
 
+     private  String  reportTime;//汇报时间
+
      private String deviation_report;//(汇报偏差)
 
      private String difficulty_report;//(汇报困难度)

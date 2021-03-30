@@ -18,7 +18,6 @@ public interface PlanOTMapper {
 
     List<RiskVo>  selectRiskProject(@Param("startTime")String startTime,@Param("endTime") String endTime, String[] group, @Param("projectId")String projectId);
 
-    List<PiplanActivityVo> WorkDelayTable(@Param("startTime") String startTime,@Param("group") String[] group, @Param("endTime") String endTime, @Param("projectId") String projectId);
 
     List<PlanOTVo> exportOTExcel(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("group") String[] group, @Param("planId")String planId);
 
@@ -31,4 +30,6 @@ public interface PlanOTMapper {
     List<RiskVo> selectRiskByPlan(@Param("startTime")String startTime,@Param("endTime") String endTime, String[] group, String planId);
 
     String selectNameById(@Param("projectId")String projectId);
+
+    List<PiplanActivityVo> WorkDelayTable(@Param("startTime")String startTime, @Param("endTime")String endTime,@Param("group") String[] group, @Param("projectId")String projectId,@Param("planId")String planId);
 }

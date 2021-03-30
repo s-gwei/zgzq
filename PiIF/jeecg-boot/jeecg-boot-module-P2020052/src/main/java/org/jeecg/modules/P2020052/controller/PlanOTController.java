@@ -94,8 +94,8 @@ public class PlanOTController {
     @GetMapping(value = "/WorkDelayTable")
     @ApiOperation(value = "工作任务延期报表")
     public Result WorkDelayTable(
-            String[] time,String[] group,String projectId) throws ParseException {
-        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, group,projectId);
+            String[] time,String[] group,String planId,String projectId) throws ParseException {
+        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, group,projectId,planId);
         return Result.ok(list);
     }
 
