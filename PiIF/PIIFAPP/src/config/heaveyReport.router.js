@@ -29,16 +29,16 @@ const router = {
         name: "riskMeasureList",
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/RiskMeasureList')
       },
-      // {
-      //   path: "riskTable",
-      //   name: "riskTable",
-      //   component: () => import(/* webpackChunkName: "report" */  '@/views/report/RiskTable')
-      // },
-      // {
-      //   path: "sncsList",
-      //   name: "sncsList",
-      //   component: () => import(/* webpackChunkName: "report" */  '@/views/report/XncsList')
-      // },
+      {
+        path: "riskTable",
+        name: "riskTable",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/RiskTable')
+      },
+      {
+        path: "sncsList",
+        name: "sncsList",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/XncsList')
+      },
       {
         path: "issueRiskChain",
         name: "issueRiskChain",

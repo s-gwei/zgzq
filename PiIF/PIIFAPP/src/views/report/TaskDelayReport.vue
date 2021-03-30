@@ -35,7 +35,8 @@
         <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="visibleCreateModal=false">
             <!---->
             <div class="mainMadal">
-              <a-table
+              <a-button type="primary" class="export" @click="exportExcel(getCurrentData,columns)">导出数据</a-button>
+              <a-table id="table"
                :columns="columns"
                :data-source="getCurrentData"
                rowKey="index"
@@ -61,6 +62,7 @@
   import ScrollBar from "./ScrollBar"
   import throttle from '@/mixins/throttle'
   import DataSet from '@antv/data-set';
+  import XLSX from 'xlsx'
   import html2canvas from 'html2canvas'
   const gkRiskReport = require('@assets/json/gkRiskReport.json')
   const columns=[
@@ -193,7 +195,7 @@
         visible: false,
         loading: false,
         queryParam: {},
-        chartDateALL: [],
+        chartDateALL:[],
         adaptiveContainH: 200,
         start: null,
         end: null,
@@ -221,7 +223,7 @@
                   this.start = null
              this.end = null
              this.$bus.$emit('changeTranx', 0)
-               document.querySelector("#container") && document.querySelector("#container>div").remove()
+               document.querySelector("#container") && document.querySelector("#container>div") && document.querySelector("#container>div").remove()
                this.renderChart(this.chartDateALL)
                
               //  this.getAdaptiveH()
@@ -236,12 +238,52 @@
         'chartDateALL'(v){
           if(v.length && this.i <= 1){
                this.i ++
-              //  document.querySelector("#container") &&  document.querySelector("#container>div") && document.querySelector("#container>div").remove()
-              //  this.renderChart(this.chartDateALL)
+               document.querySelector("#container") &&  document.querySelector("#container>div") && document.querySelector("#container>div").remove()
+               this.renderChart(this.chartDateALL)
+              //  this.renderChart(gkRiskReport)
           }
         }
     },
     methods: {
+      exportExcel(){
+        // let table = document.getElementById('table');
+        // let worksheet = XLSX.utils.table_to_sheet(table);
+        // let workbook = XLSX.utils.book_new();
+        // XLSX.utils.book_append_sheet(workbook, worksheet, 'sheet');
+        // 以上四行也可以直接一行搞定，如果不需要对表格数据进行修改的话
+        // let workbook = XLSX.utils.table_to_book(document.getElementById('table'))
+        // try {
+        // 	XLSX.writeFile(workbook, '工作任务延期详情信息.xlsx');
+        // } catch(e) {
+        // 	console.log(e, workbook);
+        // }
+         let Parser = require('json2csv').Parser
+         let fields = []
+         console.log(this.columns);
+         this.columns.map(col => {
+           if (col.title && col.dataIndex) {
+             let obj = {
+               label: col.title,  // 表头名称
+               value: col.dataIndex     // 表取值字段key
+             }
+             fields.push(obj)
+           }
+         })
+        //  return
+        const getCurrentData = JSON.parse(JSON.stringify(this.getCurrentData))
+        getCurrentData.map(function(record){
+          // console.log( record.taskType === "overdue" );
+           record.taskType = record.taskType === "normal" ? "正常进行任务" : (record.taskType === "finished" ? "已完成任务" :record.taskType === "overdue" ? "逾期未完成" : (record.taskType === "isoverdue" ? "可能逾期任务" : (record.taskType === "red" ? "逾期已完成" : "" )))
+        })
+         let fileName = '工作任务延期详情信息导出_' + new Date().toLocaleString('zh-CN')
+         let json2csvParser = new Parser({fields})
+         let result = json2csvParser.parse(getCurrentData)
+         let blob = new Blob(['\ufeff' + result], {type: 'text/csv'})
+         let a = document.createElement('a')
+         a.setAttribute('href', URL.createObjectURL(blob))
+         a.setAttribute('download', `${fileName}.csv`)
+         a.click()
+      },
        doSearch(s,e){
          var data
          this.$bus.$emit('changeTranx', 0)
@@ -281,6 +323,7 @@
           this.min = Math.floor(dataSorted[0].xaxis)
           // console.log(dataSorted,"dataSorted");
           dataSorted.forEach((element,index) => {
+            // console.log(element,this.min);
                if(element.xaxis < this.min + 53){
                  dateSNew.push(element)
                }
@@ -673,6 +716,11 @@
           font-size: 18px;
           color: #333;
        }
+        .export{
+           position: absolute;
+           top: 14px;
+           right: 28px;
+         }
   .mainMadal .madalContent{
          color: #333;
          font-weight: 500;
