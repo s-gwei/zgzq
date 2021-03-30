@@ -77,9 +77,15 @@
             align: 'center'
           },
           {
+            title: '任务名称',
+            dataIndex: 'activityName',
+            width: 200,
+            align: 'center'
+          },
+          {
             title: '工作任务状态',
             dataIndex: 'taskType',
-            width: 140,
+            width: 112,
             filters: [
               { value: 'normal', text: '正常进行任务' },
               { value: 'finished', text: '已完成任务' },
@@ -105,14 +111,14 @@
           {
             title: '偏差值',
             dataIndex: 'deviation',
-            width: 100,
+            width: 80,
             align: 'center',
             sorter: (a, b) => a.deviation - b.deviation,
           },
           {
             title: '计划开始时间',
             dataIndex: 'targetStartTime',
-            width: 140,
+            width: 132,
             align: 'center',
             sorter:function(a,b){
               const aSort = a.targetStartTime.split('-').join('')
@@ -123,7 +129,7 @@
           {
             title: '计划完成时间',
             dataIndex: 'byTime',
-            width: 140,
+            width: 132,
             align: 'center',
             sorter:function(a,b){
               const aSort = a.byTime.split('-').join('')
@@ -134,7 +140,7 @@
           {
             title: '预估完成时间',
             dataIndex: 'expectedFinishTime',
-            width: 140,
+            width: 132,
             align: 'center',
             sorter:function(a,b){
               const aSort = a.expectedFinishTime.split('-').join('')
@@ -145,7 +151,7 @@
           {
             title: '实际开始时间',
             dataIndex: 'actualStartTime',
-            width: 120,
+            width: 132,
             align: 'center',
             sorter:function(a,b){
               const aSort = a.expectedFinishTime.split('-').join('')
@@ -156,7 +162,7 @@
           {
             title: '实际完成时间',
             dataIndex: 'actualEndTime',
-            width: 140,
+            width: 132,
             align: 'center',
             sorter:function(a,b){
               const aSort = a.actualEndTime.split('-').join('')
@@ -230,8 +236,8 @@
         'chartDateALL'(v){
           if(v.length && this.i <= 1){
                this.i ++
-               document.querySelector("#container") && document.querySelector("#container>div").remove()
-               this.renderChart(this.chartDateALL)
+              //  document.querySelector("#container") &&  document.querySelector("#container>div") && document.querySelector("#container>div").remove()
+              //  this.renderChart(this.chartDateALL)
           }
         }
     },
@@ -481,7 +487,7 @@
          var obj = {
               time: this.$route.query.startTime && this.$route.query.startTime != 'null' ? this.$route.query.startTime +","+this.$route.query.endTime : null,
               projectId: this.$route.query.projectId,
-              projectId: this.$route.query.planId,
+              planId: this.$route.query.planId,
               group: this.$route.query.departmentId,
               status: this.$route.query.status
           }
@@ -609,7 +615,7 @@
       position: relative;
       top: 50px;
       height: calc(100% - 30px);
-      width: 90%!important;
+      width: 98%!important;
       td{
         font-size: 12px;
       }

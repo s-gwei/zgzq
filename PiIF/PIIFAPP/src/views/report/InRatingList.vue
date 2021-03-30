@@ -17,6 +17,7 @@
                         <th>权重</th>
                         <th>指标评定值</th>
                         <th>评定描述</th>
+                        <th>汇报时间</th>
                         <!-- <th>是否删除</th>
                         <th>是否存在</th> -->
                         <th>更改次数</th>
@@ -30,6 +31,7 @@
                                 <td>{{item.weight}}</td>
                                 <td>{{item.ot_rating}}</td>
                                 <td>{{item.description}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
                                 <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>
@@ -49,6 +51,7 @@
                         <th>权重</th>
                         <th>指标评定值</th>
                         <th>评定描述</th>
+                        <th>汇报时间</th>
                         <th>更改次数</th>
                    </tr>
                </thead>
@@ -60,6 +63,7 @@
                                 <td>{{item.weight}}</td>
                                 <td>{{item.ot_rating}}</td>
                                 <td>{{item.description}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
                                 <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>

@@ -227,3 +227,14 @@
       font-family: Georgia;
   }
 </style>
+<style lang="scss" scoped>
+/deep/.ant-form-item-label{
+  height: 40px;
+  &>label{
+    display: inline-block;
+    // width: 98%;
+    width: 9em;
+    overflow: hidden;
+  }
+}
+</style>

@@ -47,6 +47,7 @@
                         <th class="description">描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>广度</th>
                         <th>关键度</th>
                         <th>标准偏差</th>
@@ -60,6 +61,7 @@
                                 <td>{{item.description}}</td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <td>{{item.breadth}}</td>
                                 <td>{{item.criticiailty}}</td>
                                 <td>{{item.standard_deviation_value}}</td>
@@ -79,6 +81,7 @@
                         <th class="description">描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>广度</th>
                         <th>关键度</th>
                         <th>标准偏差</th>
@@ -92,6 +95,7 @@
                                 <td>{{item.description}}</td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <td>{{item.breadth}}</td>
                                 <td>{{item.criticiailty}}</td>
                                 <td>{{item.standard_deviation_value}}</td>
