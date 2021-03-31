@@ -14,7 +14,7 @@
               <!-- <a class="help" @click="visibleCreateModal = true"><a-icon type="question-circle-o"></a-icon><span>帮助</span></a> -->
               <a-button style="margin-left: 8px,color: #000" @click="resetSearchForm"  class="reset">重置</a-button>
               <a-button type="primary" style="margin-left: 8px"  :class="btnDisabled ? 'none': ''" @click="doSearch(start,end)" >查询</a-button>
-              <a-button type="primary" style="margin-left: 8px" @click="visibleCreateModal = true">查看详情</a-button>
+              <a-button type="primary" style="margin-left: 8px" @click="detailBtn(getCurrentData)">查看详情</a-button>
             </span>
           </a-col>
         </a-row>
@@ -25,7 +25,7 @@
            <!-- 气泡图区域-begin -->
            <div id="container" ></div>
            <div class="scrollBarWrap">
-             <ScrollBar ref="scrollBar" @updatePosRate="throttleUpdateDs" />
+             <!-- <ScrollBar ref="scrollBar" @updatePosRate="throttleUpdateDs" /> -->
            </div>
            <!-- 气泡图区域-end -->
             <!-- <div class="noData" v-if="!chartDateALL || !chartDateALL.length" :style="{height: adaptiveContainH +'px',lineHeight: adaptiveContainH +'px'}">
@@ -35,10 +35,10 @@
         <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="visibleCreateModal=false">
             <!---->
             <div class="mainMadal">
-              <a-button type="primary" class="export" @click="exportExcel(getCurrentData,columns)">导出数据</a-button>
+              <a-button type="primary" class="export" @click="exportExcel(getCurrentDatas,columns)">导出数据</a-button>
               <a-table id="table"
                :columns="columns"
-               :data-source="getCurrentData"
+               :data-source="getCurrentDatas"
                rowKey="index"
                :pagination="{ pageSize: 100 }"
                :scroll="{ y: yScroll }"
@@ -187,6 +187,7 @@
         btnDisabled: false,
         title: "工作任务延期详情信息",
         getCurrentData:[],//当前页面数据
+        getCurrentDatas: [],
         columns:columns,
         yScroll: 300,
         baseRate: 1,
@@ -245,6 +246,17 @@
         }
     },
     methods: {
+      detailBtn(data){
+        this.visibleCreateModal = true
+        this.getCurrentDatas = JSON.parse(JSON.stringify(data))
+        this.getCurrentDatas.map(function (record) {
+                record.targetStartTime = record.targetStartTime ? record.targetStartTime.split(' ')[0] : ''
+                 record.actualEndTime = record.actualEndTime ? record.actualEndTime.split(' ')[0] : ''
+                 record.actualStartTime = record.actualStartTime ? record.actualStartTime.split(' ')[0] : ''
+                 record.expectedFinishTime = record.expectedFinishTime ? record.expectedFinishTime.split(' ')[0] : ''
+                 record.byTime = record.byTime ? record.byTime.split(' ')[0] : ''
+        })
+      },
       exportExcel(){
         // let table = document.getElementById('table');
         // let worksheet = XLSX.utils.table_to_sheet(table);
@@ -259,7 +271,6 @@
         // }
          let Parser = require('json2csv').Parser
          let fields = []
-         console.log(this.columns);
          this.columns.map(col => {
            if (col.title && col.dataIndex) {
              let obj = {
@@ -270,7 +281,7 @@
            }
          })
         //  return
-        const getCurrentData = JSON.parse(JSON.stringify(this.getCurrentData))
+        const getCurrentData = JSON.parse(JSON.stringify(this.getCurrentDatas))
         getCurrentData.map(function(record){
           // console.log( record.taskType === "overdue" );
            record.taskType = record.taskType === "normal" ? "正常进行任务" : (record.taskType === "finished" ? "已完成任务" :record.taskType === "overdue" ? "逾期未完成" : (record.taskType === "isoverdue" ? "可能逾期任务" : (record.taskType === "red" ? "逾期已完成" : "" )))
@@ -319,28 +330,37 @@
        initChart(data){
          if(!data.length) return
           const dateSNew = []
-          const dataSorted = data.sort((a, b) => { return a.xaxis - b.xaxis })
-          this.min = Math.floor(dataSorted[0].xaxis)
-          // console.log(dataSorted,"dataSorted");
+          var dataSorted = data.sort((a, b) => { return a.xaxis - b.xaxis })
+          // this.min = Math.floor(dataSorted[0].xaxis)
+          this.min = 0
+          console.log(dataSorted,"dataSorted");
           dataSorted.forEach((element,index) => {
             // console.log(element,this.min);
                if(element.xaxis < this.min + 53){
                  dateSNew.push(element)
                }
           });
-          this.max = Math.ceil(dateSNew[dateSNew.length -1].xaxis)
-          this.allMax = Math.ceil(dataSorted[dataSorted.length -1].xaxis)
-          // console.log(this.min,this.max,this.allMax );
+          // this.max = this.min + 53
+          this.max = 53
+          // this.max = Math.ceil(dateSNew[dateSNew.length -1].xaxis)
+          const obj = {
+              xaxis: this.max,
+              deviation: 0
+          }
+          // this.allMax = Math.ceil(dataSorted[dataSorted.length -1].xaxis)
+          // this.allMax = this.min + 53
+          console.log(this.min,this.max,this.allMax );
           let baseRate = 1
-          if ( this.allMax - this.min > 54) {
-            baseRate = (this.max - this.min) / (this.allMax - this.min)
-          }
-          if(baseRate < 1){
-            this.btnDisabled = true
-          }
+          // if ( this.allMax - this.min > 54) {
+          //   baseRate = (this.max - this.min) / (this.allMax - this.min)
+          // }
+          // if(baseRate < 1){
+          //   this.btnDisabled = true
+          // }
+          console.log(baseRate,'baseRate');
           this.scrollProportion = baseRate
           this.$nextTick(function(){
-              this.$refs.scrollBar.initScroll(baseRate)
+              // this.$refs.scrollBar.initScroll(baseRate)
           })
           this.ds = new DataSet({
             state: {
@@ -394,7 +414,8 @@
           // 为各个字段设置别名
           chart.scale({
             projectName: {nice:true,alias: "项目名称"},
-            xaxis: { nice: true,alias: "周数" ,tickInterval: 1},
+            // xaxis: { nice: true,alias: "周数" ,tickInterval: 1,min: 0,tickInterval: 1},
+            xaxis: { nice: true,alias: "周数" ,tickInterval: 1,tickInterval: 1},
             activityName: { nice: true,alias: "任务名称"},
             deviation: { nice: true,alias: "偏差值" },
             actualStartTime: {nice: true,alias: '实际开始时间'},
@@ -515,6 +536,7 @@
             .size(4)
             .shape('circle')
             .tooltip('projectName*activityName*xaxis*deviation*targetStartTime*byTime*expectedFinishTime*actualEndTime*actualStartTime')
+            // .tooltip('projectName*activityName*xaxis*deviation')
             .style({
               fillOpacity: 0.85
             });
@@ -540,11 +562,11 @@
               _this.$nextTick(function(){
                      _this.$set(_this,"chartDateALL", res.result)
                 _this.chartDateALL.map(function(item){
-                  item.targetStartTime = item.targetStartTime ? item.targetStartTime.split(' ')[0] : ''
-                 item.actualEndTime = item.actualEndTime ? item.actualEndTime.split(' ')[0] : ''
-                 item.actualStartTime = item.actualStartTime ? item.actualStartTime.split(' ')[0] : ''
-                 item.expectedFinishTime = item.expectedFinishTime ? item.expectedFinishTime.split(' ')[0] : ''
-                 item.byTime = item.byTime ? item.byTime.split(' ')[0] : ''
+                //  item.targetStartTime = item.targetStartTime ? item.targetStartTime.split(' ')[0] : ''
+                //  item.actualEndTime = item.actualEndTime ? item.actualEndTime.split(' ')[0] : ''
+                //  item.actualStartTime = item.actualStartTime ? item.actualStartTime.split(' ')[0] : ''
+                //  item.expectedFinishTime = item.expectedFinishTime ? item.expectedFinishTime.split(' ')[0] : ''
+                //  item.byTime = item.byTime ? item.byTime.split(' ')[0] : ''
                 })
                     !_this.loading && _this.renderChart(res.result)
               })
