@@ -44,7 +44,9 @@
                <thead>
                    <tr>
                         <th>序号</th>
-                        <th class="description">描述</th>
+                        <th >任务名称</th>
+                        <th>指标编码</th>
+                        <th>描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
                         <th>汇报时间</th>
@@ -58,7 +60,9 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                <td>{{index + 1}}</td>
-                                <td>{{item.description}}</td>
+                                <td><div class="description">{{item.name}}</div></td>
+                               <td>{{item.code}}</td>
+                                <td><div class="description">{{item.description}}</div></td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
                                 <td>{{item.reportTime}}</td>
@@ -78,7 +82,9 @@
                <thead>
                    <tr>
                        <th>序号</th>
-                        <th class="description">描述</th>
+                       <th >任务名称</th>
+                        <th>指标编码</th>
+                        <th >描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
                         <th>汇报时间</th>
@@ -92,7 +98,9 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                <td>{{index + 1}}</td>
-                                <td>{{item.description}}</td>
+                               <td><div class="description">{{item.name}}</div></td>
+                               <td>{{item.code}}</td>
+                                <td ><div class="description">{{item.description}}</div></td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
                                 <td>{{item.reportTime}}</td>
@@ -224,6 +232,9 @@ export default {
             _this.isLoading = false
            if(res.success && res.result){
               _this.$set(_this,'tableDate',res.result.records)
+              _this.tableDate.map(function(item){
+                item.reportTime = item.reportTime  ? item.reportTime.split(' ')[0] : ''
+              })
               this.ispagination.total = res.result.total
               this.ispagination.pageNo = res.result.current
               _this.$set(_this,'tableDate',res.result.records)
@@ -553,6 +564,6 @@ export default {
        text-align: center;
      }
      .description{
-         width: 400px !important;
+         width: 280px !important;
      }
 </style>

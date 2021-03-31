@@ -25,14 +25,14 @@
            <!-- 气泡图区域-begin -->
            <div id="container" ></div>
            <div class="scrollBarWrap">
-             <!-- <ScrollBar ref="scrollBar" @updatePosRate="throttleUpdateDs" /> -->
+             <ScrollBar ref="scrollBar" @updatePosRate="throttleUpdateDs" />
            </div>
            <!-- 气泡图区域-end -->
             <!-- <div class="noData" v-if="!chartDateALL || !chartDateALL.length" :style="{height: adaptiveContainH +'px',lineHeight: adaptiveContainH +'px'}">
              暂无数据
             </div> -->
        </div>
-        <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="visibleCreateModal=false">
+        <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="detailCancel" class="detail">
             <!---->
             <div class="mainMadal">
               <a-button type="primary" class="export" @click="exportExcel(getCurrentDatas,columns)">导出数据</a-button>
@@ -40,8 +40,9 @@
                :columns="columns"
                :data-source="getCurrentDatas"
                rowKey="index"
-               :pagination="{ pageSize: 100 }"
+               :pagination="pagination"
                :scroll="{ y: yScroll }"
+               @change="handleTableChange"
              >
                <p slot="taskType" slot-scope="record" style="margin: 0" :class="record">
                  {{record === "normal" ? "正常进行任务" : (record === "finished" ? "已完成任务" :record === "overdue" ? "逾期未完成" : (record === "isoverdue" ? "可能逾期任务" : (record === "red" ? "逾期已完成" : "" )))}}
@@ -51,8 +52,32 @@
             <template slot="footer">
                 <a-button style="display: none">关闭</a-button>
            </template>
-
-    </a-modal>
+        </a-modal>
+        <a-modal
+          v-model="exportvisible"
+          title="导出"
+          @cancel="exportvisible=false"
+          class="exportAlert"
+        >
+           <template slot="footer">
+             <a-button key="back" @click="handleCancel">
+               Return
+             </a-button>
+             <a-button key="submit" type="primary"  @click="handleOk">
+               Submit
+             </a-button>
+           </template>
+           <a-form-item label="请选择导出数据范围">
+                <a-radio-group name="radioGroup"  @change="handleInput" default-value="exportvalue" v-model="exportvalue">
+                   <a-radio :value="1">
+                     当前页
+                   </a-radio>
+                   <a-radio :value="2">
+                     全部
+                   </a-radio>
+                </a-radio-group>
+           </a-form-item>
+        </a-modal>
     </a-card>
 </template>
 
@@ -97,7 +122,6 @@
             ],
             // filteredValue: filteredInfo.taskType || null,
             onFilter: function (value, record) {
-              console.log(value,record);
               return value == record.taskType
             },
             scopedSlots: { customRender: 'taskType' },
@@ -181,6 +205,9 @@
     },
     data() {
       return {
+        isExport: false,
+        exportvalue: 1,
+        exportvisible: false,
         min: 0,
         max: 100,
         allMax: 200,
@@ -201,11 +228,13 @@
         start: null,
         end: null,
         value: "",
+        baseRate: 1,
         url: {
           // chartDate:"/HeavyDuty/pert"
           // 新接口
           chartDate: "/OTDrivice/WorkDelayTable"
         },
+        pagination: { pageSize: 100 ,pageNo: 1,current: 1}
       }
     },
     computed:{
@@ -226,7 +255,6 @@
              this.$bus.$emit('changeTranx', 0)
                document.querySelector("#container") && document.querySelector("#container>div") && document.querySelector("#container>div").remove()
                this.renderChart(this.chartDateALL)
-               
               //  this.getAdaptiveH()
             }
           })();
@@ -246,8 +274,35 @@
         }
     },
     methods: {
+      detailCancel(){
+        this.visibleCreateModal = false;
+        this.isExport = false
+      },
+      handleTableChange(pagination){
+        const pager = { ...this.pagination };
+        pager.current = pagination.current;
+        this.pagination = pager;
+      },
+      handleCancel(){
+        this.exportvisible = false
+      },
+      handleOk(){
+        const getCurrentData = JSON.parse(JSON.stringify(this.getCurrentDatas))
+        if(this.exportvalue == 1){
+          const start = 100*(this.pagination.current-1)
+          const data = getCurrentData.slice(start, start+100)
+          this.exportExcelFin(data)
+        } else{
+          this.exportExcelFin(getCurrentData)
+        }
+        this.exportvisible = false
+      },
+      handleInput(e){
+      },
       detailBtn(data){
         this.visibleCreateModal = true
+        this.pagination.current =1
+        this.pagination.pageNo =1
         this.getCurrentDatas = JSON.parse(JSON.stringify(data))
         this.getCurrentDatas.map(function (record) {
                 record.targetStartTime = record.targetStartTime ? record.targetStartTime.split(' ')[0] : ''
@@ -258,6 +313,13 @@
         })
       },
       exportExcel(){
+        this.exportvalue = 1
+        if(this.getCurrentDatas.length < 100){
+          this.exportvisible = false
+          this.exportExcelFin(this.getCurrentDatas)
+        } else{
+          this.exportvisible = true
+        }
         // let table = document.getElementById('table');
         // let worksheet = XLSX.utils.table_to_sheet(table);
         // let workbook = XLSX.utils.book_new();
@@ -269,7 +331,10 @@
         // } catch(e) {
         // 	console.log(e, workbook);
         // }
-         let Parser = require('json2csv').Parser
+        
+      },
+      exportExcelFin(data){
+        let Parser = require('json2csv').Parser
          let fields = []
          this.columns.map(col => {
            if (col.title && col.dataIndex) {
@@ -280,20 +345,20 @@
              fields.push(obj)
            }
          })
-        //  return
-        const getCurrentData = JSON.parse(JSON.stringify(this.getCurrentDatas))
-        getCurrentData.map(function(record){
-          // console.log( record.taskType === "overdue" );
+        data.map(function(record){
            record.taskType = record.taskType === "normal" ? "正常进行任务" : (record.taskType === "finished" ? "已完成任务" :record.taskType === "overdue" ? "逾期未完成" : (record.taskType === "isoverdue" ? "可能逾期任务" : (record.taskType === "red" ? "逾期已完成" : "" )))
         })
          let fileName = '工作任务延期详情信息导出_' + new Date().toLocaleString('zh-CN')
          let json2csvParser = new Parser({fields})
-         let result = json2csvParser.parse(getCurrentData)
+         let result = json2csvParser.parse(data)
          let blob = new Blob(['\ufeff' + result], {type: 'text/csv'})
          let a = document.createElement('a')
          a.setAttribute('href', URL.createObjectURL(blob))
          a.setAttribute('download', `${fileName}.csv`)
+        //  console.log(this.baseRate,this.scrollProportion);
+        this.isExport = true
          a.click()
+        //  console.log(this.baseRate);
       },
        doSearch(s,e){
          var data
@@ -333,67 +398,65 @@
           var dataSorted = data.sort((a, b) => { return a.xaxis - b.xaxis })
           // this.min = Math.floor(dataSorted[0].xaxis)
           this.min = 0
-          console.log(dataSorted,"dataSorted");
           dataSorted.forEach((element,index) => {
-            // console.log(element,this.min);
-               if(element.xaxis < this.min + 53){
+               if(element.xaxis < this.min + 54){
                  dateSNew.push(element)
                }
           });
           // this.max = this.min + 53
-          this.max = 53
-          // this.max = Math.ceil(dateSNew[dateSNew.length -1].xaxis)
-          const obj = {
-              xaxis: this.max,
-              deviation: 0
+          this.max = 54
+          // let baseRate = 1
+          if ( this.allMax - this.min > 54) {
+            this.baseRate = (this.max - this.min) / (this.allMax - this.min)
           }
-          // this.allMax = Math.ceil(dataSorted[dataSorted.length -1].xaxis)
-          // this.allMax = this.min + 53
-          console.log(this.min,this.max,this.allMax );
-          let baseRate = 1
-          // if ( this.allMax - this.min > 54) {
-          //   baseRate = (this.max - this.min) / (this.allMax - this.min)
-          // }
-          // if(baseRate < 1){
-          //   this.btnDisabled = true
-          // }
-          console.log(baseRate,'baseRate');
-          this.scrollProportion = baseRate
+          if(this.baseRate < 1){
+            this.btnDisabled = true
+          }
+          // console.log(baseRate,'baseRate');
+          this.scrollProportion = this.baseRate
           this.$nextTick(function(){
-              // this.$refs.scrollBar.initScroll(baseRate)
+              if(!this.isExport) {
+                this.$refs.scrollBar.initScroll(this.baseRate)
+                }
           })
           this.ds = new DataSet({
             state: {
               start: 0,
-              end: baseRate
+              end: this.baseRate
             }
           })
+        //  console.log(dataSorted,'data');
+          this.getCurrentData = []
           const dv = this.ds.createView('origin').source(dataSorted)
-          if(baseRate != 1){
+          if(this.baseRate != 1){
             dv.transform({
             type: 'filter',
             callback: (obj, index, arr) => {
-              this.start = null
-             this.end = null
+              // this.start = null
+              // this.end = null
               // console.log(arr,this.getCurrentData);
               if(obj.xaxis   >= this.ds.state.start * (this.allMax - this.min) + this.min && obj.xaxis  <= this.ds.state.end * (this.allMax - this.min) + this.min){
                 this.getCurrentData.push(obj)
               }
+              this.getCurrentData = this.getCurrentData.filter(function(item){
+                return String(item.deviation)  != 'null'
+              })
               this.getCurrentData.map(function(item,index){
                  item.index = index + 1
               })
-              // console.log(this.getCurrentData,'getCurrentData');
               this.title ="工作任务延期详情信息 共(" + this.getCurrentData.length + ")条数据"
               return obj.xaxis   >= this.ds.state.start * (this.allMax - this.min) + this.min && obj.xaxis  <= this.ds.state.end * (this.allMax - this.min) + this.min
             }
           })
           } else{
-             dataSorted.map(function(item,index){
+              this.getCurrentData = JSON.parse(JSON.stringify(dataSorted))
+              this.getCurrentData = this.getCurrentData.filter(function(item){
+                return String(item.deviation)  != 'null'
+              })
+               this.getCurrentData.map(function(item,index){
                  item.index = index + 1
               })
-              this.getCurrentData = JSON.parse(JSON.stringify(dataSorted))
-          this.title ="工作任务延期详情信息 共(" + this.getCurrentData.length + ")条数据"
-
+             this.title ="工作任务延期详情信息 共(" + this.getCurrentData.length + ")条数据"
           }
           var asideWidth = document.querySelector(".ant-layout-sider") && document.querySelector(".ant-layout-sider").offsetWidth || 0,
              width = (document.querySelector(".ant-card-body").offsetWidth - asideWidth -40)/2 ,
@@ -415,7 +478,7 @@
           chart.scale({
             projectName: {nice:true,alias: "项目名称"},
             // xaxis: { nice: true,alias: "周数" ,tickInterval: 1,min: 0,tickInterval: 1},
-            xaxis: { nice: true,alias: "周数" ,tickInterval: 1,tickInterval: 1},
+            xaxis: { nice: true,alias: "周数" ,tickInterval: 1},
             activityName: { nice: true,alias: "任务名称"},
             deviation: { nice: true,alias: "偏差值" },
             actualStartTime: {nice: true,alias: '实际开始时间'},
@@ -560,15 +623,20 @@
               _this.loading = false
            if(res.success && res.result){
               _this.$nextTick(function(){
-                     _this.$set(_this,"chartDateALL", res.result)
-                _this.chartDateALL.map(function(item){
-                //  item.targetStartTime = item.targetStartTime ? item.targetStartTime.split(' ')[0] : ''
-                //  item.actualEndTime = item.actualEndTime ? item.actualEndTime.split(' ')[0] : ''
-                //  item.actualStartTime = item.actualStartTime ? item.actualStartTime.split(' ')[0] : ''
-                //  item.expectedFinishTime = item.expectedFinishTime ? item.expectedFinishTime.split(' ')[0] : ''
-                //  item.byTime = item.byTime ? item.byTime.split(' ')[0] : ''
-                })
-                    !_this.loading && _this.renderChart(res.result)
+                  _this.$set(_this,"chartDateALL", res.result)
+                  _this.chartDateALL = res.result.sort(function(a,b){
+                    return a.xaxis - b.xaxis
+                  })
+                  this.allMax = Math.ceil(_this.chartDateALL[_this.chartDateALL.length -1].xaxis)
+                  const array = []
+                  for(var i= 0; i<=this.allMax;i++){
+                    const obj = {}
+                      obj.xaxis = i,
+                      obj.deviation = null
+                      array.unshift(obj)
+                  }
+                  _this.chartDateALL = _this.chartDateALL.concat(array)
+                    !_this.loading && _this.renderChart(_this.chartDateALL)
               })
               // _this.renderChart(data)
            }else{
@@ -676,7 +744,8 @@
     .red{
       color: #ccc;
     }
-    /deep/ .ant-modal{
+.detail {
+      /deep/ .ant-modal{
       position: relative;
       top: 50px;
       height: calc(100% - 30px);
@@ -776,6 +845,7 @@
       // line-height: 16px;
     }
   }
+}
   .ant-card{
         background: #F4F5F7;
   }
@@ -810,6 +880,15 @@
      text-align: center;
      font-size: 20px;
      font-weight: 700;
+}
+//导出弹窗
+.exportAlert{
+  /deep/.ant-form-item{
+    margin-bottom: 0;
+  }
+  /deep/.ant-form-item-control{
+    padding-left: 24px;
+  }
 }
 // 错误弹框
 /deep/ .ant-alert-closable{

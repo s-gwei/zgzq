@@ -13,7 +13,9 @@
                <thead>
                    <tr>
                         <th>序号</th>
-                        <th>任务ID</th>
+                        <th>任务名称</th>
+                        <th>指标编码</th>
+                        <th>指标描述</th>
                         <th>权重</th>
                         <th>指标评定值</th>
                         <th>评定描述</th>
@@ -27,6 +29,9 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.description}}</td>
                                 <td>{{item.plan_activity_ref_id}}</td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.ot_rating}}</td>
@@ -47,7 +52,9 @@
                <thead>
                    <tr>
                        <th>序号</th>
-                        <th>任务ID</th>
+                        <th>任务名称</th>
+                        <th>指标编码</th>
+                        <th>指标描述</th>
                         <th>权重</th>
                         <th>指标评定值</th>
                         <th>评定描述</th>
@@ -59,6 +66,9 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.description}}</td>
                                 <td>{{item.plan_activity_ref_id}}</td>
                                 <td>{{item.weight}}</td>
                                 <td>{{item.ot_rating}}</td>
@@ -479,6 +489,6 @@ export default {
        text-align: center;
      }
      .description{
-         width: 400px !important;
+         width: 360px !important;
      }
 </style>
