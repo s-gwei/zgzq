@@ -213,7 +213,9 @@ export default {
         const  url = this.url.export,_this=this;
         var paramsUrl = "?";
         for(let key in this.queryParam){
+          if(this.queryParam[key]){
             paramsUrl += key + "=" + this.queryParam[key] + "&"
+          }
         }
         paramsUrl =  paramsUrl.substr(0,paramsUrl.length - 1)
         // window.open('http://192.168.2.176:9999/jeecg-boot'+ this.url.export, "_blank");
