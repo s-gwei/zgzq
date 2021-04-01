@@ -10,6 +10,9 @@ public class PlanINVo implements Serializable {
      private String plan_activity_ref_id;//(任务id)
 
      private String code;//(编码)
+     private String codeDescription;//编码描述
+
+     private String name;//任务名称
 
      private String weights;//权重
 

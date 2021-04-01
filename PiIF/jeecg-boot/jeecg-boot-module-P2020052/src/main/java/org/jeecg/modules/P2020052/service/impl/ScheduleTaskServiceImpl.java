@@ -252,7 +252,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 }
                 totalMap.put("riskKPI", riskKPI);
                 resultList.add(totalMap);
-                redisTemplate.opsForValue().set(projectId + taskVo.getActiviteId(), resultList, 1, TimeUnit.DAYS);
+                redisTemplate.opsForValue().set(projectId + taskVo.getActiviteId(), resultList, 7, TimeUnit.DAYS);
             }
         }
     }
@@ -316,7 +316,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 OutputQualityRiskSum += Double.parseDouble(OutputQualityRisk);
             }
             map.put("OutputQualityRiskSum", Double.parseDouble(df.format(OutputQualityRiskSum)));
-            redisTemplate.opsForValue().set(projectId, map, 1, TimeUnit.DAYS);
+            redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
         }
 
     }

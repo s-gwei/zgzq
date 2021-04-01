@@ -75,24 +75,26 @@ SELECT
 	stproject_instanceotindicator.deviation_report AS in_deviationReport,
 	e.otRating
 FROM
-	stproject_instanceotindicator,
 	stproject_instanceinindicator
-	LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id
-WHERE
-	stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
-	AND stproject_instanceinindicator.plan_activity_ref_id = #{activiteId}
+	LEFT JOIN (
+SELECT
+	a.*
+FROM
+	( SELECT stproject_instanceotindicator.CODE, stproject_instanceotindicator.description, stproject_instanceotindicator.standard_deviation_value, stproject_instanceotindicator.deviation_report FROM stproject_instanceotindicator ORDER BY CODE, create_stamp DESC 	limit 100000) a
 GROUP BY
-	stproject_instanceinindicator.weights,
-	stproject_instanceotindicator.CODE,
-	stproject_instanceotindicator.description,
-	stproject_instanceotindicator.standard_deviation_value,
-	stproject_instanceotindicator.deviation_report,
-	e.otRating
+	a.CODE
+	) stproject_instanceotindicator ON stproject_instanceinindicator.ot_code = stproject_instanceotindicator.
+	CODE LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id
+WHERE
+	stproject_instanceinindicator.plan_activity_ref_id = #{activiteId}
     </select>
 
     <select id="getTaskOTById" resultMap="TaseResultMap">
-SELECT
+select * from
+	(
+	select
 	stproject_instanceotindicator.plan_activity_ref_id,
+	stproject_instanceotindicator.create_stamp,
 	stproject_instanceotindicator.CODE,
 	stproject_instanceotindicator.description,
 	stproject_instanceotindicator.standard_deviation_value,
@@ -102,10 +104,11 @@ SELECT
 	stproject_instanceotindicator.breadth,
 	stproject_instanceotindicator.criticality,
 	stproject_instanceotindicator.completion_status
-FROM
-	stproject_instanceotindicator
-WHERE
-	stproject_instanceotindicator.plan_activity_ref_id = #{activiteId}
+	FROM stproject_instanceotindicator ORDER BY CODE, create_stamp DESC
+	limit 100000
+	)a
+	WHERE plan_activity_ref_id = #{activiteId}
+	GROUP BY a.CODE
     </select>
 
     <select id="selectAllId" resultType="java.lang.String">

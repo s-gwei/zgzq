@@ -34,6 +34,9 @@ public class PlanOTServiceImpl implements PlanOTService {
             startTime = time[0] + " 00:00:00";
             endTime = time[1] + " 23:59:59";
         }
+        if(group != null && "null".equals(group[0]) && group.length==1){
+            group =null;
+        }
         IPage<PlanOTVo> list = planOTMapper.OTTable(page, startTime, endTime, group, planId);
         return list;
     }
@@ -51,6 +54,9 @@ public class PlanOTServiceImpl implements PlanOTService {
         if (time != null && !"".equals(time)) {
             startTime = time[0] + " 00:00:00";
             endTime = time[1] + " 23:59:59";
+        }
+        if(group != null && "null".equals(group[0]) && group.length==1){
+            group =null;
         }
         IPage<PlanINVo> planINVoIPage = planOTMapper.selectINTable(page, startTime, endTime, group, planId);
         return planINVoIPage;
@@ -70,10 +76,11 @@ public class PlanOTServiceImpl implements PlanOTService {
             List<RiskVo> list = planOTMapper.selectRiskProject(startTime, endTime, group, projectId);
             //将同一个项目风险下的措施放在同一个list中
             List resultList = new ArrayList();
-            List nameList = new ArrayList();;
+            List nameList = new ArrayList();
+            ;
             String riskName = "";
             for (int i = 0; i < list.size(); i++) {
-                if("".equals(riskName) || list.get(i).getRiskName().equals(riskName) ){
+                if ("".equals(riskName) || list.get(i).getRiskName().equals(riskName)) {
                     riskName = list.get(i).getRiskName();
                     nameList.add(list.get(i));
                     continue;
@@ -90,10 +97,11 @@ public class PlanOTServiceImpl implements PlanOTService {
             List<RiskVo> list = planOTMapper.selectRiskByPlan(startTime, endTime, group, planId);
             //将同一个项目风险下的措施放在同一个list中
             List resultList = new ArrayList();
-            List nameList = new ArrayList();;
+            List nameList = new ArrayList();
+            ;
             String riskName = "";
             for (int i = 0; i < list.size(); i++) {
-                if("".equals(riskName) || list.get(i).getRiskName().equals(riskName) ){
+                if ("".equals(riskName) || list.get(i).getRiskName().equals(riskName)) {
                     riskName = list.get(i).getRiskName();
                     nameList.add(list.get(i));
                     continue;
@@ -153,7 +161,7 @@ public class PlanOTServiceImpl implements PlanOTService {
                 group = null;
             }
         }
-        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, endTime,group, projectId,planId);
+        List<PiplanActivityVo> list = planOTMapper.WorkDelayTable(startTime, endTime, group, projectId, planId);
 
         // 计算时间周数
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -232,6 +240,9 @@ public class PlanOTServiceImpl implements PlanOTService {
             startTime = time[0] + " 00:00:00";
             endTime = time[1] + " 23:59:59";
         }
+        if(group != null && "null".equals(group[0]) && group.length==1){
+            group =null;
+        }
         List<PlanOTVo> list = planOTMapper.exportOTExcel(startTime, endTime, group, planId);
         //创建HSSFWorkbook对象
         HSSFWorkbook wb = new HSSFWorkbook();
@@ -248,20 +259,24 @@ public class PlanOTServiceImpl implements PlanOTService {
         //设置单元格的值
         cell.setCellValue("序号");
         cell = row.createCell(1);
-        cell.setCellValue("描述");
+        cell.setCellValue("任务名称");
         cell = row.createCell(2);
-        cell.setCellValue("汇报偏差");
+        cell.setCellValue("指标编码");
         cell = row.createCell(3);
-        cell.setCellValue("汇报困难度");
+        cell.setCellValue("指标描述");
         cell = row.createCell(4);
-        cell.setCellValue("汇报时间");
+        cell.setCellValue("汇报偏差");
         cell = row.createCell(5);
-        cell.setCellValue("广度");
+        cell.setCellValue("汇报困难度");
         cell = row.createCell(6);
-        cell.setCellValue("关键度");
+        cell.setCellValue("汇报时间");
         cell = row.createCell(7);
-        cell.setCellValue("标准偏差");
+        cell.setCellValue("广度");
         cell = row.createCell(8);
+        cell.setCellValue("关键度");
+        cell = row.createCell(9);
+        cell.setCellValue("标准偏差");
+        cell = row.createCell(10);
         cell.setCellValue("标准困难度");
         int i = 1;
         for (PlanOTVo planOTVo : list) {
@@ -269,20 +284,24 @@ public class PlanOTServiceImpl implements PlanOTService {
             cell = row.createCell(0);
             cell.setCellValue(i);
             cell = row.createCell(1);
-            cell.setCellValue(planOTVo.getDescription());
+            cell.setCellValue(planOTVo.getName());
             cell = row.createCell(2);
-            cell.setCellValue(planOTVo.getDeviation_report());
+            cell.setCellValue(planOTVo.getCode());
             cell = row.createCell(3);
-            cell.setCellValue(planOTVo.getDifficulty_report());
+            cell.setCellValue(planOTVo.getDescription());
             cell = row.createCell(4);
-            cell.setCellValue(planOTVo.getReportTime());
+            cell.setCellValue(planOTVo.getDeviation_report());
             cell = row.createCell(5);
-            cell.setCellValue(planOTVo.getBreadth());
+            cell.setCellValue(planOTVo.getDifficulty_report());
             cell = row.createCell(6);
-            cell.setCellValue(planOTVo.getCriticiailty());
+            cell.setCellValue(planOTVo.getReportTime());
             cell = row.createCell(7);
-            cell.setCellValue(planOTVo.getStandard_deviation_value());
+            cell.setCellValue(planOTVo.getBreadth());
             cell = row.createCell(8);
+            cell.setCellValue(planOTVo.getCriticiailty());
+            cell = row.createCell(9);
+            cell.setCellValue(planOTVo.getStandard_deviation_value());
+            cell = row.createCell(10);
             cell.setCellValue(planOTVo.getStandard_difficulty_value());
             i++;
         }
@@ -313,7 +332,9 @@ public class PlanOTServiceImpl implements PlanOTService {
             startTime = time[0] + " 00:00:00";
             endTime = time[1] + " 23:59:59";
         }
-
+        if(group != null && "null".equals(group[0]) && group.length==1){
+            group =null;
+        }
         List<PlanINVo> list = planOTMapper.exportINExcel(startTime, endTime, group, planId);
         //创建HSSFWorkbook对象
         HSSFWorkbook wb = new HSSFWorkbook();
@@ -330,25 +351,42 @@ public class PlanOTServiceImpl implements PlanOTService {
         //设置单元格的值
         cell.setCellValue("序号");
         cell = row.createCell(1);
-        cell.setCellValue("权重");
+        cell.setCellValue("任务名称");
         cell = row.createCell(2);
-        cell.setCellValue("是否删除");
+        cell.setCellValue("指标编码");
         cell = row.createCell(3);
-        cell.setCellValue("是否存在");
+        cell.setCellValue("指标描述");
         cell = row.createCell(4);
+        cell.setCellValue("权重");
+        cell = row.createCell(5);
+        cell.setCellValue("指标评定值");
+        cell = row.createCell(6);
+        cell.setCellValue("评定描述");
+        cell = row.createCell(7);
+        cell.setCellValue("汇报时间");
+        cell = row.createCell(8);
         cell.setCellValue("更改次数");
+
         int i = 1;
         for (PlanINVo planINVo : list) {
             row = sheet.createRow(i);
             cell = row.createCell(0);
             cell.setCellValue(i);
             cell = row.createCell(1);
-            cell.setCellValue(planINVo.getWeights());
+            cell.setCellValue(planINVo.getName());
             cell = row.createCell(2);
-            cell.setCellValue(planINVo.getIs_deleted());
+            cell.setCellValue(planINVo.getCode());
             cell = row.createCell(3);
-            cell.setCellValue(planINVo.getIs_persisted());
+            cell.setCellValue(planINVo.getCodeDescription());
             cell = row.createCell(4);
+            cell.setCellValue(planINVo.getWeights());
+            cell = row.createCell(5);
+            cell.setCellValue(planINVo.getOt_rating());
+            cell = row.createCell(6);
+            cell.setCellValue(planINVo.getDescription());
+            cell = row.createCell(7);
+            cell.setCellValue(planINVo.getReportTime());
+            cell = row.createCell(8);
             cell.setCellValue(planINVo.getUpdate_count());
             i++;
         }
@@ -478,7 +516,6 @@ public class PlanOTServiceImpl implements PlanOTService {
             Map map = new HashMap();
             ProblemRickChainVo parent = pVo;
             map.put(parent.getId(), parent.getId());
-            List<ProblemRickChainVo> children = new ArrayList<>();
             Map map1 = new HashMap();
             for (ProblemRickChainVo ProblemRickChainVo : list) {
                 if (parent.getId().equals(ProblemRickChainVo.getPid())) {
@@ -487,7 +524,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     parent = ProblemRickChainVo;
                 }
             }
-
             List<ProblemRickChainVo> children1red = new ArrayList<>();
             Map map2 = new HashMap();
             for (ProblemRickChainVo ProblemRickChainVo : list) {
@@ -503,12 +539,14 @@ public class PlanOTServiceImpl implements PlanOTService {
                 parent.setChildren(children1red);
             }
             recursion(map, map2, children1red, list);
-            if (map.get(riskId) != null) {
+            if (riskId != null) {
+                if (map.get(riskId) != null) {
+                    result.add(parent);
+                }
+            } else {
                 result.add(parent);
             }
         }
-
-
         return result;
     }
 
@@ -535,23 +573,4 @@ public class PlanOTServiceImpl implements PlanOTService {
         }
         return null;
     }
-
-//    private ProblemRickChainVo recursion(List<ProblemRickChainVo> list, ProblemRickChainVo parent, List<ProblemRickChainVo> children) {
-//        int a= 0;
-//        for(ProblemRickChainVo problemRickChainVo :list ){
-//              if(problemRickChainVo.getPid().equals(parent.getId())){
-//                  children.add(problemRickChainVo);
-//                  a=1;
-//              }
-//        }
-//        if(a==0){
-//            parent.setChildren(children);
-//            return parent;
-//        }else{
-//
-//        }
-//        return parent;
-//    }
-
-
 }
