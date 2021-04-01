@@ -29,11 +29,10 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
-                                <td>{{item.name}}</td>
+                                <td><div class="taskName">{{item.name}}</div></td>
                                 <td>{{item.code}}</td>
-                                <td>{{item.description}}</td>
-                                <td>{{item.plan_activity_ref_id}}</td>
-                                <td>{{item.weight}}</td>
+                                <td>{{item.codeDescription}}</td>
+                                <td>{{item.weights}}</td>
                                 <td>{{item.ot_rating}}</td>
                                 <td>{{item.description}}</td>
                                 <td>{{item.reportTime}}</td>
@@ -66,11 +65,10 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
-                                <td>{{item.name}}</td>
+                                <td><div class="taskName">{{item.name}}</div></td>
                                 <td>{{item.code}}</td>
-                                <td>{{item.description}}</td>
-                                <td>{{item.plan_activity_ref_id}}</td>
-                                <td>{{item.weight}}</td>
+                                <td>{{item.codeDescription}}</td>
+                                <td>{{item.weights}}</td>
                                 <td>{{item.ot_rating}}</td>
                                 <td>{{item.description}}</td>
                                 <td>{{item.reportTime}}</td>
@@ -492,5 +490,8 @@ export default {
      }
      .description{
          width: 360px !important;
+     }
+     .taskName{
+       min-width: 160px;
      }
 </style>
