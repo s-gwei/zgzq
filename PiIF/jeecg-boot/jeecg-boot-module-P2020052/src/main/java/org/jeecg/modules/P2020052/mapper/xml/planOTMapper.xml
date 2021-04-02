@@ -430,17 +430,19 @@
     </select>
 
     <select id="problemRickChain" resultMap="CaseResultMap">
-        SELECT
-        spr.id,
-        spr.risk_name,
-        spr.risk_code,
-        spr.risk_to_type,
-        spr.confirm_status,
-        spr.risk_description,
-        srprl.roleaobject_id as pid,
-        srprl.rolebobject_id as childrenId
-        from stproject_risk spr left join stproject_risk_pre_risk_link srprl on
-        spr.id=srprl.roleaobject_id
+        				SELECT
+                            spr.id,
+                            spr.risk_name,
+                            spr.risk_code,
+                            spr.risk_to_type,
+                            spr.confirm_status,
+                            spr.risk_description,
+                            srprl.roleaobject_id as pid,
+                            srprl.rolebobject_id as childrenId
+                            from stproject_risk spr left join stproject_risk_pre_risk_link srprl on
+                            spr.id=srprl.roleaobject_id
+                                    where srprl.roleaobject_id is not null
+                                    and srprl.rolebobject_id is not null
 
     </select>
 
@@ -454,6 +456,52 @@
             a.id NOT IN ( SELECT spr.id FROM stproject_risk spr, stproject_risk_pre_risk_link srprl WHERE spr.id =
             srprl.rolebobject_id )
 
+        </where>
+    </select>
+
+<!--查询所有的风险节点-->
+    <select id="selectAllNodes" resultType="java.util.HashMap">
+        SELECT
+            spr.id,
+            spr.risk_name,
+            spr.risk_code,
+            spr.risk_to_type,
+            spr.confirm_status,
+            spr.risk_description
+        FROM
+            stproject_risk spr
+        <where>
+        <if test="noedIds!= null ">
+           spr.id in
+            <foreach item="id" collection="noedIds"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        </where>
+    </select>
+
+    <!--查询所有的风险节点关系-->
+    <select id="selectChain" resultType="java.util.HashMap">
+
+     SELECT
+            stproject_risk_pre_risk_link.roleaobject_id as source,
+            stproject_risk_pre_risk_link.rolebobject_id as target
+        FROM
+            stproject_risk_pre_risk_link
+        <where>
+        <if test="noedIds!= null ">
+         stproject_risk_pre_risk_link.roleaobject_id in
+            <foreach item="id" collection="noedIds"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+            or stproject_risk_pre_risk_link.rolebobject_id in
+            <foreach item="id" collection="noedIds"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
         </where>
     </select>
 

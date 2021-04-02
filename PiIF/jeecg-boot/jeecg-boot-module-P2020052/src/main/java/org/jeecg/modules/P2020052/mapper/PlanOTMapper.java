@@ -7,6 +7,7 @@ import org.jeecg.modules.P2020052.pojo.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface PlanOTMapper {
@@ -32,4 +33,8 @@ public interface PlanOTMapper {
     String selectNameById(@Param("projectId")String projectId);
 
     List<PiplanActivityVo> WorkDelayTable(@Param("startTime")String startTime, @Param("endTime")String endTime,@Param("group") String[] group, @Param("projectId")String projectId,@Param("planId")String planId);
+
+    List<Map<String, Object>> selectAllNodes(@Param("noedIds")List<String> noedIds);
+
+    List<Map<String, Object>> selectChain(@Param("noedIds")List<String> noedIds);
 }

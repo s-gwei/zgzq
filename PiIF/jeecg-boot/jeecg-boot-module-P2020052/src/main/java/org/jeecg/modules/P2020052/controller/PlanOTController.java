@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/OTDrivice")
@@ -102,8 +103,8 @@ public class PlanOTController {
     @GetMapping(value = "/problemRickChain")
     @ApiOperation(value = "问题风险链")
     public Result problemRickChain(String riskId)  {
-        List<ProblemRickChainVo> list = planOTService.problemRickChain(riskId);
-        return Result.ok(list);
+        Map map = planOTService.problemRickChainList(riskId);
+        return Result.ok(map);
     }
 
     @GetMapping(value = "/taskExecution")

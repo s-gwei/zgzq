@@ -35,6 +35,7 @@ public class reportServiceImpl implements ReportService {
 
     @Override
     public List<PiplanActivityVo> pertTable(String activeId) throws ParseException {
+        Map<String, Object> aa = (Map<String, Object>) redisTemplate.opsForValue().get("133705133455");
         List<PiplanActivityVo> result = reportMapper.pertTable(activeId);
         List list = new ArrayList();
         for (PiplanActivityVo pa : result) {
