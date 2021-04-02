@@ -13,10 +13,15 @@
                <thead>
                    <tr>
                         <th>序号</th>
-                        <th>任务ID</th>
+                        <th>任务名称</th>
+                        <th>指标编码</th>
+                        <th>指标描述</th>
                         <th>权重</th>
-                        <th>是否删除</th>
-                        <th>是否存在</th>
+                        <th>指标评定值</th>
+                        <th>评定描述</th>
+                        <th>汇报时间</th>
+                        <!-- <th>是否删除</th>
+                        <th>是否存在</th> -->
                         <th>更改次数</th>
                    </tr>
                </thead>
@@ -24,10 +29,15 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
-                                <td>{{item.plan_activity_ref_id}}</td>
-                                <td>{{item.weight}}</td>
-                                <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
-                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
+                                <td><div class="taskName">{{item.name}}</div></td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.codeDescription}}</td>
+                                <td>{{item.weights}}</td>
+                                <td>{{item.ot_rating}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.reportTime}}</td>
+                                <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
+                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>
                            </tr>
                    </template>
@@ -41,10 +51,13 @@
                <thead>
                    <tr>
                        <th>序号</th>
-                        <th>任务ID</th>
+                        <th>任务名称</th>
+                        <th>指标编码</th>
+                        <th>指标描述</th>
                         <th>权重</th>
-                        <th>是否删除</th>
-                        <th>是否存在</th>
+                        <th>指标评定值</th>
+                        <th>评定描述</th>
+                        <th>汇报时间</th>
                         <th>更改次数</th>
                    </tr>
                </thead>
@@ -52,10 +65,15 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                 <td>{{index + 1}}</td>
-                                <td>{{item.plan_activity_ref_id}}</td>
-                                <td>{{item.weight}}</td>
-                                <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
-                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td>
+                                <td><div class="taskName">{{item.name}}</div></td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.codeDescription}}</td>
+                                <td>{{item.weights}}</td>
+                                <td>{{item.ot_rating}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.reportTime}}</td>
+                                <!-- <td>{{item.is_deleted == 1 ? "删除" : (item.is_deleted == 0 ? "未删除" : "")}}</td>
+                                <td>{{item.is_persisted ? "存在" : (item.is_persisted == 0 ? "不存在" : "")}}</td> -->
                                 <td>{{item.update_count}}</td>
                            </tr>
                    </template>
@@ -193,10 +211,12 @@ export default {
         const  url = this.url.export,_this=this;
         var paramsUrl = "?";
         for(let key in this.queryParam){
+          if(this.queryParam[key]){
             paramsUrl += key + "=" + this.queryParam[key] + "&"
+          }
         }
         paramsUrl =  paramsUrl.substr(0,paramsUrl.length - 1)
-        window.open('http://192.168.2.176:9999/jeecg-boot'+ this.url.export, "_blank");
+        // window.open('http://192.168.2.176:9999/jeecg-boot'+ this.url.export, "_blank");
         window.open( window._CONFIG['domianURL']+ url+ paramsUrl, "_blank");
       },
     }
@@ -469,6 +489,9 @@ export default {
        text-align: center;
      }
      .description{
-         width: 400px !important;
+         width: 360px !important;
+     }
+     .taskName{
+       min-width: 160px;
      }
 </style>

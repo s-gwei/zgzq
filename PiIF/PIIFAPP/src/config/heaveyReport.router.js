@@ -30,6 +30,16 @@ const router = {
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/RiskMeasureList')
       },
       {
+        path: "riskTable",
+        name: "riskTable",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/RiskTable')
+      },
+      {
+        path: "sncsList",
+        name: "sncsList",
+        component: () => import(/* webpackChunkName: "report" */  '@/views/report/XncsList')
+      },
+      {
         path: "issueRiskChain",
         name: "issueRiskChain",
         component: () => import(/* webpackChunkName: "report" */  '@/views/report/IssueRiskChain')

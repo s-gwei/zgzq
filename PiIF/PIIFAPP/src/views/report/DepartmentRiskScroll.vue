@@ -108,9 +108,9 @@ export default {
     },
     getData () {
           var  url = this.url.chartDate,params={},
-              _this = this,
-              data = JSON.parse(JSON.stringify(departmentJson));
-              params.userIds = this.$route.query.userIds,params.startTime = this.$route.query.startTime,params.endTime = this.$route.query.endTime,params.name=this.$route.query.name
+              _this = this;
+              // data = JSON.parse(JSON.stringify(departmentJson));
+              params.userIds = this.$route.query.userIds,params.startTime = this.$route.query.startTime,params.endTime = this.$route.query.endTime,params.name=  this.$route.query.groupName || this.$route.query.name
           this.loading = true,
       getAction(url,params,'get').then((res) => {
              _this.loading = false
@@ -157,7 +157,6 @@ export default {
       }
     },
     initChart (data) {
-      console.log('init');
       let baseRate = 1
       if (data.length > BASE_LEN) {
         baseRate = BASE_LEN / data.length
@@ -462,7 +461,7 @@ export default {
       this.ds.setState('start', rate)
       let endPos = rate + this.scrollProportion
       // 处理精度误差问题
-      if (1 - endPos < 1 / departmentJson.length) {
+      if (1 - endPos < 1 / this.chartDateALL.length) {
         endPos = 1
       }
       this.ds.setState('end', endPos)

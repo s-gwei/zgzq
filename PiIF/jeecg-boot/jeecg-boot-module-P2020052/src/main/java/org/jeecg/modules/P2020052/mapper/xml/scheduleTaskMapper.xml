@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.ScheduleTaskMapper">
+
+    <!-- 任务执行查询映射结果 -->
+    <resultMap id="TaseResultMap" type="org.jeecg.modules.P2020052.pojo.TaskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="container_info_name" property="executive"/>
+        <result column="name" property="planName"/>
+        <result column="in_plan_name" property="inPlanName"/>
+        <result column="plan_activity_ref_id" property="activiteId"/>
+        <result column="weights" property="weights"/>
+        <result column="in_standardDeviationValue" property="in_standardDeviationValue"/>
+        <result column="in_code" property="in_code"/>
+        <result column="in_deviationReport" property="in_deviationReport"/>
+        <result column="in_description" property="in_description"/>
+        <result column="standard_deviation_value" property="standardDeviationValue"/>
+        <result column="standard_difficulty_value" property="standardDifficultyValue"/>
+        <result column="deviation_report" property="deviationReport"/>
+        <result column="difficulty_report" property="difficultyReport"/>
+        <result column="breadth" property="breadth"/>
+        <result column="criticality" property="criticality"/>
+        <result column="actual_work_qty" property="standardWork"/>
+        <result column="target_work_qty" property="reportWork"/>
+        <result column="otRating" property="Output"/>
+        <result column="code" property="code"/>
+        <result column="report_time" property="report_time"/>
+        <result column="description" property="description"/>
+        <result column="completion_status" property="releases"/>
+    </resultMap>
+
+    <!-- 项目风险系数表查询映射结果 -->
+    <resultMap id="DaseResultMap" type="org.jeecg.modules.P2020052.pojo.ProjectRiskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="project_id" property="projectId"/>
+        <result column="project_name" property="name"/>
+        <result column="plan_activity_ref_id" property="preRatio"/>
+        <result column="plan_start_date" property="startTime"/>
+        <result column="standard_deviation_value" property="standardDeviationValue"/>
+        <result column="standard_difficulty_value" property="standardDifficultyValue"/>
+        <result column="deviation_report" property="deviationReport"/>
+        <result column="difficulty_report" property="difficultyReport"/>
+    </resultMap>
+    <select id="getProjectIds" resultType="java.lang.String">
+         select id from piproject
+    </select>
+    <!-- PERT查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.P2020052.pojo.PiplanActivityVo">
+        <result column="activityId" property="activityId"/>
+        <result column="targetStartTime" property="targetStartTime"/>
+        <result column="byTime" property="byTime"/>
+        <result column="expectedFinishTime" property="expectedFinishTime"/>
+        <result column="actualStartTime" property="actualStartTime"/>
+        <result column="actualEndTime" property="actualEndTime"/>
+    </resultMap>
+    <select id="getTaskById" resultMap="TaseResultMap">
+SELECT
+	id AS plan_activity_ref_id,
+	NAME,
+	actual_work_qty,
+	standard_work_qty
+FROM
+	piplan_activity
+WHERE
+	piplan_activity.project_ref_id = #{projectId}
+    </select>
+
+
+    <select id="getTaskInById" resultMap="TaseResultMap">
+SELECT
+	stproject_instanceinindicator.weights,
+	stproject_instanceotindicator.CODE AS in_code,
+	stproject_instanceotindicator.description AS in_description,
+	stproject_instanceotindicator.standard_deviation_value AS in_standardDeviationValue,
+	stproject_instanceotindicator.deviation_report AS in_deviationReport,
+	e.otRating
+FROM
+	stproject_instanceinindicator
+	LEFT JOIN (
+SELECT
+	a.*
+FROM
+	( SELECT stproject_instanceotindicator.CODE, stproject_instanceotindicator.description, stproject_instanceotindicator.standard_deviation_value, stproject_instanceotindicator.deviation_report FROM stproject_instanceotindicator ORDER BY CODE, create_stamp DESC 	limit 100000) a
+GROUP BY
+	a.CODE
+	) stproject_instanceotindicator ON stproject_instanceinindicator.ot_code = stproject_instanceotindicator.
+	CODE LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id
+WHERE
+	stproject_instanceinindicator.plan_activity_ref_id = #{activiteId}
+    </select>
+
+    <select id="getTaskOTById" resultMap="TaseResultMap">
+select * from
+	(
+	select
+	stproject_instanceotindicator.plan_activity_ref_id,
+	stproject_instanceotindicator.create_stamp,
+	stproject_instanceotindicator.CODE,
+	stproject_instanceotindicator.description,
+	stproject_instanceotindicator.standard_deviation_value,
+	stproject_instanceotindicator.standard_difficulty_value,
+	stproject_instanceotindicator.deviation_report,
+	stproject_instanceotindicator.difficulty_report,
+	stproject_instanceotindicator.breadth,
+	stproject_instanceotindicator.criticality,
+	stproject_instanceotindicator.completion_status
+	FROM stproject_instanceotindicator ORDER BY CODE, create_stamp DESC
+	limit 100000
+	)a
+	WHERE plan_activity_ref_id = #{activiteId}
+	GROUP BY a.CODE
+    </select>
+
+    <select id="selectAllId" resultType="java.lang.String">
+           select id from piproject
+    </select>
+
+    <select id="ProjectRiskTable" resultMap="DaseResultMap">
+              SELECT
+        c.*,
+        d.plan_start_date,
+        d.project_name
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT id FROM piplan_activity  pa WHERE pa.project_ref_id = #{projectId}
+         )
+        ) a,
+        (SELECT id,pa.project_ref_id as project_id FROM piplan_activity  pa WHERE pa.project_ref_id =#{projectId}
+         ) b
+        WHERE
+        a.plan_activity_ref_id = b.id
+        ) c,
+        (SELECT piproject.id,piproject.plan_start_date, piproject.project_name FROM piproject WHERE id =#{projectId}
+        ) d
+        WHERE
+        c.project_id = d.id
+        ORDER BY
+        c.project_id
+    </select>
+    <select id="projectWeekCycle" resultMap="BaseResultMap">
+            SELECT
+	a.target_start_date as targetStartTime,
+	b.target_end_date as byTime
+FROM
+	( SELECT piplan_activity.target_start_date, piplan_activity.project_ref_id FROM piplan_activity WHERE piplan_activity.project_ref_id = #{projectId} ORDER BY piplan_activity.target_start_date LIMIT 1 ) a,
+	( SELECT piplan_activity.target_end_date, piplan_activity.project_ref_id FROM piplan_activity WHERE piplan_activity.project_ref_id = #{projectId} ORDER BY piplan_activity.target_end_date DESC LIMIT 1 ) b
+WHERE
+	a.project_ref_id = b.project_ref_id
+
+    </select>
+
+</mapper>

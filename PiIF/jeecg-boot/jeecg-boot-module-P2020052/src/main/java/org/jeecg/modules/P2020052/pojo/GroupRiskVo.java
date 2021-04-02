@@ -13,7 +13,7 @@ public class GroupRiskVo implements Serializable {
 
     private  String standardWorkQty;//计划工时
 
-    private String actualStartDate;//实际开始时间
+    private String actualStartDate;//计划开始时间
 
     private String weights;//权重
 

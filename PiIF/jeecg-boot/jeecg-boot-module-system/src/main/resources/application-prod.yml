@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9995
   tomcat:
     max-swallow-size: -1
   servlet:
@@ -10,27 +10,32 @@ server:
     mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain,text/css,image/*
 
 management:
- endpoints:
-  web:
-   exposure:
-    include: metrics,httptrace
+  endpoints:
+    web:
+      exposure:
+        include: metrics,httptrace
 
 spring:
   servlet:
-     multipart:
-        max-file-size: 10MB
-        max-request-size: 10MB
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   mail:
     host: smtp.163.com
-    username: jeecgos@163.com
-    password: ??
+    username: tanfenpubaexe@163.com
+    password: ROAUJGXGGKTQHKWL
     properties:
       mail:
         smtp:
           auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
           starttls:
             enable: true
             required: true
+    port: 465
   ## quartz定时任务,采用数据库方式
   quartz:
     job-store-type: jdbc
@@ -76,7 +81,7 @@ spring:
         # 初始化大小，最小，最大
         initial-size: 5
         min-idle: 5
-        maxActive: 1000
+        maxActive: 20
         # 配置获取连接等待超时的时间
         maxWait: 60000
         # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
@@ -96,41 +101,54 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://192.168.2.71:6005/piif?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          url: jdbc:mysql://192.168.111.137:3306/pilf?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
           username: root
-          password: root
+          password: 123456
           driver-class-name: com.mysql.jdbc.Driver
+
+
           # 多数据源配置
-          #multi-datasource1:
-          #url: jdbc:mysql://localhost:3306/jeecg-boot2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
-          #username: root
-          #password: root
-          #driver-class-name: com.mysql.jdbc.Driver
+        multi-datasource1:
+          url: jdbc:mysql://192.168.111.137:3306/sttest5?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
   #redis 配置
   redis:
     database: 0
-    host: 192.168.2.71
+    host: 192.168.111.136
     lettuce:
       pool:
-        max-active: 8   #最大连接数据库连接数,设 0 为没有限制
-        max-idle: 8     #最大等待连接中的数量,设 0 为没有限制
+        max-active: 100   #最大连接数据库连接数,设 0 为没有限制
+        max-idle: 100     #最大等待连接中的数量,设 0 为没有限制
         max-wait: -1ms  #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
         min-idle: 0     #最小等待连接中的数量,设 0 为没有限制
       shutdown-timeout: 100ms
     password: ''
-    port: 6016
-# influxDB
-  influx:
-    url: http://192.168.2.71:6008
-    userName: admin
-    password: 123456
-    database: test
-    retention_policy: default
-    retention_policy_time: 30d
-    actions: 10000
-    bufferLimit: 20000
-    user: admin
+    port: 6379
 
+  #elasticsearch 配置
+  data:
+    elasticsearch:
+      #es 服务端名称 需要与es服务端配置一致
+      cluster-name: yhjw
+      #es节点地址，可以以‘ ,’隔开
+      cluster-nodes: pioa.pisx.com:9200
+  #activiti 工作流配置
+  activiti:
+    #自动检查、部署流程定义文件
+    check-process-definitions: false
+    #自动更新数据库结构
+    database-schema-update: true
+    # asyncExecutorActivate是指activiti在流程引擎启动就激活AsyncExecutor,异步：true-开启（默认）、false-关闭
+    async-executor-activate: true
+    history-level: full
+    db-history-used: true
+    #流程定义文件存放目录,要具体到某个目录
+    #    process-definition-location-prefix: classpath:/processes/
+    #process-definition-location-suffixes: #流程文件格式
+    #  - **.bpmn20.xml
+    #  - **.bpmn
 #mybatis plus 设置
 mybatis-plus:
   mapper-locations: classpath*:org/jeecg/modules/**/xml/*Mapper.xml
@@ -142,19 +160,24 @@ mybatis-plus:
       id-type: 4
       # 默认数据库表下划线命名
       table-underline: true
+  configuration:
+    call-setters-on-nulls: true
+    #    configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #jeecg专用配置
-jeecg :
-  path :
+jeecg:
+  path:
     #文件上传根目录 设置
-    upload: /opt/jeecg-boot/upload
+    upload: C://upFiles
     #webapp文件路径
-    webapp: /opt/jeecg-boot/webapp
+    webapp: C://webapp
   #短信秘钥
   sms:
-     accessKeyId: LTAIpW4gUG7xYDNI
-     accessKeySecret: ??
+    accessKeyId: LTAI4FeKmqE9h1CwXmQMMc59
+    accessKeySecret: oOmmpB4tkhqbmgZM5z4CT2qJC7sXfB
   shiro:
-     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
+    excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
   #阿里云oss存储配置
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
@@ -165,24 +188,20 @@ jeecg :
   # ElasticSearch 设置
   elasticsearch:
     cluster-name: jeecg-ES
-    cluster-nodes: 192.168.2.71:6006
+    cluster-nodes: pioa.pisx.com:9200
   # 表单设计器配置
   desform:
     # 主题颜色（仅支持 16进制颜色代码）
     theme-color: "#1890ff"
   # 在线预览文件服务器地址配置
-  file-view-domain: 127.0.0.1:8012
+  file-view-domain: http://pioa.pisx.com:8012
+#Mybatis输出sql日志
+logging:
+  level:
+    org.jeecg.modules.system.mapper: debug
 #cas单点登录
 cas:
   prefixUrl: http://cas.example.org:8443/cas
-
-emqx:
-  #emqx  Dashboard服务器的地址
-  baseurl: http://pioa.pisx.com:6012/
-  #emqx 服务器的用户及密码
-  username: admin
-  password: public
-
 apache:
   rocketmq:
     #消费者名称
@@ -194,10 +213,17 @@ apache:
     #NameServer地址
     namesrvAddr: pioa.pisx.com:9876
 
+emqx:
+  #emqx  Dashboard服务器的地址
+  baseurl: http://pioa.pisx.com:18083/
+  #emqx 服务器的用户及密码
+  username: admin
+  password: public
+
 pisx:
   investigation:
     #360评价问卷详情的前台地址
-    url: http://192.168.2.71:80/questionnaire/questionnaireList
+    url: http://139.159.193.72:9091/questionnaire/questionnaireList
     #发送邮件消息模板码
     templateCode: PI360
 
@@ -225,36 +251,14 @@ mqtt:
         topic: topic1
         payload: '{"id": "producer_client_test1"}'
         retained: false
-  #    channel2:
-  #      url: [tcp://pioa.pisx.com:1883]
-  #      topics: [topic3,topic4]
-  #      qos: [1,0]
-  #      username: emqx
-  #      password: 123456
-  #      timeout: 60
-  #      kep-alive-interval: 60
-  #      async: true
-  #      client-id-append-ip: false
-  #      consumer-client-id: consumer_client_test2
-  #      producer-client-id: producer_client_test2
-  #      consumer-will:
-  #        qos: 1
-  #        topic: topic1
-  #        payload: '{"id": "consumer_client_test2"}'
-  #        retained: false
-  #      producer-will:
-  #        qos: 1
-  #        topic: topic1
-  #        payload: '{"id": "producer_client_test2"}'
-  #        retained: false
+
   url: tcp://pioa.pisx.com:1883
   qos: 1
 
-logging:
-  level:
-    org.jeecg.modules.system.mapper : debug
+ProjectRiskUrl: http://192.168.111.198:9998/st/getDataByProject
+SectorRiskUrl: http://192.168.111.198:9998/st/getDataByUser
+pertUrl: http://192.168.111.198:9998/st/getDataByActivityId
+TaskUrl: http://192.168.111.198:9998/st/getDataByPlan
+ProjectUrl: http://192.168.111.198:9998/st/getDataByProjectIdAndUserId
 
-ProjectRiskUrl: http://192.168.2.157:8080/st/getDataByPlan2
-SectorRiskUrl: http://192.168.2.114:8080/st/getDataByUser
-pertUrl: http://192.168.2.114:8080/st/getDataByActivityId
-TaskUrl: http://192.168.2.157:8080/st/getDataByPlan
+cron : "0 0 0 * * ?"

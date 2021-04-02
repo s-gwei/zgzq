@@ -44,9 +44,12 @@
                <thead>
                    <tr>
                         <th>序号</th>
-                        <th class="description">描述</th>
+                        <th >任务名称</th>
+                        <th>指标编码</th>
+                        <th>描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>广度</th>
                         <th>关键度</th>
                         <th>标准偏差</th>
@@ -57,9 +60,12 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                <td>{{index + 1}}</td>
-                                <td>{{item.description}}</td>
+                                <td><div class="description">{{item.name}}</div></td>
+                               <td>{{item.code}}</td>
+                                <td><div class="description">{{item.description}}</div></td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <td>{{item.breadth}}</td>
                                 <td>{{item.criticiailty}}</td>
                                 <td>{{item.standard_deviation_value}}</td>
@@ -76,9 +82,12 @@
                <thead>
                    <tr>
                        <th>序号</th>
-                        <th class="description">描述</th>
+                       <th >任务名称</th>
+                        <th>指标编码</th>
+                        <th >描述</th>
                         <th>汇报偏差</th>
                         <th>汇报困难度</th>
+                        <th>汇报时间</th>
                         <th>广度</th>
                         <th>关键度</th>
                         <th>标准偏差</th>
@@ -89,9 +98,12 @@
                    <template v-for="(item,index) in tableDate" >
                            <tr  class="otherRow" :key="index">
                                <td>{{index + 1}}</td>
-                                <td>{{item.description}}</td>
+                               <td><div class="description">{{item.name}}</div></td>
+                               <td>{{item.code}}</td>
+                                <td ><div class="description">{{item.description}}</div></td>
                                 <td>{{item.deviation_report}}</td>
                                 <td>{{item.difficulty_report}}</td>
+                                <td>{{item.reportTime}}</td>
                                 <td>{{item.breadth}}</td>
                                 <td>{{item.criticiailty}}</td>
                                 <td>{{item.standard_deviation_value}}</td>
@@ -220,6 +232,9 @@ export default {
             _this.isLoading = false
            if(res.success && res.result){
               _this.$set(_this,'tableDate',res.result.records)
+              _this.tableDate.map(function(item){
+                item.reportTime = item.reportTime  ? item.reportTime.split(' ')[0] : ''
+              })
               this.ispagination.total = res.result.total
               this.ispagination.pageNo = res.result.current
               _this.$set(_this,'tableDate',res.result.records)
@@ -257,7 +272,9 @@ export default {
         const  url = this.url.export,_this=this;
         var paramsUrl = "?";
         for(let key in this.queryParam){
+          if(this.queryParam[key]){
             paramsUrl += key + "=" + this.queryParam[key] + "&"
+          }
         }
         paramsUrl =  paramsUrl.substr(0,paramsUrl.length - 1)
         // window.open('http://192.168.1.124:9999/jeecg-boot'+ this.url.export, "_blank");
@@ -549,6 +566,6 @@ export default {
        text-align: center;
      }
      .description{
-         width: 400px !important;
+         width: 280px !important;
      }
 </style>

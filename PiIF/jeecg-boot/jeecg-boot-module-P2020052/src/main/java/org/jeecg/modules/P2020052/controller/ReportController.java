@@ -1,5 +1,6 @@
 package org.jeecg.modules.P2020052.controller;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,20 +47,28 @@ public class ReportController {
     @GetMapping(value = "ProjectRiskTable")
     @ApiOperation(value = "项目风险系数表")
     public Result ProjectRiskTable(String projectIds) throws ParseException {
-        return Result.ok(reportService.ProjectRiskTable(projectIds));
+        return Result.ok(reportService.ProjectRiskTableById(projectIds));
+
     }
+
+
 
     @GetMapping(value = "TaskExecution")
     @ApiOperation(value = "任务执行报表")
     public Result taskExecution(String projectId,String userIds) throws ParseException {
         log.info("请求完毕");
-        return Result.ok(reportService.taskExecution(projectId,userIds));
-
+        return Result.ok(reportService.taskExecutionById(projectId,userIds));
     }
 
     @GetMapping(value = "GroupUser")
     @ApiOperation(value = "部门用户关系")
     public Result groupUser(String projectId) throws ParseException {
         return Result.ok(reportService.groupUser(projectId));
+    }
+    @GetMapping(value = "exportExcel")
+    @ApiOperation(value = "任务执行报表导出")
+    public void exportTable(HttpServletResponse response, String projectId ,String userIds ,String fileName) throws IOException {
+
+        reportService.exportTaskTableById(response, fileName,projectId,userIds);
     }
 }
