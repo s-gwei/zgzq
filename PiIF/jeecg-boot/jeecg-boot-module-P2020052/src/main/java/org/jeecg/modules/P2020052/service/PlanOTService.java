@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface PlanOTService {
@@ -28,5 +29,7 @@ public interface PlanOTService {
 
     void exportRiskExcel(HttpServletResponse response, String[] time, String[] group, String id, String planId) throws IOException;
 
-    List<ProblemRickChainVo> problemRickChain(String riskId);
+    List problemRickChain(String riskId);
+
+    Map  problemRickChainList(String riskId);
 }

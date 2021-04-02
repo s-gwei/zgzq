@@ -28,6 +28,7 @@ public class PlanOTServiceImpl implements PlanOTService {
 
     @Override
     public IPage<PlanOTVo> OTTable(Page page, String[] time, String[] group, String planId) {
+
         String startTime = null;
         String endTime = null;
         if (time != null) {
@@ -548,6 +549,133 @@ public class PlanOTServiceImpl implements PlanOTService {
             }
         }
         return result;
+    }
+
+    @Override
+    public Map problemRickChainList(String riskId) {
+        //返回map对象，其中有nodes属性，和edges属性
+        Map<String,Object> resultMap = new HashMap<>();
+        //节点属性
+        List<Map<String,Object>> nodes = new ArrayList<>();
+        //节点关系属性edges
+        List<Map<String,Object>> edges = new ArrayList<>();
+
+        List<String> noedIds = null;
+
+        if("".equals(riskId) || riskId == null){
+            //查询所有的风险节点
+            nodes =  planOTMapper.selectAllNodes(noedIds);
+            //查询所有的风险关系
+            edges = planOTMapper.selectChain(noedIds);
+        }else{
+            //查询某个节点，及和它有关联的风险
+            //先找到所有的父节点
+            List<ProblemRickChainVo> pList = planOTMapper.selectPid();
+            //再找到所有的节点关系，每个父节点及所有子节点都放在map中，
+            List<ProblemRickChainVo> chainList = planOTMapper.problemRickChain();
+            List<Map<String,Object>> nodeList = new ArrayList<>();
+            //用于copy
+            List<Map<String, Object>> noedIdsCopy = new ArrayList<>();
+            for(ProblemRickChainVo problemRickChainVo : pList){
+                Map parentMap = new HashMap();
+                parentMap.put(problemRickChainVo.getId(),problemRickChainVo.getId());
+                Map childMap = new HashMap();
+                for(ProblemRickChainVo child : chainList){
+                    if(child.getId().equals(problemRickChainVo.getId())){
+                        childMap.put(child.getChildrenId(),child.getChildrenId());
+                        parentMap.put(child.getChildrenId(),child.getChildrenId());
+                    }
+                }
+                //递归获取所有的子节点
+                if(childMap.size() != 0){
+                    getAllChild(childMap,parentMap,chainList);
+                }
+                nodeList.add(parentMap);
+            }
+            //最后如果map中有这个子节点，就取出所有的节点
+            noedIds = new ArrayList<>();
+            //相关的节点都放在map中
+            Map nodeMap = new HashMap();
+            noedIdsCopy.addAll(nodeList);
+            for(Map map : nodeList){
+                List<String> noedId = null;
+                if(map.get(riskId) != null){
+                    nodeMap = map;
+                    noedId = new ArrayList(map.values());
+                    noedIdsCopy.remove(map);
+                    noedIds.addAll(noedId);
+                }
+                if(map.size() == 1){
+                    noedIdsCopy.remove(map);
+                }
+            }
+            if(nodeMap.size() != 0 && nodeMap.size() != 1){
+                //再次递归查询有关的所有节点
+                nodeList.clear();
+                nodeList.addAll(noedIdsCopy);
+                getAllFather(nodeList,noedIdsCopy,noedIds,nodeMap);
+            }
+
+            if(noedIds.size() != 0){
+                //查询所有跟riskId有关的风险
+                nodes =  planOTMapper.selectAllNodes(noedIds);
+                //查询所有跟riskId有关的风险关系
+                edges = planOTMapper.selectChain(noedIds);
+            }
+        }
+        resultMap.put("nodes",nodes);
+        resultMap.put("edges",edges);
+        return resultMap;
+    }
+
+    private void getAllFather(List<Map<String, Object>> nodeList, List<Map<String, Object>> noedIdsCopy, List<String> noedIds, Map nodeMap) {
+
+        if(nodeList.size() == 0){
+            return;
+        }
+        for(Map map : nodeList){
+            List<String> noedId = null;
+            for(Object node : map.keySet()){
+                if(nodeMap.get(node) != null){
+                    Map combineResultMap = new HashMap();
+                    combineResultMap.putAll(map);
+                    combineResultMap.putAll(nodeMap);
+                    noedId = new ArrayList(combineResultMap.values());
+                    noedIds.addAll(noedId);
+                    nodeMap = combineResultMap;
+                    noedIdsCopy.remove(map);
+                    break;
+                }
+
+            }
+            break;
+        }
+        if(nodeList.size() != noedIdsCopy.size()){
+            nodeList.clear();
+            nodeList.addAll(noedIdsCopy);
+            getAllFather(nodeList, noedIdsCopy,noedIds,nodeMap);
+        }else{
+            return;
+        }
+
+    }
+
+    private void getAllChild(Map childMap, Map parentMap, List<ProblemRickChainVo> chainList) {
+        if(childMap.size() == 0){
+            return;
+        }else{
+            Map thildMap = new HashMap();
+            for(Object obj : childMap.keySet()){
+                for(ProblemRickChainVo child : chainList){
+                    if(child.getId().equals(obj)){
+                        thildMap.put(child.getChildrenId(),child.getChildrenId());
+                        parentMap.put(child.getChildrenId(),child.getChildrenId());
+                    }
+                }
+            }
+            getAllChild(thildMap,parentMap,chainList);
+        }
+
     }
 
 

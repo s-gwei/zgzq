@@ -39,6 +39,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
             DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
             for (TaskVo taskVo : taskList) {
                 List<TaskVo> list = null;
+                if("144355".equals(taskVo.getActiviteId() ) ){
+                    int a = 0;
+                }
                 //获取任务下所有in指标
                 List<TaskVo> inList = scheduleTaskMapper.getTaskInById(taskVo.getActiviteId());
                 //获取任务下所有ot指标
