@@ -15,127 +15,7 @@
 <script>
 import G6 from '@antv/g6';
 import {getAction} from '@/api/manage';
-// const data = {
-//   nodes: [
-//     {
-//       id: '0',
-//       confirm_status: '1',
-//       risk_name: '',
-//       risk_description: 'risk_description'
-//     },
-//     {
-//       id: '1',
-//        confirm_status: '0',
-//       risk_name: '1我当初',
-//     },
-//     {
-//       id: '2',
-//       confirm_status: '1',
-//       risk_name: '2要不',
-//     },
-//     {
-//       id: '3',
-//       confirm_status: '1',
-//       risk_name: '3介绍',
-//     },
-//     {
-//       id: '4',
-//       confirm_status: '0',
-//       risk_name: '444',
-//     },
-//     {
-//       id: '5',
-//       confirm_status: '1',
-//       risk_name: '5介绍5',
-//     },
-//     {
-//       id: '6',
-//       risk_name: '6介绍',
-//     },
-//     {
-//       id: '7',
-//       risk_name: '7介绍',
-//     },
-//     {
-//       id: '8',
-//       risk_name: '8介绍',
-//     },
-//     {
-//       id: '9',
-//       risk_name: '9介绍',
-//     },
-//     {
-//       id: '10',
-//       risk_name: '10te',
-//     }
-//   ],
-//   edges: [
-//     {
-//       source: '0',
-//       target: '1',
-//     },
-//     {
-//       source: '0',
-//       target: '2',
-//     },
-//     {
-//       source: '0',
-//       target: '3',
-//     },
-//     // {
-//     //   source: '0',
-//     //   target: '4',
-//     // },
-//     {
-//       source: '0',
-//       target: '5',
-//     },
-//     {
-//       source: '0',
-//       target: '7',
-//     },
-//     {
-//       source: '0',
-//       target: '8',
-//     },
-//     {
-//       source: '0',
-//       target: '9',
-//     },
-//     {
-//       source: '0',
-//       target: '10',
-//     },
-//     {
-//       source: '2',
-//       target: '3',
-//     },
-//     {
-//       source: '4',
-//       target: '5',
-//     },
-//     {
-//       source: '5',
-//       target: '6',
-//     },
-//     {
-//       source: '6',
-//       target: '7',
-//     },
-//     {
-//       source: '7',
-//       target: '10',
-//     },
-//     {
-//       source: '8',
-//       target: '10',
-//     },
-//     {
-//       source: '9',
-//       target: '10',
-//     },
-//   ],
-// };
+// const data = {"nodes":[{"risk_to_type":"threat","risk_description":null,"id":177882,"risk_code":"RISK_1617087459652","risk_name":"r-003","confirm_status":null},{"risk_to_type":"threat","risk_description":null,"id":177884,"risk_code":"RISK_1617087471565","risk_name":"R-001","confirm_status":null},{"risk_to_type":"threat","risk_description":null,"id":177886,"risk_code":"RISK_1617087482029","risk_name":"R-002","confirm_status":null}],"edges":[{"source":177882,"target":177884},{"source":177882,"target":177886}]}
   export default {
     name: "testTable",
     data () {
@@ -287,9 +167,10 @@ import {getAction} from '@/api/manage';
        },
        renderChart(tooltip){
         //  const container = document.getElementById("container");
-         const width = document.body.scrollWidth - 40;
+        const num = this.data.nodes.length
+        const width = num <= 2 ? 260 : (document.body.clientWidth - 40 )
+        //  const width = document.body.scrollWidth - 40;
          const height =  document.body.clientHeight - 50;
-         console.log(width);
          const graph = new G6.Graph({
               container: 'container',
               width,
