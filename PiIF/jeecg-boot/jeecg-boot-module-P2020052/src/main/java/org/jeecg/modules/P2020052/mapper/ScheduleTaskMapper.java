@@ -25,4 +25,6 @@ public interface ScheduleTaskMapper {
     List<ProjectRiskVo> ProjectRiskTable(@Param("projectId")String projectId);
 
     PiplanActivityVo projectWeekCycle(@Param("projectId")String projectId);
+
+    String getProName(@Param("projectId")String projectId);
 }

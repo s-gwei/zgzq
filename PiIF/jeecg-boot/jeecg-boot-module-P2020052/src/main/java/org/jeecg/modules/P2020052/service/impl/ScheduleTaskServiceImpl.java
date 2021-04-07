@@ -275,6 +275,16 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
             Map<Object, Object> map = new HashMap();
             double OutputQualityRiskSum = 0;
             if (list.size() == 0) {
+                map.put("Xaxis", 1);
+                // y轴
+                map.put("Yaxis", 0.5);
+                //项目名称
+                String proName = scheduleTaskMapper.getProName(projectId);
+                map.put("proName", proName);
+                map.put("proName", "");
+                map.put("projectId", projectIds);
+                map.put("OutputQualityRiskSum", 0);
+                redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
                 continue;
             }
             for (ProjectRiskVo projectRiskVo : list) {
