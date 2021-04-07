@@ -485,8 +485,8 @@
     <select id="selectChain" resultType="java.util.HashMap">
 
      SELECT
-            stproject_risk_pre_risk_link.roleaobject_id as source,
-            stproject_risk_pre_risk_link.rolebobject_id as target
+            stproject_risk_pre_risk_link.roleaobject_id as target,
+            stproject_risk_pre_risk_link.rolebobject_id as source
         FROM
             stproject_risk_pre_risk_link
         <where>

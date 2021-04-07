@@ -646,7 +646,6 @@ public class PlanOTServiceImpl implements PlanOTService {
                     noedIdsCopy.remove(map);
                     break;
                 }
-
             }
             break;
         }
