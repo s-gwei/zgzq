@@ -307,8 +307,6 @@ WHERE
         SELECT
         a.*,
         b.*
-/*        ,
-        c.**/
         FROM
         (
         SELECT
@@ -329,7 +327,7 @@ WHERE
         SELECT
         id
         FROM
-        piplan_activity pa
+        piplan_activity
         WHERE
         piplan_activity.id IN (
         SELECT
@@ -337,18 +335,12 @@ WHERE
         FROM
         piresource_assignment
         WHERE
-  /*      piresource_assignment.actual_start_date &gt;= #{startTime}
-        AND piresource_assignment.actual_end_date &lt;= #{endTime}
-        AND */
         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
         <foreach collection="userId" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
         )
         )
-        <if test="startTime!= null and startTime !=''" >
-            and  pa.actual_start_date between  #{startTime}  and #{endTime}
-        </if>
         )
         ) a,
         (
@@ -356,9 +348,10 @@ WHERE
         id,
         piplan_activity.actual_work_qty,
         piplan_activity.standard_work_qty,
-        piplan_activity.
+        piplan_activity.target_start_date
         FROM
-        piplan_activity pa
+        piplan_activity
+
         WHERE
 
         piplan_activity.id IN (
@@ -367,9 +360,7 @@ WHERE
         FROM
         piresource_assignment
         WHERE
-/*        piresource_assignment.actual_start_date &gt;= #{startTime}
-        AND piresource_assignment.actual_end_date &lt;= #{endTime}
-        AND */
+
         piresource_assignment.rsrc_ref_id IN (
         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
         <foreach collection="userId" item="id" open="(" close=")" separator=",">
@@ -378,27 +369,9 @@ WHERE
         )
         )
         <if test="startTime!= null and startTime !=''" >
-            and  pa.actual_start_date between  #{startTime}  and #{endTime}
+            and piplan_activity.target_start_date between  #{startTime}  and #{endTime}
         </if>
         ) b
-<!--        ,-->
-<!--        (-->
-<!--        SELECT-->
-<!--        piresource_assignment.plannable_ref_id,-->
-<!--        piresource_assignment.actual_start_date-->
-<!--        FROM-->
-<!--        piresource_assignment-->
-<!--        WHERE-->
-<!--/*        piresource_assignment.actual_start_date &gt;= #{startTime}-->
-<!--        AND piresource_assignment.actual_end_date &lt;= #{endTime}-->
-<!--        AND */-->
-<!--        piresource_assignment.rsrc_ref_id IN (-->
-<!--        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in-->
-<!--        <foreach collection="userId" item="id" open="(" close=")" separator=",">-->
-<!--            #{id}-->
-<!--        </foreach>-->
-<!--        )-->
-<!--        ) c-->
     </select>
 
     <select id="selectInById" resultMap="TaseResultMap">
