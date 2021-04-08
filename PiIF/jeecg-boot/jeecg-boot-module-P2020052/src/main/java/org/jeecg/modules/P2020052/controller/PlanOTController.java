@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.modules.P2020052.pojo.*;
 import org.jeecg.modules.P2020052.service.PlanOTService;
+import org.jeecg.modules.P2020052.service.ScheduleTaskService;
 import org.jeecg.modules.P2020052.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,9 @@ public class PlanOTController {
 
     @Autowired
     PlanOTService planOTService;
+
+    @Autowired
+    ScheduleTaskService scheduleTaskService;
 
 
     @GetMapping(value = "/OTTable")
@@ -90,8 +94,8 @@ public class PlanOTController {
     @GetMapping(value = "/WorkDelayTable")
     @ApiOperation(value = "工作任务延期报表")
     public Result WorkDelayTable(
-            String[] time,String[] group,String projectId) throws ParseException {
-        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, group,projectId);
+            String[] time,String[] group,String planId,String projectId) throws ParseException {
+        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time, group,projectId,planId);
         return Result.ok(list);
     }
 
@@ -100,6 +104,20 @@ public class PlanOTController {
     public Result problemRickChain(String riskId)  {
         List<ProblemRickChainVo> list = planOTService.problemRickChain(riskId);
         return Result.ok(list);
+    }
+
+    @GetMapping(value = "/taskExecution")
+    @ApiOperation(value = "定时任务")
+    public Result taskExecution()  {
+        scheduleTaskService.taskExecution();
+        return Result.ok();
+    }
+
+    @GetMapping(value = "/ptaskExecution")
+    @ApiOperation(value = "项目风险系数定时任务")
+    public Result projectRiskTable() throws ParseException {
+        scheduleTaskService.ProjectRiskTable();
+        return Result.ok();
     }
 
 }

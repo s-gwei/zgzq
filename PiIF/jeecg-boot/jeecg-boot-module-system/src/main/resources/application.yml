@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: zgzq
+    active: test
 swagger:
   production: false
   basic:

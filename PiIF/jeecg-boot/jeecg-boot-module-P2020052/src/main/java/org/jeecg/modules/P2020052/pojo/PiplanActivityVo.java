@@ -12,6 +12,8 @@ public class PiplanActivityVo implements Serializable {
 
     private String  activityName;//任务名称
 
+    private String  projectName;//项目名称
+
     private String  taskType;//任务状态
 
     private Double deviation;//偏差值

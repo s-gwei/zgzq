@@ -20,6 +20,10 @@ public class ProblemRickChainVo implements Serializable {
 
     private String risk_description;
 
+    private String pid;//父id
+
+    private String childrenId;//子id
+
     private List<ProblemRickChainVo> children ;
 
 

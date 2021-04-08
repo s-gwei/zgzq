@@ -17,7 +17,7 @@
     <resultMap id="CaseResultMap" type="org.jeecg.modules.P2020052.pojo.GroupRiskVo">
         <!--        colum对应数据库的字段,property对应实体类的属性-->
         <result column="plan_activity_ref_id" property="activityId"/>
-        <result column="actual_start_date" property="actualStartDate"/>
+        <result column="target_start_date" property="actualStartDate"/>
         <result column="standard_work_qty" property="standardWorkQty"/>
         <result column="actual_work_qty" property="actualWorkQty"/>
         <result column="weights" property="weights"/>
@@ -46,9 +46,9 @@
     <!-- 用户部门查询映射结果 -->
     <resultMap id="UaseResultMap" type="org.jeecg.modules.P2020052.pojo.UserVo">
         <!--        colum对应数据库的字段,property对应实体类的属性-->
-        <result column="id" property="groupId"/>
-        <result column="name" property="groupName"/>
-        <result column="rolebobject_id" property="userId"/>
+        <result column="groupId" property="groupId"/>
+        <result column="groupName" property="groupName"/>
+        <result column="userId" property="userId"/>
         <result column="userName" property="userName"/>
     </resultMap>
     <!-- 任务执行查询映射结果 -->
@@ -56,8 +56,13 @@
         <!--        colum对应数据库的字段,property对应实体类的属性-->
         <result column="container_info_name" property="executive"/>
         <result column="name" property="planName"/>
-        <result column="plan_activity_ref_id" property="planId"/>
+        <result column="inPlanName" property="inPlanName"/>
+        <result column="plan_activity_ref_id" property="activiteId"/>
         <result column="weights" property="weights"/>
+        <result column="in_standardDeviationValue" property="in_standardDeviationValue"/>
+        <result column="in_code" property="in_code"/>
+        <result column="in_deviationReport" property="in_deviationReport"/>
+        <result column="in_description" property="in_description"/>
         <result column="standard_deviation_value" property="standardDeviationValue"/>
         <result column="standard_difficulty_value" property="standardDifficultyValue"/>
         <result column="deviation_report" property="deviationReport"/>
@@ -67,7 +72,16 @@
         <result column="actual_work_qty" property="standardWork"/>
         <result column="target_work_qty" property="reportWork"/>
         <result column="otRating" property="Output"/>
+        <result column="code" property="code"/>
+        <result column="report_time" property="report_time"/>
+        <result column="description" property="description"/>
         <result column="completion_status" property="releases"/>
+    </resultMap>
+          <!--查询任务id-->
+    <resultMap id="TaseIdResultMap" type="org.jeecg.modules.P2020052.pojo.TaskId">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="id" property="id"/>
+
     </resultMap>
 
     <select id="projectWeekCycle" resultMap="BaseResultMap">
@@ -88,6 +102,9 @@ WHERE
         select
         stproject_instanceinindicator.plan_activity_ref_id,
         stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.code,
+        stproject_instanceotindicator.report_time,
+        stproject_instanceotindicator.description,
         stproject_instanceotindicator.standard_deviation_value,
         stproject_instanceotindicator.standard_difficulty_value,
         stproject_instanceotindicator.deviation_report,
@@ -130,41 +147,104 @@ WHERE
 
 
     <select id="groupUser" resultMap="UaseResultMap">
-      SELECT
-            d.*,
-            piuser.NAME AS userName
-        FROM
-            (
-        SELECT
-            *
-        FROM
-            (
-        SELECT
-            pigroup.id,
-            pigroup.NAME
-        FROM
-            pigroup
-        WHERE
-             pigroup.internal = 0
-            and
-            id IN ( SELECT membership_link.roleaobject_id FROM membership_link WHERE membership_link.rolebobject_id IN (
-            SELECT piresource_assignment.rsrc_ref_id FROM piresource_assignment WHERE piresource_assignment.project_ref_id = #{projectId} ) )
-            ) a,
-            (
-        SELECT
-            membership_link.roleaobject_id,
-            membership_link.rolebobject_id
-        FROM
-            membership_link
-        WHERE
-            membership_link.rolebobject_id IN ( SELECT piresource_assignment.rsrc_ref_id FROM piresource_assignment WHERE piresource_assignment.project_ref_id = #{projectId} )
-            ) b
-        WHERE
-            a.id = b.roleaobject_id
-            ) d,
-            piuser
-        WHERE
-            piuser.id = d.rolebobject_id
+     SELECT
+	a.groupId,
+	c.NAME AS groupName,
+	a.userId,
+	b.NAME AS userName
+            FROM
+                (
+            SELECT
+                roleaobject_id AS groupId,
+                rolebobject_id AS userId
+            FROM
+                membership_link
+            WHERE
+                rolebobject_id IN (
+            SELECT
+                id
+            FROM
+                piuser
+            WHERE
+                id IN (
+            SELECT
+                user_ref_id
+            FROM
+                piresource
+            WHERE
+                id IN ( SELECT rsrc_ref_id FROM piresource_assignment WHERE plannable_ref_id IN ( SELECT id FROM piplan_activity
+                <where>
+                    <if test="projectId!= null and projectId !=''and projectId !='null'" >
+                        project_ref_id = #{projectId}
+                    </if>
+                </where>
+
+
+        ) )
+                )
+                )
+                ) a,
+                (
+            SELECT
+                id,
+            NAME
+            FROM
+                piuser
+            WHERE
+                id IN (
+            SELECT
+                user_ref_id
+            FROM
+                piresource
+            WHERE
+                id IN ( SELECT rsrc_ref_id FROM piresource_assignment WHERE plannable_ref_id IN ( SELECT id FROM piplan_activity
+        <where>
+            <if test="projectId!= null and projectId !=''and projectId !='null'" >
+                project_ref_id = #{projectId}
+            </if>
+        </where>
+                 ) )
+                )
+                ) b,
+                (
+            SELECT
+                id,
+            NAME
+            FROM
+                pigroup
+            WHERE
+                id IN (
+            SELECT
+                roleaobject_id
+            FROM
+                membership_link
+            WHERE
+                rolebobject_id IN (
+            SELECT
+                id
+            FROM
+                piuser
+            WHERE
+                id IN (
+            SELECT
+                user_ref_id
+            FROM
+                piresource
+            WHERE
+                id IN ( SELECT rsrc_ref_id FROM piresource_assignment WHERE plannable_ref_id IN ( SELECT id FROM piplan_activity
+        <where>
+            <if test="projectId!= null and projectId !=''and projectId !='null'" >
+                project_ref_id = #{projectId}
+            </if>
+        </where>
+                ) )
+                )
+                )
+                )
+                ) c
+            WHERE
+                a.userId = b.id
+                AND c.id = a.groupId
     </select>
 
 
@@ -280,6 +360,7 @@ WHERE
         FROM
         piplan_activity pa
         WHERE
+
         piplan_activity.id IN (
         SELECT
         piresource_assignment.plannable_ref_id
@@ -320,4 +401,176 @@ WHERE
 <!--        ) c-->
     </select>
 
+    <select id="selectInById" resultMap="TaseResultMap">
+   select * from
+        (
+        select
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.code as in_code,
+        stproject_instanceotindicator.report_time,
+        stproject_instanceotindicator.description as in_description,
+        stproject_instanceotindicator.standard_deviation_value as in_standardDeviationValue,
+        stproject_instanceotindicator.deviation_report as in_deviationReport,
+        e.otRating,
+        piproject_container.container_info_name
+        from
+        stproject_instanceotindicator left join piproject_container on
+        stproject_instanceotindicator.container_ref_id = piproject_container.id,
+        stproject_instanceinindicator
+        LEFT JOIN
+        ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' )
+        otRating FROM strating
+        GROUP BY strating.in_indicator_ref_id ) e
+        ON e.in_indicator_ref_id = stproject_instanceinindicator.id
+        where stproject_instanceinindicator.ot_code = stproject_instanceotindicator.code
+        and stproject_instanceinindicator.plan_activity_ref_id =#{id}
+        )a,
+        (
+        select piplan_activity.id,
+        piplan_activity.name,
+        piplan_activity.actual_work_qty,
+        piplan_activity.target_work_qty
+        from piplan_activity where piplan_activity.id =#{id}
+        )b
+        where a.plan_activity_ref_id = b.id
+    </select>
+
+
+    <select id="selectINOTById" resultMap="TaseResultMap">
+		SELECT
+	A.*,
+	B.*
+FROM
+	(
+SELECT
+	c.*,
+	@rownum := @rownum + 1 AS rn
+FROM
+	(
+SELECT
+	stproject_instanceotindicator.plan_activity_ref_id,
+	stproject_instanceotindicator.CODE,
+	stproject_instanceotindicator.description,
+	stproject_instanceotindicator.standard_deviation_value,
+	stproject_instanceotindicator.standard_difficulty_value,
+	stproject_instanceotindicator.deviation_report,
+	stproject_instanceotindicator.difficulty_report,
+	stproject_instanceotindicator.breadth,
+	stproject_instanceotindicator.criticality,
+	stproject_instanceotindicator.completion_status,
+	piplan_activity.NAME,
+	piplan_activity.actual_work_qty,
+	piplan_activity.target_work_qty
+FROM
+	stproject_instanceotindicator,
+	piplan_activity
+WHERE
+	piplan_activity.id = stproject_instanceotindicator.plan_activity_ref_id
+	AND stproject_instanceotindicator.plan_activity_ref_id = #{id}
+
+	) c,
+	( SELECT @rownum := 0 ) t
+	) A
+	LEFT JOIN (
+	SELECT
+		d.*,
+		@rownum1 := @rownum1 + 1 AS rn
+	FROM
+		(
+		SELECT
+			piplan_activity.NAME AS inPlanName,
+			stproject_instanceinindicator.weights,
+			stproject_instanceotindicator.CODE AS in_code,
+			stproject_instanceotindicator.report_time,
+			stproject_instanceotindicator.description AS in_description,
+			stproject_instanceotindicator.standard_deviation_value AS in_standardDeviationValue,
+			stproject_instanceotindicator.deviation_report AS in_deviationReport,
+			e.otRating,
+			piproject_container.container_info_name
+		FROM
+			stproject_instanceotindicator
+			LEFT JOIN piproject_container ON stproject_instanceotindicator.container_ref_id = piproject_container.id,
+			stproject_instanceinindicator
+			LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id,
+			piplan_activity
+		WHERE
+			stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+			AND stproject_instanceinindicator.plan_activity_ref_id = #{id}
+
+			AND piplan_activity.id = #{id}
+
+		) d,
+		( SELECT @rownum1 := 0 ) t
+	) B ON A.rn = B.rn UNION
+SELECT
+	A.*,
+	B.*
+FROM
+	(
+	SELECT
+		c.*,
+		@rownum2 := @rownum2 + 1 AS rn
+	FROM
+		(
+		SELECT
+			stproject_instanceotindicator.plan_activity_ref_id,
+			stproject_instanceotindicator.CODE,
+			stproject_instanceotindicator.description,
+			stproject_instanceotindicator.standard_deviation_value,
+			stproject_instanceotindicator.standard_difficulty_value,
+			stproject_instanceotindicator.deviation_report,
+			stproject_instanceotindicator.difficulty_report,
+			stproject_instanceotindicator.breadth,
+			stproject_instanceotindicator.criticality,
+			stproject_instanceotindicator.completion_status,
+			piplan_activity.NAME,
+			piplan_activity.actual_work_qty,
+			piplan_activity.target_work_qty
+		FROM
+			stproject_instanceotindicator,
+			piplan_activity
+		WHERE
+			piplan_activity.id = stproject_instanceotindicator.plan_activity_ref_id
+			AND stproject_instanceotindicator.plan_activity_ref_id = #{id}
+
+		) c,
+		( SELECT @rownum2 := 0 ) t
+	) A
+	RIGHT JOIN (
+	SELECT
+		d.*,
+		@rownum3 := @rownum3 + 1 AS rn
+	FROM
+		(
+		SELECT
+			piplan_activity.NAME AS inPlanName,
+			stproject_instanceinindicator.weights,
+			stproject_instanceotindicator.CODE AS in_code,
+			stproject_instanceotindicator.report_time,
+			stproject_instanceotindicator.description AS in_description,
+			stproject_instanceotindicator.standard_deviation_value AS in_standardDeviationValue,
+			stproject_instanceotindicator.deviation_report AS in_deviationReport,
+			e.otRating,
+			piproject_container.container_info_name
+		FROM
+			stproject_instanceotindicator
+			LEFT JOIN piproject_container ON stproject_instanceotindicator.container_ref_id = piproject_container.id,
+			stproject_instanceinindicator
+			LEFT JOIN ( SELECT strating.in_indicator_ref_id, GROUP_CONCAT( strating.ot_rating SEPARATOR ',' ) otRating FROM strating GROUP BY strating.in_indicator_ref_id ) e ON e.in_indicator_ref_id = stproject_instanceinindicator.id,
+			piplan_activity
+		WHERE
+			stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+			AND stproject_instanceinindicator.plan_activity_ref_id = #{id}
+
+			AND piplan_activity.id = #{id}
+
+		) d,
+	( SELECT @rownum3 := 0 ) t
+) B ON A.rn = B.rn
+    </select>
+
+    <select id="selectAllId" resultType="java.lang.String">
+           select id from piproject
+    </select>
 </mapper>

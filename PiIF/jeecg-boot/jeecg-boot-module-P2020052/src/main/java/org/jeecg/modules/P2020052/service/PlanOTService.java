@@ -20,7 +20,7 @@ public interface PlanOTService {
 
     List<RiskVo>  selectRiskTable(String[] time, String[] group,  String planId,String projectId);
 
-    List<PiplanActivityVo> WorkDelayTable(String[] time, String[] projectId, String flag) throws ParseException;
+    List<PiplanActivityVo> WorkDelayTable(String[] time, String[] projectId, String id, String flag) throws ParseException;
 
     void exportOTExcel(HttpServletResponse response, String[] time, String[] group, String planId) throws IOException;
 

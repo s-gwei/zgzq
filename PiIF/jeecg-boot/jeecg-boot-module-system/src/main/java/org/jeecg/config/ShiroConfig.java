@@ -78,6 +78,8 @@ public class ShiroConfig {
         //重汽项目过滤
         filterChainDefinitionMap.put("/test/test", "anon");
         filterChainDefinitionMap.put("/HeavyDutyTable/**", "anon");
+
+        filterChainDefinitionMap.put("/HeavyDuty/**", "anon");
         filterChainDefinitionMap.put("/OTDrivice/**", "anon");
         filterChainDefinitionMap.put("/ZLTable/**", "anon");
         //cas验证登录
