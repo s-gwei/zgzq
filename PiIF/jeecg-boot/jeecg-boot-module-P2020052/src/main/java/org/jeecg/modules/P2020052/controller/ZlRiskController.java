@@ -15,7 +15,7 @@ import java.text.ParseException;
 @RestController
 @RequestMapping("/ZLTable")
 @Slf4j
-@Api(tags="ZL的部门风险系数报表")
+@Api(tags="ZL部门风险系数报表")
 public class ZlRiskController {
 
     @Autowired
