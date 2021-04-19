@@ -1019,7 +1019,7 @@ export default {
                       // textBaseline: 'center',
                       fontSize: 10
                     },
-                    offset: 20,//偏移量
+                    offset: 24,//偏移量
                     // rotate: 270,
                     position:'end'//label的展示位置
                   }
@@ -1103,13 +1103,13 @@ export default {
     overflow: hidden;
     box-sizing: border-box;
     transform-origin: 0 0;
-    // background: url("../../assets/reportDpbg.png") no-repeat;
-    background: rgb(61, 61, 61);
+    background: url("../../assets/reportDpbg.png") no-repeat;
+    // background: rgb(22, 21, 21);
     background-size: 100% 100%;
     .title{
         text-align: center;
         color: #fff;
-        background: url("../../assets/title_bg.png") no-repeat;
+        // background: url("../../assets/title_bg.png") no-repeat;
         background-size:100% 90px;
         position: relative;
         .srcImag{
