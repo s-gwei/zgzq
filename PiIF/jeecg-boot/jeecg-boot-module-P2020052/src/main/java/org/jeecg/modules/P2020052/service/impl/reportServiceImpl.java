@@ -163,24 +163,26 @@ public class reportServiceImpl implements ReportService {
         }
         return result;
     }
+
     @Override
     public List ProjectRiskTableById(String projectIds) {
         List<String> projectId = new ArrayList<>();
-        if("".equals(projectIds) || projectIds == null){
+        if ("".equals(projectIds) || projectIds == null) {
             projectId = reportMapper.selectAllId();
-        }else{
+        } else {
             String[] project = projectIds.split(",");
-            for(int i =0;i<project.length;i++){
+            for (int i = 0; i < project.length; i++) {
                 projectId.add(project[i]);
             }
         }
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-        for(String  id :projectId){
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        for (String id : projectId) {
             Map<String, Object> map = (Map<String, Object>) redisTemplate.opsForValue().get(id);
             list.add(map);
         }
         return list;
     }
+
     @Override
     public List ProjectRiskTable(String projectIds) throws ParseException {
         String[] projectId = projectIds.split(",");
@@ -901,39 +903,38 @@ public class reportServiceImpl implements ReportService {
             userId = userIds.split(",");
         }
         List<String> actIds = reportMapper.selectAllActId(projectId, userId);
-//        List resultList = new ArrayList();
-//        for(String id: actIds){
-//            List<Map<String, Object>> list = (List<Map<String, Object>>) redisTemplate.opsForValue().get(projectId + id);
-//            resultList.add(list);
-//        }
-        ExecutorService executor = Executors.newFixedThreadPool(actIds.size());
-        List<Future<List>> futures = new ArrayList<>();
-        for (String actId : actIds) {
-            Future<List> submit = executor.submit(() -> {
-                return redisGet(projectId, actId);
-            });
-            futures.add(submit);
-        }
+//        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+//                10, 20, 0, TimeUnit.SECONDS,
+//                new ArrayBlockingQueue<Runnable>(100), new ThreadPoolExecutor.CallerRunsPolicy());
         List list = new ArrayList();
-////                futures.stream()
-        for (Future completableFuture : futures) {
-            Object join = null;
-            try {
-                join = completableFuture.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            if(join !=null){
+        for (String actId : actIds) {
+//            Future<List> submit = executor.submit(new Callable<List>() {
+//                @Override
+//                public List call() throws Exception {
+//                    return redisGet(projectId, actId);
+//                }
+//            });
+            Object join = redisGet(projectId, actId);
+//            try {
+//                join = submit.get();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
+            if (join != null) {
                 list.add(join);
             }
-
         }
-        executor.shutdown();
-        return list;
-//        return  resultList;
+        System.out.println(list.size());
 
+//        executor.shutdown();
+        return list;
+    }
+
+    private List redisGet(String projectId, String actId) {
+        List<Map<String, Object>> list = (List<Map<String, Object>>) redisTemplate.opsForValue().get(projectId + actId);
+        return list;
     }
 
     @Override
@@ -963,7 +964,7 @@ public class reportServiceImpl implements ReportService {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            if(join !=null){
+            if (join != null) {
                 list.add(join);
             }
 
@@ -1072,13 +1073,13 @@ public class reportServiceImpl implements ReportService {
         //查询所有的任务id
         //标记excel行数
         int k = 2;
-        for(Object task : list){
-            List<Map<String,Object>> result = (List<Map<String, Object>>) task;
+        for (Object task : list) {
+            List<Map<String, Object>> result = (List<Map<String, Object>>) task;
             //标记任务条数
             int i = 1;
             //查询任务下in,ot的值
             for (Map map : result) {
-                if (map.size() ==7) {
+                if (map.size() == 7) {
                     //环境质量指标：qualityIndex
                     System.out.println(map.get("qualityIndex"));
                     cell = row.createCell(24);
@@ -1101,15 +1102,15 @@ public class reportServiceImpl implements ReportService {
                 String name = (String) map.get("taskname");
                 cell.setCellValue(name);
                 //指标编码
-                String inCode = map.get("in_code") == null ? "" :(String) map.get("in_code");
+                String inCode = map.get("in_code") == null ? "" : (String) map.get("in_code");
                 cell = row.createCell(2);
                 cell.setCellValue(inCode);
                 //指标名称in_description
-                String InDescription = map.get("in_description") == null ?"": (String) map.get("in_description");
+                String InDescription = map.get("in_description") == null ? "" : (String) map.get("in_description");
                 cell = row.createCell(3);
                 cell.setCellValue(InDescription);
                 // 权重
-                Double weight = Double.parseDouble(map.get("weight")  == null ?
+                Double weight = Double.parseDouble(map.get("weight") == null ?
                         "0" : map.get("weight").toString());
                 cell = row.createCell(4);
                 cell.setCellValue(weight);
@@ -1130,18 +1131,18 @@ public class reportServiceImpl implements ReportService {
                 cell = row.createCell(7);
                 cell.setCellValue(qualityInfluenceFactor);
                 //标准工期
-                Double StandardPeriod =map.get("StandardPeriod") == null ? 0 : Double.parseDouble(map.get("StandardPeriod").toString());
+                Double StandardPeriod = map.get("StandardPeriod") == null ? 0 : Double.parseDouble(map.get("StandardPeriod").toString());
                 cell = row.createCell(8);
                 cell.setCellValue(StandardPeriod);
                 //项目工期
-                Double reportPeriod = map.get("reportPeriod")== null ? 0 : Double.parseDouble(map.get("reportPeriod").toString());
+                Double reportPeriod = map.get("reportPeriod") == null ? 0 : Double.parseDouble(map.get("reportPeriod").toString());
                 cell = row.createCell(9);
                 cell.setCellValue(reportPeriod);
                 //风险KPI
                 cell = row.createCell(10);
                 cell.setCellValue(df.format(reportPeriod / (StandardPeriod == 0 ? 1 : StandardPeriod)));
                 //指标编码
-                String code = map.get("code") == null ? null :map.get("code").toString();
+                String code = map.get("code") == null ? null : map.get("code").toString();
                 cell = row.createCell(11);
                 cell.setCellValue(code);
                 //指标名称
@@ -1159,13 +1160,13 @@ public class reportServiceImpl implements ReportService {
                 cell = row.createCell(14);
                 cell.setCellValue(deviationReport);
                 // 标准困难度
-                double standardDifficulty = Double.parseDouble(map.get("standardDifficulty")  == null ?
-                        "0" : map.get("standardDifficulty").toString() );
+                double standardDifficulty = Double.parseDouble(map.get("standardDifficulty") == null ?
+                        "0" : map.get("standardDifficulty").toString());
                 cell = row.createCell(15);
                 cell.setCellValue(standardDifficulty);
                 //汇报困难度
                 double reportingDifficulty = Double.parseDouble(map.get("reportingDifficulty") == null ?
-                        "0" : map.get("reportingDifficulty").toString() );
+                        "0" : map.get("reportingDifficulty").toString());
                 cell = row.createCell(16);
                 cell.setCellValue(reportingDifficulty);
                 // 计算得出输出质量KPI
@@ -1183,7 +1184,7 @@ public class reportServiceImpl implements ReportService {
                 cell = row.createCell(19);
                 cell.setCellValue(span);
                 //关键度
-                double Criticality = Double.parseDouble(map.get("criticality")== null ?
+                double Criticality = Double.parseDouble(map.get("criticality") == null ?
                         "0" : map.get("criticality").toString());
                 cell = row.createCell(20);
                 cell.setCellValue(Criticality);
@@ -1192,12 +1193,12 @@ public class reportServiceImpl implements ReportService {
                 cell = row.createCell(21);
                 cell.setCellValue(ProjectRiskIndicators);
                 //输出评定
-                String OutputEvalua =map.get("OutputEvalua") == null ? "" : map.get("OutputEvalua").toString();
+                String OutputEvalua = map.get("OutputEvalua") == null ? "" : map.get("OutputEvalua").toString();
                 cell = row.createCell(22);
                 cell.setCellValue(OutputEvalua);
                 //发布次数
                 double Numbereleases = Double.parseDouble(map.get("Numbereleases") == null ?
-                        "0" : map.get("Numbereleases").toString() );
+                        "0" : map.get("Numbereleases").toString());
                 cell = row.createCell(23);
                 cell.setCellValue(Numbereleases);
                 k++;
@@ -1223,12 +1224,6 @@ public class reportServiceImpl implements ReportService {
         }
     }
 
-
-
-    private List redisGet(String projectId, String actId) {
-        List<Map<String, Object>> list = (List<Map<String, Object>>) redisTemplate.opsForValue().get(projectId + actId);
-        return list;
-    }
 
     // 计算绝对值
     public double abs(double a) {

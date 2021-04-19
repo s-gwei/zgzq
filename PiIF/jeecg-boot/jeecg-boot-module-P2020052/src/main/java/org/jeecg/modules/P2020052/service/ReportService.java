@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Repository
 @Primary
@@ -27,7 +28,7 @@ public interface ReportService {
 
     void exportTaskTable(HttpServletResponse response, String fileName, String projectId, String userIds) throws IOException;
 
-    List taskExecutionById(String projectId, String userIds);
+    List taskExecutionById(String projectId, String userIds) throws ExecutionException, InterruptedException;
 
     void exportTaskTableById(HttpServletResponse response, String fileName, String projectId, String userIds) throws IOException;
 
