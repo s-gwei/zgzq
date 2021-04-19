@@ -372,7 +372,6 @@ export default {
                 if(res.success && res.result){
                    _this.$nextTick(function(){
                       //  _this.renderChart(res.result)
-                      console.log(key);
                       if(key == 'projectType'){
                         res.result.list.map(function(itm,index){
                           itm.index = index +1
@@ -767,8 +766,6 @@ export default {
                background: '#fff',
                padding: [40, 40, 30, 45]
             });
-            console.log(dataSorted,'data');
-            
             chart.source(dataSorted);
             chart.scale({
                name: {
@@ -1022,7 +1019,7 @@ export default {
                       // textBaseline: 'center',
                       fontSize: 10
                     },
-                    offset: 10,//偏移量
+                    offset: 20,//偏移量
                     // rotate: 270,
                     position:'end'//label的展示位置
                   }
@@ -1094,7 +1091,7 @@ export default {
         // 点击标题跳转
         toItemSelect(i){
           console.log(i);
-          // window.location.href = 'http://www.badidu.com'
+          // window.location.href = 'http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&'
         }
     }
 }
@@ -1107,7 +1104,7 @@ export default {
     box-sizing: border-box;
     transform-origin: 0 0;
     // background: url("../../assets/reportDpbg.png") no-repeat;
-    background: rgb(104, 102, 102);
+    background: rgb(61, 61, 61);
     background-size: 100% 100%;
     .title{
         text-align: center;
@@ -1355,11 +1352,11 @@ export default {
   position:absolute;
 }
 /deep/.g2-label{
-  min-width: 60px;
+  width: 80px;
   text-align: center;
   left: 50%;
   transform: translate(-50%);
-  top: 30px;
+  // top: 30px;
   // top: 50%;
 }
 /deep/.g2-labelapprove{
