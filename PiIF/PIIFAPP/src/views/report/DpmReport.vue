@@ -1,7 +1,7 @@
 <template>
     <div class="content-box" :style="{'width':screenWidth + 'px',height:screenHeight + 'px'}">
         <div class="title">
-            <div class="srcImag"></div>
+            <!-- <div class="srcImag"></div> -->
             <div class="text">研发项目管理可视化</div>
             <div class="mainText">汽车研究总院项目管理总览</div>
             <div class="time">
@@ -15,7 +15,7 @@
         </div>
         <div class="perspective">
             <div class="item item01">
-                <div class="header">项目类别统计</div>
+                <div class="header" @click="toItemSelect(1)">项目类别统计</div>
                 <div class="content">
                    <div id="container1"></div>
                     <div class="table">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="item item02">
-                <div class="header header02">项目级别统计</div>
+                <div class="header header02" @click="toItemSelect(2)">项目级别统计</div>
                  <div class="content content2">
                     <div class="tableBox">
                       <table>
@@ -69,25 +69,25 @@
                 </div>
             </div>
             <div class="item item03">
-                <div class="header header03">任务延期散点图</div>
+                <div class="header header03" @click="toItemSelect(3)">任务延期散点图</div>
                 <div class="content">
                     <div id="container3"></div>
                 </div>
             </div>
             <div class="item item04">
-                <div class="header header04">项目风险气泡图</div>
+                <div class="header header04" @click="toItemSelect(4)">项目风险气泡图</div>
                 <div class="content">
                     <div id="container4"></div>
                 </div>
             </div>
             <div class="item item05">
-                <div class="header header05">风险预防措施统计(全系统)</div>
+                <div class="header header05" @click="toItemSelect(5)">风险预防措施统计(全系统)</div>
                 <div class="content">
                     <div id="container5"></div>
                 </div>
             </div>
             <div class="item item06">
-                <div class="header header06">预防措施认可数与未认可数统计</div>
+                <div class="header header06" @click="toItemSelect(6)">预防措施认可数与未认可数统计</div>
                 <div class="content">
                     <div id="container6"></div>
                 </div>
@@ -114,74 +114,75 @@ export default {
             gkRiskReport,//任务延期
             projectJson,//项目风险系数气泡数据
             departmentJson,//部门风险系数
-            color: ['#147dde','#22a668','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
-            categorySum: [
-              {
-                 "id": "509981",
-                 "count": 10,
-                 "name": "产品开发",
-                 "percentage": 0.2,
-                 "index": 1
+            color: ['#22a668','#147dde','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
+            categorySum: [],
+            // categorySum: [
+            //   {
+            //      "id": "509981",
+            //      "count": 10,
+            //      "name": "产品开发",
+            //      "percentage": 0.2,
+            //      "index": 1
 
-              },
-              {
-                 "id": "509992",
-                 "count": 15,
-                 "name": "研发能力",
-                 "percentage": 0.3,
-                 "index": 2
+            //   },
+            //   {
+            //      "id": "509992",
+            //      "count": 15,
+            //      "name": "研发能力",
+            //      "percentage": 0.3,
+            //      "index": 2
 
-              },
-              {
-                 "id": "50983",
-                 "count": 15,
-                 "name": "商品开发",
-                 "percentage": 0.3,
-                 "index": 3
+            //   },
+            //   {
+            //      "id": "50983",
+            //      "count": 15,
+            //      "name": "商品开发",
+            //      "percentage": 0.3,
+            //      "index": 3
 
-              },
-              {
-                 "id": "59984",
-                 "count": 10,
-                 "name": "零部件开发",
-                 "percentage": 0.2,
-                 "index": 4
+            //   },
+            //   {
+            //      "id": "59984",
+            //      "count": 10,
+            //      "name": "零部件开发",
+            //      "percentage": 0.2,
+            //      "index": 4
 
-              },
-               {
-                 "id": "509985",
-                 "count": 10,
-                 "name": "新增1",
-                 "percentage": 0.2,
-                 "index": 5
+            //   },
+            //    {
+            //      "id": "509985",
+            //      "count": 10,
+            //      "name": "新增1",
+            //      "percentage": 0.2,
+            //      "index": 5
 
-              },
-              {
-                 "id": "150999",
-                 "count": 15,
-                 "name": "新增2",
-                 "percentage": 0.3,
-                 "index": 6
+            //   },
+            //   {
+            //      "id": "150999",
+            //      "count": 15,
+            //      "name": "新增2",
+            //      "percentage": 0.3,
+            //      "index": 6
 
-              },
-              {
-                 "id": "52098",
-                 "count": 15,
-                 "name": "新增3",
-                 "percentage": 0.3,
-                 "index": 7
+            //   },
+            //   {
+            //      "id": "52098",
+            //      "count": 15,
+            //      "name": "新增3",
+            //      "percentage": 0.3,
+            //      "index": 7
 
-              },
-              {
-                 "id": "52098",
-                 "count": 15,
-                 "name": "新增8",
-                 "percentage": 0.3,
-                 "index": 8
+            //   },
+            //   {
+            //      "id": "52098",
+            //      "count": 15,
+            //      "name": "新增8",
+            //      "percentage": 0.3,
+            //      "index": 8
 
-              }
-            ],
-            allNum: 50,
+            //   }
+            // ],
+            allNum: null,
             // 级别统计
             levelColumns: [
               {
@@ -292,16 +293,24 @@ export default {
             // 认可与未认可
             isApproveData: [
               {
-                name: '认可数',
-                count: 30,
-                percentage: 0.3
+                name: '未认可',
+                count: 35,
+                proportion: 0.35
               },
               {
-                name: '未认可数',
-                count: 70,
-                percentage: 0.7
+                name: '已认可',
+                count: 65,
+                proportion: 0.65
               }
-            ]
+            ],
+            url: {
+               projectType: "/HomeTable/projectType",  //项目类别统计
+              //  projectLevel: "/HomeTable/projectLevel",  //项目级别展示
+               taskDelay: "/HomeTable/WorkDelayTable",  //任务延期
+               projectRisk: "/HeavyDutyTable/ProjectRiskTable",  //项目风险
+               riskFactor: "/HomeTable/selectRiskTable", //风险预防措施
+               riskPrevention: "/HomeTable/riskPrevention"  //风险预防措施认可数和未认可数
+            },
         }
     },
     mounted(){
@@ -357,11 +366,53 @@ export default {
         },
         //任务延期
         drawChart(){
-            this.renderTaskDelay(this.gkRiskReport)
-            this.renderProjectRisk(this.projectJson)
-            this.renderDepartmentRisk(this.departmentJson)
-            this.renderCaterorySum(this.categorySum)
-            this.renderApproveSum(this.isApproveData)
+           const _this = this
+           for(let key in this.url){
+              getAction(this.url[key],{},'get').then((res) => {
+                if(res.success && res.result){
+                   _this.$nextTick(function(){
+                      //  _this.renderChart(res.result)
+                      console.log(key);
+                      if(key == 'projectType'){
+                        res.result.list.map(function(itm,index){
+                          itm.index = index +1
+                        })
+                        _this.$set(_this,"categorySum",res.result.list)
+                        _this.$set(_this,"allNum",res.result.total)
+                        _this.renderCaterorySum(res.result.list)
+                      } if(key == 'taskDelay'){
+                        _this.$set(_this,"gkRiskReport",res.result)
+                        _this.renderTaskDelay(_this.gkRiskReport)
+                      } if(key == 'projectRisk'){
+                        res.result.map(function(item){
+                          item.line = item.Xaxis
+                        })
+                        _this.$set(_this,"projectJson",res.result)
+                        _this.renderProjectRisk(_this.projectJson)
+                      } if(key == 'riskPrevention'){
+                        //  _this.$set(_this,"isApproveData",res.result)
+                         _this.isApproveData = _this.isApproveData.filter(function(item){
+                            return item.proportion
+                         })
+                         _this.renderApproveSum(_this.isApproveData)
+                      }if(key == 'riskFactor'){
+                        _this.$set(_this,"departmentJson",res.result)
+                        _this.renderDepartmentRisk(_this.departmentJson)
+
+                      }
+                   })
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+             })
+           }
+            // this.renderTaskDelay(this.gkRiskReport)
+            // this.renderProjectRisk(this.projectJson)
+            // this.renderDepartmentRisk(this.departmentJson)
+            // this.(this.categorySum)
+            // this.renderApproveSum(this.isApproveData)
             this.levelSum()
         },
         renderTaskDelay(data){
@@ -654,13 +705,6 @@ export default {
             .size('OutputQualityRiskSum', [10, 40]).opacity(0.4)
             // 气泡图圈的颜色
             .color("#0091FF")
-            // .color('OutputQualityRiskSum', function(item){
-            //   if(item > 10460){
-            //       return '#0091FF'
-            //   } else{
-            //     return 'pink'
-            //   }
-            // })
             .shape('circle')
             .tooltip('OutputQualityRiskSum*Xaxis*Yaxis*proName')
             .style({
@@ -705,7 +749,8 @@ export default {
              height = this.screenHeight * 0.5 - 80 ;
         data.map(function(item){
               item["weekLang"] = "第" + item.week + "周"
-              if(item.sumBenchmark){
+              // if(item.sumBenchmark)
+              if(item.hasOwnProperty('sumBenchmark')){
                 item["sum"] = item.sumBenchmark
                 item["benchmarkRisk"] = item.sumBenchmark
               } else{
@@ -722,24 +767,19 @@ export default {
                background: '#fff',
                padding: [40, 40, 30, 45]
             });
+            console.log(dataSorted,'data');
             
             chart.source(dataSorted);
             chart.scale({
-               ratio: {
-                 alias: '工作负载量',
-                 nice: true,
-                //  max: 5,
-                 min: 0
-               },
                name: {
                  // type: 'pow',
                  alias: '姓名'
                },
                cumulativeRisk: {
-                 alias: '本周完成任务累积风险'
+                 alias: '本周风险'
                },
                benchmarkRisk: {
-                 alias: '基准风险'
+                 alias: '本周风险预防措施'
                },
                weekLang: {
                  alias: '周数'
@@ -830,53 +870,6 @@ export default {
                   },
               }
            });
-           chart.axis('ratio', {
-              line: {
-                    lineWidth: 1, // 设置线的宽度
-                    stroke: '#fff', // 设置线的颜色
-                    // lineDash: [ 3, 3 ] // 设置虚线样式
-              },
-              tickLine: {
-                 lineWidth: 1,
-                 length: -5,
-                 stroke: '#fff',
-                 alignWithLabel:true
-              },
-              label: {
-                 offset: 12, // 设置坐标轴文本 label 距离坐标轴线的距离
-                 textStyle: {
-                   textAlign: 'center', // 文本对齐方向，可取值为： start middle end
-                   fill: '#fff', // 文本的颜色
-                   fontSize: '12', // 文本大小
-                   // fontWeight: 'bold', // 文本粗细
-                   rotate: 0, 
-                   textBaseline: 'middle' // 文本基准线，可取 top middle bottom，默认为middle
-                 } , // 文本样式，支持回调 
-                 autoRotate: false// 是否需要自动旋转，默认为 true
-              },
-              grid: {
-                 type: 'line',
-                 color: '#fff',
-                 lineStyle: {
-                   stroke: '#fff',
-                   lineWidth: 1,
-                   lineDash: [ 4, 2 ]
-                 },
-                 align: 'center' // 网格顶点从两个刻度中间开始
-              },
-              title: {
-                 offset: -36,
-                 position: "end",
-                 rotate: 90,
-                 autoRotate:false,
-                 textStyle: {
-                     fontSize: 12, // 文本大小
-                     fill: '#fff', // 文本颜色
-                     fontWeight: 500,
-                    //  fontFamily: "STHeitiSC-Medium, STHeitiSC;"
-                 }
-              }
-           });
            chart.tooltip({
              showMarkers: false,
              shared: true,
@@ -895,7 +888,7 @@ export default {
              .position('weekLang*sum')
              // .color('name')
              .color('name',function(name){
-               if(name.indexOf('基准') > -1){
+               if(name.indexOf('预防措施') > -1){
                  return '#0091FF'
                } else{
                  return '#40D5B3'
@@ -908,17 +901,24 @@ export default {
                   marginRatio: 0
                 },
              ]);
-           chart
-             .line()
-             .position('weekLang*ratio')
-             .color("#F7B500")
-             .shape('smooth')
-             .style({
-                stroke: '#F7B500',
-                lineDash: [8, 4],
-                opacity: 0.6
-              })
+          //  chart
+          //    .line()
+          //    .position('weekLang*ratio')
+          //    .color("#F7B500")
+          //    .shape('smooth')
+          //    .style({
+          //       stroke: '#F7B500',
+          //       lineDash: [8, 4],
+          //       opacity: 0.6
+          //     })
            chart.render();
+           chart.on('click',ev=>{
+            console.log(ev.data._origin,'ev');
+            // return
+            // if(ev.data && ev.data._origin){
+            //   _this.$router.push({name: 'singleProjectTableFixed',params:ev.data._origin})
+            // }
+          })
         },
         // 项目类别统计
         renderCaterorySum(data){
@@ -930,7 +930,7 @@ export default {
                  height,
                  width: width* 0.6,
                  background: '#fff',
-                 padding: [0, 25, 20, 45]
+                 padding: [0, 25, 20, 25]
              });
              const color = this.color
                   chart.source(data);
@@ -1003,8 +1003,7 @@ export default {
               chart
                 .intervalStack()
                 .position('percentage')
-                .color('index',function(item,index){
-                  console.log();
+                .color('index',function(item){
                       return color[item-1]
                 })
                 .label('name', function(){
@@ -1065,7 +1064,7 @@ export default {
                });
            const interval = chart
                .intervalStack()
-               .position('percentage')
+               .position('proportion')
                .color('name', [ 'rgb(0, 78, 189)', 'rgb(0, 184, 124)'])
                .style({ opacity: 0.3 })
                .label('name', function(){
@@ -1073,7 +1072,7 @@ export default {
                     useHtml: true,
                     htmlTemplate: function(text,item){
                       var d = item.point
-                      var classes = text == '认可数' ? 'approve' : 'disApprove'
+                      var classes = text == '已认可' ? 'approve' : 'disApprove'
                         return (
                           `<div class="g2-label${classes}" :class="${classes}" style="color:"#fff";font-size:10px;width: "100px";>` +
                            text + ":" + d.count +
@@ -1091,6 +1090,11 @@ export default {
                   }
              });
             chart.render();
+        },
+        // 点击标题跳转
+        toItemSelect(i){
+          console.log(i);
+          // window.location.href = 'http://www.badidu.com'
         }
     }
 }
@@ -1102,7 +1106,8 @@ export default {
     overflow: hidden;
     box-sizing: border-box;
     transform-origin: 0 0;
-    background: url("../../assets/reportDpbg.png") no-repeat;
+    // background: url("../../assets/reportDpbg.png") no-repeat;
+    background: rgb(104, 102, 102);
     background-size: 100% 100%;
     .title{
         text-align: center;
@@ -1176,6 +1181,7 @@ export default {
             line-height: 40px;
             font-size: 18px;
             font-weight: bold;
+            cursor: pointer;
         }
         .header05{
             background-size:  400px 36px;
@@ -1254,6 +1260,7 @@ export default {
                     height: 26px;
                     line-height: 26px;
                     position: relative;
+                    color: #c3ceda;
                     span{
                         font-weight: normal;
                     }
@@ -1343,19 +1350,31 @@ export default {
     }
 }
 /deep/.g2-labelapprove,/deep/.g2-labeldisApprove{
-  width: 100px!important;
+  width: 80px!important;
+  text-align: center;
   position:absolute;
 }
 /deep/.g2-label{
-  width: 80px;
+  min-width: 60px;
   text-align: center;
+  left: 50%;
+  transform: translate(-50%);
+  top: 30px;
+  // top: 50%;
 }
 /deep/.g2-labelapprove{
-  left: -50px;
-  top: 10px;
+  // left: -50px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  // top: 10px;
+  top: 50%;
 }
 /deep/.g2-labeldisApprove{
-  left: 30px;
-  top: -10px;
+  text-align: center;
+  // left: 30px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  // top: -10px;
+  top: 50%;
 }
 </style>
