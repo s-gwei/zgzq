@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/HeavyDutyTable")
@@ -51,11 +52,9 @@ public class ReportController {
 
     }
 
-
-
     @GetMapping(value = "TaskExecution")
     @ApiOperation(value = "任务执行报表")
-    public Result taskExecution(String projectId,String userIds) throws ParseException {
+    public Result taskExecution(String projectId,String userIds) throws ExecutionException, InterruptedException {
         log.info("请求完毕");
         return Result.ok(reportService.taskExecutionById(projectId,userIds));
     }
@@ -65,6 +64,7 @@ public class ReportController {
     public Result groupUser(String projectId) throws ParseException {
         return Result.ok(reportService.groupUser(projectId));
     }
+
     @GetMapping(value = "exportExcel")
     @ApiOperation(value = "任务执行报表导出")
     public void exportTable(HttpServletResponse response, String projectId ,String userIds ,String fileName) throws IOException {

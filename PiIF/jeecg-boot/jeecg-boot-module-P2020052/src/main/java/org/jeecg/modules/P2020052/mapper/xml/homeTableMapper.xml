@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.P2020052.mapper.HomeTableMapper">
+    <!-- 项目类别 -->
+    <resultMap id="HomeTableMap" type="org.jeecg.modules.P2020052.pojo.ProjectTypeVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="id" property="id"/>
+        <result column="count" property="count"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <!-- 项目风险预防措施-->
+    <resultMap id="HomeTableRiskMap" type="org.jeecg.modules.P2020052.pojo.RiskMeasureVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="weeks" property="weeks"/>
+        <result column="risk" property="risk"/>
+        <result column="measures" property="measures"/>
+    </resultMap>
+<select id="projectType" resultMap="HomeTableMap">
+
+SELECT
+	*
+FROM
+	( SELECT count( piproject.id ) AS count, piproject.ltdtype_definition_ref_id AS id FROM piproject ) a,
+	( SELECT zh_cn AS NAME, holder_reference_id FROM ltdlocalizable_property_value GROUP BY zh_cn, holder_reference_id ) b
+WHERE
+	a.id = b.holder_reference_id
+</select>
+
+    <select id="riskPrevention" resultType = "java.util.Map">
+
+SELECT
+	sum( CASE WHEN confirm_status IS NULL OR confirm_status = 0 THEN 1 ELSE 0 END ) AS '未认可',
+	sum( CASE WHEN confirm_status = 1 THEN 1 ELSE 0 END ) AS '已认可'
+FROM
+	stproject_measures
+</select>
+
+    <select id="selectRiskTable" resultMap= "HomeTableRiskMap">
+SELECT
+	*
+FROM
+	( SELECT count( 1 ) AS risk FROM stproject_risk str
+        <where>
+            <if test="start!= null and start !=''">
+                and str.create_stamp between #{start} and #{end}
+            </if>
+        </where>
+        ) a,
+
+	( SELECT count( 1 ) AS measures FROM stproject_measures
+        <where>
+            <if test="start!= null and start !=''">
+                and stproject_measures.create_stamp between #{start} and #{end}
+            </if>
+        </where>) b
+
+    </select>
+
+
+
+
+</mapper>

@@ -115,35 +115,6 @@ public class PlanOTServiceImpl implements PlanOTService {
             }
             resultList.add(nameList);
             return resultList;
-//            List resultList = new ArrayList();
-//            Map map = new HashMap<>();
-//            List nameList = null;
-//            for (int i = 0; i < list.size(); i++) {
-//                if (i == 0) {
-//                    nameList = new ArrayList();
-//                    map.put("name", list.get(i).getRiskName());
-//                    nameList.add(list.get(i));
-//                    continue;
-//                }
-//                if (map.get(list.get(i).getRiskName()) == null) {
-//                    resultList.add(nameList);
-//                    map.put("name", list.get(i).getRiskName());
-//                    nameList = new ArrayList();
-//                } else {
-//                    nameList.add(list.get(i));
-//                    continue;
-//                }
-//                if (i == list.size() - 1) {
-//                    resultList.add(nameList);
-//
-//                }
-//            }
-//            for (Object set : map.keySet()) {
-//                for (RiskVo riskVo : list) {
-//
-//                }
-//            }
-//            return resultList;
         }
 
     }

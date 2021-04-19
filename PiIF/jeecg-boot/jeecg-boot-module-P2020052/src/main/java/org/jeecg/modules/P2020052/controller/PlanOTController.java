@@ -33,7 +33,6 @@ public class PlanOTController {
     @Autowired
     ScheduleTaskService scheduleTaskService;
 
-
     @GetMapping(value = "/OTTable")
     @ApiOperation(value = "计划OT交付情况报表")
     public Result OTTable(
