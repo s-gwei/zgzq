@@ -15,7 +15,7 @@
         </div>
         <div class="perspective">
             <div class="item item01">
-                <div class="header" @click="toItemSelect(1)">项目类别统计</div>
+                <div class="header">项目类别统计</div>
                 <div class="content">
                    <div id="container1"></div>
                     <div class="table">
@@ -26,7 +26,7 @@
                         <span>百分比</span>
                     </div>
                     <div class="chartCon">
-                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index">
+                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index" @click="toItemSelect(item)">
                             <i :class="item.itemName" :style="{background: color[index]}"></i>
                             <span class="proItem">{{item.name}}</span>
                             <span>{{item.count}}</span>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="item item02">
-                <div class="header header02" @click="toItemSelect(2)">项目级别统计</div>
+                <div class="header header02">项目级别统计</div>
                  <div class="content content2">
                     <div class="tableBox">
                       <table>
@@ -69,25 +69,25 @@
                 </div>
             </div>
             <div class="item item03">
-                <div class="header header03" @click="toItemSelect(3)">任务延期散点图</div>
+                <div class="header header03">任务延期散点图</div>
                 <div class="content">
                     <div id="container3"></div>
                 </div>
             </div>
             <div class="item item04">
-                <div class="header header04" @click="toItemSelect(4)">项目风险气泡图</div>
+                <div class="header header04">项目风险气泡图</div>
                 <div class="content">
                     <div id="container4"></div>
                 </div>
             </div>
             <div class="item item05">
-                <div class="header header05" @click="toItemSelect(5)">风险预防措施统计(全系统)</div>
+                <div class="header header05">风险预防措施统计(全系统)</div>
                 <div class="content">
                     <div id="container5"></div>
                 </div>
             </div>
             <div class="item item06">
-                <div class="header header06" @click="toItemSelect(6)">预防措施认可数与未认可数统计</div>
+                <div class="header header06">预防措施认可数与未认可数统计</div>
                 <div class="content">
                     <div id="container6"></div>
                 </div>
@@ -116,72 +116,40 @@ export default {
             departmentJson,//部门风险系数
             color: ['#22a668','#147dde','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
             categorySum: [],
-            // categorySum: [
-            //   {
-            //      "id": "509981",
-            //      "count": 10,
-            //      "name": "产品开发",
-            //      "percentage": 0.2,
-            //      "index": 1
+            categorySum: [
+              {
+                 "id": "509981",
+                 "count": 10,
+                 "name": "产品开发",
+                 "percentage": 0.2,
+                 "index": 1
 
-            //   },
-            //   {
-            //      "id": "509992",
-            //      "count": 15,
-            //      "name": "研发能力",
-            //      "percentage": 0.3,
-            //      "index": 2
+              },
+              {
+                 "id": "509992",
+                 "count": 15,
+                 "name": "研发能力",
+                 "percentage": 0.3,
+                 "index": 2
 
-            //   },
-            //   {
-            //      "id": "50983",
-            //      "count": 15,
-            //      "name": "商品开发",
-            //      "percentage": 0.3,
-            //      "index": 3
+              },
+              {
+                 "id": "50983",
+                 "count": 15,
+                 "name": "商品开发",
+                 "percentage": 0.3,
+                 "index": 3
 
-            //   },
-            //   {
-            //      "id": "59984",
-            //      "count": 10,
-            //      "name": "零部件开发",
-            //      "percentage": 0.2,
-            //      "index": 4
+              },
+              {
+                 "id": "59984",
+                 "count": 10,
+                 "name": "零部件开发",
+                 "percentage": 0.2,
+                 "index": 4
 
-            //   },
-            //    {
-            //      "id": "509985",
-            //      "count": 10,
-            //      "name": "新增1",
-            //      "percentage": 0.2,
-            //      "index": 5
-
-            //   },
-            //   {
-            //      "id": "150999",
-            //      "count": 15,
-            //      "name": "新增2",
-            //      "percentage": 0.3,
-            //      "index": 6
-
-            //   },
-            //   {
-            //      "id": "52098",
-            //      "count": 15,
-            //      "name": "新增3",
-            //      "percentage": 0.3,
-            //      "index": 7
-
-            //   },
-            //   {
-            //      "id": "52098",
-            //      "count": 15,
-            //      "name": "新增8",
-            //      "percentage": 0.3,
-            //      "index": 8
-
-            //   }
-            // ],
+              }
+            ],
             allNum: null,
             // 级别统计
             levelColumns: [
@@ -378,7 +346,7 @@ export default {
                         })
                         _this.$set(_this,"categorySum",res.result.list)
                         _this.$set(_this,"allNum",res.result.total)
-                        _this.renderCaterorySum(res.result.list)
+                        _this.renderCaterorySum(_this.categorySum)
                       } if(key == 'taskDelay'){
                         _this.$set(_this,"gkRiskReport",res.result)
                         _this.renderTaskDelay(_this.gkRiskReport)
@@ -389,7 +357,7 @@ export default {
                         _this.$set(_this,"projectJson",res.result)
                         _this.renderProjectRisk(_this.projectJson)
                       } if(key == 'riskPrevention'){
-                        //  _this.$set(_this,"isApproveData",res.result)
+                         _this.$set(_this,"isApproveData",res.result)
                          _this.isApproveData = _this.isApproveData.filter(function(item){
                             return item.proportion
                          })
@@ -1019,7 +987,7 @@ export default {
                       // textBaseline: 'center',
                       fontSize: 10
                     },
-                    offset: 24,//偏移量
+                    offset: 14,//偏移量
                     // rotate: 270,
                     position:'end'//label的展示位置
                   }
@@ -1089,9 +1057,10 @@ export default {
             chart.render();
         },
         // 点击标题跳转
-        toItemSelect(i){
-          console.log(i);
-          // window.location.href = 'http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&'
+        toItemSelect(item){
+          const url = "http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          // console.log(url);
+          window.location.href = url
         }
     }
 }
@@ -1178,7 +1147,7 @@ export default {
             line-height: 40px;
             font-size: 18px;
             font-weight: bold;
-            cursor: pointer;
+            // cursor: pointer;
         }
         .header05{
             background-size:  400px 36px;
@@ -1258,6 +1227,7 @@ export default {
                     line-height: 26px;
                     position: relative;
                     color: #c3ceda;
+                    cursor: pointer;
                     span{
                         font-weight: normal;
                     }
@@ -1354,8 +1324,8 @@ export default {
 /deep/.g2-label{
   width: 80px;
   text-align: center;
-  left: 50%;
-  transform: translate(-50%);
+  // left: 50%;
+  // transform: translate(-50%);
   // top: 30px;
   // top: 50%;
 }
