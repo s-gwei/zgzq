@@ -93,6 +93,119 @@
                 </div>
             </div>
         </div>
+        <a-drawer
+          :title="drawTitle"
+          placement="left"
+          :drawerStyle="{
+           border: '1px solid #ebedf0',
+           borderRadius: '2px',
+         }"
+          :closable="false"
+          :visible="visible"
+          :after-visible-change="afterVisibleChange"
+          :width="880"
+          @close="onClose"
+        >
+          <!-- table部分start -->
+           <div class="table-container table1" id="table" >
+                <!-- header -->
+          <div class="table-child"  id="theadDiv" >
+             <table cellpadding="0" cellspacing="0" v-if="drawTitle == '风险列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>风险名称</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index">
+                                <td>{{index + 1}}</td>
+                                <td><div>{{item.riskName}}</div></td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+            <table  cellpadding="0" cellspacing="0" v-if="drawTitle == '预防措施列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index" >
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+          </div>
+          <!-- header ending -->
+          <!-- body -->
+          <div class="table-next-child" id="tbodyDiv">
+             <table cellpadding="0" cellspacing="0" v-if="drawTitle == '风险列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>风险名称</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index" @click="toRiskDetail(item,1)">
+                                <td>{{index + 1}}</td>
+                                <td><div>{{item.riskName}}</div></td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+            <table  cellpadding="0" cellspacing="0" v-if="drawTitle == '预防措施列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index"  @click="toRiskDetail(item,2)">
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+          </div>
+          <!-- body ending-->
+           </div>
+        </a-drawer>
     </div>
 </template>
 <script>
@@ -105,9 +218,11 @@ export default {
     name: "dpmReport",
     data(){
         return {
+            drawTitle: "预防措施列表",
             screenWidth: 1000,
             screenHeight: 500,
             scrollHeight: 500,
+            visible: false,
             time: "",
             date: "",
             weekend: "",
@@ -116,40 +231,40 @@ export default {
             departmentJson,//部门风险系数
             color: ['#22a668','#147dde','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
             categorySum: [],
-            categorySum: [
-              {
-                 "id": "509981",
-                 "count": 10,
-                 "name": "产品开发",
-                 "percentage": 0.2,
-                 "index": 1
+            // categorySum: [
+            //   {
+            //      "id": "509981",
+            //      "count": 10,
+            //      "name": "产品开发",
+            //      "percentage": 0.2,
+            //      "index": 1
 
-              },
-              {
-                 "id": "509992",
-                 "count": 15,
-                 "name": "研发能力",
-                 "percentage": 0.3,
-                 "index": 2
+            //   },
+            //   {
+            //      "id": "509992",
+            //      "count": 15,
+            //      "name": "研发能力",
+            //      "percentage": 0.3,
+            //      "index": 2
 
-              },
-              {
-                 "id": "50983",
-                 "count": 15,
-                 "name": "商品开发",
-                 "percentage": 0.3,
-                 "index": 3
+            //   },
+            //   {
+            //      "id": "50983",
+            //      "count": 15,
+            //      "name": "商品开发",
+            //      "percentage": 0.3,
+            //      "index": 3
 
-              },
-              {
-                 "id": "59984",
-                 "count": 10,
-                 "name": "零部件开发",
-                 "percentage": 0.2,
-                 "index": 4
+            //   },
+            //   {
+            //      "id": "59984",
+            //      "count": 10,
+            //      "name": "零部件开发",
+            //      "percentage": 0.2,
+            //      "index": 4
 
-              }
-            ],
+            //   }
+            // ],
             allNum: null,
             // 级别统计
             levelColumns: [
@@ -196,80 +311,20 @@ export default {
                  "name": "一般项目",
                  "percentage": 0.2
 
-              },
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
               }
             ],
             // 认可与未认可
             isApproveData: [
-              {
-                name: '未认可',
-                count: 35,
-                proportion: 0.35
-              },
-              {
-                name: '已认可',
-                count: 65,
-                proportion: 0.65
-              }
+              // {
+              //   name: '未认可',
+              //   count: 35,
+              //   proportion: 0.35
+              // },
+              // {
+              //   name: '已认可',
+              //   count: 65,
+              //   proportion: 0.65
+              // }
             ],
             url: {
                projectType: "/HomeTable/projectType",  //项目类别统计
@@ -279,6 +334,7 @@ export default {
                riskFactor: "/HomeTable/selectRiskTable", //风险预防措施
                riskPrevention: "/HomeTable/riskPrevention"  //风险预防措施认可数和未认可数
             },
+            tableDate: []
         }
     },
     mounted(){
@@ -712,6 +768,7 @@ export default {
         },
         //部门风险双柱状图
         renderDepartmentRisk(data){
+          const _this = this
            const width = this.screenWidth * 0.295,
              height = this.screenHeight * 0.5 - 80 ;
         data.map(function(item){
@@ -878,12 +935,43 @@ export default {
           //     })
            chart.render();
            chart.on('click',ev=>{
-            console.log(ev.data._origin,'ev');
-            // return
-            // if(ev.data && ev.data._origin){
-            //   _this.$router.push({name: 'singleProjectTableFixed',params:ev.data._origin})
-            // }
+            // console.log(ev.data._origin,'ev');
+            // _this.visible = true
+            _this.getRiskAndMeasureDate(ev.data._origin)
           })
+        },
+        getRiskAndMeasureDate(data){
+          const _this = this,params={}
+          var url = data.name.indexOf("预防措施") > -1 ? "/HomeTable/selectMeaTable" : "/HomeTable/selectRisk"
+          this.$set(this,"tableDate",[])
+          params.startTime = data.startTime
+          params.endTime = data.endTime
+          if(data.name.indexOf("预防措施") > -1){
+            _this.drawTitle = "预防措施列表"
+          } else{
+            _this.drawTitle = "风险列表"
+          }
+          _this.visible = true
+          getAction(url,params,'get').then((res) => {
+                if(res.success && res.result){
+                  // console.log(res.result);
+                  // _this.tableDate = res.result
+                  _this.$set(_this,"tableDate",res.result)
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+             })
+        },
+        toRiskDetail(item,index){
+          var url = null
+          if(index == 1){
+            url = "http://10.2.81.218:9998:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
+          } else{
+            url = "http://10.2.81.218:9998:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
+          }
+          window.location.href =url
         },
         // 项目类别统计
         renderCaterorySum(data){
@@ -1014,6 +1102,16 @@ export default {
            chart.coord('theta', {
              radius: 0.75
            });
+           chart.scale({
+             count:{
+                 nice: true,
+                alias: '数量'
+              },
+              name:{
+                nice: true,
+                alias: '预防措施类别'
+              }
+           })
            chart.legend('name', {
                 position: 'bottom-center',
                 itemGap: 20,
@@ -1022,14 +1120,15 @@ export default {
                 width,
                 marker:'diamond'
              });
-             chart.tooltip({ 
-                  title: {
-                    visible: false
-                  },
-               });
+          chart.tooltip({
+              title: 'name',
+              // showMarkers: false,
+              // showCrosshairs: false, 
+            });
            const interval = chart
                .intervalStack()
                .position('proportion')
+               .tooltip('count*name')
                .color('name', [ 'rgb(0, 78, 189)', 'rgb(0, 184, 124)'])
                .style({ opacity: 0.3 })
                .label('name', function(){
@@ -1058,9 +1157,21 @@ export default {
         },
         // 点击标题跳转
         toItemSelect(item){
-          const url = "http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          // const url = "http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          // const url = "http://192.168.111.137:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name  //正式机项目ip
+          const url = "http://10.2.81.218:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
           // console.log(url);
-          window.location.href = url
+          // top.location.href = url
+          window.open(url,'_blank')
+        },
+        showDrawer() {
+          this.visible = true;
+        },
+        onClose() {
+          this.visible = false;
+        },
+        afterVisibleChange(val) {
+          console.log('visible', val);
         }
     }
 }
@@ -1073,7 +1184,7 @@ export default {
     box-sizing: border-box;
     transform-origin: 0 0;
     background: url("../../assets/reportDpbg.png") no-repeat;
-    // background: rgb(22, 21, 21);
+    // background: #030F27;
     background-size: 100% 100%;
     .title{
         text-align: center;
@@ -1082,13 +1193,13 @@ export default {
         background-size:100% 90px;
         position: relative;
         .srcImag{
-            width: 71px;
-            height: 94px;
-            position: absolute;
-            background: url("../../assets/headerHome.png") no-repeat;
-            background-size: 80%;
-            left: 20px;
-            top: -4px;
+            // width: 71px;
+            // height: 94px;
+            // position: absolute;
+            // background: url("../../assets/headerHome.png") no-repeat;
+            // background-size: 80%;
+            // left: 20px;
+            // top: -4px;
         }
         .time{
             display: flex;
@@ -1344,4 +1455,119 @@ export default {
   // top: -10px;
   top: 50%;
 }
+#table{
+  table{
+         table-layout:fixed;
+          word-wrap: break-word; 
+          word-break: break-all;
+          min-width: 100%;
+          border-collapse: collapse; 
+     }
+     table,table tr th, table tr td { border:1px solid #E9E9E9; }
+     table thead tr {
+         background: #F4F5F7;
+         padding: 6px 12px;
+         color: #000;
+         font-size: 14px;
+        //  font-family: PingFangSC-Medium, PingFang SC;
+         th{
+           font-weight: 540;
+           color: #000;
+           min-width: 90px;
+          padding: 3px 8px;
+          text-align: center;
+          white-space: nowrap;
+         }
+     }
+     table thead tr{
+      //  background: #DEDEDE;
+      background: #ccc;
+       th{
+       border: 1px solid #DEDEDE;
+       border-right: 1px solid #E9E9E9;
+       border-left: 1px solid transparent
+       }
+     }
+
+}
+
+     .table1{
+          min-width: 100%;
+         max-height: 800px;
+         height: 100%;
+         position: relative;
+         overflow-x: auto;
+        //  overflow-y: hidden;
+         .table-child,
+         .table-next-child{
+             min-width: 800px;
+             table{
+                //  width: 100%;
+                 th{
+                 padding: 6px 8px;
+                 }
+             }
+                     
+         }
+         .table-child{
+               position: absolute;
+               top: 0;
+               left: 0;
+               height: 35px;
+               overflow: hidden;
+               width: calc(100% - 6px);
+              //  z-index: 2;
+               th{
+                  //  background: #F4F5F7;
+                   padding: 3px 6px;
+               }
+               th:nth-child(1){
+                   width: 80px;
+               }
+         }
+         .table-next-child{
+             height: 100%;
+             max-height: 100%;
+             overflow-y: scroll;
+             overflow-x: auto;
+         }
+         tbody td{
+             text-align: center;
+             padding: 6px 10px;
+             color: rgba(0,0,0,.7)
+         }
+     }
+     
+     #table tbody .trtotal{
+      //  background: #DEDEDE;
+      background: #ccc;
+       td:nth-child(2n){
+         text-align: right;
+         color: #333333
+       }
+       td:nth-child(2n + 1){
+         text-align: right;
+         border-right: none
+       }
+     }
+    #table tbody tr{
+      &:hover{
+        background: rgb(248, 247, 247);
+      }
+      cursor: pointer;
+    }
+      /deep/.ant-drawer-content{
+        height: 100%;
+      }
+      /deep/.ant-drawer-body{
+        height: calc(100% - 58px);
+      }
+      .index{
+        width: 70px;
+      }
+      /deep/.ant-drawer-title{
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
+      }
 </style>
