@@ -116,42 +116,30 @@ select * from
     </select>
 
     <select id="ProjectRiskTable" resultMap="DaseResultMap">
-              SELECT
-        c.*,
-        d.plan_start_date,
-        d.project_name
-        FROM
-        (
-        SELECT
-        *
-        FROM
-        (
-        SELECT
-        stproject_instanceinindicator.plan_activity_ref_id,
-        stproject_instanceotindicator.standard_deviation_value,
-        stproject_instanceotindicator.standard_difficulty_value,
-        stproject_instanceotindicator.deviation_report,
-        stproject_instanceotindicator.difficulty_report
-        FROM
-        stproject_instanceinindicator,
-        stproject_instanceotindicator
-        WHERE
-        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
-        AND stproject_instanceinindicator.plan_activity_ref_id IN (
-        SELECT id FROM piplan_activity  pa WHERE pa.project_ref_id = #{projectId}
-         )
-        ) a,
-        (SELECT id,pa.project_ref_id as project_id FROM piplan_activity  pa WHERE pa.project_ref_id =#{projectId}
-         ) b
-        WHERE
-        a.plan_activity_ref_id = b.id
-        ) c,
-        (SELECT piproject.id,piproject.plan_start_date, piproject.project_name FROM piproject WHERE id =#{projectId}
-        ) d
-        WHERE
-        c.project_id = d.id
-        ORDER BY
-        c.project_id
+   SELECT
+	a.*,
+	d.plan_start_date,
+	d.project_name,
+	d.id
+FROM
+	(
+SELECT
+	stproject_instanceotindicator.plan_activity_ref_id,
+	stproject_instanceotindicator.standard_deviation_value,
+	stproject_instanceotindicator.standard_difficulty_value,
+	stproject_instanceotindicator.deviation_report,
+	stproject_instanceotindicator.difficulty_report,
+	stproject_instanceotindicator.project_ref_id
+FROM
+	stproject_instanceotindicator
+WHERE
+	stproject_instanceotindicator.plan_activity_ref_id IN ( SELECT id FROM piplan_activity pa WHERE pa.project_ref_id =#{projectId} )
+	) a,
+	( SELECT piproject.id, piproject.plan_start_date, piproject.project_name FROM piproject WHERE id = #{projectId} ) d
+WHERE
+	a.project_ref_id = d.id
+ORDER BY
+	d.id
     </select>
     <select id="projectWeekCycle" resultMap="BaseResultMap">
             SELECT

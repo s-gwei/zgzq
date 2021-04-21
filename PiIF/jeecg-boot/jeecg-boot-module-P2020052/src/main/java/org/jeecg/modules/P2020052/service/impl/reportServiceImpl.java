@@ -178,7 +178,9 @@ public class reportServiceImpl implements ReportService {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         for (String id : projectId) {
             Map<String, Object> map = (Map<String, Object>) redisTemplate.opsForValue().get(id);
-            list.add(map);
+            if(map != null){
+                list.add(map);
+            }
         }
         return list;
     }

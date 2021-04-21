@@ -3,10 +3,7 @@ package org.jeecg.modules.P2020052.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.jeecg.modules.P2020052.pojo.PiplanActivityVo;
-import org.jeecg.modules.P2020052.pojo.ProjectLevelVo;
-import org.jeecg.modules.P2020052.pojo.ProjectTypeVo;
-import org.jeecg.modules.P2020052.pojo.RiskMeasureVo;
+import org.jeecg.modules.P2020052.pojo.*;
 import org.jeecg.modules.P2020052.service.HomeTableService;
 import org.jeecg.modules.P2020052.service.PlanOTService;
 import org.jeecg.modules.P2020052.util.Result;
@@ -55,7 +52,7 @@ public class HomeTableController {
     @GetMapping(value = "/projectLevel")
     @ApiOperation(value = "项目级别展示报表")
     public Result projectLevel(){
-        List<ProjectLevelVo> list =homeTableService.projectLevel();
+        List<ProjectTypeVo> list =homeTableService.projectLevel();
         return Result.ok(list);
     }
     /**
@@ -95,8 +92,41 @@ public class HomeTableController {
      */
     @GetMapping(value = "/selectRiskTable")
     @ApiOperation(value = "项目风险及预防措施")
-    public Result selectRiskTable()   {
+    public Result selectRiskTable() throws ParseException {
         List<Map<String, Object>> list = homeTableService.selectRiskTable();
+        return Result.ok(list);
+    }
+
+    /**
+     * 项目风险详情
+     *
+     */
+    @GetMapping(value = "/selectRisk")
+    @ApiOperation(value = "项目风险详情")
+    public Result selectRisk(String startTime, String endTime)   {
+        List<RiskVo> list = homeTableService.selectRisk(startTime,endTime);
+        return Result.ok(list);
+    }
+
+    /**
+     * 项目预防措施详情
+     *
+     */
+    @GetMapping(value = "/selectMeaTable")
+    @ApiOperation(value = "项目预防措施详情")
+    public Result selectMeaTable(String startTime, String endTime)  {
+        List<RiskVo> list = homeTableService.selectMeaTable(startTime,endTime);
+        return Result.ok(list);
+    }
+
+    /**
+     * 项目预防措施认可数未认可数详情
+     *
+     */
+    @GetMapping(value = "/riskPreventionetails")
+    @ApiOperation(value = "项目预防措施认可数未认可数详情")
+    public Result riskPreventionetails(int state)  {
+        List<RiskVo> list = homeTableService.riskPreventionetails(state);
         return Result.ok(list);
     }
 }

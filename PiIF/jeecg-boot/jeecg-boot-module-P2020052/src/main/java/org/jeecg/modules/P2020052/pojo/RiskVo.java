@@ -8,7 +8,13 @@ public class RiskVo {
 
     private String riskName;//风险名称
 
+    private String riskId;//风险Id
+
+    private String containerRefId;//风险容器id
+
     private String id;//措施id
+
+    private String meaontainerRefId;//措施容器id
 
     private Date createStamp;//风险提出时间
 

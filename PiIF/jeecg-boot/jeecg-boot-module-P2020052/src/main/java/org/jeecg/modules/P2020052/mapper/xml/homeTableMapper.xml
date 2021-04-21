@@ -16,7 +16,24 @@
         <result column="risk" property="risk"/>
         <result column="measures" property="measures"/>
     </resultMap>
-<select id="projectType" resultMap="HomeTableMap">
+
+    <!-- 项目风险预防措施详情-->
+    <resultMap id="RiskResultMap" type="org.jeecg.modules.P2020052.pojo.RiskVo">
+        <!--        colum对应数据库的字段,property对应实体类的属性-->
+        <result column="risk_name" property="riskName"/>
+        <result column="risk_id" property="riskId"/>
+        <result column="container_ref_id" property="containerRefId"/>
+        <result column="id" property="id"/>
+        <result column="mea_container_ref_id" property="meaontainerRefId"/>
+        <result column="create_Stamp" property="createStamp"/>
+        <result column="risk_description" property="riskDescription"/>
+        <result column="userName" property="userName"/>
+        <result column="name" property="name"/>
+        <result column="precaution" property="precaution"/>
+        <result column="group_name" property="groupName"/>
+        <result column="user_name" property="user_name"/>
+    </resultMap>
+    <select id="projectType" resultMap="HomeTableMap">
 
 SELECT
 	*
@@ -27,7 +44,7 @@ WHERE
 	a.id = b.holder_reference_id
 </select>
 
-    <select id="riskPrevention" resultType = "java.util.Map">
+    <select id="riskPrevention" resultType="java.util.Map">
 
 SELECT
 	sum( CASE WHEN confirm_status IS NULL OR confirm_status = 0 THEN 1 ELSE 0 END ) AS '未认可',
@@ -36,28 +53,104 @@ FROM
 	stproject_measures
 </select>
 
-    <select id="selectRiskTable" resultMap= "HomeTableRiskMap">
+
+    <select id="projectLevel" resultType="java.util.Map">
 SELECT
-	*
+	sum( CASE WHEN piproject.priority_num = 1 THEN 1 ELSE 0 END ) AS 'S级',
+	sum( CASE WHEN piproject.priority_num = 2 THEN 1 ELSE 0 END ) AS 'A级',
+	sum( CASE WHEN piproject.priority_num = 3 THEN 1 ELSE 0 END ) AS 'B级',
+	sum( CASE WHEN piproject.priority_num = 4 THEN 1 ELSE 0 END ) AS 'C级',
+	sum( CASE WHEN piproject.priority_num = 5 THEN 1 ELSE 0 END ) AS 'D级',
+	sum( CASE WHEN piproject.priority_num IS NOT NULL THEN 1 ELSE 0 END ) AS '总数'
 FROM
-	( SELECT count( 1 ) AS risk FROM stproject_risk str
-        <where>
+	piproject
+</select>
+
+    <select id="selectRiskTable" resultMap="HomeTableRiskMap">
+        SELECT
+        *
+        FROM
+        ( 	SELECT count( 1 ) AS risk FROM stproject_risk str,piproject pp
+        where str.project_ref_id = pp.id
             <if test="start!= null and start !=''">
                 and str.create_stamp between #{start} and #{end}
             </if>
-        </where>
         ) a,
 
-	( SELECT count( 1 ) AS measures FROM stproject_measures
-        <where>
+        (  SELECT count( 1 ) AS measures FROM stproject_measures spm,piproject pp
+        where spm.project_ref_id = pp.id
             <if test="start!= null and start !=''">
-                and stproject_measures.create_stamp between #{start} and #{end}
+                and spm.create_stamp between #{start} and #{end}
             </if>
-        </where>) b
+        ) b
+
+
+
 
     </select>
 
+    <select id="selectRisk" resultMap="RiskResultMap">
+        SELECT
+        str.risk_name,
+        str.create_stamp,
+        str.risk_description,
+        str.id as risk_id,
+        str.container_ref_id,
+        b.NAME AS userName
+        FROM
+        stproject_risk str
+        LEFT JOIN ( SELECT id, NAME FROM piuser WHERE id IN ( SELECT identified_by_ref_id FROM stproject_risk ) ) b ON
+        str.creator_ref_id = b.id
+        <where>
+            <if test="startTime!= null and startTime !=''">
+                and str.create_stamp between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
 
+    <select id="selectMeaTable" resultMap="RiskResultMap">
+        SELECT
+        piuser.NAME AS user_name,
+        c.group_name,
+        stproject_measures.NAME,
+        stproject_measures.precaution,
+        stproject_measures.id,
+        stproject_measures.container_ref_id as mea_container_ref_id
+        FROM
+        stproject_measures
+        LEFT JOIN ( SELECT NAME AS group_name, id FROM pigroup WHERE id IN ( SELECT involve_group_reference_id FROM
+        stproject_measures ) ) c ON stproject_measures.involve_group_reference_id = c.id
+        LEFT JOIN piuser ON stproject_measures.creator_ref_id = piuser.id
+        <where>
+            <if test="startTime!= null and startTime !=''">
+                and stproject_measures.create_stamp between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="riskPreventionetails" resultMap="RiskResultMap">
+        SELECT
+        piuser.NAME AS user_name,
+        c.group_name,
+        stproject_measures.NAME,
+        stproject_measures.precaution,
+        stproject_measures.id,
+        stproject_measures.container_ref_id as mea_container_ref_id
+        FROM
+        stproject_measures
+        LEFT JOIN ( SELECT NAME AS group_name, id FROM pigroup WHERE id IN ( SELECT involve_group_reference_id FROM
+        stproject_measures ) ) c ON stproject_measures.involve_group_reference_id = c.id
+        LEFT JOIN piuser ON stproject_measures.creator_ref_id = piuser.id
+        <where>
+            <if test="state !=null and  state == 0">
+                ( stproject_measures.confirm_status is null or stproject_measures.confirm_status = #{state} )
+            </if>
+            <if test="state !=null and  state == 1">
+                stproject_measures.confirm_status = #{state}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>
