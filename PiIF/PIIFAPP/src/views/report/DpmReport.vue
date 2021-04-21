@@ -952,9 +952,9 @@ export default {
         toRiskDetail(item,index){
           var url = null
           if(index == 1){
-            url = "http://10.2.81.218:9998:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
+            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
           } else{
-            url = "http://10.2.81.218:9998:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
+            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
           }
           window.top.location.href =url
         },
