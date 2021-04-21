@@ -30,7 +30,7 @@
                             <i :class="item.itemName" :style="{background: color[index]}"></i>
                             <span class="proItem">{{item.name}}</span>
                             <span>{{item.count}}</span>
-                            <span>{{item.percentage * 100}}%</span>
+                            <span>{{getDateToFixed(item.percentage * 100)}}</span>
                         </div>
                     </div>
              </div>
@@ -56,8 +56,8 @@
                           <td>
                             <div class="progressBar">
                                <div class="progress" :style="{width: item.percentage*100+'%'}"></div>
-                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}" v-if="item.percentage != 0 && item.percentage < 0.9">{{item.percentage*100}}%</div>
-                               <div class="propercentage" :style="{left: (item.percentage*100 - 10)+'%'}" v-if="item.percentage >= 0.9">{{item.percentage*100}}%</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}" v-if="item.percentage != 0 && item.percentage < 0.9">{{getDateToFixed(item.percentage * 100)}}</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 - 10)+'%'}" v-if="item.percentage >= 0.9">{{getDateToFixed(item.percentage * 100)}}</div>
                             </div>
                           </td>
                           <td>
@@ -248,7 +248,7 @@ export default {
             //      "id": "509981",
             //      "count": 10,
             //      "name": "产品开发",
-            //      "percentage": 0.2,
+            //      "percentage": 0.2100,
             //      "index": 1
 
             //   },
@@ -256,7 +256,7 @@ export default {
             //      "id": "509992",
             //      "count": 15,
             //      "name": "研发能力",
-            //      "percentage": 0.3,
+            //      "percentage": 0.3450,
             //      "index": 2
 
             //   },
@@ -264,7 +264,7 @@ export default {
             //      "id": "50983",
             //      "count": 15,
             //      "name": "商品开发",
-            //      "percentage": 0.3,
+            //      "percentage": 0.3345,
             //      "index": 3
 
             //   },
@@ -357,6 +357,9 @@ export default {
 
     },
     methods: {
+        getDateToFixed(data){
+          return data.toFixed(2)+"%"
+        },
         getCurrentTime(){
             const myDate = new Date()
             const hour=myDate.getHours();
