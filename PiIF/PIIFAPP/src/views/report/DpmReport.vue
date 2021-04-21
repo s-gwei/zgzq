@@ -56,7 +56,8 @@
                           <td>
                             <div class="progressBar">
                                <div class="progress" :style="{width: item.percentage*100+'%'}"></div>
-                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}">{{item.percentage*100}}%</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}" v-if="item.percentage != 0 && item.percentage < 0.9">{{item.percentage*100}}%</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 - 10)+'%'}" v-if="item.percentage >= 0.9">{{item.percentage*100}}%</div>
                             </div>
                           </td>
                           <td>
@@ -180,7 +181,7 @@
                    </template>
                </tbody>
             </table>
-            <table  cellpadding="0" cellspacing="0" v-if="drawTitle == '预防措施列表'">
+            <table  cellpadding="0" cellspacing="0" v-if="drawTitle != '风险列表'">
                <thead>
                    <tr>
                         <th class="index">序号</th>
@@ -190,8 +191,19 @@
                         <th>责任人</th>
                    </tr>
                </thead>
-               <tbody>
+               <tbody v-if="drawTitle == '预防措施列表'">
                    <template v-for="(item,index) in tableDate" >
+                           <tr :key="index"  @click="toRiskDetail(item,2)">
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+                <tbody v-else>
+                   <template v-for="(item,index) in tableDateApprove" >
                            <tr :key="index"  @click="toRiskDetail(item,2)">
                                 <td>{{index + 1}}</td>
                                 <td>{{item.name}}</td>
@@ -282,36 +294,6 @@ export default {
                 }
             ],
             levelData:  [
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
-              }
             ],
             // 认可与未认可
             isApproveData: [
@@ -328,13 +310,14 @@ export default {
             ],
             url: {
                projectType: "/HomeTable/projectType",  //项目类别统计
-              //  projectLevel: "/HomeTable/projectLevel",  //项目级别展示
+               projectLevel: "/HomeTable/projectLevel",  //项目级别展示
                taskDelay: "/HomeTable/WorkDelayTable",  //任务延期
                projectRisk: "/HeavyDutyTable/ProjectRiskTable",  //项目风险
                riskFactor: "/HomeTable/selectRiskTable", //风险预防措施
                riskPrevention: "/HomeTable/riskPrevention"  //风险预防措施认可数和未认可数
             },
-            tableDate: []
+            tableDate: [],
+            tableDateApprove: []
         }
     },
     mounted(){
@@ -422,6 +405,8 @@ export default {
                         _this.$set(_this,"departmentJson",res.result)
                         _this.renderDepartmentRisk(_this.departmentJson)
 
+                      }if(key == "projectLevel"){
+                        _this.$set(_this,"levelData",res.result)
                       }
                    })
                 } else {
@@ -971,7 +956,7 @@ export default {
           } else{
             url = "http://10.2.81.218:9998:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
           }
-          window.location.href =url
+          window.top.location.href =url
         },
         // 项目类别统计
         renderCaterorySum(data){
@@ -1090,6 +1075,7 @@ export default {
         },
         // 认可与未认可
         renderApproveSum(data){
+          const _this = this
            const width = this.screenWidth * 0.295,
                height = this.screenHeight * 0.5 - 80 ;
            const chart = new Chart({
@@ -1154,6 +1140,28 @@ export default {
                   }
              });
             chart.render();
+            chart.on('click',ev=>{
+            // _this.visible = true
+            _this.getApproveSum(ev.data._origin)
+          })
+        },
+        getApproveSum(data){
+          const _this = this
+          var params = {}
+          _this.drawTitle = data.name+ "列表"
+          params.state = data.name == "未认可" ? 0 : 1
+          this.visible = true
+          getAction("HomeTable/riskPreventionetails",params,'get').then((res) => {
+                if(res.success && res.result){
+                  // console.log(res.result);
+                  _this.tableDateApprove = res.result
+                  _this.$set(_this,"tableDateApprove",res.result)
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+          })
         },
         // 点击标题跳转
         toItemSelect(item){
@@ -1161,8 +1169,8 @@ export default {
           // const url = "http://192.168.111.137:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name  //正式机项目ip
           const url = "http://10.2.81.218:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
           // console.log(url);
-          // top.location.href = url
-          window.open(url,'_blank')
+          window.top.location.href = url
+          // window.open(url,'_blank')
         },
         showDrawer() {
           this.visible = true;
