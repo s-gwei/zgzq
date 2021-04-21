@@ -710,7 +710,7 @@ export default {
           chart.legend('OutputQualityRiskSum', false); 
           chart.legend('continent', false); 
           chart.point().position('Xaxis*Yaxis')
-            .size('OutputQualityRiskSum', [10, 40]).opacity(0.4)
+            .size('OutputQualityRiskSum', [0, 40]).opacity(0.4)
             // 气泡图圈的颜色
             .color("#0091FF")
             .shape('circle')
@@ -1200,7 +1200,7 @@ export default {
         // background: url("../../assets/title_bg.png") no-repeat;
         background-size:100% 90px;
         position: relative;
-        .srcImag{
+        // .srcImag{
             // width: 71px;
             // height: 94px;
             // position: absolute;
@@ -1208,7 +1208,7 @@ export default {
             // background-size: 80%;
             // left: 20px;
             // top: -4px;
-        }
+        // }
         .time{
             display: flex;
             position: absolute;
