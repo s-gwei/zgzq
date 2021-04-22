@@ -7,17 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jeecg-boot-base-common" />
-        <module name="jeecg-boot-module-influxdb" />
+        <module name="jeecg-boot-module-system" />
         <module name="jeecg-boot-module-investigation" />
         <module name="jeecg-boot-module-iot" />
         <module name="jeecg-boot-module-rockmq" />
-        <module name="jeecg-boot-module-system" />
-        <module name="jeecg-boot-module-workflow" />
+        <module name="maven-archiver (2)" />
         <module name="jeecg-boot-moudle-elastic" />
         <module name="maven-archiver" />
+        <module name="jeecg-boot-module-influxdb" />
+        <module name="jeecg-boot-module-workflow" />
         <module name="maven-archiver (1)" />
-        <module name="maven-archiver (2)" />
+        <module name="jeecg-boot-base-common" />
       </profile>
     </annotationProcessing>
   </component>
