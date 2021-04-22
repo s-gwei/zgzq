@@ -380,7 +380,7 @@ export default {
             //   {
             //      "id": "509981",
             //      "count": 10,
-            //      "name": "产品开发",
+            //      "name": "产品产品开发产品开发产品开发开发",
             //      "percentage": 0.2100,
             //      "index": 1
 
@@ -1508,7 +1508,7 @@ export default {
                 }
                 .chartTitle,.chartConPer{
                       .proItem{
-                        width: 100px;
+                        width: 120px;
                       }
                 }
             }
