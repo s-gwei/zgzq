@@ -15,7 +15,7 @@
         </div>
         <div class="perspective">
             <div class="item item01">
-                <div class="header" @click="toItemSelect(1)">项目类别统计</div>
+                <div class="header">项目类别统计</div>
                 <div class="content">
                    <div id="container1"></div>
                     <div class="table">
@@ -26,18 +26,18 @@
                         <span>百分比</span>
                     </div>
                     <div class="chartCon">
-                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index">
+                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index" @click="toItemSelect(item)">
                             <i :class="item.itemName" :style="{background: color[index]}"></i>
                             <span class="proItem">{{item.name}}</span>
                             <span>{{item.count}}</span>
-                            <span>{{item.percentage * 100}}%</span>
+                            <span>{{getDateToFixed(item.percentage * 100)}}</span>
                         </div>
                     </div>
              </div>
                 </div>
             </div>
             <div class="item item02">
-                <div class="header header02" @click="toItemSelect(2)">项目级别统计</div>
+                <div class="header header02">项目级别统计</div>
                  <div class="content content2">
                     <div class="tableBox">
                       <table>
@@ -56,7 +56,8 @@
                           <td>
                             <div class="progressBar">
                                <div class="progress" :style="{width: item.percentage*100+'%'}"></div>
-                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}">{{item.percentage*100}}%</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 +2)+'%'}" v-if="item.percentage != 0 && item.percentage < 0.9">{{getDateToFixed(item.percentage * 100)}}</div>
+                               <div class="propercentage" :style="{left: (item.percentage*100 - 10)+'%'}" v-if="item.percentage >= 0.9">{{getDateToFixed(item.percentage * 100)}}</div>
                             </div>
                           </td>
                           <td>
@@ -69,30 +70,175 @@
                 </div>
             </div>
             <div class="item item03">
-                <div class="header header03" @click="toItemSelect(3)">任务延期散点图</div>
+                <div class="header header03"  @click="visibleCreateModal=true">任务延期散点图</div>
                 <div class="content">
+                    <!-- <a-button type="primary">点击</a-button> -->
                     <div id="container3"></div>
                 </div>
             </div>
             <div class="item item04">
-                <div class="header header04" @click="toItemSelect(4)">项目风险气泡图</div>
+                <div class="header header04">项目风险气泡图</div>
                 <div class="content">
                     <div id="container4"></div>
                 </div>
             </div>
             <div class="item item05">
-                <div class="header header05" @click="toItemSelect(5)">风险预防措施统计(全系统)</div>
+                <div class="header header05">风险预防措施统计(全系统)</div>
                 <div class="content">
                     <div id="container5"></div>
                 </div>
             </div>
             <div class="item item06">
-                <div class="header header06" @click="toItemSelect(6)">预防措施认可数与未认可数统计</div>
+                <div class="header header06">预防措施认可数与未认可数统计</div>
                 <div class="content">
                     <div id="container6"></div>
                 </div>
             </div>
         </div>
+        <a-drawer
+          :title="drawTitle"
+          placement="left"
+          :drawerStyle="{
+           border: '1px solid #ebedf0',
+           borderRadius: '2px',
+         }"
+          :closable="false"
+          :visible="visible"
+          :after-visible-change="afterVisibleChange"
+          :width="880"
+          @close="onClose"
+        >
+          <!-- table部分start -->
+           <div class="table-container table1" id="table" >
+                <!-- header -->
+          <div class="table-child"  id="theadDiv" >
+             <table cellpadding="0" cellspacing="0" v-if="drawTitle == '风险列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>风险名称</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index">
+                                <td>{{index + 1}}</td>
+                                <td><div>{{item.riskName}}</div></td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+            <table  cellpadding="0" cellspacing="0" v-if="drawTitle == '预防措施列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index" >
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+          </div>
+          <!-- header ending -->
+          <!-- body -->
+          <div class="table-next-child" id="tbodyDiv">
+             <table cellpadding="0" cellspacing="0" v-if="drawTitle == '风险列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>风险名称</th>
+                        <th>风险描述</th>
+                        <th>提出人</th>
+                        <th>提出时间</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index" @click="toRiskDetail(item,1)">
+                                <td>{{index + 1}}</td>
+                                <td><div>{{item.riskName}}</div></td>
+                                <td>{{item.riskDescription}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.createStamp}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+            <table  cellpadding="0" cellspacing="0" v-if="drawTitle != '风险列表'">
+               <thead>
+                   <tr>
+                        <th class="index">序号</th>
+                        <th>预防措施名称</th>
+                        <th>涉及部门</th>
+                        <th>预防措施描述</th>
+                        <th>责任人</th>
+                   </tr>
+               </thead>
+               <tbody v-if="drawTitle == '预防措施列表'">
+                   <template v-for="(item,index) in tableDate" >
+                           <tr :key="index"  @click="toRiskDetail(item,2)">
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+                <tbody v-else>
+                   <template v-for="(item,index) in tableDateApprove" >
+                           <tr :key="index"  @click="toRiskDetail(item,2)">
+                                <td>{{index + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.groupName}}</td>
+                                <td>{{item.precaution}}</td>
+                                <td>{{item.user_name}}</td>
+                           </tr>
+                   </template>
+               </tbody>
+            </table>
+          </div>
+          <!-- body ending-->
+           </div>
+        </a-drawer>
+        <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="detailCancel" class="detail">
+            <!---->
+            <div class="mainMadal" style="width=100%">
+              <a-table id="table"
+               :columns="columns"
+               :data-source="gkRiskReport"
+               rowKey="index"
+               :pagination="pagination"
+               :scroll="{ y: yScroll }"
+               @change="handleTableChange"
+             >
+               <p slot="taskType" slot-scope="record" style="margin: 0" :class="record">
+                 {{record === "normal" ? "正常进行任务" : (record === "finished" ? "已完成任务" :record === "overdue" ? "逾期未完成" : (record === "isoverdue" ? "可能逾期任务" : (record === "red" ? "逾期已完成" : "" )))}}
+               </p>
+              </a-table>
+            </div>
+            <template slot="footer">
+                <a-button style="display: none">关闭</a-button>
+           </template>
+        </a-modal>
     </div>
 </template>
 <script>
@@ -101,27 +247,141 @@ import { Chart, Util } from '@antv/g2';
 const gkRiskReport = require('@assets/json/gkRiskReport.json')
 const projectJson = require('@assets/json/projectJson.json')
 const departmentJson = require('@assets/json/departmentJson.json')
+const columns=[
+          {
+            title: '序号',
+            dataIndex: 'index',
+            width: 60,
+            align: 'center'
+          },
+          {
+            title: '项目名称',
+            dataIndex: 'projectName',
+            width: 250,
+            align: 'center'
+          },
+          {
+            title: '任务名称',
+            dataIndex: 'activityName',
+            width: 200,
+            align: 'center'
+          },
+          {
+            title: '工作任务状态',
+            dataIndex: 'taskType',
+            width: 112,
+            filters: [
+              { value: 'normal', text: '正常进行任务' },
+              { value: 'finished', text: '已完成任务' },
+              { value: 'overdue', text: '逾期未完成' },
+              { value: 'isoverdue', text: '可能逾期任务' },
+              { value: 'red', text: '逾期已完成' }
+            ],
+            // filteredValue: filteredInfo.taskType || null,
+            onFilter: function (value, record) {
+              return value == record.taskType
+            },
+            scopedSlots: { customRender: 'taskType' },
+            align: 'center'
+          },
+          {
+            title: '周数',
+            dataIndex: 'xaxis',
+            width: 80,
+            align: 'center',
+            sorter: (a, b) => a.xaxis - b.xaxis,
+          },
+          {
+            title: '偏差值',
+            dataIndex: 'deviation',
+            width: 80,
+            align: 'center',
+            sorter: (a, b) => a.deviation - b.deviation,
+          },
+          {
+            title: '计划开始时间',
+            dataIndex: 'targetStartTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.targetStartTime.split('-').join('')
+              const bSort = b.targetStartTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '计划完成时间',
+            dataIndex: 'byTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.byTime.split('-').join('')
+              const bSort = b.byTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '预估完成时间',
+            dataIndex: 'expectedFinishTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际开始时间',
+            dataIndex: 'actualStartTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际完成时间',
+            dataIndex: 'actualEndTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.actualEndTime.split('-').join('')
+              const bSort = b.actualEndTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          }
+        ]
 export default {
     name: "dpmReport",
     data(){
         return {
+            drawTitle: "预防措施列表",
             screenWidth: 1000,
             screenHeight: 500,
             scrollHeight: 500,
+            visible: false,
             time: "",
             date: "",
             weekend: "",
-            gkRiskReport,//任务延期
-            projectJson,//项目风险系数气泡数据
-            departmentJson,//部门风险系数
+            gkRiskReport:[],//任务延期
+            projectJson:[],//项目风险系数气泡数据
+            departmentJson:[],//部门风险系数
             color: ['#22a668','#147dde','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
             categorySum: [],
+            visibleCreateModal: false,
+            title: "工作任务延期详情信息",
+            pagination: { pageSize: 100 ,pageNo: 1,current: 1},
+            yScroll: 300,
+            columns,
             // categorySum: [
             //   {
             //      "id": "509981",
             //      "count": 10,
-            //      "name": "产品开发",
-            //      "percentage": 0.2,
+            //      "name": "产品产品开发产品开发产品开发开发",
+            //      "percentage": 0.2100,
             //      "index": 1
 
             //   },
@@ -129,7 +389,7 @@ export default {
             //      "id": "509992",
             //      "count": 15,
             //      "name": "研发能力",
-            //      "percentage": 0.3,
+            //      "percentage": 0.3450,
             //      "index": 2
 
             //   },
@@ -137,7 +397,7 @@ export default {
             //      "id": "50983",
             //      "count": 15,
             //      "name": "商品开发",
-            //      "percentage": 0.3,
+            //      "percentage": 0.3345,
             //      "index": 3
 
             //   },
@@ -147,38 +407,6 @@ export default {
             //      "name": "零部件开发",
             //      "percentage": 0.2,
             //      "index": 4
-
-            //   },
-            //    {
-            //      "id": "509985",
-            //      "count": 10,
-            //      "name": "新增1",
-            //      "percentage": 0.2,
-            //      "index": 5
-
-            //   },
-            //   {
-            //      "id": "150999",
-            //      "count": 15,
-            //      "name": "新增2",
-            //      "percentage": 0.3,
-            //      "index": 6
-
-            //   },
-            //   {
-            //      "id": "52098",
-            //      "count": 15,
-            //      "name": "新增3",
-            //      "percentage": 0.3,
-            //      "index": 7
-
-            //   },
-            //   {
-            //      "id": "52098",
-            //      "count": 15,
-            //      "name": "新增8",
-            //      "percentage": 0.3,
-            //      "index": 8
 
             //   }
             // ],
@@ -199,123 +427,36 @@ export default {
                 }
             ],
             levelData:  [
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "L级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 15,
-                 "name": "A级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 15,
-                 "name": "B级项目",
-                 "percentage": 0.3
-
-              },
-              {
-                 "count": 10,
-                 "name": "C级项目",
-                 "percentage": 0.2
-
-              },
-              {
-                 "count": 10,
-                 "name": "一般项目",
-                 "percentage": 0.2
-
-              }
             ],
             // 认可与未认可
             isApproveData: [
-              {
-                name: '未认可',
-                count: 35,
-                proportion: 0.35
-              },
-              {
-                name: '已认可',
-                count: 65,
-                proportion: 0.65
-              }
+              // {
+              //   name: '未认可',
+              //   count: 35,
+              //   proportion: 0.35
+              // },
+              // {
+              //   name: '已认可',
+              //   count: 65,
+              //   proportion: 0.65
+              // }
             ],
             url: {
                projectType: "/HomeTable/projectType",  //项目类别统计
-              //  projectLevel: "/HomeTable/projectLevel",  //项目级别展示
+               projectLevel: "/HomeTable/projectLevel",  //项目级别展示
                taskDelay: "/HomeTable/WorkDelayTable",  //任务延期
                projectRisk: "/HeavyDutyTable/ProjectRiskTable",  //项目风险
                riskFactor: "/HomeTable/selectRiskTable", //风险预防措施
                riskPrevention: "/HomeTable/riskPrevention"  //风险预防措施认可数和未认可数
             },
+            tableDate: [],
+            tableDateApprove: []
         }
     },
     mounted(){
-        this.screenWidth = document.body.clientWidth;
-        this.screenHeight = document.body.clientHeight;
+        this.screenWidth = document.querySelector("#app").clientWidth
+        this.screenHeight = document.querySelector("#app").clientHeight;
+        this.yScroll =  this.screenHeight .clientHeight - 260
         this.drawChart()
         const _this = this
         setInterval(function () {
@@ -323,8 +464,9 @@ export default {
         },1000)
         window.onresize = () => {
          return (() => {
-           this.screenWidth = document.body.clientWidth;
-           this.screenHeight = document.body.clientHeight;
+            this.screenWidth = document.querySelector("#app").clientWidth
+            this.screenHeight = document.querySelector("#app").clientHeight;
+            this.yScroll =  this.screenHeight .clientHeight - 260
             if(document.querySelector("#container3")){
               document.querySelector("#container3>div").remove()
               this.renderTaskDelay(this.gkRiskReport)
@@ -350,6 +492,17 @@ export default {
 
     },
     methods: {
+      detailCancel(){
+        this.visibleCreateModal = false;
+      },
+      handleTableChange(pagination){
+        const pager = { ...this.pagination };
+        pager.current = pagination.current;
+        this.pagination = pager;
+      },
+        getDateToFixed(data){
+          return data.toFixed(2)+"%"
+        },
         getCurrentTime(){
             const myDate = new Date()
             const hour=myDate.getHours();
@@ -372,15 +525,17 @@ export default {
                 if(res.success && res.result){
                    _this.$nextTick(function(){
                       //  _this.renderChart(res.result)
-                      console.log(key);
                       if(key == 'projectType'){
                         res.result.list.map(function(itm,index){
                           itm.index = index +1
                         })
                         _this.$set(_this,"categorySum",res.result.list)
                         _this.$set(_this,"allNum",res.result.total)
-                        _this.renderCaterorySum(res.result.list)
+                        _this.renderCaterorySum(_this.categorySum)
                       } if(key == 'taskDelay'){
+                        res.result.map(function(item,index){
+                          item.index = index+1
+                        })
                         _this.$set(_this,"gkRiskReport",res.result)
                         _this.renderTaskDelay(_this.gkRiskReport)
                       } if(key == 'projectRisk'){
@@ -390,7 +545,7 @@ export default {
                         _this.$set(_this,"projectJson",res.result)
                         _this.renderProjectRisk(_this.projectJson)
                       } if(key == 'riskPrevention'){
-                        //  _this.$set(_this,"isApproveData",res.result)
+                         _this.$set(_this,"isApproveData",res.result)
                          _this.isApproveData = _this.isApproveData.filter(function(item){
                             return item.proportion
                          })
@@ -399,6 +554,8 @@ export default {
                         _this.$set(_this,"departmentJson",res.result)
                         _this.renderDepartmentRisk(_this.departmentJson)
 
+                      }if(key == "projectLevel"){
+                        _this.$set(_this,"levelData",res.result)
                       }
                    })
                 } else {
@@ -702,7 +859,7 @@ export default {
           chart.legend('OutputQualityRiskSum', false); 
           chart.legend('continent', false); 
           chart.point().position('Xaxis*Yaxis')
-            .size('OutputQualityRiskSum', [10, 40]).opacity(0.4)
+            .size('OutputQualityRiskSum', [0, 40]).opacity(0.4)
             // 气泡图圈的颜色
             .color("#0091FF")
             .shape('circle')
@@ -745,6 +902,7 @@ export default {
         },
         //部门风险双柱状图
         renderDepartmentRisk(data){
+          const _this = this
            const width = this.screenWidth * 0.295,
              height = this.screenHeight * 0.5 - 80 ;
         data.map(function(item){
@@ -767,8 +925,6 @@ export default {
                background: '#fff',
                padding: [40, 40, 30, 45]
             });
-            console.log(dataSorted,'data');
-            
             chart.source(dataSorted);
             chart.scale({
                name: {
@@ -913,12 +1069,43 @@ export default {
           //     })
            chart.render();
            chart.on('click',ev=>{
-            console.log(ev.data._origin,'ev');
-            // return
-            // if(ev.data && ev.data._origin){
-            //   _this.$router.push({name: 'singleProjectTableFixed',params:ev.data._origin})
-            // }
+            // console.log(ev.data._origin,'ev');
+            // _this.visible = true
+            _this.getRiskAndMeasureDate(ev.data._origin)
           })
+        },
+        getRiskAndMeasureDate(data){
+          const _this = this,params={}
+          var url = data.name.indexOf("预防措施") > -1 ? "/HomeTable/selectMeaTable" : "/HomeTable/selectRisk"
+          this.$set(this,"tableDate",[])
+          params.startTime = data.startTime
+          params.endTime = data.endTime
+          if(data.name.indexOf("预防措施") > -1){
+            _this.drawTitle = "预防措施列表"
+          } else{
+            _this.drawTitle = "风险列表"
+          }
+          _this.visible = true
+          getAction(url,params,'get').then((res) => {
+                if(res.success && res.result){
+                  // console.log(res.result);
+                  // _this.tableDate = res.result
+                  _this.$set(_this,"tableDate",res.result)
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+             })
+        },
+        toRiskDetail(item,index){
+          var url = null
+          if(index == 1){
+            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
+          } else{
+            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
+          }
+          window.top.location.href =url
         },
         // 项目类别统计
         renderCaterorySum(data){
@@ -1022,7 +1209,7 @@ export default {
                       // textBaseline: 'center',
                       fontSize: 10
                     },
-                    offset: 10,//偏移量
+                    offset: 14,//偏移量
                     // rotate: 270,
                     position:'end'//label的展示位置
                   }
@@ -1037,6 +1224,7 @@ export default {
         },
         // 认可与未认可
         renderApproveSum(data){
+          const _this = this
            const width = this.screenWidth * 0.295,
                height = this.screenHeight * 0.5 - 80 ;
            const chart = new Chart({
@@ -1049,6 +1237,16 @@ export default {
            chart.coord('theta', {
              radius: 0.75
            });
+           chart.scale({
+             count:{
+                 nice: true,
+                alias: '数量'
+              },
+              name:{
+                nice: true,
+                alias: '预防措施类别'
+              }
+           })
            chart.legend('name', {
                 position: 'bottom-center',
                 itemGap: 20,
@@ -1057,14 +1255,15 @@ export default {
                 width,
                 marker:'diamond'
              });
-             chart.tooltip({ 
-                  title: {
-                    visible: false
-                  },
-               });
+          chart.tooltip({
+              title: 'name',
+              // showMarkers: false,
+              // showCrosshairs: false, 
+            });
            const interval = chart
                .intervalStack()
                .position('proportion')
+               .tooltip('count*name')
                .color('name', [ 'rgb(0, 78, 189)', 'rgb(0, 184, 124)'])
                .style({ opacity: 0.3 })
                .label('name', function(){
@@ -1090,11 +1289,46 @@ export default {
                   }
              });
             chart.render();
+            chart.on('click',ev=>{
+            // _this.visible = true
+            _this.getApproveSum(ev.data._origin)
+          })
+        },
+        getApproveSum(data){
+          const _this = this
+          var params = {}
+          _this.drawTitle = data.name+ "列表"
+          params.state = data.name == "未认可" ? 0 : 1
+          this.visible = true
+          getAction("HomeTable/riskPreventionetails",params,'get').then((res) => {
+                if(res.success && res.result){
+                  // console.log(res.result);
+                  _this.tableDateApprove = res.result
+                  _this.$set(_this,"tableDateApprove",res.result)
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+          })
         },
         // 点击标题跳转
-        toItemSelect(i){
-          console.log(i);
-          // window.location.href = 'http://www.badidu.com'
+        toItemSelect(item){
+          // const url = "http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          // const url = "http://192.168.111.137:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name  //正式机项目ip
+          const url = "http://10.2.81.218:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          // console.log(url);
+          window.top.location.href = url
+          // window.open(url,'_blank')
+        },
+        showDrawer() {
+          this.visible = true;
+        },
+        onClose() {
+          this.visible = false;
+        },
+        afterVisibleChange(val) {
+          console.log('visible', val);
         }
     }
 }
@@ -1106,24 +1340,24 @@ export default {
     overflow: hidden;
     box-sizing: border-box;
     transform-origin: 0 0;
-    // background: url("../../assets/reportDpbg.png") no-repeat;
-    background: rgb(104, 102, 102);
+    background: url("../../assets/reportDpbg.png") no-repeat;
+    // background: #030F27;
     background-size: 100% 100%;
     .title{
         text-align: center;
         color: #fff;
-        background: url("../../assets/title_bg.png") no-repeat;
+        // background: url("../../assets/title_bg.png") no-repeat;
         background-size:100% 90px;
         position: relative;
-        .srcImag{
-            width: 71px;
-            height: 94px;
-            position: absolute;
-            background: url("../../assets/headerHome.png") no-repeat;
-            background-size: 80%;
-            left: 20px;
-            top: -4px;
-        }
+        // .srcImag{
+            // width: 71px;
+            // height: 94px;
+            // position: absolute;
+            // background: url("../../assets/headerHome.png") no-repeat;
+            // background-size: 80%;
+            // left: 20px;
+            // top: -4px;
+        // }
         .time{
             display: flex;
             position: absolute;
@@ -1181,7 +1415,7 @@ export default {
             line-height: 40px;
             font-size: 18px;
             font-weight: bold;
-            cursor: pointer;
+            // cursor: pointer;
         }
         .header05{
             background-size:  400px 36px;
@@ -1261,6 +1495,7 @@ export default {
                     line-height: 26px;
                     position: relative;
                     color: #c3ceda;
+                    cursor: pointer;
                     span{
                         font-weight: normal;
                     }
@@ -1273,7 +1508,7 @@ export default {
                 }
                 .chartTitle,.chartConPer{
                       .proItem{
-                        width: 100px;
+                        width: 120px;
                       }
                 }
             }
@@ -1355,11 +1590,11 @@ export default {
   position:absolute;
 }
 /deep/.g2-label{
-  min-width: 60px;
+  width: 80px;
   text-align: center;
-  left: 50%;
-  transform: translate(-50%);
-  top: 30px;
+  // left: 50%;
+  // transform: translate(-50%);
+  // top: 30px;
   // top: 50%;
 }
 /deep/.g2-labelapprove{
@@ -1377,4 +1612,194 @@ export default {
   // top: -10px;
   top: 50%;
 }
+#table{
+  table{
+         table-layout:fixed;
+          word-wrap: break-word; 
+          word-break: break-all;
+          min-width: 100%;
+          border-collapse: collapse; 
+     }
+     table,table tr th, table tr td { border:1px solid #E9E9E9; }
+     table thead tr {
+         background: #F4F5F7;
+         padding: 6px 12px;
+         color: #000;
+         font-size: 14px;
+        //  font-family: PingFangSC-Medium, PingFang SC;
+         th{
+           font-weight: 540;
+           color: #000;
+           min-width: 90px;
+          padding: 3px 8px;
+          text-align: center;
+          white-space: nowrap;
+         }
+     }
+     table thead tr{
+      //  background: #DEDEDE;
+      background: #ccc;
+       th{
+       border: 1px solid #DEDEDE;
+       border-right: 1px solid #E9E9E9;
+       border-left: 1px solid transparent
+       }
+     }
+
+}
+
+     .table1{
+          min-width: 100%;
+         max-height: 800px;
+         height: 100%;
+         position: relative;
+         overflow-x: auto;
+        //  overflow-y: hidden;
+         .table-child,
+         .table-next-child{
+             min-width: 800px;
+             table{
+                //  width: 100%;
+                 th{
+                 padding: 6px 8px;
+                 }
+             }
+                     
+         }
+         .table-child{
+               position: absolute;
+               top: 0;
+               left: 0;
+               height: 35px;
+               overflow: hidden;
+               width: calc(100% - 6px);
+              //  z-index: 2;
+               th{
+                  //  background: #F4F5F7;
+                   padding: 3px 6px;
+               }
+               th:nth-child(1){
+                   width: 80px;
+               }
+         }
+         .table-next-child{
+             height: 100%;
+             max-height: 100%;
+             overflow-y: scroll;
+             overflow-x: auto;
+         }
+         tbody td{
+             text-align: center;
+             padding: 6px 10px;
+             color: rgba(0,0,0,.7)
+         }
+     }
+     
+     #table tbody .trtotal{
+      //  background: #DEDEDE;
+      background: #ccc;
+       td:nth-child(2n){
+         text-align: right;
+         color: #333333
+       }
+       td:nth-child(2n + 1){
+         text-align: right;
+         border-right: none
+       }
+     }
+    #table tbody tr{
+      &:hover{
+        background: rgb(248, 247, 247);
+      }
+      cursor: pointer;
+    }
+      /deep/.ant-drawer-content{
+        height: 100%;
+      }
+      /deep/.ant-drawer-body{
+        height: calc(100% - 58px);
+      }
+      .index{
+        width: 70px;
+      }
+      /deep/.ant-drawer-title{
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+  .item03 {
+    .header03{
+      cursor: pointer;
+    }
+    /deep/.ant-btn-primary{
+      height: 28px;
+      line-height: 28px;
+      padding: 0 12px;
+      float: right;
+      font-size: 14px;
+    }
+  }
+  /deep/ .ant-modal-content{
+      height: calc(100% - 20px);
+    }
+    /deep/ .ant-modal-footer{
+      border-top: 1px solid transparent;
+      padding: 0;
+    }  
+    /deep/ .ant-modal-body{
+          // max-height: 820px;
+          // height: 80%;
+           height: calc(100% - 60px);
+          overflow: auto;
+          padding: 0 24px 10px;
+          font-size: 12px;
+          .ant-table-tbody .ant-table-row td {
+              padding-top: 10px;
+              padding-bottom: 10px;
+          }
+       }
+       /deep/ .ant-modal-header{
+         border-bottom: 1px solid transparent
+       }
+      /deep/ .ant-modal-close{
+              position: absolute;
+              top: -20px;
+              right: 4px;
+              color: #fff;
+               border: 1px solid #fff;
+              border-radius: 50%;
+       }
+       /deep/ .ant-modal-close-x{
+         width: 10px;
+         height: 10px;
+         line-height: 0;
+        
+       }
+       /deep/ .ant-modal-close svg {
+         width: 8px;
+         height: 8px;
+         padding-top: 2px;
+       }
+      /deep/ .ant-modal-header .ant-modal-title{
+          text-align: center;
+          border-bottom: 1px solid transparent;
+          font-weight: bold;
+          font-size: 18px;
+          color: #333;
+       }
+       /deep/ .ant-modal{
+      position: relative;
+      top: 50px;
+      height: calc(100% - 30px);
+      width: 98%!important;
+      td{
+        font-size: 12px;
+      }
+      th{
+        font-size: 12px;
+        padding: 13px 8px;
+        font-weight: 600;
+      }
+    }
 </style>
