@@ -70,8 +70,9 @@
                 </div>
             </div>
             <div class="item item03">
-                <div class="header header03">任务延期散点图</div>
+                <div class="header header03"  @click="visibleCreateModal=true">任务延期散点图</div>
                 <div class="content">
+                    <!-- <a-button type="primary">点击</a-button> -->
                     <div id="container3"></div>
                 </div>
             </div>
@@ -218,6 +219,26 @@
           <!-- body ending-->
            </div>
         </a-drawer>
+        <a-modal :title="title" destroyOnClose :visible="visibleCreateModal" @cancel="detailCancel" class="detail">
+            <!---->
+            <div class="mainMadal" style="width=100%">
+              <a-table id="table"
+               :columns="columns"
+               :data-source="gkRiskReport"
+               rowKey="index"
+               :pagination="pagination"
+               :scroll="{ y: yScroll }"
+               @change="handleTableChange"
+             >
+               <p slot="taskType" slot-scope="record" style="margin: 0" :class="record">
+                 {{record === "normal" ? "正常进行任务" : (record === "finished" ? "已完成任务" :record === "overdue" ? "逾期未完成" : (record === "isoverdue" ? "可能逾期任务" : (record === "red" ? "逾期已完成" : "" )))}}
+               </p>
+              </a-table>
+            </div>
+            <template slot="footer">
+                <a-button style="display: none">关闭</a-button>
+           </template>
+        </a-modal>
     </div>
 </template>
 <script>
@@ -226,6 +247,113 @@ import { Chart, Util } from '@antv/g2';
 const gkRiskReport = require('@assets/json/gkRiskReport.json')
 const projectJson = require('@assets/json/projectJson.json')
 const departmentJson = require('@assets/json/departmentJson.json')
+const columns=[
+          {
+            title: '序号',
+            dataIndex: 'index',
+            width: 60,
+            align: 'center'
+          },
+          {
+            title: '项目名称',
+            dataIndex: 'projectName',
+            width: 250,
+            align: 'center'
+          },
+          {
+            title: '任务名称',
+            dataIndex: 'activityName',
+            width: 200,
+            align: 'center'
+          },
+          {
+            title: '工作任务状态',
+            dataIndex: 'taskType',
+            width: 112,
+            filters: [
+              { value: 'normal', text: '正常进行任务' },
+              { value: 'finished', text: '已完成任务' },
+              { value: 'overdue', text: '逾期未完成' },
+              { value: 'isoverdue', text: '可能逾期任务' },
+              { value: 'red', text: '逾期已完成' }
+            ],
+            // filteredValue: filteredInfo.taskType || null,
+            onFilter: function (value, record) {
+              return value == record.taskType
+            },
+            scopedSlots: { customRender: 'taskType' },
+            align: 'center'
+          },
+          {
+            title: '周数',
+            dataIndex: 'xaxis',
+            width: 80,
+            align: 'center',
+            sorter: (a, b) => a.xaxis - b.xaxis,
+          },
+          {
+            title: '偏差值',
+            dataIndex: 'deviation',
+            width: 80,
+            align: 'center',
+            sorter: (a, b) => a.deviation - b.deviation,
+          },
+          {
+            title: '计划开始时间',
+            dataIndex: 'targetStartTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.targetStartTime.split('-').join('')
+              const bSort = b.targetStartTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '计划完成时间',
+            dataIndex: 'byTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.byTime.split('-').join('')
+              const bSort = b.byTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            },
+          },
+          {
+            title: '预估完成时间',
+            dataIndex: 'expectedFinishTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际开始时间',
+            dataIndex: 'actualStartTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.expectedFinishTime.split('-').join('')
+              const bSort = b.expectedFinishTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          },
+          {
+            title: '实际完成时间',
+            dataIndex: 'actualEndTime',
+            width: 132,
+            align: 'center',
+            sorter:function(a,b){
+              const aSort = a.actualEndTime.split('-').join('')
+              const bSort = b.actualEndTime.split('-').join('')
+              return Number(aSort) - Number(bSort)
+            }
+          }
+        ]
 export default {
     name: "dpmReport",
     data(){
@@ -238,11 +366,16 @@ export default {
             time: "",
             date: "",
             weekend: "",
-            gkRiskReport,//任务延期
-            projectJson,//项目风险系数气泡数据
-            departmentJson,//部门风险系数
+            gkRiskReport:[],//任务延期
+            projectJson:[],//项目风险系数气泡数据
+            departmentJson:[],//部门风险系数
             color: ['#22a668','#147dde','#ff8303','#ffcc29','#8ab6d6',"#eabf9f",'#40D5B3',"#f05945",],
             categorySum: [],
+            visibleCreateModal: false,
+            title: "工作任务延期详情信息",
+            pagination: { pageSize: 100 ,pageNo: 1,current: 1},
+            yScroll: 300,
+            columns,
             // categorySum: [
             //   {
             //      "id": "509981",
@@ -321,8 +454,9 @@ export default {
         }
     },
     mounted(){
-        this.screenWidth = document.body.clientWidth;
-        this.screenHeight = document.body.clientHeight;
+        this.screenWidth = document.querySelector("#app").clientWidth
+        this.screenHeight = document.querySelector("#app").clientHeight;
+        this.yScroll =  this.screenHeight .clientHeight - 260
         this.drawChart()
         const _this = this
         setInterval(function () {
@@ -330,8 +464,9 @@ export default {
         },1000)
         window.onresize = () => {
          return (() => {
-           this.screenWidth = document.body.clientWidth;
-           this.screenHeight = document.body.clientHeight;
+            this.screenWidth = document.querySelector("#app").clientWidth
+            this.screenHeight = document.querySelector("#app").clientHeight;
+            this.yScroll =  this.screenHeight .clientHeight - 260
             if(document.querySelector("#container3")){
               document.querySelector("#container3>div").remove()
               this.renderTaskDelay(this.gkRiskReport)
@@ -357,6 +492,14 @@ export default {
 
     },
     methods: {
+      detailCancel(){
+        this.visibleCreateModal = false;
+      },
+      handleTableChange(pagination){
+        const pager = { ...this.pagination };
+        pager.current = pagination.current;
+        this.pagination = pager;
+      },
         getDateToFixed(data){
           return data.toFixed(2)+"%"
         },
@@ -390,6 +533,9 @@ export default {
                         _this.$set(_this,"allNum",res.result.total)
                         _this.renderCaterorySum(_this.categorySum)
                       } if(key == 'taskDelay'){
+                        res.result.map(function(item,index){
+                          item.index = index+1
+                        })
                         _this.$set(_this,"gkRiskReport",res.result)
                         _this.renderTaskDelay(_this.gkRiskReport)
                       } if(key == 'projectRisk'){
@@ -1581,4 +1727,79 @@ export default {
         font-weight: 700;
         font-size: 18px;
       }
+
+  .item03 {
+    .header03{
+      cursor: pointer;
+    }
+    /deep/.ant-btn-primary{
+      height: 28px;
+      line-height: 28px;
+      padding: 0 12px;
+      float: right;
+      font-size: 14px;
+    }
+  }
+  /deep/ .ant-modal-content{
+      height: calc(100% - 20px);
+    }
+    /deep/ .ant-modal-footer{
+      border-top: 1px solid transparent;
+      padding: 0;
+    }  
+    /deep/ .ant-modal-body{
+          // max-height: 820px;
+          // height: 80%;
+           height: calc(100% - 60px);
+          overflow: auto;
+          padding: 0 24px 10px;
+          font-size: 12px;
+          .ant-table-tbody .ant-table-row td {
+              padding-top: 10px;
+              padding-bottom: 10px;
+          }
+       }
+       /deep/ .ant-modal-header{
+         border-bottom: 1px solid transparent
+       }
+      /deep/ .ant-modal-close{
+              position: absolute;
+              top: -20px;
+              right: 4px;
+              color: #fff;
+               border: 1px solid #fff;
+              border-radius: 50%;
+       }
+       /deep/ .ant-modal-close-x{
+         width: 10px;
+         height: 10px;
+         line-height: 0;
+        
+       }
+       /deep/ .ant-modal-close svg {
+         width: 8px;
+         height: 8px;
+         padding-top: 2px;
+       }
+      /deep/ .ant-modal-header .ant-modal-title{
+          text-align: center;
+          border-bottom: 1px solid transparent;
+          font-weight: bold;
+          font-size: 18px;
+          color: #333;
+       }
+       /deep/ .ant-modal{
+      position: relative;
+      top: 50px;
+      height: calc(100% - 30px);
+      width: 98%!important;
+      td{
+        font-size: 12px;
+      }
+      th{
+        font-size: 12px;
+        padding: 13px 8px;
+        font-weight: 600;
+      }
+    }
 </style>
