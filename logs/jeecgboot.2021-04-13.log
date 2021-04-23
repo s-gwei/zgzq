@@ -1,0 +1,3089 @@
+2021-04-13 20:43:30.070 [main] INFO  org.jeecg.JeecgApplication:55 - Starting JeecgApplication on DESKTOP-H83TRA9 with PID 20044 (D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-system\target\classes started by SinoTruk in D:\work\zqbaobiao\zgzq\PiIF)
+2021-04-13 20:43:30.076 [main] INFO  org.jeecg.JeecgApplication:655 - The following profiles are active: dev
+2021-04-13 20:43:34.037 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner:44 - No MyBatis mapper was found in '[org.jeecg.boot.mapper]' package. Please check your configuration.
+2021-04-13 20:43:34.566 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:244 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-04-13 20:43:34.573 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:126 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-13 20:43:34.758 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:182 - Finished Spring Data repository scanning in 152ms. Found 0 repository interfaces.
+2021-04-13 20:43:35.427 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'shiroConfig' of type [org.jeecg.config.ShiroConfig$$EnhancerBySpringCGLIB$$9be2ff09] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:35.516 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'shiroRealm' of type [org.jeecg.modules.shiro.authc.ShiroRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.146 [main] INFO  org.jeecg.config.ShiroConfig:227 - ===============(1)创建缓存管理器RedisCacheManager
+2021-04-13 20:43:36.148 [main] INFO  org.jeecg.config.ShiroConfig:245 - ===============(2)创建RedisManager,连接Redis..URL= 10.2.81.218:6379
+2021-04-13 20:43:36.159 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisManager' of type [org.crazycake.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.166 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.219 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.269 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.509 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.518 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$e56c0644] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.532 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.542 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.565 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'spring.redis-org.springframework.boot.autoconfigure.data.redis.RedisProperties' of type [org.springframework.boot.autoconfigure.data.redis.RedisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.576 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration' of type [org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.763 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'lettuceClientResources' of type [io.lettuce.core.resource.DefaultClientResources] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.917 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisConnectionFactory' of type [org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.940 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisConfig' of type [org.jeecg.config.RedisConfig$$EnhancerBySpringCGLIB$$e6b18653] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:36.993 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$8ef67323] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:37.003 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:43:37.649 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer:92 - Tomcat initialized with port(s): 9995 (http)
+2021-04-13 20:43:37.663 [main] INFO  org.apache.coyote.http11.Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-9995"]
+2021-04-13 20:43:37.664 [main] INFO  org.apache.catalina.core.StandardService:173 - Starting service [Tomcat]
+2021-04-13 20:43:37.665 [main] INFO  org.apache.catalina.core.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-04-13 20:43:38.171 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/jeecg-boot]:173 - Initializing Spring embedded WebApplicationContext
+2021-04-13 20:43:38.172 [main] INFO  org.springframework.web.context.ContextLoader:284 - Root WebApplicationContext: initialization completed in 8006 ms
+2021-04-13 20:43:38.542 [main] INFO  c.b.dynamic.datasource.DynamicDataSourceCreator:113 - 动态数据源-检测到druid存在,如配置中未指定type,druid会默认配置
+2021-04-13 20:43:39.243 [main] INFO  com.alibaba.druid.pool.DruidDataSource:1003 - {dataSource-1,master} inited
+2021-04-13 20:43:39.365 [main] INFO  com.alibaba.druid.pool.DruidDataSource:1003 - {dataSource-2,multi-datasource1} inited
+2021-04-13 20:43:39.366 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:203 - 初始共加载 2 个数据源
+2021-04-13 20:43:39.367 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:142 - 动态数据源-加载 multi-datasource1 成功
+2021-04-13 20:43:39.367 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:142 - 动态数据源-加载 master 成功
+2021-04-13 20:43:39.368 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:212 - 当前的默认数据源是单数据源，数据源名为 master
+2021-04-13 20:43:44.227 [main] INFO  org.quartz.impl.StdSchedulerFactory:1208 - Using default implementation for ThreadExecutor
+2021-04-13 20:43:44.250 [main] INFO  org.quartz.core.SchedulerSignalerImpl:61 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-04-13 20:43:44.251 [main] INFO  org.quartz.core.QuartzScheduler:229 - Quartz Scheduler v.2.3.1 created.
+2021-04-13 20:43:44.256 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:672 - Using db table-based data access locking (synchronization).
+2021-04-13 20:43:44.258 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:145 - JobStoreCMT initialized.
+2021-04-13 20:43:44.259 [main] INFO  org.quartz.core.QuartzScheduler:294 - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is not clustered.
+
+2021-04-13 20:43:44.260 [main] INFO  org.quartz.impl.StdSchedulerFactory:1362 - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-04-13 20:43:44.261 [main] INFO  org.quartz.impl.StdSchedulerFactory:1366 - Quartz scheduler version: 2.3.1
+2021-04-13 20:43:44.261 [main] INFO  org.quartz.core.QuartzScheduler:2293 - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1ac3a6f
+2021-04-13 20:44:06.917 [main] WARN  org.jeecg.common.es.JeecgElasticsearchTemplate:61 - ElasticSearch 服务连接失败，原因：配置未通过。可能是BaseURL未配置或配置有误，也可能是Elasticsearch服务未启动。接下来将会拒绝执行任何方法！
+2021-04-13 20:44:08.757 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-04-13 20:44:09.049 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping:69 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-04-13 20:44:09.437 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor:171 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-13 20:44:10.533 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler:171 - Initializing ExecutorService 'taskScheduler'
+2021-04-13 20:44:10.714 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper:160 - Context refreshed
+2021-04-13 20:44:10.750 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper:163 - Found 5 custom documentation plugin(s)
+2021-04-13 20:44:10.831 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:44:10.980 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:10.981 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:10.998 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:10.999 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.003 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.004 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.007 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.007 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.010 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.011 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.015 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.015 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.026 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.027 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.030 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: selectINTableUsingGET_1
+2021-04-13 20:44:11.032 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.033 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:44:11.055 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_1
+2021-04-13 20:44:11.059 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: taskExecutionUsingGET_1
+2021-04-13 20:44:11.062 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: ProjectRiskTableUsingGET_1
+2021-04-13 20:44:11.064 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_2
+2021-04-13 20:44:11.069 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: SectorRiskFactorUsingGET_1
+2021-04-13 20:44:11.077 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: SectorRiskFactorUsingGET_2
+2021-04-13 20:44:11.083 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_3
+2021-04-13 20:44:11.187 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:44:11.209 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:44:11.221 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:44:11.234 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:44:11.389 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: addUsingPOST_1
+2021-04-13 20:44:11.393 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: deleteUsingDELETE_1
+2021-04-13 20:44:11.398 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: deleteBatchUsingDELETE_1
+2021-04-13 20:44:11.403 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: editUsingPUT_1
+2021-04-13 20:44:11.406 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: queryByIdUsingGET_1
+2021-04-13 20:44:11.425 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: queryPageListUsingGET_1
+2021-04-13 20:44:11.458 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean:727 - Starting Quartz Scheduler now
+2021-04-13 20:44:13.530 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:866 - Freed 0 triggers from 'acquired' / 'blocked' state.
+2021-04-13 20:44:13.552 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:876 - Recovering 0 jobs that were in-progress at the time of the last shut-down.
+2021-04-13 20:44:13.553 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:889 - Recovery complete.
+2021-04-13 20:44:13.554 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:896 - Removed 0 'complete' triggers.
+2021-04-13 20:44:13.558 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:901 - Removed 0 stale fired job entries.
+2021-04-13 20:44:13.559 [main] INFO  org.quartz.core.QuartzScheduler:547 - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-04-13 20:44:13.589 [main] INFO  org.apache.coyote.http11.Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-9995"]
+2021-04-13 20:44:13.623 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer:204 - Tomcat started on port(s): 9995 (http) with context path '/jeecg-boot'
+2021-04-13 20:44:13.627 [main] INFO  org.jeecg.JeecgApplication:61 - Started JeecgApplication in 44.477 seconds (JVM running for 46.701)
+2021-04-13 20:44:13.635 [main] INFO  org.jeecg.JeecgApplication:36 - 
+----------------------------------------------------------
+	Application Jeecg-Boot is running! Access URLs:
+	Local: 		http://localhost:9995/jeecg-boot/
+	External: 	http://169.254.42.10:9995/jeecg-boot/
+	swagger-ui: 		http://169.254.42.10:9995/jeecg-boot/doc.html
+----------------------------------------------------------
+2021-04-13 20:44:14.650 [RMI TCP Connection(4)-169.254.42.10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/jeecg-boot]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-13 20:44:14.651 [RMI TCP Connection(4)-169.254.42.10] INFO  org.springframework.web.servlet.DispatcherServlet:525 - Initializing Servlet 'dispatcherServlet'
+2021-04-13 20:44:14.671 [RMI TCP Connection(4)-169.254.42.10] INFO  org.springframework.web.servlet.DispatcherServlet:547 - Completed initialization in 19 ms
+2021-04-13 20:44:14.891 [RMI TCP Connection(5)-169.254.42.10] INFO  io.lettuce.core.EpollProvider:68 - Starting without optional epoll library
+2021-04-13 20:44:14.895 [RMI TCP Connection(5)-169.254.42.10] INFO  io.lettuce.core.KqueueProvider:70 - Starting without optional kqueue library
+2021-04-13 20:44:25.851 [RMI TCP Connection(5)-169.254.42.10] WARN  o.s.boot.actuate.redis.RedisHealthIndicator:87 - Redis health check failed
+org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 10.2.81.218:6379
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:109)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1187)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1168)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:941)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:352)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:132)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:95)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:82)
+	at org.springframework.boot.actuate.redis.RedisHealthIndicator.doHealthCheck(RedisHealthIndicator.java:55)
+	at org.springframework.boot.actuate.health.AbstractHealthIndicator.health(AbstractHealthIndicator.java:82)
+	at org.springframework.boot.actuate.health.HealthIndicator.getHealth(HealthIndicator.java:37)
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:80)
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:38)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:106)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getAggregateHealth(HealthEndpointSupport.java:116)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:103)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:81)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:68)
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:74)
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:279)
+	at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:77)
+	at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:60)
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:121)
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:96)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801)
+	at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1468)
+	at javax.management.remote.rmi.RMIConnectionImpl.access$300(RMIConnectionImpl.java:76)
+	at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1309)
+	at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1401)
+	at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at sun.reflect.GeneratedMethodAccessor214.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:357)
+	at sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:573)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:834)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:688)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:687)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 10.2.81.218:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:234)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:207)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.lambda$null$0(LettucePoolingConnectionProvider.java:97)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:209)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:199)
+	at org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:58)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:889)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:424)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:349)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:122)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:117)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:103)
+	... 51 common frames omitted
+Caused by: io.netty.channel.ConnectTimeoutException: connection timed out: /10.2.81.218:6379
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe$1.run(AbstractNioChannel.java:261)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:139)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:510)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:518)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2021-04-13 20:51:44.048 [main] INFO  org.jeecg.JeecgApplication:55 - Starting JeecgApplication on DESKTOP-H83TRA9 with PID 3840 (D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-system\target\classes started by SinoTruk in D:\work\zqbaobiao\zgzq\PiIF)
+2021-04-13 20:51:44.053 [main] INFO  org.jeecg.JeecgApplication:655 - The following profiles are active: dev
+2021-04-13 20:51:47.038 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner:44 - No MyBatis mapper was found in '[org.jeecg.boot.mapper]' package. Please check your configuration.
+2021-04-13 20:51:47.555 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:244 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-04-13 20:51:47.560 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:126 - Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-13 20:51:47.716 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:182 - Finished Spring Data repository scanning in 136ms. Found 0 repository interfaces.
+2021-04-13 20:51:48.317 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'shiroConfig' of type [org.jeecg.config.ShiroConfig$$EnhancerBySpringCGLIB$$1baaf654] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:48.410 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'shiroRealm' of type [org.jeecg.modules.shiro.authc.ShiroRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.094 [main] INFO  org.jeecg.config.ShiroConfig:227 - ===============(1)创建缓存管理器RedisCacheManager
+2021-04-13 20:51:49.096 [main] INFO  org.jeecg.config.ShiroConfig:245 - ===============(2)创建RedisManager,连接Redis..URL= 10.2.81.218:6379
+2021-04-13 20:51:49.103 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisManager' of type [org.crazycake.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.110 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.148 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.202 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.443 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'spring.datasource.dynamic-com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.451 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration' of type [com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration$$EnhancerBySpringCGLIB$$6533fd8f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.463 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'dsProcessor' of type [com.baomidou.dynamic.datasource.processor.DsHeaderProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.471 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'dynamicDatasourceAnnotationAdvisor' of type [com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.498 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'spring.redis-org.springframework.boot.autoconfigure.data.redis.RedisProperties' of type [org.springframework.boot.autoconfigure.data.redis.RedisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.511 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration' of type [org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.625 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'lettuceClientResources' of type [io.lettuce.core.resource.DefaultClientResources] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.735 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisConnectionFactory' of type [org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.760 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'redisConfig' of type [org.jeecg.config.RedisConfig$$EnhancerBySpringCGLIB$$66797d9e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.810 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$ebe6a6e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:49.817 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330 - Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-13 20:51:50.284 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer:92 - Tomcat initialized with port(s): 9995 (http)
+2021-04-13 20:51:50.298 [main] INFO  org.apache.coyote.http11.Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-9995"]
+2021-04-13 20:51:50.299 [main] INFO  org.apache.catalina.core.StandardService:173 - Starting service [Tomcat]
+2021-04-13 20:51:50.300 [main] INFO  org.apache.catalina.core.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-04-13 20:51:50.799 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/jeecg-boot]:173 - Initializing Spring embedded WebApplicationContext
+2021-04-13 20:51:50.800 [main] INFO  org.springframework.web.context.ContextLoader:284 - Root WebApplicationContext: initialization completed in 6665 ms
+2021-04-13 20:51:51.124 [main] INFO  c.b.dynamic.datasource.DynamicDataSourceCreator:113 - 动态数据源-检测到druid存在,如配置中未指定type,druid会默认配置
+2021-04-13 20:51:51.631 [main] INFO  com.alibaba.druid.pool.DruidDataSource:1003 - {dataSource-1,master} inited
+2021-04-13 20:51:51.750 [main] INFO  com.alibaba.druid.pool.DruidDataSource:1003 - {dataSource-2,multi-datasource1} inited
+2021-04-13 20:51:51.751 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:203 - 初始共加载 2 个数据源
+2021-04-13 20:51:51.752 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:142 - 动态数据源-加载 multi-datasource1 成功
+2021-04-13 20:51:51.753 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:142 - 动态数据源-加载 master 成功
+2021-04-13 20:51:51.754 [main] INFO  c.b.dynamic.datasource.DynamicRoutingDataSource:212 - 当前的默认数据源是单数据源，数据源名为 master
+2021-04-13 20:51:55.724 [main] INFO  org.quartz.impl.StdSchedulerFactory:1208 - Using default implementation for ThreadExecutor
+2021-04-13 20:51:55.739 [main] INFO  org.quartz.core.SchedulerSignalerImpl:61 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-04-13 20:51:55.740 [main] INFO  org.quartz.core.QuartzScheduler:229 - Quartz Scheduler v.2.3.1 created.
+2021-04-13 20:51:55.744 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:672 - Using db table-based data access locking (synchronization).
+2021-04-13 20:51:55.747 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:145 - JobStoreCMT initialized.
+2021-04-13 20:51:55.748 [main] INFO  org.quartz.core.QuartzScheduler:294 - Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is not clustered.
+
+2021-04-13 20:51:55.749 [main] INFO  org.quartz.impl.StdSchedulerFactory:1362 - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-04-13 20:51:55.749 [main] INFO  org.quartz.impl.StdSchedulerFactory:1366 - Quartz scheduler version: 2.3.1
+2021-04-13 20:51:55.749 [main] INFO  org.quartz.core.QuartzScheduler:2293 - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5f9a8ddc
+2021-04-13 20:52:18.026 [main] WARN  org.jeecg.common.es.JeecgElasticsearchTemplate:61 - ElasticSearch 服务连接失败，原因：配置未通过。可能是BaseURL未配置或配置有误，也可能是Elasticsearch服务未启动。接下来将会拒绝执行任何方法！
+2021-04-13 20:52:19.784 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-04-13 20:52:20.018 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping:69 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-04-13 20:52:20.387 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor:171 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-13 20:52:21.329 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler:171 - Initializing ExecutorService 'taskScheduler'
+2021-04-13 20:52:21.463 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper:160 - Context refreshed
+2021-04-13 20:52:21.483 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper:163 - Found 5 custom documentation plugin(s)
+2021-04-13 20:52:21.555 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:52:21.684 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.685 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.703 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.704 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.709 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.710 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.714 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.714 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.718 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.718 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.722 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.723 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.735 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.736 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.739 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: selectINTableUsingGET_1
+2021-04-13 20:52:21.741 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.742 [main] WARN  s.d.s.w.readers.parameter.ParameterDataTypeReader:92 - Trying to infer dataType java.lang.String[]
+2021-04-13 20:52:21.767 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_1
+2021-04-13 20:52:21.770 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: taskExecutionUsingGET_1
+2021-04-13 20:52:21.774 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: ProjectRiskTableUsingGET_1
+2021-04-13 20:52:21.777 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_2
+2021-04-13 20:52:21.781 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: SectorRiskFactorUsingGET_1
+2021-04-13 20:52:21.789 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: SectorRiskFactorUsingGET_2
+2021-04-13 20:52:21.796 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: pertUsingGET_3
+2021-04-13 20:52:21.821 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:52:21.835 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:52:21.848 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:52:21.861 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner:41 - Scanning for api listing references
+2021-04-13 20:52:21.964 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: addUsingPOST_1
+2021-04-13 20:52:21.966 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: deleteUsingDELETE_1
+2021-04-13 20:52:21.971 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: deleteBatchUsingDELETE_1
+2021-04-13 20:52:21.975 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: editUsingPUT_1
+2021-04-13 20:52:21.979 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: queryByIdUsingGET_1
+2021-04-13 20:52:21.997 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator:40 - Generating unique operation named: queryPageListUsingGET_1
+2021-04-13 20:52:22.029 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean:727 - Starting Quartz Scheduler now
+2021-04-13 20:52:22.165 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:866 - Freed 0 triggers from 'acquired' / 'blocked' state.
+2021-04-13 20:52:22.173 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:876 - Recovering 0 jobs that were in-progress at the time of the last shut-down.
+2021-04-13 20:52:22.174 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:889 - Recovery complete.
+2021-04-13 20:52:22.176 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:896 - Removed 0 'complete' triggers.
+2021-04-13 20:52:22.179 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore:901 - Removed 0 stale fired job entries.
+2021-04-13 20:52:22.181 [main] INFO  org.quartz.core.QuartzScheduler:547 - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-04-13 20:52:22.213 [main] INFO  org.apache.coyote.http11.Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-9995"]
+2021-04-13 20:52:22.245 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer:204 - Tomcat started on port(s): 9995 (http) with context path '/jeecg-boot'
+2021-04-13 20:52:22.249 [main] INFO  org.jeecg.JeecgApplication:61 - Started JeecgApplication in 39.071 seconds (JVM running for 41.306)
+2021-04-13 20:52:22.257 [main] INFO  org.jeecg.JeecgApplication:36 - 
+----------------------------------------------------------
+	Application Jeecg-Boot is running! Access URLs:
+	Local: 		http://localhost:9995/jeecg-boot/
+	External: 	http://169.254.42.10:9995/jeecg-boot/
+	swagger-ui: 		http://169.254.42.10:9995/jeecg-boot/doc.html
+----------------------------------------------------------
+2021-04-13 20:52:22.858 [RMI TCP Connection(1)-169.254.42.10] INFO  io.lettuce.core.EpollProvider:68 - Starting without optional epoll library
+2021-04-13 20:52:22.861 [RMI TCP Connection(1)-169.254.42.10] INFO  io.lettuce.core.KqueueProvider:70 - Starting without optional kqueue library
+2021-04-13 20:52:23.583 [RMI TCP Connection(3)-169.254.42.10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/jeecg-boot]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-13 20:52:23.583 [RMI TCP Connection(3)-169.254.42.10] INFO  org.springframework.web.servlet.DispatcherServlet:525 - Initializing Servlet 'dispatcherServlet'
+2021-04-13 20:52:23.605 [RMI TCP Connection(3)-169.254.42.10] INFO  org.springframework.web.servlet.DispatcherServlet:547 - Completed initialization in 21 ms
+2021-04-13 20:52:33.959 [RMI TCP Connection(1)-169.254.42.10] WARN  o.s.boot.actuate.redis.RedisHealthIndicator:87 - Redis health check failed
+org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 10.2.81.218:6379
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:109)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1187)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1168)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:941)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:352)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:132)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:95)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:82)
+	at org.springframework.boot.actuate.redis.RedisHealthIndicator.doHealthCheck(RedisHealthIndicator.java:55)
+	at org.springframework.boot.actuate.health.AbstractHealthIndicator.health(AbstractHealthIndicator.java:82)
+	at org.springframework.boot.actuate.health.HealthIndicator.getHealth(HealthIndicator.java:37)
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:80)
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:38)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:106)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getAggregateHealth(HealthEndpointSupport.java:116)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:103)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:81)
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:68)
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:74)
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:279)
+	at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:77)
+	at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:60)
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:121)
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:96)
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801)
+	at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1468)
+	at javax.management.remote.rmi.RMIConnectionImpl.access$300(RMIConnectionImpl.java:76)
+	at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1309)
+	at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1401)
+	at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:357)
+	at sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:573)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:834)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:688)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:687)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 10.2.81.218:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:234)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:207)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.lambda$null$0(LettucePoolingConnectionProvider.java:97)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:209)
+	at io.lettuce.core.support.ConnectionPoolSupport$RedisPooledObjectFactory.create(ConnectionPoolSupport.java:199)
+	at org.apache.commons.pool2.BasePooledObjectFactory.makeObject(BasePooledObjectFactory.java:58)
+	at org.apache.commons.pool2.impl.GenericObjectPool.create(GenericObjectPool.java:889)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:424)
+	at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:349)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:122)
+	at io.lettuce.core.support.ConnectionPoolSupport$1.borrowObject(ConnectionPoolSupport.java:117)
+	at org.springframework.data.redis.connection.lettuce.LettucePoolingConnectionProvider.getConnection(LettucePoolingConnectionProvider.java:103)
+	... 52 common frames omitted
+Caused by: io.netty.channel.ConnectTimeoutException: connection timed out: /10.2.81.218:6379
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe$1.run(AbstractNioChannel.java:261)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:139)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:510)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:518)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2021-04-13 20:53:01.943 [http-nio-9995-exec-10] ERROR o.jeecg.common.exception.JeecgBootExceptionHandler:57 - 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ZLMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ZLMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.*         /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ZLMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ZLMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.*         /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:89)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy145.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:158)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:76)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:62)
+	at com.sun.proxy.$Proxy240.SectorRiskFactor(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy241.SectorRiskFactor(Unknown Source)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl.SectorRiskFactor(ZLServiceImpl.java:135)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$FastClassBySpringCGLIB$$dfbc3b8a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$EnhancerBySpringCGLIB$$3d287dbc.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$FastClassBySpringCGLIB$$dfbc3b8a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$EnhancerBySpringCGLIB$$7f769bf6.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController.SectorRiskFactor(ZlRiskController.java:27)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController$$FastClassBySpringCGLIB$$c832ec33.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)
+	at org.jeecg.modules.system.aspect.DictAspect.doAround(DictAspect.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController$$EnhancerBySpringCGLIB$$b8986859.SectorRiskFactor(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:84)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at com.alibaba.druid.wall.WallFilter.checkInternal(WallFilter.java:808)
+	at com.alibaba.druid.wall.WallFilter.connection_prepareStatement(WallFilter.java:259)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.filter.FilterAdapter.connection_prepareStatement(FilterAdapter.java:930)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_prepareStatement(FilterEventAdapter.java:122)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.prepareStatement(ConnectionProxyImpl.java:341)
+	at com.alibaba.druid.pool.DruidPooledConnection.prepareStatement(DruidPooledConnection.java:349)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.ConnectionLogger.invoke(ConnectionLogger.java:55)
+	at com.sun.proxy.$Proxy324.prepareStatement(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.instantiateStatement(PreparedStatementHandler.java:86)
+	at org.apache.ibatis.executor.statement.BaseStatementHandler.prepare(BaseStatementHandler.java:88)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.prepare(RoutingStatementHandler.java:59)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor.intercept(PaginationInterceptor.java:176)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy323.prepare(Unknown Source)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.prepareStatement(MybatisSimpleExecutor.java:94)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doQuery(MybatisSimpleExecutor.java:66)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy322.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 144 common frames omitted
+2021-04-13 20:54:04.189 [http-nio-9995-exec-3] ERROR o.jeecg.common.exception.JeecgBootExceptionHandler:57 - 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ZLMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ZLMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.*         /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ZLMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ZLMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.*         /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE         /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:89)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy145.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:158)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:76)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:62)
+	at com.sun.proxy.$Proxy240.SectorRiskFactor(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy241.SectorRiskFactor(Unknown Source)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl.SectorRiskFactor(ZLServiceImpl.java:135)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$FastClassBySpringCGLIB$$dfbc3b8a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$EnhancerBySpringCGLIB$$3d287dbc.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$FastClassBySpringCGLIB$$dfbc3b8a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.ZLServiceImpl$$EnhancerBySpringCGLIB$$7f769bf6.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController.SectorRiskFactor(ZlRiskController.java:27)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController$$FastClassBySpringCGLIB$$c832ec33.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)
+	at org.jeecg.modules.system.aspect.DictAspect.doAround(DictAspect.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.controller.ZlRiskController$$EnhancerBySpringCGLIB$$b8986859.SectorRiskFactor(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:84)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+        /*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+        /*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at com.alibaba.druid.wall.WallFilter.checkInternal(WallFilter.java:808)
+	at com.alibaba.druid.wall.WallFilter.connection_prepareStatement(WallFilter.java:259)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.filter.FilterAdapter.connection_prepareStatement(FilterAdapter.java:930)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_prepareStatement(FilterEventAdapter.java:122)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.prepareStatement(ConnectionProxyImpl.java:341)
+	at com.alibaba.druid.pool.DruidPooledConnection.prepareStatement(DruidPooledConnection.java:349)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.ConnectionLogger.invoke(ConnectionLogger.java:55)
+	at com.sun.proxy.$Proxy324.prepareStatement(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.instantiateStatement(PreparedStatementHandler.java:86)
+	at org.apache.ibatis.executor.statement.BaseStatementHandler.prepare(BaseStatementHandler.java:88)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.prepare(RoutingStatementHandler.java:59)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor.intercept(PaginationInterceptor.java:176)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy323.prepare(Unknown Source)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.prepareStatement(MybatisSimpleExecutor.java:94)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doQuery(MybatisSimpleExecutor.java:66)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy322.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 144 common frames omitted
+2021-04-13 20:54:24.776 [http-nio-9995-exec-4] ERROR o.jeecg.common.exception.JeecgBootExceptionHandler:57 - 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ReportMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ReportMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.* /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE   /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+### The error may exist in file [D:\work\zqbaobiao\zgzq\PiIF\jeecg-boot\jeecg-boot-module-P2020052\target\classes\org\jeecg\modules\P2020052\mapper\xml\ReportMapper.xml]
+### The error may involve org.jeecg.modules.P2020052.mapper.ReportMapper.SectorRiskFactor
+### The error occurred while executing a query
+### SQL: SELECT         a.*,         b.* /*        ,         c.**/         FROM         (         SELECT         stproject_instanceinindicator.plan_activity_ref_id,         stproject_instanceinindicator.weights,         stproject_instanceotindicator.standard_deviation_value,         stproject_instanceotindicator.standard_difficulty_value,         stproject_instanceotindicator.deviation_report,         stproject_instanceotindicator.difficulty_report,         stproject_instanceotindicator.breadth,         stproject_instanceotindicator.criticality         FROM         stproject_instanceinindicator,         stproject_instanceotindicator         WHERE         stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE         AND stproject_instanceinindicator.plan_activity_ref_id IN (         SELECT         id         FROM         piplan_activity pa         WHERE         piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE   /*      piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   )         ) a,         (         SELECT         id,         piplan_activity.actual_work_qty,         piplan_activity.standard_work_qty,         piplan_activity.         FROM         piplan_activity pa         WHERE          piplan_activity.id IN (         SELECT         piresource_assignment.plannable_ref_id         FROM         piresource_assignment         WHERE /*        piresource_assignment.actual_start_date >= ?         AND piresource_assignment.actual_end_date <= ?         AND */         piresource_assignment.rsrc_ref_id IN (         SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in          (               ?          )          )         )                       and  pa.actual_start_date between  ?  and ?                   ) b
+### Cause: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+; uncategorized SQLException; SQL state [null]; error code [0]; sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b; nested exception is java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:89)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy145.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:158)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:76)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:62)
+	at com.sun.proxy.$Proxy232.SectorRiskFactor(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy233.SectorRiskFactor(Unknown Source)
+	at org.jeecg.modules.P2020052.service.impl.reportServiceImpl.SectorRiskFactor(reportServiceImpl.java:79)
+	at org.jeecg.modules.P2020052.service.impl.reportServiceImpl$$FastClassBySpringCGLIB$$6dfed0c8.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.reportServiceImpl$$EnhancerBySpringCGLIB$$27607436.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.service.impl.reportServiceImpl$$FastClassBySpringCGLIB$$6dfed0c8.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at com.baomidou.dynamic.datasource.aop.DynamicDataSourceAnnotationInterceptor.invoke(DynamicDataSourceAnnotationInterceptor.java:52)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.service.impl.reportServiceImpl$$EnhancerBySpringCGLIB$$59eab504.SectorRiskFactor(<generated>)
+	at org.jeecg.modules.P2020052.controller.ReportController.SectorRiskFactor(ReportController.java:44)
+	at org.jeecg.modules.P2020052.controller.ReportController$$FastClassBySpringCGLIB$$8a0c8086.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)
+	at org.jeecg.modules.system.aspect.DictAspect.doAround(DictAspect.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at org.jeecg.modules.P2020052.controller.ReportController$$EnhancerBySpringCGLIB$$b42ef132.SectorRiskFactor(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.SecurityBasicAuthFilter.doFilter(SecurityBasicAuthFilter.java:84)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.xiaoymin.swaggerbootstrapui.filter.ProductionSecurityFilter.doFilter(ProductionSecurityFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:124)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.sql.SQLException: sql injection violation, comment not allow : SELECT
+        a.*,
+        b.*
+/*        ,
+        c.**/
+        FROM
+        (
+        SELECT
+        stproject_instanceinindicator.plan_activity_ref_id,
+        stproject_instanceinindicator.weights,
+        stproject_instanceotindicator.standard_deviation_value,
+        stproject_instanceotindicator.standard_difficulty_value,
+        stproject_instanceotindicator.deviation_report,
+        stproject_instanceotindicator.difficulty_report,
+        stproject_instanceotindicator.breadth,
+        stproject_instanceotindicator.criticality
+        FROM
+        stproject_instanceinindicator,
+        stproject_instanceotindicator
+        WHERE
+        stproject_instanceinindicator.ot_code = stproject_instanceotindicator.CODE
+        AND stproject_instanceinindicator.plan_activity_ref_id IN (
+        SELECT
+        id
+        FROM
+        piplan_activity pa
+        WHERE
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+  /*      piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN ( SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        )
+        ) a,
+        (
+        SELECT
+        id,
+        piplan_activity.actual_work_qty,
+        piplan_activity.standard_work_qty,
+        piplan_activity.
+        FROM
+        piplan_activity pa
+        WHERE
+
+        piplan_activity.id IN (
+        SELECT
+        piresource_assignment.plannable_ref_id
+        FROM
+        piresource_assignment
+        WHERE
+/*        piresource_assignment.actual_start_date >= ?
+        AND piresource_assignment.actual_end_date <= ?
+        AND */
+        piresource_assignment.rsrc_ref_id IN (
+        SELECT piresource.id FROM piresource WHERE piresource.user_ref_id in
+         (  
+            ?
+         ) 
+        )
+        )
+         
+            and  pa.actual_start_date between  ?  and ?
+         
+        ) b
+	at com.alibaba.druid.wall.WallFilter.checkInternal(WallFilter.java:808)
+	at com.alibaba.druid.wall.WallFilter.connection_prepareStatement(WallFilter.java:259)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.filter.FilterAdapter.connection_prepareStatement(FilterAdapter.java:930)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_prepareStatement(FilterEventAdapter.java:122)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.prepareStatement(ConnectionProxyImpl.java:341)
+	at com.alibaba.druid.pool.DruidPooledConnection.prepareStatement(DruidPooledConnection.java:349)
+	at sun.reflect.GeneratedMethodAccessor300.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.ConnectionLogger.invoke(ConnectionLogger.java:55)
+	at com.sun.proxy.$Proxy324.prepareStatement(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.instantiateStatement(PreparedStatementHandler.java:86)
+	at org.apache.ibatis.executor.statement.BaseStatementHandler.prepare(BaseStatementHandler.java:88)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.prepare(RoutingStatementHandler.java:59)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor.intercept(PaginationInterceptor.java:176)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy323.prepare(Unknown Source)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.prepareStatement(MybatisSimpleExecutor.java:94)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doQuery(MybatisSimpleExecutor.java:66)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy322.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 144 common frames omitted

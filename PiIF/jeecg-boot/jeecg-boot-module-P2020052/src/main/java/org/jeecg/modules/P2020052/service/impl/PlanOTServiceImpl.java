@@ -174,11 +174,15 @@ public class PlanOTServiceImpl implements PlanOTService {
         //返回数据
         List result = new ArrayList();
         for (long i = 1; i <= week; i++) {
+            // 每周开始时间
+            long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
+            // 每周结束时间
+            long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
             for (PiplanActivityVo act : list) {
                 // 每周开始时间
-                long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
+                //long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
                 // 每周结束时间
-                long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
+                //long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
                 String taskStr = act.getByTime();
                 long taskLong = taskStr == null ? 0 : formatter.parse(taskStr).getTime();
                 if (taskLong >= startLong && taskLong < endLong) {

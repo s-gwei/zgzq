@@ -12,4 +12,5 @@ public interface ZLMapper {
     List<PiplanActivityVo> pertTable(@Param("activeId") String activeId);
     List<ProjectRiskVo> ProjectRiskTable(@Param("projectId")String projectId);
     PiplanActivityVo projectWeekCycle(@Param("projectId")String id);
+    List<GroupRiskVo> SectorRiskFactor(@Param("userId") String[] userId, @Param("startTime")String startTime, @Param("endTime")String endTime);
 }

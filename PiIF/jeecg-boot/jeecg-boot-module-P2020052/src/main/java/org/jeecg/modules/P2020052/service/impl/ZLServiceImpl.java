@@ -127,4 +127,95 @@ public class ZLServiceImpl implements ZLService {
         }
         return result;
     }
+    @Override
+    public List SectorRiskFactor(String userIds, String name, String startTime, String endTime) throws ParseException {
+        String[] userId = userIds.split(",");
+        startTime = startTime + " 00:00:00";
+        endTime = endTime + " 23:59:59";
+        List<GroupRiskVo> list = ZLMapper.SectorRiskFactor(userId, startTime, endTime);
+        // 计算时间周数
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        long start = formatter.parse(startTime).getTime() / (1000 * 60 * 60 * 24);
+        long end = formatter.parse(endTime).getTime() / (1000 * 60 * 60 * 24);
+        double weeks = (end - start) / (7.0);
+        long week = (long) Math.ceil(weeks);
+        DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
+        //返回数据
+        List result = new ArrayList();
+        for (long i = 1; i <= week; i++) {
+            Map<String, Object> staffMap = new HashMap<String, Object>();
+            Map<String, Object> markMap = new HashMap<String, Object>();
+            //每周项目风险系数之和
+            // 输出质量风险之和
+            Double sum = 0.0;
+            // 基准之和
+            Double sumBenchmark = 0.0;
+            // 计划工时之和
+            Double planSum = 0.0;
+            // 实际工时之和
+            Double actualSum = 0.0;
+            for (GroupRiskVo groupRiskVo : list) {
+                // 每周开始时间
+                long startLong = formatter.parse(startTime).getTime() + (i - 1) * 1000 * 60 * 60 * 24 * 7;
+                // 每周结束时间
+                long endLong = formatter.parse(startTime).getTime() + i * 1000 * 60 * 60 * 24 * 7;
+                String taskStr = groupRiskVo.getActualStartDate();
+                long taskLong = taskStr == null ? 0 : formatter.parse(taskStr).getTime();
+                if (taskLong >= startLong && taskLong < endLong) {
+                    // 计算输出质量风险
+                    double reportingDeviations = groupRiskVo.getDeviationReport()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getDeviationReport());
+                    double standardDeviation = groupRiskVo.getStandardDeviationValue()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getStandardDeviationValue());
+                    double reportingDifficulty = groupRiskVo.getDifficultyReport()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getDifficultyReport());
+                    double standardDifficulty = groupRiskVo.getStandardDifficultyValue()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getStandardDifficultyValue());
+                    String OutputQualityRisk = df.format(((abs(reportingDeviations - standardDeviation)) * 10 + 1)
+                            * ((abs(reportingDifficulty - standardDifficulty)) * 10 + 1));
+                    double RiskDouble = Double.parseDouble(OutputQualityRisk);
+
+                    double span = groupRiskVo.getBreadth()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getBreadth());
+                    double Criticality = groupRiskVo.getCriticality()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getCriticality());
+                    // 计算项目风险指标
+                    double ProjectRiskIndicators = (RiskDouble - 1) * span * Criticality;
+                    // 计算基准
+                    double ProjectRiskBenchmark = RiskDouble * span * Criticality;
+                    // 输出质量风险之和
+                    sum += ProjectRiskIndicators;
+                    // 基准之和
+                    sumBenchmark += ProjectRiskBenchmark;
+                    // 计划工时
+                    double plan = groupRiskVo.getStandardWorkQty()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getStandardWorkQty());
+
+                    //Double plan = Double.parseDouble(map.get("计划工时").toString());
+                    planSum += plan;
+                    // 实际工时
+                    double actual = groupRiskVo.getActualWorkQty()
+                            == "" ? 0 : Double.parseDouble(groupRiskVo.getActualWorkQty());
+                    //Double actual = Double.parseDouble(map.get("实际工时").toString());
+                    actualSum += actual;
+                }
+            }
+            // 员工姓名
+            staffMap.put("name", name);
+            staffMap.put("week", i);
+            // 员工基准
+            markMap.put("name", name + "基准");
+            markMap.put("week", i);
+            // 这一周员工风险系数之和
+            staffMap.put("sum", df.format(sum));
+            // 本周员工基准之和
+            markMap.put("sumBenchmark", df.format(sumBenchmark));
+            String ratio = df.format(planSum / (actualSum == 0 ? 1 : actualSum));
+            staffMap.put("ratio", Double.parseDouble(ratio));
+            markMap.put("ratio", Double.parseDouble(ratio));
+            result.add(staffMap);
+            result.add(markMap);
+        }
+        return result;
+    }
 }
