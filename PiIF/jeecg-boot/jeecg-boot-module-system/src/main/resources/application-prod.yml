@@ -173,9 +173,10 @@ jeecg:
     #webapp文件路径
     webapp: C://webapp
   #短信秘钥
+  #短信秘钥
   sms:
-    accessKeyId: LTAI4FeKmqE9h1CwXmQMMc59
-    accessKeySecret: oOmmpB4tkhqbmgZM5z4CT2qJC7sXfB
+    accessKeyId: ??
+    accessKeySecret: ??
   shiro:
     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
   #阿里云oss存储配置
