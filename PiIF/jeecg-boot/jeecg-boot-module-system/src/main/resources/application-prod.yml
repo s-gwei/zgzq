@@ -101,10 +101,7 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://192.168.111.137:3306/pilf?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
-          username: root
-          password: 123456
-          driver-class-name: com.mysql.jdbc.Driver
+
 
 
           # 多数据源配置
@@ -174,8 +171,8 @@ jeecg:
     webapp: C://webapp
   #短信秘钥
   sms:
-    accessKeyId: LTAI4FeKmqE9h1CwXmQMMc59
-    accessKeySecret: oOmmpB4tkhqbmgZM5z4CT2qJC7sXfB
+    accessKeyId: ??
+    accessKeySecret: ??
   shiro:
     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
   #阿里云oss存储配置
