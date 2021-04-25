@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jeecg.modules.P2020052.pojo.*;
 import org.jeecg.modules.P2020052.service.HomeTableService;
 import org.jeecg.modules.P2020052.service.PlanOTService;
+import org.jeecg.modules.P2020052.service.ScheduleTaskService;
 import org.jeecg.modules.P2020052.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,9 @@ public class HomeTableController {
 
     @Autowired
     PlanOTService planOTService;
+
+    @Autowired
+    ScheduleTaskService scheduleTaskService;
 
     /**
      * 项目类别展示
@@ -73,19 +77,18 @@ public class HomeTableController {
     @GetMapping(value = "/WorkDelayTable")
     @ApiOperation(value = "工作任务延期报表")
     public Result WorkDelayTable() throws ParseException {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-        String end = df.format(new Date());
-        //过去一月
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.MONTH, -2);
-        Date m = c.getTime();
-        String start = df.format(m);
-        String[] time = {start,end};
-        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time,null,null,null);
+        List<PiplanActivityVo> list = homeTableService.WorkDelayTable();
         return Result.ok(list);
     }
-
+    /**
+     * 大屏展示工作任务延期
+     *
+     */
+    @GetMapping(value = "/WorkDelayTable1")
+    @ApiOperation(value = "工作任务延期定时任务")
+    public void WorkDelayTable1() throws ParseException {
+        scheduleTaskService.WorkDelayTable();
+    }
     /**
      * 项目风险预防措施
      *

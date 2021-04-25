@@ -6,6 +6,7 @@ import org.jeecg.modules.P2020052.mapper.ScheduleTaskMapper;
 import org.jeecg.modules.P2020052.pojo.PiplanActivityVo;
 import org.jeecg.modules.P2020052.pojo.ProjectRiskVo;
 import org.jeecg.modules.P2020052.pojo.TaskVo;
+import org.jeecg.modules.P2020052.service.PlanOTService;
 import org.jeecg.modules.P2020052.service.ScheduleTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -27,6 +28,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    PlanOTService planOTService;
 
     @Override
     public void taskExecution() {
@@ -282,7 +286,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                 String proName = scheduleTaskMapper.getProName(projectId);
                 map.put("proName", proName);
                 map.put("proName", "");
-                map.put("projectId", projectIds);
+                map.put("projectId", projectId);
                 map.put("OutputQualityRiskSum", 0);
                 redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
                 continue;
@@ -308,7 +312,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                     //项目名称
                     String proName = projectRiskVo.getName() == "" ? "0.5" : projectRiskVo.getName();
                     map.put("proName", proName);
-                    map.put("projectId", projectRiskVo.getProjectId());
+                    map.put("projectId",projectId);
                 }
                 //标准偏差
                 double standardDeviation = projectRiskVo.getStandardDeviationValue() == "" ?
@@ -331,6 +335,23 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
             map.put("OutputQualityRiskSum", Double.parseDouble(df.format(OutputQualityRiskSum)));
             redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
         }
+
+    }
+
+    @Override
+    public void WorkDelayTable() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        String end = df.format(new Date());
+        //过去一月
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, -3);
+//        c.add(Calendar.DAY_OF_MONTH, -7);
+        Date m = c.getTime();
+        String start = df.format(m);
+        String[] time = {start,end};
+        List<PiplanActivityVo> list = planOTService.WorkDelayTable(time,null,null,null);
+        redisTemplate.opsForValue().set("WorkDelayTable", list, 7, TimeUnit.DAYS);
 
     }
 

@@ -910,27 +910,12 @@ public class reportServiceImpl implements ReportService {
 //                new ArrayBlockingQueue<Runnable>(100), new ThreadPoolExecutor.CallerRunsPolicy());
         List list = new ArrayList();
         for (String actId : actIds) {
-//            Future<List> submit = executor.submit(new Callable<List>() {
-//                @Override
-//                public List call() throws Exception {
-//                    return redisGet(projectId, actId);
-//                }
-//            });
             Object join = redisGet(projectId, actId);
-//            try {
-//                join = submit.get();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (ExecutionException e) {
-//                e.printStackTrace();
-//            }
             if (join != null) {
                 list.add(join);
             }
         }
         System.out.println(list.size());
-
-//        executor.shutdown();
         return list;
     }
 

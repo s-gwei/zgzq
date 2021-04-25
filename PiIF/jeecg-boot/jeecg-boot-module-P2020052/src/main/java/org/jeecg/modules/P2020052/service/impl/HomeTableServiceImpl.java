@@ -5,6 +5,7 @@ import org.jeecg.modules.P2020052.mapper.HomeTableMapper;
 import org.jeecg.modules.P2020052.pojo.*;
 import org.jeecg.modules.P2020052.service.HomeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -19,6 +20,10 @@ public class HomeTableServiceImpl implements HomeTableService {
 
     @Autowired
     HomeTableMapper homeTableMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
     public Map<String,Object> projectType() {
         Map map = new HashMap();
@@ -191,6 +196,12 @@ public class HomeTableServiceImpl implements HomeTableService {
     @Override
     public List<RiskVo> riskPreventionetails(int state) {
         return homeTableMapper.riskPreventionetails(state);
+    }
+
+    @Override
+    public List<PiplanActivityVo> WorkDelayTable() {
+        List<PiplanActivityVo> list = (List<PiplanActivityVo>) redisTemplate.opsForValue().get("WorkDelayTable");
+        return list;
     }
 
 

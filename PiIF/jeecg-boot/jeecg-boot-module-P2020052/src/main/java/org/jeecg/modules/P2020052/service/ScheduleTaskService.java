@@ -9,4 +9,6 @@ public interface ScheduleTaskService {
     void taskExecution();
 
     void ProjectRiskTable() throws ParseException;
+
+    void WorkDelayTable() throws ParseException;
 }

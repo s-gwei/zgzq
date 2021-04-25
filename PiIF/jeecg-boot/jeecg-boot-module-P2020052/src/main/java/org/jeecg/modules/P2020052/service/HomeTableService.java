@@ -22,4 +22,6 @@ public interface HomeTableService {
     List<RiskVo> selectMeaTable(String startTime, String endTime);
 
     List<RiskVo> riskPreventionetails(int state);
+
+    List<PiplanActivityVo> WorkDelayTable();
 }

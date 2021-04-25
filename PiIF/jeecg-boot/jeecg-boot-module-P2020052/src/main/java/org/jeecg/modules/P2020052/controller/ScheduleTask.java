@@ -37,4 +37,11 @@ public class ScheduleTask  {
         System.out.println("任务执行。。。。cron");
     }
 
+
+    @Scheduled(cron ="${cron}")
+    public void WorkDelayTable() throws ParseException {
+        scheduleTaskService.WorkDelayTable();
+        System.out.println("任务执行。。。。cron");
+    }
+
 }

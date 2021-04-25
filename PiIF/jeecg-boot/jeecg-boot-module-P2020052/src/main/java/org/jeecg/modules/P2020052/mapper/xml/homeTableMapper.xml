@@ -35,12 +35,14 @@
     </resultMap>
     <select id="projectType" resultMap="HomeTableMap">
 
+
 SELECT
 	*
 FROM
-	( SELECT count( piproject.id ) AS count, piproject.ltdtype_definition_ref_id AS id FROM piproject ) a,
-	( SELECT zh_cn AS NAME, holder_reference_id FROM ltdlocalizable_property_value GROUP BY zh_cn, holder_reference_id ) b
-WHERE
+	(
+SELECT count( piproject.id ) AS count, piproject.ltdtype_definition_ref_id AS id FROM piproject group by piproject.ltdtype_definition_ref_id) a left join
+	( SELECT zh_cn AS NAME, holder_reference_id FROM ltdlocalizable_property_value where zh_cn != '' GROUP BY zh_cn, holder_reference_id ) b
+on
 	a.id = b.holder_reference_id
 </select>
 
