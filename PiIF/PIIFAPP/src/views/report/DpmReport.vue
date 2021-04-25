@@ -906,7 +906,7 @@ export default {
            const width = this.screenWidth * 0.295,
              height = this.screenHeight * 0.5 - 80 ;
         data.map(function(item){
-              item["weekLang"] = item.week
+              item["weekLang"] = String(item.week)
               // item["weekLang"] = "第" + item.week + "周"
               // if(item.sumBenchmark)
               if(item.hasOwnProperty('sumBenchmark')){
