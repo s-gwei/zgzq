@@ -906,7 +906,8 @@ export default {
            const width = this.screenWidth * 0.295,
              height = this.screenHeight * 0.5 - 80 ;
         data.map(function(item){
-              item["weekLang"] = "第" + item.week + "周"
+              item["weekLang"] = item.week
+              // item["weekLang"] = "第" + item.week + "周"
               // if(item.sumBenchmark)
               if(item.hasOwnProperty('sumBenchmark')){
                 item["sum"] = item.sumBenchmark
@@ -1051,12 +1052,12 @@ export default {
                }
              })
              .tooltip('cumulativeRisk*benchmarkRisk')
-             .adjust([
-                {
-                  type: 'dodge',
-                  marginRatio: 0
-                },
-             ]);
+            //  .adjust([
+            //     {
+            //       type: 'dodge',
+            //       marginRatio: 0
+            //     },
+            //  ]);
           //  chart
           //    .line()
           //    .position('weekLang*ratio')
