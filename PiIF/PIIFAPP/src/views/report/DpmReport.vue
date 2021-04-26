@@ -21,14 +21,14 @@
                     <div class="table">
                     <div class="chartTitle">
                         <i></i>
-                        <span class="proItem">项目类别名称</span>
+                        <span class="proItem">项目类别</span>
                         <span>数量</span>
                         <span>百分比</span>
                     </div>
                     <div class="chartCon">
-                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index" @click="toItemSelect(item)">
+                        <div class="chartConPer" v-for="(item,index) in categorySum" :key="index" @click="toItemSelect(item,'type')">
                             <i :class="item.itemName" :style="{background: color[index]}"></i>
-                            <span class="proItem">{{item.name}}</span>
+                            <span class="proItem" :style="{color: color[index]}">{{item.name}}</span>
                             <span>{{item.count}}</span>
                             <span>{{getDateToFixed(item.percentage * 100)}}</span>
                         </div>
@@ -49,7 +49,7 @@
                          </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(item,index) in levelData" :key="index">
+                        <tr v-for="(item,index) in levelData" :key="index" @click="toItemSelect(item,'importance')">
                           <td>
                             <div>{{item.name}} :</div>
                           </td>
@@ -584,8 +584,9 @@ export default {
               padding: [30, 45, 30, 75]
           });
           data.map(function(item){
+            console.log(item.taskType,item.activityId,item);
               // item["toolTitle"] = item.activityName
-              item["sexuality"] = item.taskType === "normal" ? "正常进行任务" : (item.taskType === "finished" ? "已完成任务" :item.taskType === "overdue" ? "逾期未完成" : (item.taskType === "isoverdue" ? "可能逾期任务" : (item.taskType === "red" ? "逾期已完成" : "" )))
+              item["sexuality"] = item.taskType === "normal" ? "正常进行任务" : (item.taskType === "finished" ? "已完成任务" :item.taskType === "overdue" ? "逾期未完成" : (item.taskType === "isoverdue" ? "可能逾期任务" : (item.taskType === "red" ? "逾期已完成" : "未知状态" )))
           })
           chart.source(data);
           // 为各个字段设置别名
@@ -1102,9 +1103,9 @@ export default {
         toRiskDetail(item,index){
           var url = null
           if(index == 1){
-            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
+            url = "http://192.168.111.136:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectRisk:"+item.riskId+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.containerRefId
           } else{
-            url = "http://10.2.81.218:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
+            url = "http://192.168.111.136:9998/invokeAction?actionsGroup=object&actionName=infoPage&oid=OR:ext.st.pmgt.issue.model.STProjectMeasures:"+item.id+"&ContainerOid=com.pisx.tundra.pmgt.project.model.PIProjectContainer:"+item.meaontainerRefId
           }
           window.top.location.href =url
         },
@@ -1116,9 +1117,9 @@ export default {
                  container: 'container1',
                //   forceFit: true,
                  height,
-                 width: width* 0.6,
-                 background: '#fff',
-                 padding: [0, 25, 20, 25]
+                 width: width* 0.58,
+                //  background: '#fff',
+                 padding: [0, 25, 20, 0]
              });
              const color = this.color
                   chart.source(data);
@@ -1130,7 +1131,7 @@ export default {
                });
                chart.coord('theta', {
                  radius: 0.75,
-                 innerRadius: 0.6,
+                 innerRadius: 0.5,
                });
               // 辅助文本
               chart
@@ -1194,27 +1195,27 @@ export default {
                 .color('index',function(item){
                       return color[item-1]
                 })
-                .label('name', function(){
-                  return {
-                    useHtml: true,
-                    htmlTemplate: function(text,item){
-                      var d = item.point
-                        return (
-                          `<div class="g2-label" style="color:${item.color};font-size:10px;width: "60px" >` +
-                           text + ":" + d.count +
-                          "</div > "
-                        )
-                    },
-                    textStyle: {
-                      // textAlign: 'right',
-                      // textBaseline: 'center',
-                      fontSize: 10
-                    },
-                    offset: 14,//偏移量
-                    // rotate: 270,
-                    position:'end'//label的展示位置
-                  }
-                })
+                // .label('name', function(){
+                //   return {
+                //     useHtml: true,
+                //     htmlTemplate: function(text,item){
+                //       var d = item.point
+                //         return (
+                //           `<div class="g2-label" style="color:${item.color};font-size:10px;width: "60px" >` +
+                //            text + ":" + d.count +
+                //           "</div > "
+                //         )
+                //     },
+                //     textStyle: {
+                //       // textAlign: 'right',
+                //       // textBaseline: 'center',
+                //       fontSize: 10
+                //     },
+                //     offset: 14,//偏移量
+                //     // rotate: 270,
+                //     position:'end'//label的展示位置
+                //   }
+                // })
                 .tooltip('name*count*percentage')
               // chart.interact('element-active');
               chart.render();
@@ -1314,10 +1315,10 @@ export default {
           })
         },
         // 点击标题跳转
-        toItemSelect(item){
+        toItemSelect(item,name){
           // const url = "http://localhost:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
           // const url = "http://192.168.111.137:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name  //正式机项目ip
-          const url = "http://10.2.81.218:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&name="+item.name 
+          const url = "http://192.168.111.136:9998/invokeAction?actionsGroup=pi-pmgt-project&actionName=projectViewsList&"+name+"="+item.name 
           // console.log(url);
           window.top.location.href = url
           // window.open(url,'_blank')
@@ -1552,6 +1553,7 @@ export default {
           // height: 100%;
           overflow: auto;
           tr{
+            cursor: pointer;
             &:hover{
               background: rgba(200, 233, 232, 0.3);
             }
