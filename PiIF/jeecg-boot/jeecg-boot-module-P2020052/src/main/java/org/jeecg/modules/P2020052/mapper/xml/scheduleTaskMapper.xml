@@ -158,5 +158,15 @@ WHERE
     select project_name from piproject where id = #{projectId}
     </select>
 
+    <select id="getYaxis" resultType="java.util.Map">
+    SELECT
+	sum( piplan.target_work_qty ) as targetWorkQty ,
+	sum( piplan.actual_work_qty ) as actualWorkQty
+FROM
+	piplan
+WHERE
+	piplan.project_ref_id = #{projectId}
+    </select>
+
 
 </mapper>

@@ -399,7 +399,7 @@
             and pa.root_ref_id = #{planId}
         </if>
         <if test="startTime!= null and startTime !=''">
-            and pa.target_end_date between #{startTime} and #{endTime}
+            and pa.target_start_date between #{startTime} and #{endTime}
         </if>
 
         and pa.id in

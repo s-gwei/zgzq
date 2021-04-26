@@ -7,6 +7,7 @@ import org.jeecg.modules.P2020052.pojo.TaskVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface ScheduleTaskMapper {
@@ -27,4 +28,6 @@ public interface ScheduleTaskMapper {
     PiplanActivityVo projectWeekCycle(@Param("projectId")String projectId);
 
     String getProName(@Param("projectId")String projectId);
+
+    Map getYaxis(@Param("projectId")String projectId);
 }

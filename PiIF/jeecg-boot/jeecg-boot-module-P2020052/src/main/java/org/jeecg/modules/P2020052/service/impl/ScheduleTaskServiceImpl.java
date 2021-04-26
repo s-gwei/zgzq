@@ -275,20 +275,38 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留位数
         for (String projectId : projectIds) {
             List<ProjectRiskVo> list = scheduleTaskMapper.ProjectRiskTable(projectId);
+            //查询改项目下的计划工期与实际工期值
+
+            Map mapY = scheduleTaskMapper.getYaxis(projectId);
+            String Yaxis = "0";
+            if(mapY == null){
+                continue;
+
+            }
+
+            if(mapY != null){
+                Double targetWorkQty = Double.parseDouble( mapY.get("targetWorkQty") == null ? "0" : mapY.get("targetWorkQty").toString());
+                Double actualWorkQty = Double.parseDouble(mapY.get("actualWorkQty") == null ? "0" : mapY.get("actualWorkQty").toString());
+                if(targetWorkQty == 0){
+                    continue;
+                }
+                Yaxis = df.format(actualWorkQty/targetWorkQty );
+            }
+
             String project = "";
             Map<Object, Object> map = new HashMap();
             double OutputQualityRiskSum = 0;
             if (list.size() == 0) {
                 map.put("Xaxis", 1);
                 // y轴
-                map.put("Yaxis", 0.5);
+                map.put("Yaxis", Math.random());
                 //项目名称
                 String proName = scheduleTaskMapper.getProName(projectId);
                 map.put("proName", proName);
                 map.put("proName", "");
                 map.put("projectId", projectId);
                 map.put("OutputQualityRiskSum", 0);
-                redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
+//                redisTemplate.opsForValue().set(projectId, map, 7, TimeUnit.DAYS);
                 continue;
             }
             for (ProjectRiskVo projectRiskVo : list) {
@@ -307,8 +325,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
                     double x = startDate / (end == 0 ? 1 : end);
                     map.put("Xaxis", Double.parseDouble(df.format(x)));
                     // y轴
-                    String Yaxis = projectRiskVo.getPreRatio() == "" ? "0.5" : projectRiskVo.getPreRatio();
-                    map.put("Yaxis", 0.5);
+//                    Yaxis = projectRiskVo.getPreRatio() == "" ? "0.5" : projectRiskVo.getPreRatio();
+                    map.put("Yaxis", Double.parseDouble(Yaxis));
                     //项目名称
                     String proName = projectRiskVo.getName() == "" ? "0.5" : projectRiskVo.getName();
                     map.put("proName", proName);

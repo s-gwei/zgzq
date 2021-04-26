@@ -58,12 +58,12 @@ FROM
 
     <select id="projectLevel" resultType="java.util.Map">
 SELECT
-	sum( CASE WHEN piproject.priority_num = 1 THEN 1 ELSE 0 END ) AS 'S级',
-	sum( CASE WHEN piproject.priority_num = 2 THEN 1 ELSE 0 END ) AS 'A级',
-	sum( CASE WHEN piproject.priority_num = 3 THEN 1 ELSE 0 END ) AS 'B级',
-	sum( CASE WHEN piproject.priority_num = 4 THEN 1 ELSE 0 END ) AS 'C级',
-	sum( CASE WHEN piproject.priority_num = 5 THEN 1 ELSE 0 END ) AS 'D级',
-	sum( CASE WHEN piproject.priority_num IS NOT NULL THEN 1 ELSE 0 END ) AS '总数'
+	sum( CASE WHEN piproject.add_by_name = 'S级' THEN 1 ELSE 0 END ) AS 'S级',
+	sum( CASE WHEN piproject.add_by_name = 'A级' THEN 1 ELSE 0 END ) AS 'A级',
+	sum( CASE WHEN piproject.add_by_name = 'B级' THEN 1 ELSE 0 END ) AS 'B级',
+	sum( CASE WHEN piproject.add_by_name = 'C级' THEN 1 ELSE 0 END ) AS 'C级',
+	sum( CASE WHEN piproject.add_by_name = 'D级' THEN 1 ELSE 0 END ) AS 'D级',
+	sum( CASE WHEN piproject.add_by_name is not null THEN 1 ELSE 0 END ) AS '总数'
 FROM
 	piproject
 </select>

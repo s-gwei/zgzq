@@ -144,14 +144,16 @@ public class PlanOTServiceImpl implements PlanOTService {
         long week = (long) Math.ceil(weeks);
         DecimalFormat df = new DecimalFormat("0.00");// 设置保留两位位数
         //返回数据
-        List result = new ArrayList();
+        List<PiplanActivityVo> resultList= new ArrayList();
         for (long i = 1; i <= week; i++) {
             // 每周开始时间
             long startLong = start + (i - 1) * 1000 * 60 * 60 * 24 * 7;
             // 每周结束时间
             long endLong = start + i * 1000 * 60 * 60 * 24 * 7;
+
             for (PiplanActivityVo act : list) {
-                String taskStr = act.getByTime();
+                String taskStr = act.getTargetStartTime();
+//                String taskStr = act.getByTime();
                 long taskLong = taskStr == null ? 0 : formatter.parse(taskStr).getTime();
                 if (taskLong >= startLong && taskLong < endLong) {
                     long currentStr = new Date().getTime();//当前时间
@@ -187,7 +189,9 @@ public class PlanOTServiceImpl implements PlanOTService {
                     act.setTaskType(taskTypa);
                     //横坐标
 //                    long X = (taskLong - startLong)%(1000 * 60 * 60 * 24 * 7)+1;
-                    double x = (taskLong - start) / (1000 * 60 * 60 * 24 * 7.0) + 1 + Math.random() * 0.3;
+
+//                    double x = (taskLong - start) / (1000 * 60 * 60 * 24 * 7.0) + 1 + Math.random() * 0.3;
+                    double x = (currentStr - taskLong) / (1000 * 60 * 60 * 24 * 7.0) + 1 + Math.random() * 0.3;
                     String Xaxis = df.format(x);
                     act.setXaxis(Double.parseDouble(Xaxis));
                     //偏差值
@@ -196,12 +200,16 @@ public class PlanOTServiceImpl implements PlanOTService {
                         deviation = df.format((btTImeLong - actualEndLong) / (1000 * 60 * 60 * 24));
                     } else if (actualEndLong == 0 && targetStartTimeStrLong < currentStr) {
                         deviation = df.format((btTImeLong - currentStr) / (1000 * 60 * 60 * 24));
+                    }else{
+                        deviation = "0";
                     }
                     act.setDeviation(Double.parseDouble(deviation));
+                    resultList.add(act);
                 }
             }
         }
-        return list;
+
+        return resultList;
     }
 
     @Override
