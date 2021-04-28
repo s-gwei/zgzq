@@ -6,7 +6,7 @@
                     <a-card>
                         <div class="title">模板列表</div>
                         <div class="list">
-                            <div v-for="(item,index) in data" :key="index" class="mbDetail"><span>{{item.title}}</span><a-button type="primary" size="small" @click="geneInstance(item,index)">生成实例</a-button></div>
+                            <div v-for="(item,index) in paramsData" :key="index" class="mbDetail"><span>{{item.partName}}</span><a-button type="primary" size="small" @click="geneInstance(item,index)">生成实例</a-button></div>
                         </div>
                     </a-card>
                 </a-col>
@@ -28,27 +28,52 @@
     </div>
 </template>
 <script>
+import {getAction} from '@/api/manage';
 export default {
     name: "sncsList",
     data(){
         return {
-            data: [
-                {id: '1', title: "模板模板1"},
-                {id: '2', title: "模板模板2"},
-                {id: '3', title: "模板模板3"},
-                {id: '4', title: "模板模板4"},
+            paramsData: [
+                // {partNumber: '1', partName: "模板模板1"},
+                // {partNumber: '2', partName: "模板模板2"},
+                // {partNumber: '3', partName: "模板模板3"},
+                // {partNumber: '4', partName: "模板模板4"},
             ],
             parameter: [],
             planIdObj: {},
-            btnVisible: false
+            btnVisible: false,
+            requesturl: {
+                list: "/pdmReport/findAllTemplateByLifeAndLevel",
+                judgeTemplateUseful: "/pdmReport/judgeTemplateUseful",
+                generateInstanceByTemplateCode: "/pdmReport/generateInstanceByTemplateCode"
+            },
         }
     },
     mounted(){
         document.querySelector(".xncsWrapper").style.height = document.querySelector("#app").offsetHeight + "px"
+        this.getParamsList()
     },
     methods: {
+        getParamsList(){
+            const _this = this,url = this.requesturl.list,params={}
+            params.level = this.$route.query.level || 1
+            params.lifeCycle = this.$route.query.lifeCycle || 1
+            getAction(url,params,'get').then((res) => {
+                if(res.success && res.result){
+                  console.log(res.result);
+                  // _this.tableDate = res.result
+                  _this.$set(_this,"paramsData",res.result)
+                } else {
+                  // _this.$nextTick(function(){
+                  //      _this.renderChart(data)
+                  //  })
+                }
+             })
+        },
         geneInstance(item,index){
-            // console.log(item);
+             const _this = this,url = this.requesturl.judgeTemplateUseful,params={}
+             params.stList = this.$route.query.stList
+             params.templatePartNumber = item.partNumber
             // this.$confirm({
             //   title:"生成实例",
             //   content:"是否确认生成实例",
@@ -56,15 +81,40 @@ export default {
             //      console.log('ok');
             //   }
             // });
-           if(index % 2 == 0)  {this.parameter = ["参数1","参数2","参数3","参数4","参数5","参数6","参数7","参数8"], this.btnVisible = false}
-           else{
-               this.parameter = [],
-               this.planIdObj = item
-               this.btnVisible = true
-           }
+
+            getAction(url,params,'get').then((res)=>{
+                console.log(res);
+                if(res.code == 500){
+                    this.parameter = [],
+                    this.planIdObj = item
+                    this.btnVisible = true
+
+                } else{
+                    _this.$set(_this,"parameter",res.result)
+                }
+            })
+        //    if(index % 2 == 0)  {this.parameter = ["参数1","参数2","参数3","参数4","参数5","参数6","参数7","参数8"], this.btnVisible = false}
+        //    else{
+        //        this.parameter = [],
+        //        this.planIdObj = item
+        //        this.btnVisible = true
+        //    }
         },
         admainPlanFrom(){
-            console.log(this.planIdObj);
+            // console.log(this.planIdObj);
+            const _this = this,url = this.requesturl.generateInstanceByTemplateCode,params={}
+            params.templatePartNumber = this.planIdObj.partNumber
+            // params.lifeCycle = "已发布"
+            getAction(url,params).then((res)=>{
+                console.log(res);
+                if (res.success) {
+                //   this.projects = res.result.records
+                const params = {totalCarPartNumber: res.result || "AZ00000001"}
+                  this.$router.push({name: "riskTable",params: ""});
+                } else {
+                  this.$message.error(res.message);
+                }
+            })
         }
 
     }

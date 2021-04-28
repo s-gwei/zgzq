@@ -32,23 +32,31 @@ import OnePart from './OnePart'
       return {
           form: this.$form.createForm(this),
           labelCol: {
-            sm: { span: 9 },
+            sm: { span: 7 },
           },
           wrapperCol: {
-            sm: { span: 14 },
+            sm: { span: 16 },
           },
-          val: "14px"
+          val: "14px",
+          tableColumns: {}
       }
     },
     watch: {
+      // item: {
+      //   handler(v){
+      //     console.log(v,'v');
+      //   },
+      //   deep: true
+      // }
      
+    },
+    mounted(){
     },
     methods: {
         handleSubmit(){
 
         },
         fontSize(val){
-          console.log(val);
           this.val = "12px"
         }
     }

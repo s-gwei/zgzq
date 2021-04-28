@@ -65,6 +65,7 @@
     </div>
 </template>
 <script>
+const docVal = require('@assets/json/docVal.json')
 export default {
     data(){
         return {
@@ -86,44 +87,51 @@ export default {
                 }
             ],
             tableColumns: [
-                {
-                    name: "排汽",
-                    children: [
-                        {name: "流量"},
-                        {name: "压力"},
-                        {name: "温度"}
-                    ] 
-                },
                 // {
-                //     name: "不合并"
+                //     name: "排汽",
+                //     children: [
+                //         {name: "流量"},
+                //         {name: "压力"},
+                //         {name: "温度"}
+                //     ] 
                 // },
-                {
-                    name: "可调抽汽",
-                    children: [
-                        {name: "流量"},
-                        {name: "压力"},
-                        {name: "温度"}
-                    ] 
-                },
-                {
-                    name: "补汽I",
-                    children: [
-                        {name: "流量"},
-                        {name: "压力"},
-                        {name: "温度"},
-                        {name: "焓"}
-                    ] 
-                }
+                // {
+                //     name: "可调抽汽",
+                //     children: [
+                //         {name: "流量"},
+                //         {name: "压力"},
+                //         {name: "温度"}
+                //     ] 
+                // },
+                // {
+                //     name: "补汽I",
+                //     children: [
+                //         {name: "流量"},
+                //         {name: "压力"},
+                //         {name: "温度"},
+                //         {name: "焓"}
+                //     ] 
+                // }
             ],
             titleRows: [],
             length: 0,
-            rowsData: [[1,2,3,4,5,6,5,4,3,2]],
-            checked: []
+            rowsData: [[1,2,3,4,5,6,5,3,2]],
+            checked: [],
+            currentNodeTitleVal: "" //发动机,前车...
         }
     },
     mounted(){
+        // this.getWidth()  
+        this.currentNodeTitleVal = this.$store.state.report.currentNodeTitleVal
+        // console.log(docVal,this.currentNodeTitleVal);
+        const data = docVal[this.currentNodeTitleVal]
+        // var tableData = null
+       var tableData = data.children.filter(function(item,i){
+           return item.html && item.html.length == 1 && item.html[0].type=="table"
+        })
+        console.log(tableData[0].html[0].params);
+        this.$set(this,"tableColumns",tableData[0].html[0].params)
         this.getTitle()
-        // this.getWidth()
     },
     methods: {
         getWidth(){
@@ -131,7 +139,7 @@ export default {
             // console.log(document.querySelector(".mybody").offsetHeight);
             var mybodyHeight = document.querySelector(".mybody").offsetHeight
             if(mybodyHeight >= 240){
-                console.log('enter',document.querySelector(".mybody").offsetWidth - 7 + "px");
+                // console.log('enter',document.querySelector(".mybody").offsetWidth - 7 + "px");
                 document.querySelector(".mythead").style.width = document.querySelector(".mybody").offsetWidth - 7 + "px"
             } else{
                 document.querySelector(".mythead").style.width = document.querySelector(".mybody").offsetWidth + "px"
@@ -146,7 +154,7 @@ export default {
         changeAll(id){
             var chk = document.getElementById(id).checked,_this=this,
                 dom= document.querySelectorAll(".checkinput")
-                console.log(_this.checked,dom);
+                // console.log(_this.checked,dom);
             for (var i = 0; i < dom.length; i++) {
                   dom[i].checked = chk;
                   _this.checked[i] =chk
@@ -177,7 +185,7 @@ export default {
                 // var index = [...dom].findIndex(item => item.checked == true)
                 // console.log(index);
                 if(isChecked){
-                    console.log(_this.checked,_this.rowsData);
+                    // console.log(_this.checked,_this.rowsData);
                      this.$confirm({
                       title:"确认删除",
                       content:"是否删除选中数据?",
