@@ -5,7 +5,7 @@
         :disabled="value.disabled ? value.disabled : false"
         :placeholder="'请输入' + value.name"
          v-model="formParam.value"
-            :addonAfter="value.dw"
+            :addonAfter="value.unit"
         />
     <!-- </a-form-item> -->
 </template>
@@ -35,6 +35,7 @@ export default {
     watch: {
         value: {
             handler(val){
+                console.log(val,'v');
                 this.formParam = JSON.parse(JSON.stringify(val))
             },
             deep: true
@@ -43,7 +44,7 @@ export default {
     methods: {
         keyup(){
             this.$bus.$emit('changes',this.formParam)
-        }
+        },
     }
 }
 </script>

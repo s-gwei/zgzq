@@ -3,7 +3,9 @@
         <div class="title">{{title}}</div>
         <div class="influTable">
              <!-- <a-table :columns="columns" :data-source="data" :pagination="false" :bordered="true" :row-selection="rowSelection"> -->
-             <a-table :columns="columns" :data-source="influenceData" :pagination="false" :bordered="true" :row-selection="rowSelection">
+             <!-- <a-table :columns="columns" :data-source="influenceData" :pagination="false" :bordered="true" :row-selection="rowSelection"> -->
+             <a-table :columns="columns" :data-source="influenceData" :pagination="false" :bordered="true" 
+             :rowSelection="{selectedRowKeys:$store.state.report.selectedRowKeys,onChange,getCheckboxProps}">
              <!-- <a-table :columns="columns" :data-source="data"  :bordered="true" :pagination="{ pageSize: 5 }" :scroll="{ y: 240 }"> -->
                  <a slot="name" slot-scope="text">{{ text }}</a>
                  <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
@@ -89,20 +91,6 @@ export default {
               }
             ],
             data: [
-              // { 
-              //   key: '1',
-              //   PartNumber: '1111111111111',
-              //   age: 32,
-              //   PartName: 'New York No. 1 Lake Park,',
-              //   PartPhase: "启用"
-              // },
-              // {
-              //   key: '2',
-              //   PartNumber: '211',
-              //   age: 42,
-              //   PartName: 'London No. 1 Lake Park',
-              //   PartPhase: "停用"
-              // }
             ],
             scrollHeight: 200,
             selectedRowKeys: [],
@@ -133,10 +121,21 @@ export default {
         }
     },
     computed: {
-      rowSelection() {
-        return {
-          onChange: (selectedRowKeys, selectedRows) => {
-              this.selectedRowKeys = selectedRowKeys
+      // rowSelection() {
+      //   return {
+      //     selectedRowKeys:selectedRowKeys,
+          
+          
+      //   };
+      // },
+    },
+    mounted(){
+    },
+    methods: {
+      onChange (selectedRowKeys, selectedRows) {
+              // this.selectedRowKeys = selectedRowKeys
+              this.$store.commit("selectedRowKeys",selectedRowKeys)
+              this.$store.commit("selectedRows",selectedRows)
               this.selectedRows = selectedRows
           },
           getCheckboxProps: record => (
@@ -146,12 +145,6 @@ export default {
               name: record.name,
             },
           }),
-        };
-      },
-    },
-    mounted(){
-    },
-    methods: {
         add(){
             this.visible=true
         },
@@ -179,7 +172,7 @@ export default {
                }]
              })
              const _this = this,url=this.jkUrl.modifyPartInfo
-             console.log(this.$store.state.report.infoParams);
+            //  console.log(this.$store.state.report.infoParams);
              this.getUpdateDate()
             //  getAction(url,{}).then((res) => {
             //   //  console.log(res);
@@ -194,28 +187,25 @@ export default {
         selectTags(){},
         // 停用
         stop(){
-            console.log('enter',this.selectedRowKeys,this.selectedRows);
+            // console.log('enter',this.selectedRowKeys,this.selectedRows);
             const _this = this
             var selectedNum = []
-            this.selectedRows.forEach(function(item){
+            this.$store.state.report.selectedRows.forEach(function(item){
                 const obj = {
                   type: "D",
                   partNumber: item.PartNumber
                 }
                 selectedNum.push(obj)
             })
-            console.log(selectedNum);
-            if(!this.selectedRowKeys.length){
+            if(!this.$store.state.report.selectedRowKeys.length){
                  this.$confirm({
                       content:"至少选择一组数据进行停用",
                     });
             } else{
-              console.log(this.selectedRowKeys);
                 this.$confirm({
                       title:"确认停用",
                       content:"是否停用选中数据?",
                       onOk: function(){
-                         console.log('确认');
                          _this.$store.commit("affectLink",{
                             name: _this.title,
                             add:  selectedNum
@@ -227,15 +217,18 @@ export default {
         },
         getUpdateDate(){
           const _this = this,url = this.jkUrl.modifyPartInfo
-          const params = this.$store.state.report.infoParams
-          console.log(params);
+          const params = {}
+          params.param = this.$store.state.report.infoParams
+          params.partNumber = this.$store.state.report.infoParams.partNumber
+          params.totalCarNumber = this.$store.state.report.infoParams.parentNumber
           getAction(url,params).then((res) => {
-            console.log(res,'res');
             if(res.success){
+              _this.$message.success("修改成功")
                _this.$store.commit("changePublishBtnState", false)
                 _this.$emit('getCurrentArig')
+            }else{
+              this.$message.error(res.message || "失败")
             }
-
           })
         }
     }
