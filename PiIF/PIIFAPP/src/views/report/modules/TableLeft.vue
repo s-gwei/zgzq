@@ -119,9 +119,9 @@ import store from '@/store'
     },
     mounted() {
       // console.log(this.treeDataSource);
-      // this.getDate()
       this.projectNumber = this.$route.query.projectNumber
       this.taskId = this.$route.query.taskId
+      this.planNumber = this.$route.query.planNumber
     },
     methods: {
       // 打基线功能
@@ -137,16 +137,16 @@ import store from '@/store'
       },
       hitBaselineSured(){
         const _this = this,url = this.url.markBaseLine, params ={}
-        // params.partNumberList 
-        // params.planNumber 
+        // params.partNumberList = JSON.stringify(this.$store.state.report.partNumberSelected)
+        params.partNumberList = JSON.stringify(["ZHENGCHE001_"])
+        params.planNumber = this.planNumber
         params.projectNumber = this.projectNumber
         params.taskId =this.taskId
-        getAction(url,{}).then((res) => {
-          console.log(res);
+        getAction(url,params).then((res) => {
           if(res.success){
              this.$message.success('打基线成功')
           }else{
-            this.$message.error('打基线失败')
+            this.$message.error(res.message || '打基线失败')
           }
         })
 
@@ -154,7 +154,7 @@ import store from '@/store'
       baselineMes(){
         const _this= this,url= this.url.findBaseLineInfo,params={}
           params.projectNumber = this.projectNumber  //项目号
-          params.taskId = this.taskId   //任务id
+          params.planNo = this.planNumber  //计划号
           this.$store.commit("currentEdition","基线版")
           this.baselinevisible = true
           if(this.baselineDate.length) return
@@ -184,10 +184,9 @@ import store from '@/store'
         })
       },
       revertPublish(){
-        // console.log('发布版');
         this.$store.commit("currentEdition","发布版")
         const key = this.$store.state.report.currentNodeTitleVal
-        console.log(this.$store.state.report.currentPartNumberVal,docVal[key]);
+        // console.log(this.$store.state.report.currentPartNumberVal,docVal[key]);
         this.getCenterDate(this.$store.state.report.currentPartNumberVal,docVal[key],"发布版")
       },
       publish(){
@@ -277,7 +276,6 @@ import store from '@/store'
                   const selectedNodeKeys = [item.children && item.children[0].PartNumber || '']
                   this.$set(this,"selectedKeys",selectedNodeKeys)
                   const key = item.children[0].PartName
-                  // console.log(key,item.children[0],'key');
                   this.getCenterDate(selectedNodeKeys[0],docVal[key])
                 }
                 this.expandedKeys.push(item.PartNumber)
@@ -293,7 +291,7 @@ import store from '@/store'
         this.$store.commit('currentNodeTitle',data.title || data.PartName)
          const _this = this,url= this.url.findPartInfo,params={}
         params.totalCarPartNumber = this.$store.state.report.currentTotalCarPartNumberVal
-        params.lifeCycle = edition ? edition : "已发布"
+        params.lifeCycle = edition ? edition : "INWORK"
         params.partNumber = selectedNodeKeys
         getAction(url,params,'get').then((res) => {
              if(res.success && res.result){
@@ -306,6 +304,7 @@ import store from '@/store'
                })
               _this.adminCurrentNodeVal(_this.currentValue,data)
              } else {
+               _this.$message.error(res.message || "获取数据失败")
              }
         })
         // 通过key获取当前值

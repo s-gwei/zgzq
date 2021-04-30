@@ -23,6 +23,7 @@
       return {
         affectLink: [],
         constraintLink: [],
+        index: 1
       }
     },
     watch: {
@@ -33,14 +34,18 @@
     mounted(){
       const _this = this
       this.$bus.$on('currentValue',function(val){
-        val.val.affectLink.map(function(item,index){
-          item.key = index+1
+        _this.index ++
+        val.val.affectLink && val.val.affectLink.map(function(item,index){
+          item.key = index+1 + "top"
         })
-        val.val.constraintLink.map(function(item,index){
-          item.key = index+1
+        val.val.constraintLink && val.val.constraintLink.map(function(item,index){
+          item.key = index+1 + "bottom"
         })
+        
         _this.$set(_this,"affectLink",val.val.affectLink)
         _this.$set(_this,"constraintLink",val.val.constraintLink)
+        _this.$store.commit("selectedRowKeys",[])
+        _this.$store.commit("selectedRows",[])
       })
     },
     methods: {

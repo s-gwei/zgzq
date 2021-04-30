@@ -1,71 +1,74 @@
 <template>
    <div class="risktable">
-      <div  class="tableContent" style="height:100%;" v-if="!loading && iNow >=99">
+      <!-- <div  class="tableContent" style="height:100%;" v-if="!loading && iNow >=99"> -->
+      <div  class="tableContent" style="height:100%;">
         <a-row type="flex" :gutter="8" style="height:100%;">
           <a-col :md="4" :sm="24" style="height: 100%">
-            <table-left v-bind:treeDataSource="treeDataSource" v-model="currentVal"/>
+            <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child"/>
           </a-col>
           <a-col :md="14" :sm="24" style="height: 100%">
-            <table-center v-model="currentVal"/>
+            <table-center @getCurrentArig="getCurrentArig" />
           </a-col>
           <a-col :md="6" :sm="24" style="height: 100%">
-            <table-right v-model="currentVal"/>
+            <table-right @getCurrentArig="getCurrentArig"/>
           </a-col>
         </a-row>
       </div>
-      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-else>
+      <!-- <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-else>
          <div  id="progressBox" >
             <div id="progressBar">0%</div>
             <div id="progressText">0%</div>
          </div>
-      </div>
+      </div> -->
    </div>
 </template>
 
 <script>
+  import {getAction} from '@/api/manage';
+  // import store from '@/store'
   import TableLeft from './modules/TableLeft'
   import TableRight from './modules/TableRight'
   import TableCenter from './modules/TableCenter'
-  const treeDataSource = require('@assets/json/treeDataSource.json')
+   const docVal = require('@assets/json/docVal.json')
+  // const treeDataSource = require('@assets/json/treeDataSource.json')
   export default {
     name: 'RiskTable',
     components: { TableLeft, TableRight, TableCenter },
     data() {
       return {
-          currentVal: "",
+          currentVal: [],
           treeDataSource: [],
+          treeDataSourceAll: [],
           loading: true,
-          iNow: 0
+          iNow: 0,
+          url: {
+            findThingTreeInfo: "/pdmReport/findThingTreeInfo"
+          },
+          centerVal: [],
       }
     },
     created(){
       this.$nextTick(function(){
-        this.load()
+        // this.load()
       })
     },
     watch: {
-      iNow(val){
-        if(val>= 99){
-          this.iNow = 99
+      currentVal: {
+            handler(val){
+              this.$set(this,"centerVal", val)
+              this.$store.commit("currentVal", val)
+              // this.$set(this,"currentVal",[])
+              this.$set(this,"currentVal",val)
+              // this.$store.commit("currentVal", [])
+              // this.$store.commit("currentVal", val)
+              // this.getCurrentVal(val)
+            },
+            deep: true
         }
-      },
-      loading(val){
-          if(!val){
-             const _this = this
-            const times = setInterval(function(){
-                 if(_this.iNow <99){
-                    _this.iNow += 2
-                    _this.progressFn(_this.iNow)
-                 } else {
-                   clearInterval(times)
-                 }
-                 
-               },100)
-            }
-      }
     },
     mounted(){
       // this.load()
+      this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
       this.getData()
       document.querySelector(".risktable").style.height = document.querySelector("#app").offsetHeight + "px"
       window.onresize = () => {
@@ -75,94 +78,77 @@
        };
     },
     methods: {
-      load(){
-          //  var _this.iNow = 0;
-            // 设定定时器
-            const _this = this
-            var timer = setInterval(function () {
-                // 如果当前的值为100
-                if (_this.iNow == 60 ) {
-                    // 清除定时器
-                    clearInterval(timer);
-                }
-                if(_this.iNow < 60) {
-                    // 将当前状态值累加1
-                    _this.iNow += 4;
-                    // 调用执行状态的函数,传入状态值
-                    _this.loading && _this.progressFn(_this.iNow);
-                }
-            }, 60);
-            var timer2 = setInterval(function(){
-                  if(_this.iNow == 70){
-                    clearInterval(timer2);
-                  }  
-                  if(_this.iNow >= 60 && _this.iNow < 70) {
-                    _this.iNow += 2;
-                    _this.loading && _this.progressFn(_this.iNow);
-                  }
-            },250)
-            var timer3 = setInterval(function(){
-                  if(_this.iNow == 93){
-                    // clearInterval(timer3);
-                  } 
-                  if(_this.iNow >= 70 && _this.iNow < 93){
-                    _this.iNow += 1;
-                    _this.loading && _this.progressFn(_this.iNow);
-                  }
-            },80)
-             var timer4 = setInterval(function(){
-                  if(_this.iNow == 99){
-                       clearInterval(timer4);
-                  } 
-                  if(_this.loading){
-                     if(_this.iNow >= 93 && _this.iNow < 99){
-                       var n = parseInt(3*Math.random())+ 1
-                       if(_this.iNow % 2 == 0 ){
-                         _this.iNow = _this.iNow - (2*n+1)
-                       } else{
-                         console.log(_this.iNow,n);
-                         _this.iNow = _this.iNow +  (2*n-1) == 100 ? 98 : _this.iNow +  (2*n-1)
-                       }
-                        _this.progressFn(_this.iNow);
-                     }
-                  }
-            },500)
-      },
-      progressFn(cent) {
-                // 获取最外层的div
-                var oDiv1 = document.getElementById('progressBox');
-                // 获取内层进度条的div
-                var oDiv2 = document.getElementById('progressBar');
-                // 获取内层文字发生变化时的div
-                var oDiv3 = document.getElementById('progressText');
-                // 获取总进度条的宽度
-                var allWidth = parseInt(getStyle(oDiv1, 'width'));
- 
-                // 设定内层两个div的文字内容一样
-                oDiv2.innerHTML = cent + '%';
-                oDiv3.innerHTML = cent + '%';
- 
-                // 修改clip的的宽度值
-                oDiv2.style.clip = 'rect(0px, ' + cent / 100 * allWidth + 'px, 40px, 0px)';
- 
-                // 获取当前元素的属性值
-               function getStyle(obj, attr) {
-                    // 兼容IE
-                    if (obj.currentStyle) {
-                        return obj.currentStyle[attr];
-                    }else {
-                        // 第二个参数为false是通用的写法，目的是为了兼容老版本
-                        return getComputedStyle(obj, false)[attr];
-                    }
-                }
-            },
-      getData(){
+      fuzzySearch(v){
         const _this = this
-        setTimeout(function(){
-          _this.loading = !_this.loading
-          // console.log(_this.laodng);
-          _this.treeDataSource =  JSON.parse(JSON.stringify(treeDataSource))
-        },1000)
+        // this.getData()
+        this.$set(this,"treeDataSource",this.treeDataSourceAll)
+           var data = [
+           {
+              "id": null,
+              "key": null,
+              "departname": null,
+              "level": null,
+              "title": null,
+              "children": [],
+        }
+        ];
+        var treeDataSource1 = JSON.parse(JSON.stringify(_this.treeDataSource))
+         treeDataSource1.forEach(function(item,i){
+            if(!i){
+              data[0].PartName = item.PartName,
+              data[0].PartNumber = item.PartNumber,
+              data[0].PartPhase = item.PartPhase,
+              data[0].PartNumber = item.PartNumber,
+              data[0].level = item.level,
+              data[0].children = item.children.filter(function(itm){
+               return (itm.departname || itm.PartName).indexOf(v) != -1
+              })
+            }
+        })
+       if(!v){
+          _this.$set(_this,"treeDataSource",_this.treeDataSource)
+       } else{
+          if(data[0].children.length){
+             _this.$set(_this,"treeDataSource",data)
+          }else{
+            _this.$set(_this,"treeDataSource",[])
+          }
+       }
+      },
+      //根据整车部件编码和生命周期或者根据基线编码获取页面左侧显示的树状结构数据
+      getData(){
+        const _this = this,url= this.url.findThingTreeInfo,params={}
+        params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
+        params.lifeCycle = "INWORK"
+        // params.baselineNumber = 1
+        getAction(url,params,'get').then((res) => {
+             if(res.success && res.result){
+               _this.loading = !_this.loading
+              //  console.log(res.result);
+               // _this.tableDate = res.result
+                const partNumberSelected = []
+               res.result.children.forEach(function(item){
+                 partNumberSelected.push(item.PartNumber)
+               })
+               _this.$store.commit("partNumberSelected",partNumberSelected)
+               res.result.children.map(function(item){
+                 if(item.children && item.children.length){
+                    item.children = []
+                 }
+               })
+               _this.$set(_this,"treeDataSource",[res.result])
+               _this.$set(_this,"treeDataSourceAll",[res.result])
+             } else {
+               // _this.$nextTick(function(){
+               //      _this.renderChart(data)
+               //  })
+             }
+        })
+      },
+      getCurrentArig(){
+        const key = this.$store.state.report.currentNodeTitleVal
+        // this.$refs.child.$emit('getCenterDate',this.$store.state.report.currentPartNumberVal,docVal[key])
+        this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal,docVal[key])
       }
     }
   }
@@ -233,7 +219,7 @@
   &>label{
     display: inline-block;
     // width: 98%;
-    width: 9em;
+    max-width: 12em;
     overflow: hidden;
   }
 }

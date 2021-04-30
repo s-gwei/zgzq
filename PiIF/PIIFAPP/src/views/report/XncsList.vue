@@ -56,11 +56,12 @@ export default {
     methods: {
         getParamsList(){
             const _this = this,url = this.requesturl.list,params={}
-            params.level = this.$route.query.level || 1
-            params.lifeCycle = this.$route.query.lifeCycle || 1
+            // params.level = this.$route.query.level || "整车"
+            params.level = "整车"
+            // params.lifeCycle = this.$route.query.lifeCycle || 1
+            params.lifeCycle = "INWORK"
             getAction(url,params,'get').then((res) => {
                 if(res.success && res.result){
-                  console.log(res.result);
                   // _this.tableDate = res.result
                   _this.$set(_this,"paramsData",res.result)
                 } else {
@@ -72,8 +73,9 @@ export default {
         },
         geneInstance(item,index){
              const _this = this,url = this.requesturl.judgeTemplateUseful,params={}
-             params.stList = this.$route.query.stList
-             params.templatePartNumber = item.partNumber
+             params.stList = JSON.stringify(this.$route.query.stList.split(","))
+             params.state = this.$route.query.state //st集合
+             params.templatePartNumber = item.partNumber //模板编码
             // this.$confirm({
             //   title:"生成实例",
             //   content:"是否确认生成实例",
@@ -83,34 +85,27 @@ export default {
             // });
 
             getAction(url,params,'get').then((res)=>{
-                console.log(res);
-                if(res.code == 500){
-                    this.parameter = [],
-                    this.planIdObj = item
-                    this.btnVisible = true
+                if(res.success){
+                    _this.parameter = [],
+                    _this.planIdObj = item
+                    _this.btnVisible = true
 
                 } else{
                     _this.$set(_this,"parameter",res.result)
                 }
             })
-        //    if(index % 2 == 0)  {this.parameter = ["参数1","参数2","参数3","参数4","参数5","参数6","参数7","参数8"], this.btnVisible = false}
-        //    else{
-        //        this.parameter = [],
-        //        this.planIdObj = item
-        //        this.btnVisible = true
-        //    }
         },
         admainPlanFrom(){
             // console.log(this.planIdObj);
             const _this = this,url = this.requesturl.generateInstanceByTemplateCode,params={}
             params.templatePartNumber = this.planIdObj.partNumber
-            // params.lifeCycle = "已发布"
+            params.lifeCycle = "INWORK"
             getAction(url,params).then((res)=>{
                 console.log(res);
                 if (res.success) {
                 //   this.projects = res.result.records
                 const params = {totalCarPartNumber: res.result || "AZ00000001"}
-                  this.$router.push({name: "riskTable",params: ""});
+                  this.$router.push({name: "riskTable",params});
                 } else {
                   this.$message.error(res.message);
                 }

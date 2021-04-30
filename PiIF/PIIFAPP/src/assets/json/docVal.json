@@ -1,7 +1,7 @@
 {
-   "发动机": {
-       "departname": "发动机1",
-       "title": "发动机",
+   "发动机_": {
+       "departname": "发动机_",
+       "title": "发动机_",
        "children": [
            {
               "departname": "轴承",
@@ -102,9 +102,9 @@
            }
        ]
    },
-   "前车": {
-       "departname": "前车",
-       "title": "前车",
+   "前车_": {
+       "departname": "前车_",
+       "title": "前车_",
        "children": [
         {
              "departname": "进排气参数",
@@ -217,9 +217,9 @@
        }
        ]
    },
-   "车轮": {
-      "departname": "车轮",
-      "title": "车轮",
+   "车轮_": {
+      "departname": "车轮_",
+      "title": "车轮_",
       "children": [
         {
            "departname": "转速",
