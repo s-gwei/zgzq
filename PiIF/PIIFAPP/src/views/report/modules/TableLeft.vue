@@ -189,16 +189,18 @@
     methods: {
       getStyle(){
          const _this = this
-        const val = require("@/assets/json/docStylejson.json")
-        _this.docVal= val
-        this.$store.commit("setdocVal",_this.docVal)
+        // 项目
+        // const val = require("@/assets/json/docStylejson.json")
+        // _this.docVal= val
+        // this.$store.commit("setdocVal",_this.docVal)
         // const data = {}
-        // getAction('/upload/docStylejson').then((val) => {
-        //   // console.log(val);
-        //   _this.docVal = val
-        //   //  _this.docVal = res
-        //    data = val
-        // })
+        //本地部署
+        getAction('/upload/docStylejson.json').then((val) => {
+          // console.log(val);
+           _this.docVal = val
+           //  _this.docVal = res
+           _this.$store.commit("setdocVal",val)
+        })
 
       },
       // 基线生成方式选择
