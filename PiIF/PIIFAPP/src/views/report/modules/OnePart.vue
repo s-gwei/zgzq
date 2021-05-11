@@ -1,11 +1,11 @@
 <template>
     <div class="onepart">
-        <a-form-item :label="value.name" v-if="value.type!='table' && value.type!='textarea'">
-            <component :is="'My' + value.type.charAt(0).toUpperCase() + value.type.slice(1)" :value="value"></component>
-        </a-form-item>
-        <div v-else>
-            <component :is="'My' + value.type.charAt(0).toUpperCase() + value.type.slice(1)" :value="value"></component>
-        </div>
+        <!-- <a-form-item :label="value.name" v-if="value.type!='table' && value.type!='textarea'"> -->
+            <component :is="'My' + value.type.charAt(0).toUpperCase() + value.type.slice(1)" :value="value" v-if="value.type!='table' && value.type!='textarea'"></component>
+        <!-- </a-form-item> -->
+        <!-- <div v-else> -->
+            <component :is="'My' + value.type.charAt(0).toUpperCase() + value.type.slice(1)" :value="value" v-else></component>
+        <!-- </div> -->
     </div>
 </template>
 <script>
@@ -24,10 +24,13 @@ export default {
          MyTable,
          MyTextarea
     },
+    data(){
+        return {
+            tableColumns: {}
+        }
+    },
     mounted(){
-        // console.log(this.value,'value');
         this.value.name.length >=8 ? this.value = Object.assign(this.value,{fontSize: "12px"}) : this.value
-
     },
     watch: {
         // "value.name"(){
@@ -38,7 +41,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-/deep/.ant-col-sm-9{
+/deep/.ant-col-sm-7{
     // padding-left: 6px;
     text-align:left;
     font-size: 14px;

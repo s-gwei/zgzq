@@ -1,10 +1,10 @@
 <template>
     <!-- <div>{{value}}</div> -->
-    <!-- <a-form-item :label="value.name"> -->
+    <a-form-item :label="value.name">
         <a-radio-group @change="handleInput" :disabled="formParam.disabled" v-model="formParam.value">
             <a-radio v-for="(item, key) in formParam.select" :key="key" :value="item.value">{{ item.text }}</a-radio>
         </a-radio-group>
-    <!-- </a-form-item> -->
+    </a-form-item>
 </template>
 <script>
 export default {

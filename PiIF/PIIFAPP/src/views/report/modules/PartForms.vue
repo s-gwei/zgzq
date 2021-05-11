@@ -1,8 +1,9 @@
 <template>
     <div class="form-container">
-        <a-form @submit="handleSubmit" :form="form" class="form" :label-col="labelCol" :wrapper-col="wrapperCol">
+        <div class="form" >
             <div class="title">{{item.title}}</div>
             <div class="content">
+            <a-form @submit="handleSubmit" :form="form" :label-col="labelCol" :wrapper-col="wrapperCol" >
               <a-row class="form-row" :gutter="16">
                    <template v-for="value in item.html">
                       <a-col :lg="12" :md="12" :sm="24" v-if="value.type !== 'table'  && value.type!='textarea'" :key="value.id" >
@@ -13,8 +14,9 @@
                       </a-col>
                   </template>
               </a-row>
+            </a-form>
             </div>
-        </a-form>
+        </div>
     </div>
 </template>
 
@@ -42,12 +44,11 @@ import OnePart from './OnePart'
       }
     },
     watch: {
-      // item: {
-      //   handler(v){
-      //     console.log(v,'v');
-      //   },
-      //   deep: true
-      // }
+      item: {
+        handler(v){
+        },
+        deep: true
+      }
      
     },
     mounted(){
@@ -76,6 +77,9 @@ import OnePart from './OnePart'
  }
  .content{
    padding: 0 16px;
+ }
+ /deep/.ant-card-body{
+   padding: 12px;
  }
 
 </style>

@@ -5,7 +5,7 @@
         计算通知单结构
       </div> -->
       <div class="search">
-        <a-input-search placeholder="请输入关键词" style="width: 180px" @search="onSearch" v-model="name"/>
+        <a-input-search placeholder="请输入关键词" style="width: 170px" @search="onSearch" v-model="name"/>
         <!-- <a-input-search v-model="name" placeholder="search" enter-button="Search" @search="onSearch" /> -->
         <a class="clear" @click="clear1()" v-show="isClear">x</a>
       </div>
@@ -178,33 +178,17 @@
        }
     },
     mounted() {
-      // 获取中间样式文件
-      this.getStyle()
-      // console.log(this.$store.state.report.btnEditable);
+      console.log(this.$store.state.report.btnEditable);
       // console.log(this.treeDataSource);
       this.projectNumber = this.$route.query.projectId || this.$route.params.projectId
-      this.taskId = this.$route.query.taskId || this.$route.params.taskId || '0'
+      this.taskId = this.$route.query.taskId || this.$route.params.taskId
       this.planNumber = this.$route.query.planId || this.$route.params.planId
     }, 
     methods: {
-      getStyle(){
-         const _this = this
-        const val = require("@/assets/json/docStylejson.json")
-        _this.docVal= val
-        this.$store.commit("setdocVal",_this.docVal)
-        // const data = {}
-        // getAction('/upload/docStylejson').then((val) => {
-        //   // console.log(val);
-        //   _this.docVal = val
-        //   //  _this.docVal = res
-        //    data = val
-        // })
-
-      },
       // 基线生成方式选择
       onChange(v){
-        // console.log(v);
-        // console.log(this.baselineCreateValue,this.baseName);
+        console.log(v);
+        console.log(this.baselineCreateValue,this.baseName);
       },
       handleChange(val){
         if(val == 'hitBaseline' ){
@@ -240,7 +224,7 @@
         });
       },
       infohandleOk(){
-        // console.log(this.baselineCreateValue,this.baseName);
+        console.log(this.baselineCreateValue,this.baseName);
         if(this.baselineCreateValue == 2 && !this.baseName){
             this.$message.warning("基线名称不能为空")
         }else{
@@ -309,13 +293,13 @@
                  return item.PartName == _this.$store.state.report.currentNodeTitleVal
                })
                 _this.$set(_this,"currentValue",data[0])
-               _this.$bus.$emit('currentValue',_this.currentValue,_this.docVal)
+              //  _this.$bus.$emit('currentValue',_this.currentValue)
                 _this.$bus.$emit('currentValue',{
                  val: data[0],
-                 data: _this.docVal
+                 data: docVal[data[0].Type]
                })
               //  console.log(_this.$store.state.report.currentEditionVal,data[0],docVal[data[0].PartName],'test');
-               _this.adminCurrentNodeVal(data[0])
+               _this.adminCurrentNodeVal(data[0],docVal[data[0].Type])
            }else{
                _this.$message.error(res.message || '获取当条基线数据失败')   
            }
@@ -331,7 +315,7 @@
           content:"确认恢复至发布版吗?",
           onOk: function(){
               _this.value = "revertPublish"
-              _this.getCenterDate(_this.$store.state.report.currentPartNumberVal,this.docVal[key],"RELEASE")
+              _this.getCenterDate(_this.$store.state.report.currentPartNumberVal,docVal[key],"RELEASE")
           },
           onCancel:function(){
             _this.value = "更多"
@@ -382,42 +366,27 @@
       handleTreeSelect(selectedKeys,event) {
         if(selectedKeys && !selectedKeys.length || selectedKeys[0]== this.treeDataSource[0].PartNumber) return
         const _this = this
-        // console.log(this.$store.report.btnEditable);
-        if(this.$store.state.report.btnEditable){
-             _this.$confirm({
-               title:"确认跳转",
-               content:"您确保是否已保存",
-               cancelText : '返回保存',
-               okText  : '放弃保存',
-               onOk: function(){
-                 _this.$store.commit("changePublishBtnState", true)
-                  if (selectedKeys[0] == _this.data[0].PartNumber) return;
-                    _this.$store.commit("currentCenterChange", [])
-                    _this.chckedVal=[]
-                    if (selectedKeys.length > 0 && _this.selectedKeys[0] !== selectedKeys[0]) {
-                      _this.selectedKeys = [selectedKeys[0]]
-                     const key = event.node.dataRef.Type
-                    //  console.log(event.node.dataRef);
-                     _this.getCenterDate(_this.selectedKeys[0],_this.docVal[key])
-                    }
-                },
-                onCancel: function(){
-                  console.log('onCancel');
-                }
-            });
-        } else{
-           _this.$store.commit("changePublishBtnState", true)
-            if (selectedKeys[0] == _this.data[0].PartNumber) return;
-              _this.$store.commit("currentCenterChange", [])
-              _this.chckedVal=[]
-              if (selectedKeys.length > 0 && _this.selectedKeys[0] !== selectedKeys[0]) {
-                _this.selectedKeys = [selectedKeys[0]]
-               const key = event.node.dataRef.Type
-              //  console.log(event.node.dataRef);
-               _this.getCenterDate(_this.selectedKeys[0])
-              }
-        }
-         
+         this.$confirm({
+            title:"确认跳转",
+            content:"您确保是否已保存",
+            confirmText  : '放弃保存',
+            cancelText : '返回保存',
+            onOk: function(){
+              _this.$store.commit("changePublishBtnState", true)
+               if (selectedKeys[0] == _this.data[0].PartNumber) return;
+                 _this.$store.commit("currentCenterChange", [])
+                 _this.chckedVal=[]
+                 if (selectedKeys.length > 0 && _this.selectedKeys[0] !== selectedKeys[0]) {
+                   _this.selectedKeys = [selectedKeys[0]]
+                  const key = event.node.dataRef.Type
+                  console.log(event.node.dataRef);
+                  _this.getCenterDate(_this.selectedKeys[0],docVal[key])
+                 }
+             },
+             onCancel: function(){
+               console.log('onCancel');
+             }
+         });
         
       },
       getUnderLevel(data){
@@ -444,7 +413,7 @@
                   const selectedNodeKeys = [item.children && item.children[0].PartNumber || '']
                   this.$set(this,"selectedKeys",selectedNodeKeys)
                   const key = item.children[0].Type
-                  this.getCenterDate(selectedNodeKeys[0],this.docVal[key])
+                  this.getCenterDate(selectedNodeKeys[0],docVal[key])
                 }
                 this.expandedKeys.push(item.PartNumber)
               })
@@ -452,16 +421,11 @@
       },
       // 获取中间节点数据
       getCenterDate(selectedNodeKeys,data,edition){
-        const _this = this
-        // const data = {}
-        // getAction('/upload/' + selectedNodeKeys + '.json').then((val) => {
-        //   // console.log(val);
-        //   _this.docVal[val.Type] = val
-        //   //  _this.docVal = res
-        //    data = val
-        // })
+        console.log(selectedNodeKeys,data,edition);
          this.$store.commit('currentPartNumber',selectedNodeKeys)
-        this.$store.commit('currentNodeTitle',data.Type)
+        // console.log(data,'data');
+        // this.$bus.$emit('currentNode',data.title || data.departname)
+        this.$store.commit('currentNodeTitle',data.title || data.PartName)
         // console.log(this.$store.state.report.currentEditionVal);
         if(this.$store.state.report.currentEditionVal == "基线版"){
           this.handleOk()
@@ -478,7 +442,7 @@
                    name: "全部",
                    add: [{
                       type: "I",
-                      partNumber: _this.thingNumber
+                      partNumber: this.thingNumber
                    }]
                  })
                  _this.$store.commit("currentCenterChange", [])
@@ -509,7 +473,7 @@
       },
       // 点击节点
       adminCurrentNodeVal(item,data){
-        // console.log(item,data);
+        console.log(item,data);
         const _this = this
         setTimeout(function (params) {
           // const item = testVal
@@ -524,6 +488,8 @@
             }else{
               ele.value = val[ele.field]
             }
+            
+            
           })
         })
         this.$bus.$emit("currentValNew", data)

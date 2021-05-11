@@ -1,6 +1,10 @@
 <template>
     <div class="influenceWrapper">
-        <div class="title">{{title}}</div>
+        <div class="title"><div class="image"></div>{{title}}</div>
+         <div class="btn">
+            <a-button type="primary" @click="add(title)" class="addBtn" v-if="$store.state.report.btnEditable || title=='被约束总成'">增加</a-button>
+            <a-button @click="stop(title)" class="stopBtn" v-if="$store.state.report.btnEditable">停用</a-button>
+        </div>
         <div class="influTable">
              <!-- <a-table :columns="columns" :data-source="data" :pagination="false" :bordered="true" :row-selection="rowSelection"> -->
              <!-- <a-table :columns="columns" :data-source="influenceData" :pagination="false" :bordered="true" :row-selection="rowSelection"> -->
@@ -18,10 +22,6 @@
                  </span> -->
             </a-table>
         </div>
-        <div class="btn">
-            <a-button type="primary" @click="add(title)">增加</a-button>
-            <a-button type="primary" @click="stop(title)">停用</a-button>
-        </div>
         <a-modal
          :title="'新增'+title"
          :visible="visible"
@@ -37,7 +37,7 @@
         </a-form-item>
       </a-form>
       <template slot="footer">
-                <a-button  @click="handleCancel" >取消</a-button>
+                <a-button  @click="handleCancel">取消</a-button>
                 <a-button type="primary" @click="handleSubmit" :disabled="addSure">确认</a-button>
            </template>
     </a-modal>
@@ -64,32 +64,7 @@ export default {
             addSure: true,
             thingNumber: "", //物料编码
             formParam: {},
-            columns: [
-              {
-                dataIndex: 'PartNumber',
-                key: 'PartNumber',
-                title: "物料号",
-                align: "center",
-              },
-              {
-                title: '名称',
-                dataIndex: 'PartName',
-                key: 'PartName',
-                align: "center",
-              },
-              {
-                title: '状态',
-                key: 'PartPhase',
-                dataIndex: 'PartPhase',
-                // scopedSlots: { customRender: 'tags' },
-                align: "center",
-                filters: [
-                  { text: '启用', value: '启用' },
-                  { text: '停用', value: '停用' },
-                ],
-                onFilter: (value, record) => record.PartPhase==value,
-              }
-            ],
+            columns: [],
             data: [
             ],
             scrollHeight: 200,
@@ -115,8 +90,8 @@ export default {
             affectLink: [],
             constraintLink: [],
             jkUrl: {
-              judgeThingCodeExists:"/pdmReport/judgeThingCodeExists",
-              modifyPartInfo :"/pdmReport/modifyPartInfo",
+              judgeThingCodeExists:"/jeecg-boot/pdmReport/judgeThingCodeExists",
+              modifyPartInfo :"/jeecg-boot/pdmReport/modifyPartInfo",
             }
         }
     },
@@ -130,6 +105,59 @@ export default {
       // },
     },
     mounted(){
+      this.columns= this.title == '源总成' ?  [
+              {
+                dataIndex: 'AffectPartNumber',
+                key: 'AffectPartNumber',
+                title: "物料号",
+                align: "center",
+                sorter: (a, b) => a.AffectPartNumber.length - b.AffectPartNumber.length,
+              },
+              {
+                title: '名称',
+                dataIndex: 'PartName',
+                key: 'PartName',
+                align: "center",
+                sorter: (a, b) => a.PartName.length - b.PartName.length,
+              },
+              {
+                title: '状态',
+                key: 'LinkPhase',
+                dataIndex: 'LinkPhase',
+                // scopedSlots: { customRender: 'tags' },
+                align: "center",
+                filters: [
+                  { text: '启用', value: '启用' },
+                  { text: '停用', value: '停用' },
+                ],
+                onFilter: (value, record) => record.LinkPhase==value,
+              }
+            ] :  [
+              {
+                dataIndex: 'ConstraintPartNumber',
+                key: 'ConstraintPartNumber',
+                title: "物料号",
+                align: "center",
+              },
+              {
+                title: '名称',
+                dataIndex: 'PartName',
+                key: 'PartName',
+                align: "center",
+              },
+              {
+                title: '状态',
+                key: 'LinkPhase',
+                dataIndex: 'LinkPhase',
+                // scopedSlots: { customRender: 'tags' },
+                align: "center",
+                filters: [
+                  { text: '启用', value: '启用' },
+                  { text: '停用', value: '停用' },
+                ],
+                onFilter: (value, record) => record.LinkPhase==value,
+              }
+            ]
     },
     methods: {
       onChange (selectedRowKeys, selectedRows) {
@@ -141,7 +169,7 @@ export default {
           getCheckboxProps: record => (
             {
             props: {
-              disabled: record.PartPhase === "停用", // Column configuration not to be checked
+              disabled: record.LinkPhase === "停用", // Column configuration not to be checked
               name: record.name,
             },
           }),
@@ -158,8 +186,8 @@ export default {
                   _this.addSure = false
                 } else {
                   _this.$message.error(res.message || "此物料编码不存在",0.1);
-                  //  _this.addSure = true
-                  _this.addSure = false
+                   _this.addSure = true
+                  // _this.addSure = false
                 }
             })
         },
@@ -223,6 +251,8 @@ export default {
           params.totalCarNumber = this.$store.state.report.infoParams.parentNumber
           getAction(url,params).then((res) => {
             if(res.success){
+              _this.visible=false
+              _this.$store.state.report.currentEditionVal = "最新版"
               _this.$message.success("修改成功")
                _this.$store.commit("changePublishBtnState", false)
                 _this.$emit('getCurrentArig')
@@ -244,24 +274,69 @@ export default {
 }
 .influenceWrapper{
     height: 100%;
-    position: relative;
+    // position: relative;
+    display: flex;
+    flex-direction: column;
     .title{
         font-weight: 600;
-        font-size: 18px;
-        text-align: center;
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        color: #333333;
+        font-size: 14px;
+        .image{
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          background: url("../../../../assets/risktable/root.png");
+          background-size: contain;
+          margin-right: 6px;
+        }
     }
     .influTable{
-        height: 76%;
+        // height: 76%;
+        flex: 1;
         overflow-y: auto;
     }
     .btn{
-        position: absolute;
-        bottom: 0;
-        right: 10px;
+        // position: absolute;
+        // bottom: 0;
+        // right: 10px;
+        margin-bottom: 6px;
         .ant-btn:nth-child(2){
             margin-left: 10px;
         }
     }
+}
+.stopBtn{
+  color: #1890FF;
+}
+.affectLink{
+  .addBtn{
+    background: #BFBFBF;
+    border: 1PX solid #BFBFBF;
+
+  }
+  .stopBtn{
+    color: #999999;
+    background: #fff;
+    border: 1px solid #D9D9D9;
+  }
+}
+.constraintLink{
+   &>.title .image{
+     background: url("../../../../assets/risktable/affect.png");
+     background-size: contain;
+   }
+}
+/deep/.ant-btn{
+  padding: 0 20px;
+}
+/deep/.ant-table-column-title{
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  // font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
 }
 </style>

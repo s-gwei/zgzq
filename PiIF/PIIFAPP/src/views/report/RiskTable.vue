@@ -3,11 +3,11 @@
       <!-- <div  class="tableContent" style="height:100%;" v-if="!loading && iNow >=99"> -->
       <div  class="tableContent" style="height:100%;">
         <a-row type="flex" :gutter="8" style="height:100%;">
-          <a-col :md="4" :sm="24" style="height: 100%">
+          <a-col :md="4" :sm="24" style="height: 100%" class="pageLeft">
             <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child"/>
           </a-col>
           <a-col :md="14" :sm="24" style="height: 100%">
-            <table-center @getCurrentArig="getCurrentArig" />
+            <table-center @getCurrentArig="getCurrentArig"/>
           </a-col>
           <a-col :md="6" :sm="24" style="height: 100%">
             <table-right @getCurrentArig="getCurrentArig"/>
@@ -29,8 +29,6 @@
   import TableLeft from './modules/TableLeft'
   import TableRight from './modules/TableRight'
   import TableCenter from './modules/TableCenter'
-   const docVal = require('@assets/json/docVal.json')
-  // const treeDataSource = require('@assets/json/treeDataSource.json')
   export default {
     name: 'RiskTable',
     components: { TableLeft, TableRight, TableCenter },
@@ -42,14 +40,14 @@
           loading: true,
           iNow: 0,
           url: {
-            findThingTreeInfo: "/pdmReport/findThingTreeInfo"
+            findThingTreeInfo: "/jeecg-boot/pdmReport/findThingTreeInfo"
           },
           centerVal: [],
       }
     },
     created(){
       this.$nextTick(function(){
-        // this.load()
+          this.$store.commit("currentVal", this.$router)
       })
     },
     watch: {
@@ -67,7 +65,6 @@
         }
     },
     mounted(){
-      // this.load()
       this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
       this.getData()
       document.querySelector(".risktable").style.height = document.querySelector("#app").offsetHeight + "px"
@@ -119,10 +116,10 @@
       getData(){
         const _this = this,url= this.url.findThingTreeInfo,params={}
         params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
-        params.lifeCycle = "INWORK"
+        params.lifeCycle = "EDIT"
         // params.baselineNumber = 1
         getAction(url,params,'get').then((res) => {
-             if(res.success && res.result){
+             if(res.success){
                _this.loading = !_this.loading
               //  console.log(res.result);
                // _this.tableDate = res.result
@@ -139,16 +136,19 @@
                _this.$set(_this,"treeDataSource",[res.result])
                _this.$set(_this,"treeDataSourceAll",[res.result])
              } else {
+               _this.$message.error(res.message)
                // _this.$nextTick(function(){
                //      _this.renderChart(data)
                //  })
              }
         })
       },
+      fatherMethod(){
+
+      },
       getCurrentArig(){
         const key = this.$store.state.report.currentNodeTitleVal
-        // this.$refs.child.$emit('getCenterDate',this.$store.state.report.currentPartNumberVal,docVal[key])
-        this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal,docVal[key])
+        this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal)
       }
     }
   }
@@ -157,6 +157,9 @@
   @import '~@assets/less/common.less';
   /deep/.ant-card-body{
     height: 100%;
+  }
+  .pageLeft {
+    padding-right: 10px!important;
   }
   .risktable{
     background: #f6f6f6;

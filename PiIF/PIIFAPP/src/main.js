@@ -50,10 +50,12 @@ import JDictSelectTag from './components/dict/index.js'
 import hasPermission from '@/utils/hasPermission'
 import vueBus from '@/utils/vueBus';
 import JeecgComponents from '@/components/jeecg/index'
+import validators from '@/components/validators/index'
 
 require("promise.prototype.finally").shim();
 
 Vue.config.productionTip = false
+// Vue.use(VueResource)
 Vue.use(Storage, config.storageOptions)
 Vue.use(Antd)
 Vue.use(VueAxios, router)
@@ -68,7 +70,7 @@ Vue.use(vueBus);
 Vue.use(JeecgComponents);
 Vue.use(VueClipboard);// 注入剪切板
 Vue.use(vcolorpicker);//颜色选择器
-
+Vue.use(validators)
 new Vue({
   router,
   store,

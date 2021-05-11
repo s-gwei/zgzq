@@ -23,7 +23,15 @@ const user = {
     },
     publishDisable: true,
     currentVal: [],
-    partNumberSelected: []//零部件编码集合
+    partNumberSelected: [],//零部件编码集合
+    dataTableFinal: [],
+    selectedRowKeys: [],
+    selectedRows: [],
+    result: {},
+    docVal: {}, //样式文件
+    currentTableType: {},//当前列表type
+    btnEditable: true, //权限控制
+    isClisked: false //是否修改控制保存
   },
   mutations: {
     SET_INFO: (state, info) => {
@@ -34,6 +42,7 @@ const user = {
       state.treeData = info
     },
     currentNodeTitle: (state,info) => {
+      // console.log(info);
       state.currentNodeTitleVal = info
     },
     currentEdition: (state,info) => {
@@ -52,12 +61,14 @@ const user = {
       state.infoParams.attribute = info
     },
     affectLink: (state,info) => {
-      console.log(info,'info');
       if(info.name == "源总成"){
         state.infoParams.affectLink = info.add
         state.infoParams.constraintLink = []
-      } else{
+      } else if(info.name == "被约束总成"){
         state.infoParams.constraintLink = info.add
+        state.infoParams.affectLink = []
+      }else if(info.name == "全部"){
+        state.infoParams.constraintLink = []
         state.infoParams.affectLink = []
       }
       // console.log(state.infoParams);
@@ -71,6 +82,32 @@ const user = {
     changePublishBtnState:  (state,info) => {
       state.publishDisable = info
     },
+    selectedRowKeys: (state,info) => {
+      state.selectedRowKeys = info
+    },
+    selectedRows: (state,info) => {
+      state.selectedRows = info
+    },
+    result: (state,info) => {
+      state.result = info
+      // state.infoParams.children = info
+    },
+    btnEditable: (state,info) => {
+      state.btnEditable = info
+    },
+    dataTableFinal: (state,info) => {
+      state.dataTableFinal = info
+      state.infoParams.children = info
+    },
+    isClisked: (state,info) => {
+      state.isClisked = info
+    },
+    setdocVal: (state,info) => {
+      state.docVal = info
+    },
+    currentTableType: (state,info) => {
+      state.currentTableType = info
+    }
   },
 
   actions: {

@@ -1,13 +1,14 @@
 <template>
-    <!-- <a-form-item :label="value.name"> -->
+    <a-form-item :label="value.name">
       <a-input
+      :class="value.field"
        @blur="keyup"
         :disabled="value.disabled ? value.disabled : false"
-        :placeholder="'请输入' + value.name"
+        :placeholder="'请输入'+value.name"
          v-model="formParam.value"
-            :addonAfter="value.unit"
+          :addonAfter="value.unit"
         />
-    <!-- </a-form-item> -->
+    </a-form-item>
 </template>
 <script>
 export default {

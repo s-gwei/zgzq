@@ -28,7 +28,7 @@
                                 <input type="checkbox" @change="change(index)" :checked="checked.index" id="checkinput1"/>
                             </td>
                             <td v-for="(itm,idx) in item" :key="idx">
-                                <a-input :value="itm" v-model="rowsData[index][idx]"/>
+                                <a-input :value="itm['value']" v-model="rowsData[index][idx]['value']"/>
                             </td>
                         </tr>
                     </tbody>
@@ -55,7 +55,9 @@
                                 <input type="checkbox" @change="change(index)" :checked="checked.index" class="checkinput"/>
                             </td>
                             <td v-for="(itm,idx) in item" :key="idx">
-                                <a-input :value="itm" v-model="rowsData[index][idx]"/>
+                                <!-- {{rowsData[index][idx]["value"]}} --> 
+                                <!-- <a-input :value="itm['value']" type="number" v-model="rowsData[index][idx]['value']" @input="input"/> -->
+                                <a-input :value="itm['value']" v-model="rowsData[index][idx]['value']" @input="input"/>
                             </td>
                         </tr>
                     </tbody>
@@ -65,10 +67,11 @@
     </div>
 </template>
 <script>
-const docVal = require('@assets/json/docVal.json')
+// const docVal = require('@assets/json/docVal.json')
 export default {
     data(){
         return {
+            docVal: {},
             button: [
                 {
                     value: "01",
@@ -115,28 +118,51 @@ export default {
             ],
             titleRows: [],
             length: 0,
-            rowsData: [[1,2,3,4,5,6,5,3,2]],
+            rowsData: [],
             checked: [],
-            currentNodeTitleVal: "" //发动机,前车...
+            currentNodeTitleVal: "", //发动机,前车...
+            dataParams: {},
+            dataArrayFinal: [] //处理后的数据
         }
     },
     mounted(){
-        // this.getWidth()  
-        this.currentNodeTitleVal = this.$store.state.report.currentNodeTitleVal
-        // console.log(docVal,this.currentNodeTitleVal);
-        const data = docVal[this.currentNodeTitleVal]
-        // var tableData = null
-       var tableData = data.children.filter(function(item,i){
-           return item.html && item.html.length == 1 && item.html[0].type=="table"
-        })
-        console.log(tableData[0].html[0].params);
-        this.$set(this,"tableColumns",tableData[0].html[0].params)
+        this.currentNodeTitleVal = this.$store.state.report.currentTableType
+       this.docVal = this.$store.state.report.docVal
+       console.log( this.docVal,this.currentNodeTitleVal);
+        const tableData = this.docVal[this.currentNodeTitleVal]
+        this.$set(this,"tableColumns",tableData.html[0].params)
         this.getTitle()
+        this.getDealDate(this.$store.state.report.result.children)
+        this.dataParams = this.$store.state.report.result.children[0]
+    },
+    watch: {
+        // rowsData: {
+        //     handler(v){
+        //         console.log('enter');
+        //         // this.dealArray(v)
+        //     }
+            
+        // }
     },
     methods: {
+        input(){
+            this.dealArray(this.rowsData)
+        },
+        getDealDate(data){
+            // console.log(data,'data');
+            const titleRows = JSON.parse(JSON.stringify(this.titleRows))
+            var rowsData = []
+            data.forEach(function(item){
+                // console.log(item,titleRows);
+                titleRows.map(function(itm){
+                    itm.value = item.classification[itm.field]
+                })
+                // console.log(titleRows,'res');
+                rowsData.push(titleRows)
+            })
+            this.$set(this,"rowsData",rowsData)
+        },
         getWidth(){
-            // console.log(document.querySelector(".mythead").offsetWidth);
-            // console.log(document.querySelector(".mybody").offsetHeight);
             var mybodyHeight = document.querySelector(".mybody").offsetHeight
             if(mybodyHeight >= 240){
                 // console.log('enter',document.querySelector(".mybody").offsetWidth - 7 + "px");
@@ -163,11 +189,16 @@ export default {
         },
         clickBtn(info){
             const _this = this
-            const array =new Array(this.length).fill('')
+            // const array =new Array(this.length).fill('')
+            const array = JSON.parse(JSON.stringify(this.titleRows))
+            array.map(function(item){
+                // console.log(item,'item');
+                item.value = ""
+            })
             // console.log(info);
             // 增加行
             if(info.value =="01"){
-                console.log(document.getElementById('all').checked);
+                // console.log(document.getElementById('all').checked);
                 var chk =document.getElementById('all').checked
                 this.checked.push(chk)
                 this.rowsData.push(array)
@@ -185,6 +216,10 @@ export default {
                 // var index = [...dom].findIndex(item => item.checked == true)
                 // console.log(index);
                 if(isChecked){
+                    if(dom.length == 1){
+                        this.$message.warning("请至少保留一组数据")
+                        return
+                    }
                     // console.log(_this.checked,_this.rowsData);
                      this.$confirm({
                       title:"确认删除",
@@ -199,6 +234,7 @@ export default {
                             } else{
                                 document.querySelectorAll(".checkinput")[i].checked =false
                             }
+                            _this.dealArray(_this.rowsData)
                        }
                       }
                     });
@@ -222,12 +258,50 @@ export default {
                 } else{
                     item.children.forEach(element => {
                         _this.length ++ 
-                        _this.titleRows.push({name: element.name})
+                        _this.titleRows.push({name: element.name,field: element.field})
                     });
                 }
                  
             })
             this.checked =new Array(this.rowsData).fill(false)
+        },
+        dealArray(arr){
+            // console.log(arr,this.dataParams,'arr');
+            const dealArrayVal = []
+            arr.forEach(function(item,index){
+                item.map(function(itm,index){
+                    // obj[itm.field] = itm.value ? Number(itm.value) : null
+                    itm.name = itm.field
+                })
+                // console.log(arr,'obj');
+                // for(var key in item[0]){
+                //     // obj[field] = item[0].value
+                //     obj[item[0].field] = item[0].value
+                // }
+            //     obj[item[0].field] = item.value
+                dealArrayVal.push(item)
+               }
+
+            )
+            this.final(dealArrayVal)
+        },
+        final(dealArrayVal){
+            this.$store.commit("isClisked", true)
+            this.$set(this,"dataArrayFinal", [])
+            const _this = this
+            dealArrayVal.map(function(item,index){
+                const objs = {}
+                for(const key in _this.dataParams){
+                    if(key == 'classification'){
+                        objs["attribute"] = item
+                    } else{
+                       objs[key] = _this.dataParams[key]
+                    }
+                }
+                _this.dataArrayFinal.push(objs)
+            })
+            console.log(_this.dataArrayFinal);
+            this.$store.commit("dataTableFinal", _this.dataArrayFinal)
         }
     }
     
@@ -266,7 +340,7 @@ button{
     }
 }
 .delete{
-    float: right;
+    // float: right;
 }
 .myTable{
     margin: 10px 0;

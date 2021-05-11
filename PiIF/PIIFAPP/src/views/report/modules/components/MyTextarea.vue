@@ -27,16 +27,17 @@ export default {
         this.formParam = JSON.parse(JSON.stringify(this.value))
     },
     watch: {
-        value: {
+        'formParam.value': {
             handler(val){
-                this.formParam = JSON.parse(JSON.stringify(val))
+                // this.formParam = JSON.parse(JSON.stringify(val))
+                // this.value = JSON.parse(JSON.stringify(val))
             },
             deep: true
         }
     },
     methods: {
         blur(){
-            this.$bus.$emit('changes',this.value)
+            this.$bus.$emit('changes',this.formParam)
         }
     }
 }
@@ -50,7 +51,7 @@ export default {
         color: rgba(0, 0, 0, 0.85);
     }
     .areaCon{
-        width: 90%;
+        width: 114%;
         // padding: 0 8px;
     }
 }

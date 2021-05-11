@@ -1,5 +1,5 @@
 <template>
-    <!-- <a-form-item :label="value.name"> -->
+    <a-form-item :label="value.name">
         <a-select :placeholder="'请输入' + formParam.name"  :disabled="formParam.disabled" v-model="formParam.value" @change="handleInput">
             <a-select-option value="">请选择</a-select-option>
             <a-select-option v-for="(item, key) in formParam.select" :key="key" :value="item.value">
@@ -8,7 +8,7 @@
               </span>
             </a-select-option>
         </a-select>
-    <!-- </a-form-item> -->
+    </a-form-item>
 </template>
 <script>
 export default {

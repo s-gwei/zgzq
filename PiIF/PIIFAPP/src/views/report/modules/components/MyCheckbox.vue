@@ -1,6 +1,8 @@
 <template>
     <!-- <div> -->
+    <a-form-item :label="value.name">
         <a-checkbox-group :options="formParam.select" :placeholder="'请输入' + formParam.name"  :disabled="formParam.disabled" v-model="formParam.value" @change="handleInput" />
+    </a-form-item>
     <!-- </div> -->
 </template>
 <script>

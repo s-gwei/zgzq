@@ -2,12 +2,12 @@
     <div class="rightWrapper">
       <a-row>
          <a-card style="height: 100%">
-             <list-influence :title="'源总成'" :influenceData="affectLink" @getCurrentArig="getCurrentArig"></list-influence>
+             <list-influence :title="'源总成'" :influenceData="affectLink" @getCurrentArig="getCurrentArig" class="affectLink"></list-influence>
          </a-card>
       </a-row>
       <a-row>
         <a-card style="height: 100%">
-           <list-influence :title="'被约束总成'" :influenceData="constraintLink" @getCurrentArig="getCurrentArig"></list-influence>
+           <list-influence :title="'被约束总成'" :influenceData="constraintLink" @getCurrentArig="getCurrentArig" class="constraintLink"></list-influence>
         </a-card>
       </a-row>
     </div>

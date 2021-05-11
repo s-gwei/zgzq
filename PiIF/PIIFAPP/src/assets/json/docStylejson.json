@@ -1,0 +1,287 @@
+{
+   "Engine": {
+      "Type": "Engine",
+       "children": [
+           {
+              "departname": "轴承",
+              "title": "轴承",
+              "html": [
+                {
+                   "type": "input",
+                   "name": " 进气压气:",
+                   "field": "Intakeairpressure",
+                   "unit": "mm",
+                   "id": "110"
+                },
+                 {
+                   "type": "input",
+                   "field": "Outletpressure",
+                   "name": "出气压气",
+                   "unit": "mm",
+                   "id": "120"
+                },
+                {
+                   "type": "select",
+                   "field": "Steamturbinetype",
+                   "name": " 汽轮机形式",
+                   "id": "130",
+                   "select": [
+                     {
+                         "text": "抽汽",
+                         "value": "抽汽"
+                     },
+                     {
+                         "text": "0202",
+                         "value": "0202"
+                     }
+                   ]
+                },
+                {
+                  "type": "radio",
+                  "field": "Nosetotail",
+                  "name": "从机头向机尾看汽轮机转向",
+                  "id": "1940",
+                  "select": [
+                     {
+                         "text": "水冷",
+                         "value": "水冷"
+                     },
+                     {
+                         "text": "空冷",
+                         "value": "空冷"
+                     },
+                     {
+                        "text": "气冷",
+                        "value": "气冷"
+                    }
+                   ]
+                },
+               {
+                 "type": "radio",
+                 "name": "冷却方式",
+                 "field": "Coolingmode",
+                 "id": "1540",
+                 "select": [
+                    {
+                        "text": "水冷",
+                        "value": "水冷"
+                    },
+                    {
+                        "text": "空冷",
+                        "value": "空冷"
+                    }
+                  ]
+               }
+              ]
+           },
+           {
+              "id": "112",
+              "key": "112",
+              "departname": "洗轮机形式1",
+              "title": "洗轮机形式",
+              "html": [
+                {
+                   "type": "checkbox",
+                   "name": "汽轮机形式",
+                   "field": "Steamturbinetype",
+                   "id": "210",
+                   "select": [
+                      { "label": "抽管", "value": "抽管"},
+                      { "label": "补气", "value": "补气"},
+                      { "label": "再热", "value": "再热"}
+                   ]
+                },
+                {
+                   "type": "input",
+                   "field": "exhaust",
+                   "name": "排汽",
+                   "id": "2110"
+                }
+              ]
+           }
+       ]
+   },
+   "Front": {
+      "Type": "Front",
+       "children": [
+        {
+             "departname": "进排气参数",
+             "title": "进排气参数",
+             "html": [
+              {
+                  "type": "input",
+                  "name": "进气压力",
+                  "field": "Intakepressure",
+                  "id": "2210",
+                  "unit": "mm"
+               },
+               {
+                 "type": "input",
+                 "name": "进气温度",
+                 "field": "Intakeairtemperature",
+                 "id": "2310",
+                 "unit": "°C"
+              },
+              {
+                 "type": "input",
+                 "name": "进排压力",
+                 "field": "Inletandoutletpressure",
+                 "id": "2410",
+                 "unit": "mm"
+              },
+               {
+                  "type": "radio",
+                  "name": "加热方式",
+                  "field": "Heatingmode",
+                  "id": "340",
+                  "value": "w31",
+                  "select": [
+                     {
+                         "text": "水热",
+                         "value": "水热"
+                     },
+                     {
+                         "text": "空热",
+                         "value": "空热"
+                     },
+                     {
+                         "text": "自然",
+                         "value": "自然"
+                     }
+                  ]
+        }
+              ]
+           },
+           {
+            "departname": "公用工程条件",
+            "title": "公用工程条件",
+            "html": [
+                {
+                    "type": "input",
+                    "name": "进水压力",
+                    "field": "Inletpressure",
+                    "id": "3210",
+                    "unit": "mm"
+                 },
+                 {
+                    "type": "input",
+                    "name": "水质情况",
+                    "field": "Waterquality",
+                    "id": "3310",
+                    "unit": "mm"
+                 },
+                 {
+                    "type": "input",
+                    "name": "回水温度",
+                    "field": "Returnwatertemperature",
+                    "id": "3410",
+                    "unit": "°C"
+                 }
+            ]
+            },
+            {
+               "departname": "转速",
+               "title": "转速",
+               "html": [
+                {
+                   "type": "radio",
+                   "name": "制冷方式",
+                   "field": "Refrigerationmode",
+                   "id": "340",
+                   "select": [
+                      {
+                          "text": "散热",
+                          "value": "s31"
+                      },
+                      {
+                          "text": "自然",
+                          "value": "s33"
+                      }
+                   ]
+                },
+                { 
+                  "id": "370",
+                  "type": "textarea",
+                  "name": "修改说明",
+                  "field": "Modificationinstructions"
+                }
+              ]
+            }
+       ]
+   },
+   "Wheel": {
+      "Type": "Wheel",
+      "children": [
+         {
+              "id": "1211",
+              "key": "1211",
+              "departname": "进排气参数",
+              "title": "进排气参数",
+              "html": [
+               {
+                  "type": "input",
+                  "name": "高加数量",
+                  "id": "5110",
+                  "unit": "°C",
+                  "field": "QuantityHPheater"
+               },
+               {
+                  "type": "input",
+                  "name": "低加数量",
+                  "id": "5120",
+                  "unit": "°C",
+                  "field": "QuantityLPheater"
+               },
+               {
+                  "type": "input",
+                  "name": "出口温度",
+                  "id": "5210",
+                  "unit": "°C",
+                  "field": "outlettemperature"
+               },
+               {
+                  "type": "input",
+                  "name": "锅炉给水温度",
+                  "id": "5310",
+                  "unit": "°C",
+                  "field": "watertemperature"
+               }
+      ]
+            }
+        ]
+   },
+   "working1": {
+      "departname": "背景",
+      "title": "背景",
+      "html": [{
+          "type": "table",
+          "name": "冷却方式",
+          "params":  [
+            {
+                "name": "排汽",
+                "children": [
+                    {"name": "流量","field":"Exhaustflow"},
+                    {"name": "压力","field":"Exhaustpressure"},
+                    {"name": "温度","field":"Exhausttemperature"}
+                ] 
+            },
+            {
+                "name": "可调抽汽",
+                "children": [
+                    {"name": "流量","field":"Adjustableextractionpressure"},
+                    {"name": "压力","field":"Adjustableextractiontemperature"},
+                    {"name": "温度","field":"Adjustableextractionflow"}
+                ] 
+            },
+            {
+                "name": "补汽I",
+                "children": [
+                    {"name": "压力","field":"upsteampressure"},
+                    {"name": "温度","field":"upsteamtemperature"},
+                    {"name": "焓","field":"upsteamenthalpy"}
+                ]  
+            }
+        ]
+       }]
+ }
+}
