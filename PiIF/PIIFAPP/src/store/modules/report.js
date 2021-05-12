@@ -31,7 +31,8 @@ const user = {
     docVal: {}, //样式文件
     currentTableType: {},//当前列表type
     btnEditable: true, //权限控制
-    isClisked: false //是否修改控制保存
+    isClisked: false, //是否修改控制保存
+    centerAndRightShow: false,
   },
   mutations: {
     SET_INFO: (state, info) => {
@@ -107,6 +108,9 @@ const user = {
     },
     currentTableType: (state,info) => {
       state.currentTableType = info
+    },
+    centerAndRightShow: (state,info) => {
+      state.centerAndRightShow = info
     }
   },
 

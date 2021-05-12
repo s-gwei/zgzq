@@ -6,7 +6,7 @@
           <a-col :md="4" :sm="24" style="height: 100%" class="pageLeft">
             <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child" />
           </a-col>
-          <a-col :md="14" :sm="24" style="height: 100%">
+          <a-col :md="14" :sm="24" style="height: 100%" v-show="$store.state.report.centerAndRightShow">
             <table-center @getCurrentArig="getCurrentArig"/>
           </a-col>
           <a-col :md="6" :sm="24" style="height: 100%">
@@ -14,7 +14,7 @@
           </a-col>
         </a-row>
       </div>
-      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="loading || iNow < 99">
+      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="loading || iNow < 99" v-show="$store.state.report.centerAndRightShow">
          <div  id="progressBox" >
             <div id="progressBar">0%</div>
             <div id="progressText">0%</div>
