@@ -162,13 +162,14 @@ export default {
     },
     watch: {
    		thingNumber: {
-   	      	handler() {
-               console.log(this.timer);
+   	      	handler(v) {
    		        if (this.timer) {
    		          clearTimeout(this.timer)
    		        }
    		        this.timer = setTimeout(() => {
-   		          this.inputAdd();
+   		          if(v){
+                   this.inputAdd();
+                 }
    		        }, 1000)
    		      },
    		    deep: true
@@ -190,6 +191,7 @@ export default {
           }),
         add(){
             this.visible=true
+            this.thingNumber = null
         },
         inputAdd(){
           const _this = this,url=this.jkUrl.judgeThingCodeExists
