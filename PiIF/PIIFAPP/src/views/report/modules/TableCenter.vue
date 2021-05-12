@@ -81,6 +81,7 @@
             getAction(url,params,'get').then((res) => {
             // 保存成功发布按钮可点击
               if(res.success){
+                _this.$store.commit("isClisked", false)
                 _this.$message.success("保存成功,可发布")
                 _this.$store.commit("changePublishBtnState", false)
                 _this.$store.state.report.currentEditionVal = "最新版"

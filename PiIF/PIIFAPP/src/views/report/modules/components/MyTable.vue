@@ -55,7 +55,6 @@
                                 <input type="checkbox" @change="change(index)" :checked="checked.index" class="checkinput"/>
                             </td>
                             <td v-for="(itm,idx) in item" :key="idx">
-                                <!-- {{rowsData[index][idx]["value"]}} --> 
                                 <!-- <a-input :value="itm['value']" type="number" v-model="rowsData[index][idx]['value']" @input="input"/> -->
                                 <a-input :value="itm['value']" v-model="rowsData[index][idx]['value']" @input="input"/>
                             </td>
@@ -122,13 +121,14 @@ export default {
             checked: [],
             currentNodeTitleVal: "", //发动机,前车...
             dataParams: {},
-            dataArrayFinal: [] //处理后的数据
+            dataArrayFinal: [], //处理后的数据
+            PartNumberDate: []
         }
     },
     mounted(){
         this.currentNodeTitleVal = this.$store.state.report.currentTableType
        this.docVal = this.$store.state.report.docVal
-       console.log( this.docVal,this.currentNodeTitleVal);
+       // console.log( this.docVal,this.currentNodeTitleVal);
         const tableData = this.docVal[this.currentNodeTitleVal]
         this.$set(this,"tableColumns",tableData.html[0].params)
         this.getTitle()
@@ -149,17 +149,30 @@ export default {
             this.dealArray(this.rowsData)
         },
         getDealDate(data){
+            const _this = this
             // console.log(data,'data');
-            const titleRows = JSON.parse(JSON.stringify(this.titleRows))
-            var rowsData = []
-            data.forEach(function(item){
-                // console.log(item,titleRows);
-                titleRows.map(function(itm){
-                    itm.value = item.classification[itm.field]
-                })
-                // console.log(titleRows,'res');
-                rowsData.push(titleRows)
+            this.PartNumberDate =new Array(100).fill("")
+            data.forEach(function(item,index){
+                _this.PartNumberDate[index] = item.PartNumber
+                // realArray.push(item.classification)
             })
+            const newArr = []
+            var titleRows = JSON.parse(JSON.stringify(this.titleRows))
+            var rowsData = []
+            // console.log(titleRows,'title');
+             for(let i = 0;i<data.length;i++){
+                 var columnData =[]
+                titleRows.forEach(function(itm,index){
+                     var obj={}
+                     obj["value"] = data[i].classification[itm.field]
+                     obj["name"] = itm["name"]
+                     obj["field"] = itm["field"]
+                     columnData.push(obj)
+                  })
+                //   console.log(columnData,i);
+                rowsData.push(columnData)
+            }
+            // console.log(newArr,rowsData,this.titleRows);
             this.$set(this,"rowsData",rowsData)
         },
         getWidth(){
@@ -294,7 +307,9 @@ export default {
                 for(const key in _this.dataParams){
                     if(key == 'classification'){
                         objs["attribute"] = item
-                    } else{
+                    }  if(key == 'PartNumber'){
+                        objs[key] = _this.PartNumberDate[index]
+                    }else{
                        objs[key] = _this.dataParams[key]
                     }
                 }

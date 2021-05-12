@@ -148,7 +148,7 @@
       },
       getCurrentArig(){
         const key = this.$store.state.report.currentNodeTitleVal
-        this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal)
+        this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal,this.$store.state.report.docVal[key])
       }
     }
   }
