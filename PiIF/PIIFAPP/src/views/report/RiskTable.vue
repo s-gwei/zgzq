@@ -1,10 +1,10 @@
 <template>
    <div class="risktable">
-      <!-- <div  class="tableContent" style="height:100%;" v-if="!loading && iNow >=99"> -->
-      <div  class="tableContent" style="height:100%;">
+      <div  class="tableContent" style="height:100%;"  v-show="!loading && iNow >=99">
+      <!-- <div  class="tableContent" style="height:100%;"> -->
         <a-row type="flex" :gutter="8" style="height:100%;">
           <a-col :md="4" :sm="24" style="height: 100%" class="pageLeft">
-            <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child"/>
+            <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child" />
           </a-col>
           <a-col :md="14" :sm="24" style="height: 100%">
             <table-center @getCurrentArig="getCurrentArig"/>
@@ -14,12 +14,12 @@
           </a-col>
         </a-row>
       </div>
-      <!-- <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-else>
+      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="loading || iNow < 99">
          <div  id="progressBox" >
             <div id="progressBar">0%</div>
             <div id="progressText">0%</div>
          </div>
-      </div> -->
+      </div>
    </div>
 </template>
 
@@ -46,6 +46,7 @@
       }
     },
     created(){
+      this.load()
       this.$nextTick(function(){
           this.$store.commit("currentVal", this.$router)
       })
@@ -62,7 +63,25 @@
               // this.getCurrentVal(val)
             },
             deep: true
+        },
+      iNow(val){
+        if(val>= 99){
+          this.iNow = 99
         }
+      },
+      loading(val){
+          if(!val){
+             const _this = this
+            const times = setInterval(function(){
+                 if(_this.iNow <99){
+                    _this.iNow += 2
+                    _this.progressFn(_this.iNow)
+                 } else {
+                   clearInterval(times)
+                 }
+               },100)
+            }
+      }
     },
     mounted(){
       this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
@@ -120,7 +139,7 @@
         // params.baselineNumber = 1
         getAction(url,params,'get').then((res) => {
              if(res.success){
-               _this.loading = !_this.loading
+               _this.loading = false
               //  console.log(res.result);
                // _this.tableDate = res.result
                 const partNumberSelected = []
@@ -135,6 +154,7 @@
                })
                _this.$set(_this,"treeDataSource",[res.result])
                _this.$set(_this,"treeDataSourceAll",[res.result])
+               console.log(_this.treeDataSource);
              } else {
                _this.$message.error(res.message)
                // _this.$nextTick(function(){
@@ -149,6 +169,87 @@
       getCurrentArig(){
         const key = this.$store.state.report.currentNodeTitleVal
         this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal,this.$store.state.report.docVal[key])
+      },
+      load(){
+          //  var _this.iNow = 0;
+            // 设定定时器
+            const _this = this
+            var timer = setInterval(function () {
+                // 如果当前的值为100
+                if (_this.iNow == 60 ) {
+                    // 清除定时器
+                    clearInterval(timer);
+                }
+                if(_this.iNow < 60) {
+                    // 将当前状态值累加1
+                    _this.iNow += 4;
+                    // 调用执行状态的函数,传入状态值
+                    _this.loading && _this.progressFn(_this.iNow);
+                }
+            }, 60);
+            var timer2 = setInterval(function(){
+                  if(_this.iNow == 70){
+                    clearInterval(timer2);
+                  }  
+                  if(_this.iNow >= 60 && _this.iNow < 70) {
+                    _this.iNow += 2;
+                    _this.loading && _this.progressFn(_this.iNow);
+                  }
+            },250)
+            var timer3 = setInterval(function(){
+                  if(_this.iNow == 93){
+                    // clearInterval(timer3);
+                  } 
+                  if(_this.iNow >= 70 && _this.iNow < 93){
+                    _this.iNow += 1;
+                    _this.loading && _this.progressFn(_this.iNow);
+                  }
+            },80)
+             var timer4 = setInterval(function(){
+                  if(_this.iNow == 99){
+                       clearInterval(timer4);
+                  } 
+                  if(_this.loading){
+                     if(_this.iNow >= 93 && _this.iNow < 99){
+                       var n = parseInt(3*Math.random())+ 1
+                       if(_this.iNow % 2 == 0 ){
+                         _this.iNow = _this.iNow - (2*n+1)
+                       } else{
+                         console.log(_this.iNow,n);
+                         _this.iNow = _this.iNow +  (2*n-1) == 100 ? 98 : _this.iNow +  (2*n-1)
+                       }
+                        _this.progressFn(_this.iNow);
+                     }
+                  }
+            },500)
+      },
+      progressFn(cent) {
+                // 获取最外层的div
+                var oDiv1 = document.getElementById('progressBox');
+                // 获取内层进度条的div
+                var oDiv2 = document.getElementById('progressBar');
+                // 获取内层文字发生变化时的div
+                var oDiv3 = document.getElementById('progressText');
+                // 获取总进度条的宽度
+                var allWidth = parseInt(getStyle(oDiv1, 'width'));
+ 
+                // 设定内层两个div的文字内容一样
+                oDiv2.innerHTML = cent + '%';
+                oDiv3.innerHTML = cent + '%';
+ 
+                // 修改clip的的宽度值
+                oDiv2.style.clip = 'rect(0px, ' + cent / 100 * allWidth + 'px, 40px, 0px)';
+ 
+                // 获取当前元素的属性值
+               function getStyle(obj, attr) {
+                    // 兼容IE
+                    if (obj.currentStyle) {
+                        return obj.currentStyle[attr];
+                    }else {
+                        // 第二个参数为false是通用的写法，目的是为了兼容老版本
+                        return getComputedStyle(obj, false)[attr];
+                    }
+                }
       }
     }
   }

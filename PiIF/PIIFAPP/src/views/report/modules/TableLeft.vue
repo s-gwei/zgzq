@@ -5,7 +5,7 @@
         计算通知单结构
       </div> -->
       <div class="search">
-        <a-input-search placeholder="请输入关键词" style="width: 180px" @search="onSearch" v-model="name"/>
+        <a-input-search placeholder="请输入关键词"  @search="onSearch" v-model="name"/>
         <!-- <a-input-search v-model="name" placeholder="search" enter-button="Search" @search="onSearch" /> -->
         <a class="clear" @click="clear1()" v-show="isClear">x</a>
       </div>
@@ -181,7 +181,6 @@
       // 获取中间样式文件
       this.getStyle()
       // console.log(this.$store.state.report.btnEditable);
-      // console.log(this.treeDataSource);
       this.projectNumber = this.$route.query.projectId || this.$route.params.projectId
       this.taskId = this.$route.query.taskId || this.$route.params.taskId || '0'
       this.planNumber = this.$route.query.planId || this.$route.params.planId
@@ -193,7 +192,6 @@
         // const val = require("@/assets/json/docStylejson.json")
         // _this.docVal= val
         // this.$store.commit("setdocVal",_this.docVal)
-        // const data = {}
         //本地部署
         getAction('/upload/docStylejson.json').then((val) => {
           // console.log(val);

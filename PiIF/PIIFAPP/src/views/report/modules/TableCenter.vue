@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="centerBtn" v-if="$store.state.report.btnEditable && $store.state.report.isClisked">
-           <a-button type="primary" @click="save">保存</a-button>
+           <a-button type="primary" @click="save" :disabled="saveDisabled">保存</a-button>
         </div>
     </a-card>
 </template>
@@ -25,6 +25,7 @@
     components: {PartForms},
     data () {
       return {
+        saveDisabled: false,//保存点击之后禁点
         isTable: false,//是否存在table布局
         tableLayout: {},
         data:[],
@@ -46,7 +47,7 @@
           this.$store.commit("isClisked", true)
           const _this =this
           const changesData = val.filter(function (itm) {
-          console.log(_this.currentAttribute,itm.field);
+          // console.log(_this.currentAttribute,itm.field);
               return _this.currentAttribute.indexOf(itm.field) > -1
           })
            const paramsVal = []
@@ -74,19 +75,22 @@
         save(){
             const _this = this,url = this.jkUrl.modifyPartInfo
             const params = {}
+            this.saveDisabled = true
             params.param = this.$store.state.report.infoParams
             params.partNumber = this.$store.state.report.infoParams.partNumber
             params.totalCarNumber = this.$store.state.report.infoParams.parentNumber
-            console.log(params);
+            // console.log(params);
             getAction(url,params,'get').then((res) => {
             // 保存成功发布按钮可点击
               if(res.success){
+                 _this.saveDisabled = false
                 _this.$store.commit("isClisked", false)
                 _this.$message.success("保存成功,可发布")
                 _this.$store.commit("changePublishBtnState", false)
                 _this.$store.state.report.currentEditionVal = "最新版"
                 _this.$emit('getCurrentArig')
               }else{
+                _this.saveDisabled = false
                 _this.$message.error(res.message || '保存失败')
               }
 
@@ -132,7 +136,7 @@
             }
       })
       this.$bus.$on('changes',function(val){
-        console.log(val,_this.changesData);
+        // console.log(val,_this.changesData);
         var isFlag = true
         if(_this.changesData.length){
           _this.changesData.forEach(function(item,index){
@@ -148,7 +152,7 @@
         } else{
           _this.changesData.push(val)
         }
-        console.log(_this.changesData);
+        // console.log(_this.changesData);
       })
     }
   }

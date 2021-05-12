@@ -134,6 +134,7 @@ export default {
         this.getTitle()
         this.getDealDate(this.$store.state.report.result.children)
         this.dataParams = this.$store.state.report.result.children[0]
+        this.dealArray(this.rowsData,false)
     },
     watch: {
         // rowsData: {
@@ -278,7 +279,7 @@ export default {
             })
             this.checked =new Array(this.rowsData).fill(false)
         },
-        dealArray(arr){
+        dealArray(arr, flag = true){
             // console.log(arr,this.dataParams,'arr');
             const dealArrayVal = []
             arr.forEach(function(item,index){
@@ -294,12 +295,11 @@ export default {
             //     obj[item[0].field] = item.value
                 dealArrayVal.push(item)
                }
-
             )
-            this.final(dealArrayVal)
+            this.final(dealArrayVal,flag)
         },
-        final(dealArrayVal){
-            this.$store.commit("isClisked", true)
+        final(dealArrayVal, flag = true){
+            this.$store.commit("isClisked", flag)
             this.$set(this,"dataArrayFinal", [])
             const _this = this
             dealArrayVal.map(function(item,index){

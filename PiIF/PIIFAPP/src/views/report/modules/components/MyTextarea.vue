@@ -23,7 +23,7 @@ export default {
         }
     },
     mounted(){
-        document.querySelector('.label').style.width =(document.querySelector('.textareaWapper').offsetWidth + 16 ) / 48 * 9 + "px"
+        // document.querySelector('.label').style.width =(document.querySelector('.textareaWapper').offsetWidth + 16 ) / 48 * 9 + "px"
         this.formParam = JSON.parse(JSON.stringify(this.value))
     },
     watch: {
@@ -47,7 +47,7 @@ export default {
     display: flex;
     // box-sizing: border-box;
     .label{
-        // width: 9/48 * 100%;
+        width: 9/48 * 100%;
         color: rgba(0, 0, 0, 0.85);
     }
     .areaCon{

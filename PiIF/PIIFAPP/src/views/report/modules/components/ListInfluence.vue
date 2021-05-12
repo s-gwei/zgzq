@@ -30,7 +30,7 @@
        >
       <a-form  :label-col="{ span: 8 }" :wrapper-col="{ span: 14 }">
         <a-form-item label="新增">
-          <a-input placeholder="请输入需要新增的物料编码" v-model="thingNumber" @change ="inputAdd"></a-input>
+          <a-input placeholder="请输入需要新增的物料编码" v-model="thingNumber"></a-input>
           <!-- <a-select  mode="multiple" @change="selectTags" v-model="selectedvalue">
             <a-select-option v-for="item in tagsData" :value="item.id" :key="item.id">{{ item.name }}</a-select-option>
           </a-select> -->
@@ -92,7 +92,8 @@ export default {
             jkUrl: {
               judgeThingCodeExists:"/jeecg-boot/pdmReport/judgeThingCodeExists",
               modifyPartInfo :"/jeecg-boot/pdmReport/modifyPartInfo",
-            }
+            },
+            timer: null
         }
     },
     computed: {
@@ -159,6 +160,20 @@ export default {
               }
             ]
     },
+    watch: {
+   		thingNumber: {
+   	      	handler() {
+               console.log(this.timer);
+   		        if (this.timer) {
+   		          clearTimeout(this.timer)
+   		        }
+   		        this.timer = setTimeout(() => {
+   		          this.inputAdd();
+   		        }, 1000)
+   		      },
+   		    deep: true
+   	    }
+   	},
     methods: {
       onChange (selectedRowKeys, selectedRows) {
               // this.selectedRowKeys = selectedRowKeys
@@ -177,7 +192,6 @@ export default {
             this.visible=true
         },
         inputAdd(){
-          // console.log(this.thingNumber);
           const _this = this,url=this.jkUrl.judgeThingCodeExists
           getAction(url,{thingNumber: this.thingNumber}).then((res)=>{
                 if (res.success) {
@@ -211,6 +225,7 @@ export default {
         },
         handleCancel(){
             this.visible=false
+            this.thingNumber = ""
         },
         selectTags(){},
         // 停用
