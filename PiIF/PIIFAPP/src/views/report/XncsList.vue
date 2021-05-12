@@ -18,7 +18,7 @@
                                 <div class="planDetail" v-for="(item,index) in parameter" :key="index">{{item}}</div>
                             </div>
                         </div>
-                        <div v-else>
+                        <div >
                             <!-- <div>
                                 校验成功,请输入创建实例的名称:<a-input v-model="name"></a-input>
                             </div> -->
@@ -75,6 +75,7 @@ export default {
         }
     },
     mounted(){
+        console.log(this.$route.query.projectId);
         this.$store.commit("btnEditable", this.$route.query.editable)
         document.querySelector(".xncsWrapper").style.height = document.querySelector("#app").offsetHeight + "px"
         this.getParamsList()
@@ -135,15 +136,15 @@ export default {
             params.templatePartNumber = this.planIdObj.partNumber
             params.lifeCycle = "EDIT"
             params.name = this.name
+            const obj = {}
             getAction(url,params).then((res)=>{
                 console.log(res);
                 if (res.success) {
-                    const obj = {}
-                    obj.totalCarPartNumber = res.result 
-                    obj.projectNumber = "project1"
-                    obj.taskId = "1"
-                    obj.planNumber = "plan1"
-                    // obj.
+                     obj.totalCarPartNumber = res.result 
+                     obj.projectNumber = _this.$route.query.projectId
+                     obj.taskId = this.$route.query.taskId ? this.$route.query.taskId : 0
+                     obj.planNumber = this.$route.query.planId
+                    // console.log(obj);
                 //   this.projects = res.result.records
                 //   const params = {totalCarPartNumber: res.result || "AZ00000001"}
                   this.$router.push({name: "riskTable",params:obj});
