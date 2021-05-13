@@ -89,7 +89,7 @@
              </a-button>
            </template>
            <a-form-item label="选择生成基线方式" :label-col="{ span: 5 }" :wrapper-col="{ span: 16}">
-              <a-radio-group v-model="baselineCreateValue" @change="onChange" :default-value="1" >
+              <a-radio-group v-model="baselineCreateValue" @change="onChange">
                   <a-radio :style="radioStyle" value="1">
                     自动命名
                   </a-radio>
@@ -181,9 +181,9 @@
       // 获取中间样式文件
       this.getStyle()
       // console.log(this.$store.state.report.btnEditable);
-      this.projectNumber = this.$route.query.projectId || this.$route.params.projectId
+      this.projectNumber = this.$route.query.projectNumber || this.$route.params.projectNumber
       this.taskId = this.$route.query.taskId || this.$route.params.taskId || '0'
-      this.planNumber = this.$route.query.planId || this.$route.params.planId
+      this.planNumber = this.$route.query.planNumber || this.$route.params.planNumber
     }, 
     methods: {
       getStyle(){
@@ -199,7 +199,6 @@
            //  _this.docVal = res
            _this.$store.commit("setdocVal",val)
         })
-
       },
       // 基线生成方式选择
       onChange(v){
@@ -223,6 +222,7 @@
       },
       // 打基线功能
       hitBaseline(){
+        this.baselineCreateValue = "1"
         const _this = this
         this.value = "更多"
         this.createBaselinevisible = true
@@ -291,7 +291,6 @@
       },
       createBaselineCancel(){
         this.createBaselinevisible =false
-        this.baselineCreateValue =1 
         this.baseName = ""
       },
       // 获取某条基线信息后提交功能
@@ -467,6 +466,7 @@
           this.handleOk()
         }else{
           const _this = this,url= this.url.findPartInfo,params={}
+          _this.$store.commit("centerAndRightShow",false)
           params.totalCarPartNumber = this.$store.state.report.currentTotalCarPartNumberVal
           params.lifeCycle = edition ? edition : "EDIT"
           params.partNumber = selectedNodeKeys
@@ -474,6 +474,7 @@
                if(res.success && res.result){
                 //  console.log(res.result);
                  // _this.tableDate = res.result
+                 _this.$store.commit("centerAndRightShow",true)
                  _this.$store.commit("affectLink",{
                    name: "全部",
                    add: [{

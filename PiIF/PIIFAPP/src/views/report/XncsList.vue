@@ -18,7 +18,7 @@
                                 <div class="planDetail" v-for="(item,index) in parameter" :key="index">{{item}}</div>
                             </div>
                         </div>
-                        <div >
+                        <div v-else>
                             <!-- <div>
                                 校验成功,请输入创建实例的名称:<a-input v-model="name"></a-input>
                             </div> -->
