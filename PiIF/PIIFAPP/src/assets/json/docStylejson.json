@@ -113,6 +113,10 @@
                   "name": "进气压力",
                   "field": "Intakepressure",
                   "id": "2210",
+                  "validator": {
+                    "type": "Number",
+                    "regex": [10,20]
+                  },
                   "unit": "mm"
                },
                {
@@ -120,6 +124,10 @@
                  "name": "进气温度",
                  "field": "Intakeairtemperature",
                  "id": "2310",
+                 "validator": {
+                   "type": "String",
+                   "regex": 10
+                },
                  "unit": "°C"
               },
               {
@@ -127,6 +135,9 @@
                  "name": "进排压力",
                  "field": "Inletandoutletpressure",
                  "id": "2410",
+                 "validator": {
+                  "type": "Number"
+                  },
                  "unit": "mm"
               },
                {

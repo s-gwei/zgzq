@@ -19,6 +19,7 @@
             <div id="progressBar">0%</div>
             <div id="progressText">0%</div>
          </div>
+         <div class="notice">受集团服务器协议影响,跨系统传输文件,加载较慢,请稍等</div>
       </div>
    </div>
 </template>
@@ -258,6 +259,12 @@
   @import '~@assets/less/common.less';
   /deep/.ant-card-body{
     height: 100%;
+  }
+  .notice{
+    text-align: center;
+    font-size: 20px;
+    color: rgb(255, 8, 0);
+    margin-top: 10px;
   }
   .pageLeft {
     padding-right: 10px!important;

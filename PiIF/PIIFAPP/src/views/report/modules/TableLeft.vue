@@ -269,17 +269,16 @@
 
       },
       baselineMes(){
-        this.index++
         const _this= this,url= this.url.findBaseLineInfo,params={}
           params.projectNumber = this.projectNumber  //项目号
           params.planNo = this.planNumber  //计划号
           params.index =this.index
           this.baselinevisible = true
-          if(this.baselineDate.length) return
+          // if(this.baselineDate.length) return
           getAction(url,params).then((res) => {
              if(res.success){
                 _this.$set(_this,"baselineDate",res.result)
-                _this.baselineVal = _this.baselineDate[0].number
+                _this.baselineVal = _this.baselineDate && _this.baselineDate[0] && _this.baselineDate[0].number
              }else{
                _this.$message.error(res.message || '查询所有基线信息失败')
              }
@@ -600,9 +599,6 @@
       // float: right;
       display: flex;
       justify-content: center;
-      .moreBtn{
-
-      }
       .moreBtn{
         position: relative;
         .otherBtn{
