@@ -63,7 +63,7 @@
              <a-button @click="baselineCancel">
                取消
              </a-button>
-             <a-button key="submit" type="primary"  @click="handleOk">
+             <a-button key="submit" type="primary"  @click="handleOk" :disabled="submitFlag">
                提交
              </a-button>
            </template>
@@ -121,6 +121,7 @@
     },
     data() {
       return {
+        submitFlag: true,
         baseName: "",
         baselineCreateValue: "1",
         radioStyle: {
@@ -274,11 +275,17 @@
           params.planNo = this.planNumber  //计划号
           params.index =this.index
           this.baselinevisible = true
+          _this.submitFlag = true
           // if(this.baselineDate.length) return
           getAction(url,params).then((res) => {
              if(res.success){
-                _this.$set(_this,"baselineDate",res.result)
-                _this.baselineVal = _this.baselineDate && _this.baselineDate[0] && _this.baselineDate[0].number
+               if(!res.result){
+                  _this.$message.warning('查询基线信息为空')
+               }else{
+                  _this.submitFlag = false
+                  _this.$set(_this,"baselineDate",res.result)
+                  _this.baselineVal = _this.baselineDate && _this.baselineDate[0] && _this.baselineDate[0].number
+               }
              }else{
                _this.$message.error(res.message || '查询所有基线信息失败')
              }
