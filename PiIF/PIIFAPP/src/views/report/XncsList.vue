@@ -31,7 +31,6 @@
                                     />
                                 </a-form-item>
                             </a-form>
-                             
                             <a-button type="primary" @click="admainPlanFrom">生成本计划参数表</a-button>
                         </div>
                     </a-card>
@@ -47,7 +46,7 @@ export default {
     data(){
         return {
             rightShow: false,
-            validatorRules:{rules: [{validator:this.validators.length({min:1,max:30})}]},
+            validatorRules:{rules: [{required:true,validator:this.validators.length({min:1,max:30})}]},
             label: "校验成功,请输入创建实例的名称",
             form: this.$form.createForm(this),
             labelCol: {
@@ -56,7 +55,7 @@ export default {
             wrapperCol: {
               sm: { span: 16 },
             },
-            name: "123",
+            name: "",
             loading:false,
             paramsData: [
                 // {partNumber: '1', partName: "模板模板1"},

@@ -190,16 +190,16 @@
       getStyle(){
          const _this = this
         // 项目
-        const val = require("@/assets/json/docStylejson.json")
-        _this.docVal= val
-        this.$store.commit("setdocVal",_this.docVal)
+        // const val = require("@/assets/json/docStylejson.json")
+        // _this.docVal= val
+        // this.$store.commit("setdocVal",_this.docVal)
         //本地部署
-        // getAction('/upload/docStylejson.json').then((val) => {
-        //   // console.log(val);
-        //    _this.docVal = val
-        //    //  _this.docVal = res
-        //    _this.$store.commit("setdocVal",val)
-        // })
+        getAction('/upload/docStylejson.json').then((val) => {
+          // console.log(val);
+           _this.docVal = val
+           //  _this.docVal = res
+           _this.$store.commit("setdocVal",val)
+        })
       },
       // 基线生成方式选择
       onChange(v){
@@ -303,24 +303,25 @@
       handleOk(){
         const _this = this,url=this.url.findBaseLinePartInfo,params={}
         params.baselineNumber = this.baselineVal
-        params.partNumber = this.$store.state.report.currentPartNumberVal
+        params.partNumber = this.$store.state.report.currentTotalCarPartNumberVal
+        // console.log(this.$store.state.report.currentPartNumberVal,this.$store.state.report.currentPartNumberVal);
         _this.value = "更多"
         getAction(url,params).then((res) => {
            if(res.success){
               _this.$message.success('获取信息成功')
                _this.$store.commit("currentEdition","基线版")
                _this.baselinevisible = false
-               const data = res.result.children.filter(function(item){
-                 return item.PartName == _this.$store.state.report.currentNodeTitleVal
+               const data = res.result.filter(function(item){
+                 return item.Type == _this.$store.state.report.currentNodeTitleVal
                })
                 _this.$set(_this,"currentValue",data[0])
-               _this.$bus.$emit('currentValue',_this.currentValue,_this.docVal)
+              //  _this.$bus.$emit('currentValue',_this.currentValue,_this.docVal)
                 _this.$bus.$emit('currentValue',{
                  val: data[0],
                  data: _this.docVal
                })
               //  console.log(_this.$store.state.report.currentEditionVal,data[0],docVal[data[0].PartName],'test');
-               _this.adminCurrentNodeVal(data[0])
+               _this.adminCurrentNodeVal(data[0],_this.docVal[_this.$store.state.report.currentNodeTitleVal])
            }else{
                _this.$message.error(res.message || '获取当条基线数据失败')   
            }
@@ -335,11 +336,11 @@
           title:"确认",
           content:"确认恢复至发布版吗?",
           onOk: function(){
-              _this.value = "revertPublish"
-              _this.getCenterDate(_this.$store.state.report.currentPartNumberVal,this.docVal[key],"RELEASE")
+              // _this.value = "revertPublish"
+              _this.getCenterDate(_this.$store.state.report.currentPartNumberVal,_this.docVal[key],"RELEASE")
           },
           onCancel:function(){
-            _this.value = "更多"
+            // _this.value = "更多"
           }
         });
         // this.getCenterDate(this.$store.state.report.currentPartNumberVal,docVal[key],"发布版")
@@ -503,6 +504,7 @@
                 _this.adminCurrentNodeVal(_this.currentValue,data)
                } else {
                  _this.$message.error(res.message || "获取数据失败")
+                 _this.$store.commit("centerAndRightShow",true)
                }
           })
 
@@ -516,7 +518,6 @@
       },
       // 点击节点
       adminCurrentNodeVal(item,data){
-        // console.log(item,data);
         const _this = this
         setTimeout(function (params) {
           // const item = testVal
@@ -606,6 +607,16 @@
       // float: right;
       display: flex;
       justify-content: center;
+      /deep/.ant-select{
+        width: 120px;
+        .ant-select-selection__rendered{
+            margin-left: 33px;
+        }
+        .ant-select-arrow{
+           right: 33px;
+           color: #1890FF;
+         }
+      }
       .moreBtn{
         position: relative;
         .otherBtn{
