@@ -389,7 +389,7 @@
         if(selectedKeys && !selectedKeys.length || selectedKeys[0]== this.treeDataSource[0].PartNumber) return
         const _this = this
         // console.log(this.$store.report.btnEditable);
-        if(this.$store.state.report.btnEditable){
+        if(this.$store.state.report.btnEditable && this.$store.state.report.isClisked){
              _this.$confirm({
                title:"确认跳转",
                content:"您确保是否已保存",
@@ -420,7 +420,7 @@
                 _this.selectedKeys = [selectedKeys[0]]
                const key = event.node.dataRef.Type
               //  console.log(event.node.dataRef);
-               _this.getCenterDate(_this.selectedKeys[0])
+               _this.getCenterDate(_this.selectedKeys[0],_this.docVal[key])
               }
         }
          
