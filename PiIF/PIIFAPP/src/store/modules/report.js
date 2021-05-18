@@ -94,7 +94,7 @@ const user = {
       // state.infoParams.children = info
     },
     btnEditable: (state,info) => {
-      state.btnEditable = info == 'true' ? true : false
+      state.btnEditable = info == 'true' || info == true ? true : false
     },
     dataTableFinal: (state,info) => {
       state.dataTableFinal = info
