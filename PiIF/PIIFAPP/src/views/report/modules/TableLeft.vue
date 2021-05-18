@@ -181,13 +181,10 @@
     mounted() {
       // 获取中间样式文件
       this.getStyle()
-      this.projectNumber = this.$route.query.projectNumber || this.$route.params.projectNumber || localStorage.getItem("projectNumber")
-      this.taskId = this.$route.query.taskId || this.$route.params.taskId ||   localStorage.getItem("taskId") || '0'
-      this.planNumber = this.$route.query.planNumber || this.$route.params.planNumber ||  localStorage.getItem("planNumber")
       // console.log(this.$store.state.report.btnEditable);
-      // this.projectNumber = this.$route.query.projectNumber || this.$route.params.projectNumber
-      // this.taskId = this.$route.query.taskId || this.$route.params.taskId || '0'
-      // this.planNumber = this.$route.query.planNumber || this.$route.params.planNumber
+      this.projectNumber = this.$route.query.projectNumber || this.$route.params.projectNumber
+      this.taskId = this.$route.query.taskId || this.$route.params.taskId || '0'
+      this.planNumber = this.$route.query.planNumber || this.$route.params.planNumber
     }, 
     methods: {
       getStyle(){
@@ -391,7 +388,7 @@
       handleTreeSelect(selectedKeys,event) {
         if(selectedKeys && !selectedKeys.length || selectedKeys[0]== this.treeDataSource[0].PartNumber) return
         const _this = this
-        // console.log(this.$store.state.report.btnEditable,this.$store.state.report.isClisked);
+        // console.log(this.$store.report.btnEditable);
         if(this.$store.state.report.btnEditable && this.$store.state.report.isClisked){
              _this.$confirm({
                title:"确认跳转",

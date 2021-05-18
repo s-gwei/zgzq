@@ -51,7 +51,6 @@
       this.$nextTick(function(){
           this.$store.commit("currentVal", this.$router)
       })
-      this.$store.commit("btnEditable", localStorage.getItem("editable"))
     },
     watch: {
       currentVal: {
@@ -86,8 +85,7 @@
       }
     },
     mounted(){
-      this.$store.commit('currentTotalCarPartNumber',localStorage.getItem("totalCarPartNumber") || "" )
-      // this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
+      this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
       this.getData()
       document.querySelector(".risktable").style.height = document.querySelector("#app").offsetHeight + "px"
       window.onresize = () => {
@@ -137,8 +135,7 @@
       //根据整车部件编码和生命周期或者根据基线编码获取页面左侧显示的树状结构数据
       getData(){
         const _this = this,url= this.url.findThingTreeInfo,params={}
-        // params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
-        params.totalCarPartNumber = localStorage.getItem("totalCarPartNumber") 
+        params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
         params.lifeCycle = "EDIT"
         // params.baselineNumber = 1
         getAction(url,params,'get').then((res) => {
