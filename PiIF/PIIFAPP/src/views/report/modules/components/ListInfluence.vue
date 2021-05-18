@@ -329,16 +329,16 @@ export default {
   color: #1890FF;
 }
 .affectLink{
-  .addBtn{
-    background: #BFBFBF;
-    border: 1PX solid #BFBFBF;
+  // .addBtn{
+  //   background: #BFBFBF;
+  //   border: 1PX solid #BFBFBF;
 
-  }
-  .stopBtn{
-    color: #999999;
-    background: #fff;
-    border: 1px solid #D9D9D9;
-  }
+  // }
+  // .stopBtn{
+  //   color: #999999;
+  //   background: #fff;
+  //   border: 1px solid #D9D9D9;
+  // }
 }
 .constraintLink{
    &>.title .image{
