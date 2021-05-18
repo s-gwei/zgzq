@@ -4,14 +4,17 @@
       <!-- <div  class="tableContent" style="height:100%;"> -->
         <a-row type="flex" :gutter="8" style="height:100%;">
           <a-col :md="4" :sm="24" style="height: 100%" class="pageLeft">
-            <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" ref="child" />
+            <table-left v-bind:treeDataSource="treeDataSource"  v-model="currentVal" @fuzzySearch="fuzzySearch" @getLoadingHide="getLoadingHide" ref="child" />
           </a-col>
           <a-col :md="14" :sm="24" style="height: 100%" v-show="$store.state.report.centerAndRightShow">
-            <table-center @getCurrentArig="getCurrentArig"/>
+            <table-center @getCurrentArig="getCurrentArig"  @getLoadingHide="getLoadingHide"/>
           </a-col>
           <a-col :md="6" :sm="24" style="height: 100%" v-show="$store.state.report.centerAndRightShow"> 
             <table-right @getCurrentArig="getCurrentArig"/>
           </a-col>
+          <div class='load-container' id="loading">
+            <div class='loader'></div>
+        </div>
         </a-row>
       </div>
       <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="loading || iNow < 99" >
@@ -86,6 +89,7 @@
       }
     },
     mounted(){
+      document.getElementById("loading").style.display="none";
       // this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
        this.$store.commit('currentTotalCarPartNumber',localStorage.getItem("totalCarPartNumber") || "" )
       this.getData()
@@ -173,6 +177,9 @@
       getCurrentArig(){
         const key = this.$store.state.report.currentNodeTitleVal
         this.$refs.child.getCenterDate(this.$store.state.report.currentPartNumberVal,this.$store.state.report.docVal[key])
+      },
+      getLoadingHide(v){
+          document.getElementById("loading").style.display=v;
       },
       load(){
           //  var _this.iNow = 0;
@@ -326,6 +333,108 @@
       font-weight: bold;
       font-family: Georgia;
   }
+    .load-container {
+        background-color: #fff;
+        width: auto;
+        position: relative;
+        overflow: hidden;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+     }
+     
+#loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 15000;
+}
+   #loading  .loader  {
+	     position: absolute;
+        font-size: 14px;
+        // margin-left: 42%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        // text-indent: -9999em;
+        position: relative;
+        animation: mymove 1.5s infinite linear;
+        -webkit-animation: mymove 1.5s infinite linear;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+     }
+     .loader::before{
+        content: '加载中';
+        display: block;
+        color: #fff;
+        font-size: 14px;
+        width: 45px;
+        left: -15px;
+        position: absolute;
+    }
+    @keyframes mymove {
+        0%,
+        100% {
+            box-shadow: 0 -3em 0 0.2em #DEDEDE, 2em -2em 0 0em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 0 #DEDEDE;
+        }
+        12.5% {
+            box-shadow: 0 -3em 0 0 #DEDEDE, 2em -2em 0 0.2em #DEDEDE, 3em 0 0 0 #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        25% {
+            box-shadow: 0 -3em 0 -0.5em #DEDEDE, 2em -2em 0 0 #DEDEDE, 3em 0 0 0.2em #DEDEDE, 2em 2em 0 0 #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        37.5% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0em 0 0 #DEDEDE, 2em 2em 0 0.2em #DEDEDE, 0 3em 0 0em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0em 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        50% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 0em #DEDEDE, 0 3em 0 0.2em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        62.5% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 0 #DEDEDE, -2em 2em 0 0.2em #DEDEDE, -3em 0 0 0 #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        75% {
+            box-shadow: 0em -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0em 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 0.2em #DEDEDE, -2em -2em 0 0 #DEDEDE;
+        }
+        87.5% {
+            box-shadow: 0em -3em 0 0 #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 0 #DEDEDE, -2em -2em 0 0.2em #DEDEDE;
+        }
+    }
+
+    @-webkit-keyframes mymove
+    /*Safari and Chrome*/
+    {
+        0%,
+        100% {
+            box-shadow: 0 -3em 0 0.2em #DEDEDE, 2em -2em 0 0em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 0 #DEDEDE;
+        }
+        12.5% {
+            box-shadow: 0 -3em 0 0 #DEDEDE, 2em -2em 0 0.2em #DEDEDE, 3em 0 0 0 #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        25% {
+            box-shadow: 0 -3em 0 -0.5em #DEDEDE, 2em -2em 0 0 #DEDEDE, 3em 0 0 0.2em #DEDEDE, 2em 2em 0 0 #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        37.5% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0em 0 0 #DEDEDE, 2em 2em 0 0.2em #DEDEDE, 0 3em 0 0em #DEDEDE, -2em 2em 0 -1em #DEDEDE, -3em 0em 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        50% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 0em #DEDEDE, 0 3em 0 0.2em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 -1em #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        62.5% {
+            box-shadow: 0 -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 0 #DEDEDE, -2em 2em 0 0.2em #DEDEDE, -3em 0 0 0 #DEDEDE, -2em -2em 0 -1em #DEDEDE;
+        }
+        75% {
+            box-shadow: 0em -3em 0 -1em #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0em 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 0.2em #DEDEDE, -2em -2em 0 0 #DEDEDE;
+        }
+        87.5% {
+            box-shadow: 0em -3em 0 0 #DEDEDE, 2em -2em 0 -1em #DEDEDE, 3em 0 0 -1em #DEDEDE, 2em 2em 0 -1em #DEDEDE, 0 3em 0 -1em #DEDEDE, -2em 2em 0 0 #DEDEDE, -3em 0em 0 0 #DEDEDE, -2em -2em 0 0.2em #DEDEDE;
+        }
+    }
 </style>
 <style lang="scss" scoped>
 /deep/.ant-form-item-label{

@@ -72,6 +72,9 @@
           // this.$parent.getData();
           this.$emit('getCurrentArig');
         },
+         getLoadingHide(v){
+          this.$emit('getLoadingHide',v)
+        },
         save(){
             const _this = this,url = this.jkUrl.modifyPartInfo
             const params = {}
@@ -79,8 +82,10 @@
             params.param = this.$store.state.report.infoParams
             params.partNumber = this.$store.state.report.infoParams.partNumber
             params.totalCarNumber = this.$store.state.report.infoParams.parentNumber
+             this.getLoadingHide('block')
             // console.log(params);
             getAction(url,params,'get').then((res) => {
+              _this.getLoadingHide('none')
             // 保存成功发布按钮可点击
               if(res.success){
                  _this.saveDisabled = false

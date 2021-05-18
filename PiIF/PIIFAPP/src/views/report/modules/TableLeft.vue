@@ -348,10 +348,16 @@
         });
         // this.getCenterDate(this.$store.state.report.currentPartNumberVal,docVal[key],"发布版")
       },
+      getLoadingHide(v){
+        this.$emit('getLoadingHide',v)
+      },
       publish(){
+        this.value = "更多"
         const _this = this,url = this.url.publishInstance,params={}
+        this.getLoadingHide('block')
         params.partNumber = JSON.stringify(this.$store.state.report.partNumberSelected)
         getAction(url,params).then((res) => {
+            this.getLoadingHide('none')
           // console.log(res);
              if(res.success){
                this.$store.commit("currentEdition","已发布")
