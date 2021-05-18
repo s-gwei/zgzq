@@ -75,7 +75,11 @@ export default {
     },
     mounted(){
         console.log(this.$route.query.projectId);
-        this.$store.commit("btnEditable", this.$route.query.editable)
+        // this.$store.commit("btnEditable", this.$route.query.editable)
+         localStorage.setItem("btnEditable",this.$route.query.editable);
+         localStorage.setItem("planNumber",this.$route.query.planId);
+         localStorage.setItem("planNumber",this.$route.query.planId);
+         localStorage.setItem("taskId",this.$route.query.taskId ? this.$route.query.taskId : 0);
         document.querySelector(".xncsWrapper").style.height = document.querySelector("#app").offsetHeight + "px"
         this.getParamsList()
     },
@@ -139,6 +143,7 @@ export default {
             getAction(url,params).then((res)=>{
                 console.log(res);
                 if (res.success) {
+                    localStorage.setItem("totalCarPartNumber",res.result );
                      obj.totalCarPartNumber = res.result 
                      obj.projectNumber = _this.$route.query.projectId
                      obj.taskId = this.$route.query.taskId ? this.$route.query.taskId : 0

@@ -30,7 +30,7 @@ const user = {
     result: {},
     docVal: {}, //样式文件
     currentTableType: {},//当前列表type
-    btnEditable: true, //权限控制
+    btnEditable: null, //权限控制
     isClisked: false, //是否修改控制保存
     centerAndRightShow: false,
   },
@@ -94,7 +94,7 @@ const user = {
       // state.infoParams.children = info
     },
     btnEditable: (state,info) => {
-      state.btnEditable = info
+      state.btnEditable = info == 'true' ? true : false
     },
     dataTableFinal: (state,info) => {
       state.dataTableFinal = info
