@@ -51,7 +51,7 @@
       this.$nextTick(function(){
           this.$store.commit("currentVal", this.$router)
       })
-      this.$store.commit("btnEditable", localStorage.getItem("editable"))
+      this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
     },
     watch: {
       currentVal: {
