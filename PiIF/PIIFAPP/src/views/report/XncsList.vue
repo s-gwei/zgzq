@@ -78,7 +78,7 @@ export default {
         // this.$store.commit("btnEditable", this.$route.query.editable)
          localStorage.setItem("btnEditable",this.$route.query.editable);
          localStorage.setItem("planNumber",this.$route.query.planId);
-         localStorage.setItem("planNumber",this.$route.query.planId);
+         localStorage.setItem("projectNumber",this.$route.query.projectId);
          localStorage.setItem("taskId",this.$route.query.taskId ? this.$route.query.taskId : 0);
         document.querySelector(".xncsWrapper").style.height = document.querySelector("#app").offsetHeight + "px"
         this.getParamsList()
