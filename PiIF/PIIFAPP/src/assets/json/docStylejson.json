@@ -26,14 +26,9 @@
                    "name": " 汽轮机形式",
                    "id": "130",
                    "select": [
-                     {
-                         "text": "抽汽",
-                         "value": "抽汽"
-                     },
-                     {
-                         "text": "0202",
-                         "value": "0202"
-                     }
+                     { "text": "抽管", "value": "抽管"},
+                      { "text": "补气", "value": "补气"},
+                      { "text": "再热", "value": "再热"}
                    ]
                 },
                 {
@@ -55,23 +50,7 @@
                         "value": "气冷"
                     }
                    ]
-                },
-               {
-                 "type": "radio",
-                 "name": "冷却方式",
-                 "field": "Coolingmode",
-                 "id": "1540",
-                 "select": [
-                    {
-                        "text": "水冷",
-                        "value": "水冷"
-                    },
-                    {
-                        "text": "空冷",
-                        "value": "空冷"
-                    }
-                  ]
-               }
+                }
               ]
            },
            {
@@ -81,7 +60,7 @@
               "title": "洗轮机形式",
               "html": [
                 {
-                   "type": "checkbox",
+                   "type": "select",
                    "name": "汽轮机形式",
                    "field": "Steamturbinetype",
                    "id": "210",
@@ -108,59 +87,27 @@
              "departname": "进排气参数",
              "title": "进排气参数",
              "html": [
-              {
-                  "type": "input",
-                  "name": "进气压力",
-                  "field": "Intakepressure",
-                  "id": "2210",
-                  "validator": {
-                    "type": "Number",
-                    "regex": [10,20]
-                  },
-                  "unit": "mm"
-               },
                {
                  "type": "input",
                  "name": "进气温度",
                  "field": "Intakeairtemperature",
                  "id": "2310",
-                 "validator": {
-                   "type": "String",
-                   "regex": 10
-                },
                  "unit": "°C"
+              },
+              {
+               "type": "input",
+               "name": "进气压力",
+               "field": "Intakepressure",
+               "id": "2210",
+               "unit": "mm"
               },
               {
                  "type": "input",
                  "name": "进排压力",
                  "field": "Inletandoutletpressure",
                  "id": "2410",
-                 "validator": {
-                  "type": "Number"
-                  },
                  "unit": "mm"
-              },
-               {
-                  "type": "radio",
-                  "name": "加热方式",
-                  "field": "Heatingmode",
-                  "id": "340",
-                  "value": "w31",
-                  "select": [
-                     {
-                         "text": "水热",
-                         "value": "水热"
-                     },
-                     {
-                         "text": "空热",
-                         "value": "空热"
-                     },
-                     {
-                         "text": "自然",
-                         "value": "自然"
-                     }
-                  ]
-        }
+              }
               ]
            },
            {
@@ -194,22 +141,6 @@
                "departname": "转速",
                "title": "转速",
                "html": [
-                {
-                   "type": "radio",
-                   "name": "制冷方式",
-                   "field": "Refrigerationmode",
-                   "id": "340",
-                   "select": [
-                      {
-                          "text": "散热",
-                          "value": "s31"
-                      },
-                      {
-                          "text": "自然",
-                          "value": "s33"
-                      }
-                   ]
-                },
                 { 
                   "id": "370",
                   "type": "textarea",
