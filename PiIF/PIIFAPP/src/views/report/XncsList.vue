@@ -138,6 +138,7 @@ export default {
             params.templatePartNumber = this.planIdObj.partNumber
             params.lifeCycle = "EDIT"
             params.name = this.name
+            params.planId = this.$route.query.planId
             const obj = {}
             getAction(url,params).then((res)=>{
                 console.log(res);
