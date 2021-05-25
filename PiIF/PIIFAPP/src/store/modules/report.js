@@ -33,6 +33,7 @@ const user = {
     btnEditable: null, //权限控制
     isClisked: false, //是否修改控制保存
     centerAndRightShow: false,
+    isManger: null
   },
   mutations: {
     SET_INFO: (state, info) => {
@@ -111,6 +112,9 @@ const user = {
     },
     centerAndRightShow: (state,info) => {
       state.centerAndRightShow = info
+    },
+    isManger: (state,info) => {
+      state.isManger = info
     }
   },
 

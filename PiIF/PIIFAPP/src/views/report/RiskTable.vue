@@ -44,7 +44,8 @@
           loading: true,
           iNow: 0,
           url: {
-            findThingTreeInfo: "/jeecg-boot/pdmReport/findThingTreeInfo"
+            findThingTreeInfo: "/jeecg-boot/pdmReport/findThingTreeInfo",
+            getAllParamPart: "/jeecg-boot/pdmReport/getAllParamPart"
           },
           centerVal: [],
       }
@@ -54,7 +55,6 @@
       this.$nextTick(function(){
           this.$store.commit("currentVal", this.$router)
       })
-      this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
     },
     watch: {
       currentVal: {
@@ -89,10 +89,19 @@
       }
     },
     mounted(){
+       this.$store.commit("isManger",this.$route.query.projectId ? false : true)
+       localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
+       localStorage.setItem("isManger",this.$route.query.projectId ? false : true);
+       localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
+       localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
+       localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
+       localStorage.setItem("taskId",this.$route.query.taskId || this.$route.params.taskId ? this.$route.query.taskId  || this.$route.params.taskId : 0);
+      this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
       document.getElementById("loading").style.display="none";
       // this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
-       this.$store.commit('currentTotalCarPartNumber',localStorage.getItem("totalCarPartNumber") || "" )
-      this.getData()
+       this.$store.commit('currentTotalCarPartNumber',localStorage.getItem("totalCarPartNumber") || this.$route.query.totalCarPartNumber )
+       this.getNum()
+      // this.getData()
       document.querySelector(".risktable").style.height = document.querySelector("#app").offsetHeight + "px"
       window.onresize = () => {
           return (() => {
@@ -138,8 +147,32 @@
           }
        }
       },
+      getNum(){
+         const _this = this,url= this.url.getAllParamPart,params={}
+          // _this.getData([])
+          const isManger = this.$store.state.report.isManger
+          if(isManger){
+            _this.getData()
+          }else{
+             //整车编码
+             params.templatePartNumber = this.$store.state.report.currentTotalCarPartNumberVal 
+             params.planNumber = localStorage.getItem("planNumber") //模板编码
+             //  params.projectNumber = this.$route.query.projectId || this.$route.params.projectId
+              params.taskId = localStorage.getItem("taskId")
+              params.planNumber = localStorage.getItem("planNumber")
+              params.type = localStorage.getItem("indicatorType")
+             params.state = "EDIT"
+             getAction(url,params,'get').then((res) => {
+                 if(res.success){
+                   _this.getData(res.result)
+                 } else {
+                   _this.$message.error(res.message)
+                 }
+            })
+          }
+      },
       //根据整车部件编码和生命周期或者根据基线编码获取页面左侧显示的树状结构数据
-      getData(){
+      getData(resultArr = []){
         const _this = this,url= this.url.findThingTreeInfo,params={}
         // params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
         params.totalCarPartNumber = localStorage.getItem("totalCarPartNumber") 
@@ -160,9 +193,14 @@
                     item.children = []
                  }
                })
+               if(resultArr.length){
+                 res.result.children = res.result.children.filter(function(item){
+                   return  resultArr.indexOf(item.PartNumber) != -1
+                 })
+               }
+              //  console.log(obj,'obj');
                _this.$set(_this,"treeDataSource",[res.result])
                _this.$set(_this,"treeDataSourceAll",[res.result])
-               console.log(_this.treeDataSource);
              } else {
                _this.$message.error(res.message)
                // _this.$nextTick(function(){

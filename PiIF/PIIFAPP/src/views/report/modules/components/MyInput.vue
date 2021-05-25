@@ -38,7 +38,6 @@ export default {
                 { 
                     validator: (rule, values, cbfn) => {
                         const validator = this.value.validator
-                        console.log(values,validator);
                         if(!values){
                         } else{
                             if(validator.type == "Number"){
@@ -74,7 +73,6 @@ export default {
         }
     },
      mounted(){
-        console.log('value');
         if(this.value){
             // console.log('enter');
             // this.$set(this,"formParam",this.value)
@@ -84,7 +82,6 @@ export default {
     watch: {
         value: {
             handler(val){
-                console.log(val,'v');
                 this.formParam = JSON.parse(JSON.stringify(val))
             },
             deep: true

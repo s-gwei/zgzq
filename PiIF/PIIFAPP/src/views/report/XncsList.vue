@@ -74,12 +74,11 @@ export default {
         }
     },
     mounted(){
-        console.log(this.$route.query.projectId);
         // this.$store.commit("btnEditable", this.$route.query.editable)
-         localStorage.setItem("btnEditable",this.$route.query.editable);
-         localStorage.setItem("planNumber",this.$route.query.planId);
-         localStorage.setItem("projectNumber",this.$route.query.projectId);
-         localStorage.setItem("taskId",this.$route.query.taskId ? this.$route.query.taskId : 0);
+        //  localStorage.setItem("btnEditable",this.$route.query.editable);
+        //  localStorage.setItem("planNumber",this.$route.query.planId);
+        //  localStorage.setItem("projectNumber",this.$route.query.projectId);
+        //  localStorage.setItem("taskId",this.$route.query.taskId ? this.$route.query.taskId : 0);
         document.querySelector(".xncsWrapper").style.height = document.querySelector("#app").offsetHeight + "px"
         this.getParamsList()
     },
@@ -143,14 +142,21 @@ export default {
             getAction(url,params).then((res)=>{
                 console.log(res);
                 if (res.success) {
-                    localStorage.setItem("totalCarPartNumber",res.result );
+                     localStorage.setItem("totalCarPartNumber",res.result );
                      obj.totalCarPartNumber = res.result 
-                     obj.projectNumber = _this.$route.query.projectId
-                     obj.taskId = this.$route.query.taskId ? this.$route.query.taskId : 0
-                     obj.planNumber = this.$route.query.planId
-                    // console.log(obj);
+                     obj.projectId = _this.$route.query.projectId
+                     obj.taskId = _this.$route.query.taskId ? this.$route.query.taskId : 0
+                     obj.planId = _this.$route.query.planId
+                     obj.editable = false
+                     obj.indicatorType = _this.$route.query.indicatorType
+                    //  localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
+    //    localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
+    //    localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
+    //    localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
+    //                 // console.log(obj);
                 //   this.projects = res.result.records
                 //   const params = {totalCarPartNumber: res.result || "AZ00000001"}
+                console.log(obj,'obj');
                   this.$router.push({name: "riskTable",params:obj});
                 } else {
                   this.$message.error(res.message);

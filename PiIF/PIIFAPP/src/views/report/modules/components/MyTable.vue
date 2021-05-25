@@ -151,7 +151,6 @@ export default {
         },
         getDealDate(data){
             const _this = this
-            // console.log(data,'data');
             this.PartNumberDate =new Array(100).fill("")
             data.forEach(function(item,index){
                 _this.PartNumberDate[index] = item.PartNumber
@@ -160,7 +159,6 @@ export default {
             const newArr = []
             var titleRows = JSON.parse(JSON.stringify(this.titleRows))
             var rowsData = []
-            // console.log(titleRows,'title');
              for(let i = 0;i<data.length;i++){
                  var columnData =[]
                 titleRows.forEach(function(itm,index){
@@ -315,7 +313,6 @@ export default {
                 }
                 _this.dataArrayFinal.push(objs)
             })
-            console.log(_this.dataArrayFinal);
             this.$store.commit("dataTableFinal", _this.dataArrayFinal)
         }
     }
