@@ -317,6 +317,7 @@
                const data = res.result.filter(function(item){
                  return item.Type == _this.$store.state.report.currentNodeTitleVal
                })
+                _this.$store.commit("result", data[0])
                 _this.$set(_this,"currentValue",data[0])
               //  _this.$bus.$emit('currentValue',_this.currentValue,_this.docVal)
                 _this.$bus.$emit('currentValue',{
