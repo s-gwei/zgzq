@@ -95,6 +95,7 @@
        localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
        localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
        localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
+       localStorage.setItem("totalCarPartNumber",this.$route.query.totalCarPartNumber || this.$route.params.totalCarPartNumber);
        localStorage.setItem("taskId",this.$route.query.taskId || this.$route.params.taskId ? this.$route.query.taskId  || this.$route.params.taskId : 0);
       this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
       document.getElementById("loading").style.display="none";
