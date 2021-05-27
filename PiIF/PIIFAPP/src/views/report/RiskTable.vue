@@ -1,6 +1,6 @@
 <template>
    <div class="risktable">
-      <div  class="tableContent" style="height:100%;"  v-show="!loading && iNow >=99">
+      <div  class="tableContent" style="height:100%;"  v-show="isPage && !loading && iNow >=99">
       <!-- <div  class="tableContent" style="height:100%;"> -->
         <a-row type="flex" :gutter="8" style="height:100%;">
           <a-col :md="4" :sm="24" style="height: 100%" class="pageLeft">
@@ -17,7 +17,10 @@
         </div>
         </a-row>
       </div>
-      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="loading || iNow < 99" >
+       <div class="tableContent nullPage" style="height:100%;"  v-if="!isPage && !loading && iNow >=99">
+        暂无数据
+      </div>
+      <div  style="background: '#f6f6f6;height: 50%" class="loadingBox" v-if="isPage && (loading || iNow < 99)" >
          <div  id="progressBox" >
             <div id="progressBar">0%</div>
             <div id="progressText">0%</div>
@@ -48,6 +51,7 @@
             getAllParamPart: "/jeecg-boot/pdmReport/getAllParamPart"
           },
           centerVal: [],
+          isPage: true
       }
     },
     created(){
@@ -89,15 +93,18 @@
       }
     },
     mounted(){
-       this.$store.commit("isManger",this.$route.query.projectId ? false : true)
-       localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
-       localStorage.setItem("isManger",this.$route.query.projectId ? false : true);
-       localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
-       localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
-       localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
-       localStorage.setItem("totalCarPartNumber",this.$route.query.totalCarPartNumber || this.$route.params.totalCarPartNumber);
-       localStorage.setItem("taskId",this.$route.query.taskId || this.$route.params.taskId ? this.$route.query.taskId  || this.$route.params.taskId : 0);
-      this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
+      this.$store.commit("isManger",this.$route.query.projectId ? false : true)
+      if(this.$route.query.planId){
+         localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
+         localStorage.setItem("isManger",this.$route.query.projectId ? false : true);
+         localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
+         localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
+         localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
+         localStorage.setItem("totalCarPartNumber",this.$route.query.totalCarPartNumber || this.$route.params.totalCarPartNumber);
+         localStorage.setItem("taskId",this.$route.query.taskId || this.$route.params.taskId ? this.$route.query.taskId  || this.$route.params.taskId : 0);
+         this.$store.commit("btnEditable", localStorage.getItem("btnEditable"))
+      }
+      
       document.getElementById("loading").style.display="none";
       // this.$store.commit('currentTotalCarPartNumber',this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber || "")
        this.$store.commit('currentTotalCarPartNumber',localStorage.getItem("totalCarPartNumber") || this.$route.query.totalCarPartNumber )
@@ -167,7 +174,9 @@
                  if(res.success){
                    _this.getData(res.result)
                  } else {
-                   _this.$message.error(res.message)
+                   _this.$message.error("暂无数据" || res.message)
+                      _this.loading = false
+                      _this.isPage = false
                  }
             })
           }
@@ -306,6 +315,12 @@
 </script>
 <style scoped lang="scss">
   @import '~@assets/less/common.less';
+  .nullPage{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 300px;
+  }
   /deep/.ant-card-body{
     height: 100%;
   }
