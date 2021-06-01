@@ -93,10 +93,11 @@
       }
     },
     mounted(){
-      this.$store.commit("isManger",this.$route.query.projectId ? false : true)
+      // this.$store.commit("isManger",this.$route.query.projectId && this.$route.query.isIds != 'two' ? false : true)
+      this.$store.commit("isManger", this.$route.query.isIds == 'one' ? false : true)
       if(this.$route.query.planId){
          localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
-         localStorage.setItem("isManger",this.$route.query.projectId ? false : true);
+         localStorage.setItem("isManger",this.$route.query.isIds == 'one' ? false : true);
          localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
          localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
          localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
