@@ -187,7 +187,7 @@
         const _this = this,url= this.url.findThingTreeInfo,params={}
         // params.totalCarPartNumber = this.$route.params.totalCarPartNumber || this.$route.query.totalCarPartNumber
         params.totalCarPartNumber = localStorage.getItem("totalCarPartNumber") 
-        params.lifeCycle = "EDIT"
+        params.lifeCycle = ""
         // params.baselineNumber = 1
         getAction(url,params,'get').then((res) => {
              if(res.success){
