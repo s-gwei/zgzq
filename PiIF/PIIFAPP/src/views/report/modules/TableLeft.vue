@@ -485,7 +485,7 @@
           const _this = this,url= this.url.findPartInfo,params={}
           _this.$store.commit("centerAndRightShow",false)
           params.totalCarPartNumber = this.$store.state.report.currentTotalCarPartNumberVal
-          params.lifeCycle = edition ? edition : "EDIT"
+          params.lifeCycle = edition ? edition : ""
           params.partNumber = selectedNodeKeys
           getAction(url,params,'get').then((res) => {
                if(res.success && res.result){
