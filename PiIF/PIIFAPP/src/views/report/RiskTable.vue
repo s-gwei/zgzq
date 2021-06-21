@@ -173,7 +173,14 @@
              params.state = ""
              getAction(url,params,'get').then((res) => {
                  if(res.success){
-                   _this.getData(res.result)
+                   if(res.result && !res.result.length){
+                     _this.$message.success("暂无数据")
+                     _this.loading = false
+                      _this.isPage = false
+                      _this.iNow = 100
+                   } else{
+                     _this.getData(res.result)
+                   }
                  } else {
                       _this.$message.warning("暂无数据" || res.message)
                       _this.loading = false
