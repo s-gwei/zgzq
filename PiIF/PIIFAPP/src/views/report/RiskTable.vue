@@ -94,7 +94,7 @@
     },
     mounted(){
       // this.$store.commit("isManger",this.$route.query.projectId && this.$route.query.isIds != 'two' ? false : true)
-      this.$store.commit("isManger", this.$route.query.isIds == 'one' ? false : true)
+      this.$store.commit("isManger", this.$route.query.isIds == 'two' || !this.$route.query.projectId ? true : false)
       if(this.$route.query.planId){
          localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
          localStorage.setItem("isManger",this.$route.query.isIds == 'one' ? false : true);
@@ -175,9 +175,10 @@
                  if(res.success){
                    _this.getData(res.result)
                  } else {
-                   _this.$message.error("暂无数据" || res.message)
+                      _this.$message.warning("暂无数据" || res.message)
                       _this.loading = false
                       _this.isPage = false
+                      _this.iNow = 100
                  }
             })
           }
