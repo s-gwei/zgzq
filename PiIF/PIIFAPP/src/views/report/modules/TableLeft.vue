@@ -179,9 +179,9 @@
        }
     },
     mounted() {
-      this.projectNumber = this.$route.query.projectNumber || this.$route.params.projectNumber || localStorage.getItem("projectNumber")
+      this.projectNumber = this.$route.query.projectId || this.$route.params.projectId || localStorage.getItem("projectNumber")
       this.taskId = this.$route.query.taskId || this.$route.params.taskId ||   localStorage.getItem("taskId") || '0'
-      this.planNumber = this.$route.query.planNumber || this.$route.params.planNumber ||  localStorage.getItem("planNumber")
+      this.planNumber = this.$route.query.planId || this.$route.params.planId ||  localStorage.getItem("planNumber")
       // 获取中间样式文件
       this.getStyle()
       // console.log(this.$store.state.report.btnEditable);
