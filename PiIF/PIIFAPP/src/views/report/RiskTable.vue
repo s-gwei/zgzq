@@ -97,7 +97,7 @@
       this.$store.commit("isManger", this.$route.query.isIds == 'two' || !this.$route.query.projectId ? true : false)
       if(this.$route.query.planId){
          localStorage.setItem("indicatorType",this.$route.query.indicatorType || this.$route.params.indicatorType);
-         localStorage.setItem("isManger",this.$route.query.isIds == 'one' ? false : true);
+         localStorage.setItem("isManger", this.$route.query.isIds == 'two' || !this.$route.query.projectId ? true : false);
          localStorage.setItem("btnEditable",this.$route.query.editable || this.$route.params.editable);
          localStorage.setItem("planNumber",this.$route.query.planId || this.$route.params.planId);
          localStorage.setItem("projectNumber",this.$route.query.projectId || this.$route.params.projectId);
@@ -170,7 +170,7 @@
               params.taskId = localStorage.getItem("taskId")
               params.planNumber = localStorage.getItem("planNumber")
               params.type = localStorage.getItem("indicatorType")
-             params.state = "EDIT"
+             params.state = ""
              getAction(url,params,'get').then((res) => {
                  if(res.success){
                    _this.getData(res.result)

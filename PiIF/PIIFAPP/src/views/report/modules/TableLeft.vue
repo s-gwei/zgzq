@@ -500,7 +500,8 @@
                    }]
                  })
                  _this.$store.commit("currentCenterChange", [])
-                 if(edition == '发布版'){
+                //  if(edition == '发布版'){
+                 if(edition == 'RELEASE'){
                     _this.$store.commit("currentEdition","发布版")
                  } else{
                     _this.$store.commit("currentEdition","最新版")
